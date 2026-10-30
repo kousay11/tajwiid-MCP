@@ -4,6 +4,7 @@ import asyncio
 import copy
 import json
 from contextlib import asynccontextmanager
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -371,3 +372,205 @@ def test_repeated_discovery_cursor_rejected():
     peers["quran_mcp"].list_tools = pages
     state = run(g.capabilities(refresh=True)).providers[0]
     assert state.status == "unavailable" and state.issues[0].code == "SCHEMA_MISMATCH"
+
+
+def test_config_rejects_relative_oversized_duplicate_and_malformed_values(tmp_path):
+    for path in (Path("providers.json"), tmp_path / "missing.json"):
+        with pytest.raises(GatewayError) as error:
+            load_settings(path)
+        assert error.value.issue.code == "INVALID_CONFIG"
+    big = tmp_path / "big.json"
+    big.write_text(" " * 70000 + '{"providers":[]}')
+    with pytest.raises(GatewayError):
+        load_settings(big)
+    ok = tmp_path / "ok.json"
+    ok.write_text('{"providers":[{"provider_id":"quran_mcp","enabled":true}]}')
+    assert load_settings(ok).providers[0].enabled
+    with pytest.raises(ValidationError):
+        GatewaySettings(
+            providers=(
+                ProviderSettings(provider_id="quran_mcp"),
+                ProviderSettings(provider_id="quran_mcp"),
+            )
+        )
+    with pytest.raises(ValidationError):
+        ProviderSettings(provider_id="quran_mcp", bearer_token_env="lower-case")
+
+
+@pytest.mark.parametrize(
+    "bad",
+    [
+        {"query": ""},
+        {"query": "   "},
+        {"query": "x", "limit": 0},
+        {"query": "x", "limit": 21},
+        {"query": "x", "provider_ids": ("quran_mcp", "quran_mcp")},
+        {"query": "x", "provider_ids": ("unknown",)},
+        {"query": "x", "work_id": "ibn_kathir"},
+    ],
+)
+def test_search_request_rejects_invalid_input(bad):
+    with pytest.raises(ValidationError):
+        SearchRequest(**bad)
+
+
+def test_discovery_only_provider_is_never_called_for_search():
+    g, peers, opened, _ = gateway("quran_mcp", "quran_search_mcp")
+    assert g.catalog["quran_search_mcp"]["admitted_tools"] == {}
+    with pytest.raises(GatewayError) as error:
+        run(g.search(SearchRequest(query="public", provider_ids=("quran_search_mcp",))))
+    assert error.value.issues[0].code == "UNSUPPORTED_CAPABILITY"
+    assert opened == [] and peers["quran_search_mcp"].calls == []
+
+
+def test_disabled_provider_is_not_contacted_when_explicitly_requested():
+    g, _, opened, _ = gateway("quran_mcp")
+    with pytest.raises(GatewayError) as error:
+        run(g.search(SearchRequest(query="public", provider_ids=("tafsir_mcp",))))
+    assert error.value.issues[0].code == "PROVIDER_UNAVAILABLE" and opened == []
+
+
+def test_mutating_flagged_or_absent_admitted_tool_is_never_invoked():
+    g, peers, _, _ = gateway("quran_mcp")
+    next(
+        t for t in peers["quran_mcp"].tools if t.name == "search_tafsir"
+    ).annotations = ToolAnnotations(read_only_hint=False)
+    with pytest.raises(GatewayError) as error:
+        run(g.search(SearchRequest(query="public")))
+    assert error.value.issues[0].code == "SCHEMA_MISMATCH"
+    assert all(n != "search_tafsir" for n, _ in peers["quran_mcp"].calls)
+    g, peers, _, _ = gateway("quran_mcp")
+    peers["quran_mcp"].tools[:] = [t for t in peers["quran_mcp"].tools if t.name != "search_tafsir"]
+    with pytest.raises(GatewayError) as error:
+        run(g.search(SearchRequest(query="public")))
+    assert error.value.issues[0].code == "SCHEMA_MISMATCH"
+    state = run(g.capabilities("quran_mcp", refresh=True)).providers[0]
+    assert {t.tool_name for t in state.tools if t.admitted} == {
+        "fetch_grounding_rules",
+        "fetch_quran",
+    }
+
+
+def test_rate_limit_is_retried_once_then_succeeds():
+    settings = GatewaySettings(
+        providers=(ProviderSettings(provider_id="quran_mcp", enabled=True),), retries=1
+    )
+    g, peers, opened, closed = gateway("quran_mcp", policy=settings)
+
+    async def limited(name, args):
+        if len(opened) == 1:
+            return CallToolResult(
+                is_error=True, content=[TextContent(type="text", text="[rate_limited]")]
+            )
+        return fixtures()["search_tafsir"]
+
+    peers["quran_mcp"].payloads["search_tafsir"] = limited
+    assert run(g.search(SearchRequest(query="public"))).hits
+    assert len(opened) == 2 and opened == closed
+
+
+def test_authentication_failure_is_not_retried():
+    settings = GatewaySettings(
+        providers=(ProviderSettings(provider_id="quran_mcp", enabled=True),), retries=1
+    )
+    g, _, opened, closed = gateway("quran_mcp", policy=settings)
+
+    @asynccontextmanager
+    async def denied(provider, policy, profile):
+        opened.append(provider.provider_id)
+        raise GatewayError("AUTHENTICATION_FAILED", "denied")
+        yield
+
+    g.connector = denied
+    with pytest.raises(GatewayError) as error:
+        run(g.search(SearchRequest(query="public")))
+    assert error.value.issues[0].code == "AUTHENTICATION_FAILED" and len(opened) == 1
+
+
+def scoped_tafsir(g, source=None):
+    from conftest import selection
+
+    return SearchRequest(
+        query="public",
+        selection=selection(g.repository),
+        source_identity={
+            "corpus_id": "explicit",
+            "corpus_version": "explicit",
+            "numbering_system": "explicit",
+            "provider_sources": {"tafsir_mcp": source or g.catalog["tafsir_mcp"]["source_id"]},
+        },
+    )
+
+
+def fixed_scope(g):
+    async def scope(request):
+        return (
+            SimpleNamespace(mapping_artifact_sha256="b" * 64, mapping_status="verified_difference"),
+            {(6, 1): "SENTINEL"},
+            lambda s: s,
+        )
+
+    g.prepare_scope = scope
+
+
+def test_tafsir_provider_scoped_search_checks_boundaries_first():
+    g, peers, _, _ = gateway("tafsir_mcp")
+    fixed_scope(g)
+    result = run(g.search(scoped_tafsir(g)))
+    hit = result.hits[0]
+    assert hit.compatibility == "mapped_boundaries_checked" and hit.provider_id == "tafsir_mcp"
+    assert hit.citation.attribution == "Fixture attribution" and hit.citation.author is None
+    names = [n for n, _ in peers["tafsir_mcp"].calls]
+    assert names.index("fetch_ayah") < names.index("search_in_tafsir")
+    args = next(a for n, a in peers["tafsir_mcp"].calls if n == "search_in_tafsir")
+    assert args["surah"] == 6 and args["source"] == "saadi"
+
+
+@pytest.mark.parametrize(
+    ("payload", "code"),
+    [
+        ({"surah": 6, "ayah": 1, "text": "OTHER"}, "INCOMPATIBLE_RIWAYA"),
+        ({"surah": 6, "ayah": 2, "text": "SENTINEL"}, "SCHEMA_MISMATCH"),
+        ({"surah": "6", "ayah": 1, "text": "SENTINEL"}, "SCHEMA_MISMATCH"),
+    ],
+)
+def test_tafsir_provider_boundary_failures_block_search(payload, code):
+    g, peers, _, _ = gateway("tafsir_mcp")
+    fixed_scope(g)
+    peers["tafsir_mcp"].payloads["fetch_ayah"] = response(payload)
+    with pytest.raises(GatewayError) as error:
+        run(g.search(scoped_tafsir(g)))
+    assert error.value.issues[0].code == code
+    assert all(n != "search_in_tafsir" for n, _ in peers["tafsir_mcp"].calls)
+
+
+def test_tafsir_attribution_mismatch_never_becomes_evidence():
+    g, peers, _, _ = gateway("tafsir_mcp")
+    peers["tafsir_mcp"].payloads["search_in_tafsir"] = response(
+        {"result": [{"surah": 6, "ayah": 1, "tafsir_excerpt": "X", "source_attribution": "Other"}]}
+    )
+    with pytest.raises(GatewayError) as error:
+        run(g.search(SearchRequest(query="public")))
+    assert error.value.issues[0].code == "UNVERIFIED_EVIDENCE"
+    peers["tafsir_mcp"].payloads["list_tafsir_sources"] = response({"items": []})
+    with pytest.raises(GatewayError) as error:
+        run(g.search(SearchRequest(query="public")))
+    assert error.value.issues[0].code == "UNVERIFIED_EVIDENCE"
+
+
+def test_scoped_search_requires_matching_explicit_provider_source():
+    g, peers, opened, _ = gateway("tafsir_mcp")
+    fixed_scope(g)
+    with pytest.raises(GatewayError) as error:
+        run(g.search(scoped_tafsir(g, source="another:namespace")))
+    assert error.value.issues[0].code == "UNSUPPORTED_VERSION"
+    assert opened == [] and peers["tafsir_mcp"].calls == []
+
+
+def test_empty_result_is_reported_as_empty_not_as_failure():
+    g, peers, _, _ = gateway("quran_mcp")
+    peers["quran_mcp"].payloads["search_tafsir"] = response(
+        {"results": [], "pagination": {"has_more": False}}
+    )
+    result = run(g.search(SearchRequest(query="public")))
+    assert result.hits == () and result.attempts[0].outcome == "empty" and not result.issues

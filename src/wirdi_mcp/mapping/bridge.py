@@ -113,3 +113,8 @@ def bind_authority(mapper: bytes, arabic: bytes, schemas: bytes):
     }
     exec(compile(mapper, "<pinned-wirdi-mapper>", "exec"), namespace)
     return namespace["resolve"]
+
+
+def pinned_skeleton(resolver):
+    """The pinned mapper's own orthographic comparison, so callers never re-implement it."""
+    return resolver.__globals__["skeleton"]

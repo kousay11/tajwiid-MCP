@@ -6,7 +6,7 @@ from pathlib import Path
 
 from wirdi_mcp.domain.exceptions import KnowledgeError
 from wirdi_mcp.mapping.adapter import WirdiSourceMappingAdapter
-from wirdi_mcp.mapping.bridge import bind_authority
+from wirdi_mcp.mapping.bridge import bind_authority, pinned_skeleton
 from wirdi_mcp.providers.adapters import ADAPTERS, invalid_payload
 from wirdi_mcp.providers.config import GatewaySettings, catalog, load_settings
 from wirdi_mcp.providers.models import (
@@ -183,7 +183,7 @@ class ProviderGateway:
                 repo.read_artifact("backend/app/tadabbur/arabic.py"),
                 repo.read_artifact("backend/app/schemas.py"),
             )
-            return mapping, expected, resolver.__globals__["skeleton"]
+            return mapping, expected, pinned_skeleton(resolver)
         except KnowledgeError as exc:
             raise GatewayError(exc.error.code, exc.error.message) from None
 

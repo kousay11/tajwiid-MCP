@@ -43,9 +43,7 @@ def create_server(settings: Settings | None = None) -> MCPServer:
         return HealthReport(
             quran_data=state,
             mapping=state,
-            external_providers=(
-                "configured_unchecked" if settings.provider_config else "disabled"
-            ),
+            external_providers=("configured_unchecked" if settings.provider_config else "disabled"),
         )
 
     register_quran_tools(server, PublicSourceRepository(settings.wirdi_ai_root))

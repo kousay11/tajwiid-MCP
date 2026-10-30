@@ -20,6 +20,7 @@ from wirdi_mcp.providers.models import (
     CapabilitiesResult,
     GatewayFailure,
     GatewaySuccess,
+    ProviderId,
     SearchRequest,
     SearchResult,
 )
@@ -79,7 +80,7 @@ SearchResults = SearchResult
 
 
 class ProviderCapabilitiesInput(ContractModel):
-    provider_id: NonEmpty | None = None
+    provider_id: ProviderId | None = None
     refresh: bool = False
 
 
