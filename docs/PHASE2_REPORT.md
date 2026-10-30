@@ -208,5 +208,6 @@ planned; no corresponding feature was implemented.
 
 Phase 3: optional external MCP discovery, capability admission, response/source
 normalization, deadlines and fallback, while requiring safe mapping for
-passage-scoped retrieval. It is not started. Wirdi AI backend integration,
+passage-scoped retrieval. It was started afterwards; see
+[PHASE3_REPORT](PHASE3_REPORT.md). Wirdi AI backend integration,
 Tajwid, RAG and agents remain deferred to their roadmap gates.

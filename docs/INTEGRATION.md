@@ -112,6 +112,14 @@ suite against each adapter. Include splits, merges, unsupported spans and change
 corpus versions. No imported application implementation details should leak into
 the stable reference contract.
 
+## Phase 3 status
+
+Phase 3 changes nothing in Wirdi AI. The application does not call Wirdi MCP today and
+keeps its own `backend/app/tadabbur/mcp.py` client for quran.ai tafsir. The gateway tools
+are consumable by any stdio MCP host once Phase 6 adds a managed client. Wirdi AI's
+Tadabbur flow fetches tafsir *by passage* from six editions; Phase 3 provides only
+Saadi search, so a passage tafsir fetch tool is an explicit Phase 6 decision.
+
 ## Preserve Quran.ai during migration
 
 Keep the original Quran.ai retrieval path active behind the existing backend

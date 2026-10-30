@@ -1,9 +1,64 @@
 # External MCP provider design and capability audit
 
-Audit date: **2026-10-30**. Evidence is limited to public documentation and selected
-source files retrieved on this date. **No external MCP handshake, `tools/list`,
-or provider `tools/call` was performed. None of these providers is enabled or
-installed.** Repository contents and advertised endpoints can change.
+Audit date: **2026-10-30**. The candidate matrix and per-provider notes below are
+the original *static* review (public documentation and selected source files); they
+made no MCP handshake. The later **runtime audit** and the implemented gateway are
+described in the next section and in [PHASE3_REPORT](PHASE3_REPORT.md). All providers
+remain disabled unless an administrator opts in. Repository contents and advertised
+endpoints can change.
+
+## Runtime audit and implemented gateway (Phase 3, 2026-10-30)
+
+Raw discovery records (tool names, annotations, original schemas) and call digests are in
+`docs/provider-evidence/2026-10-30.json` (Codex) and, for the Phase 3 close-out run,
+`docs/provider-evidence/2026-10-30-live-gateway.json`. Neither stores provider excerpts.
+
+| | `quran_mcp` | `tafsir_mcp` | `quran_search_mcp` |
+| --- | --- | --- | --- |
+| Endpoint | `https://mcp.quran.ai` | `https://mcp.tafsir.net/mcp` | `https://mcp.quran.us.kg/` |
+| Live tools discovered | 36 (14 not read-only) | 17 (all read-only) | 8 |
+| Admitted by catalog | `fetch_grounding_rules`, `fetch_quran`, `search_tafsir` | `list_tafsir_sources`, `fetch_ayah`, `search_in_tafsir` | none |
+| Qaloun / Abu Nashit text | none found | none found | not established |
+| Scoped search for Qaloun 6:1-8 (Hafs 6:1-7) | passes boundary check | **refused** (`INCOMPATIBLE_RIWAYA`) | n/a |
+
+Findings that matter:
+
+- The Quran MCP README advertises Qaloon; the repository contains no Qaloon edition, the
+  deployed edition used for boundary checks is `ar-uthmani-hafs`, and Wirdi AI's own
+  earlier edition snapshot lists none. Treat it as unverified.
+- Tafsir MCP's text differs orthographically from the local Hafs source in six of seven
+  ayat of 6:1-7 (only 6:2 is equal under the pinned mapper's skeleton). The guard
+  correctly refuses; unscoped search still works.
+- Quran MCP marks all its tafsir editions `provisional-internal`; Tafsir MCP's
+  `get_qeraat_variants` returns raw `@reader/reading@` strings. Neither gives a
+  transmission path for Wirdi's corpus.
+- Provider tool catalogs differ from their README tool counts (36 vs fewer; 17 vs 13), so
+  admission uses the live schema hash, not documentation.
+
+### Design versus implementation
+
+| Design (below) | Implemented |
+| --- | --- |
+| `ProviderAdapter.discover()/search()` | `source_texts()` (boundary text) and `search()`; discovery belongs to the gateway |
+| 3 s connect, 8 s call, 12 s total, 1 MiB | 8 s call, 16 s per operation, 35 s total (configurable, bounded), 2 MiB |
+| Retry once, honor `Retry-After` | Retry once for transient/rate-limit errors; `Retry-After` is not read |
+| Circuit breaker, cache | **Not implemented** (deferred) |
+| `ScholarlyHit` | `ExternalHit` |
+| Per-provider module files | Two adapter classes in `providers/adapters.py` |
+
+### Licensing and terms (open questions; no data is copied or cached by Wirdi MCP)
+
+- Quran MCP code: QFGPL-1.0 (non-commercial, network copyleft, software only; served
+  Quran text, translations and tafsir are separate, per-author rights). Calling the hosted
+  service as a client is not distributing or modifying that software, but self-hosting a
+  fork would trigger the non-commercial and source-sharing terms. No terms of service for
+  the hosted endpoint were found in the repository.
+- Tafsir MCP code: MIT. `LICENSE-DATA` states CC BY 4.0 (commercial use allowed, attribution
+  to Tafsir Center required) while `DATA_SOURCES.md` says commercial redistribution of
+  tafsir texts needs permission from rights holders. The two statements conflict, and
+  rights in the underlying works are not resolved here.
+- Wirdi AI stores Tadabbur results; retention of provider excerpts there needs its own review.
+- **Owner decision needed before any public or commercial release.**
 
 Evidence levels mean different things: `documented` = described by publisher;
 `source_inspected` = selected registration/implementation inspected;
@@ -75,6 +130,9 @@ numbering remain separate audit items, regardless of the code license or the
 provider's accuracy claims.
 
 ## Gateway and adapter contract (Phase 3)
+
+*(This section is the original design. The implemented differences are tabulated in
+"Design versus implementation" above.)*
 
 `ProviderAdapter` declares `discover()` and normalized `search()` only; it opens
 no connections. Future implementations (`quran_mcp.py`, `tafsir_mcp.py`,

@@ -13,23 +13,25 @@ verified dependencies, not the presence of a schema or a planned module.
 | 6 — Wirdi AI integration | Backend lifespan client, feature flags, Tadabbur integration, UI compatibility and migration | Existing Quran.ai path preserved, mapping conformance and corpus integrity unchanged, failure isolation/privacy tests, regression tests and rollback exercised |
 | 7 — Optional expansion | A single agent, grounded LLM explanations or documentary RAG only if justified | Evaluated user need, authorized sources, citation correctness/refusal tests, Arabic evaluation and reproducible quality/latency/cost benchmarks |
 
-Current state: **Phase 2 complete**, subject to the source limitations in
-[SOURCE_AUDIT](SOURCE_AUDIT.md). Direct read-only Qaloun access, source integrity,
-559-page metadata and original resolver reuse are implemented. Real stdio
-calls and complete source-audit conformance have passed. No application/database
-integration, external provider, knowledge database, Tajwid engine, RAG or agent
-was added. [PHASE2_REPORT](PHASE2_REPORT.md) records exact verification.
+Current state: **Phase 3 implemented (0.3.0)** on top of Phase 2, subject to the
+limits in [PHASE3_REPORT](PHASE3_REPORT.md) and [SOURCE_AUDIT](SOURCE_AUDIT.md). Direct
+read-only Qaloun access, source integrity, 559-page metadata and original resolver
+reuse (Phase 2) are unchanged. Phase 3 adds a disabled-by-default outbound gateway with
+two tools. No application/database integration, knowledge database, Tajwid engine, RAG
+or agent was added.
 
-## Next milestone: Phase 3 optional external MCP gateway
+## Phase 3 status: optional external MCP gateway
 
-1. Review pinned provider release/endpoint and content permissions.
-2. Implement opt-in discovery with original schemas and capability admission.
-3. Add provider-specific normalization retaining original scholarly references.
-4. Require safe source mapping before passage-specific external retrieval.
-5. Add bounded deadlines, retry/fallback, schema drift and failure-isolation tests.
-6. Record actual discovery/tool calls before claiming live provider verification.
+| Item | State |
+| --- | --- |
+| Pinned provider endpoints and content-permission review | Endpoints pinned in `providers/catalog.json`; licensing questions open (see PROVIDERS) |
+| Opt-in discovery with original schemas and capability admission | Done; sha256 schema-signature admission, read-only annotation required |
+| Provider-specific normalization keeping scholarly references | Done for `quran_mcp` and `tafsir_mcp` (Saadi tafsir search only) |
+| Safe source mapping before passage-specific retrieval | Done; unsafe mapping rejected before any network use |
+| Deadlines, retry, fallback, drift and failure isolation tests | Done with mocked peers |
+| Recorded real discovery and calls | Done; see `docs/provider-evidence/` |
+| Passage tafsir *fetch* tool, circuit breaker, caching | Not implemented; deferred |
 
-Keep providers disabled until that separate milestone. The current task stops
-at Phase 2. Path-specific Tajwid requires an independent Abu Nashit source audit;
-the current corpus's tariq remains unspecified. A preferred pure shared mapper
-library extraction would require a separate authorized change to Wirdi AI.
+`quran_search_mcp` is discovery-only. Path-specific Tajwid still requires an independent
+Abu Nashit source audit; the current corpus's tariq remains `unspecified`. A preferred
+pure shared mapper library extraction would require a separate authorized change to Wirdi AI.

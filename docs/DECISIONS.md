@@ -8,7 +8,7 @@ on read-only source evidence. Revise through explicit versioned decisions.
 | Independent Python 3.12+ `src/` package using Hatchling | Standard packaging, clean installed imports and reproducible entry point | Existing app dependencies must remain behind ports |
 | Official `mcp==2.3.0`, `MCPServer` v2 API | Verified current package and tested SDK surface; one SDK handles server and outbound clients | Exact pin requires reviewed security/version updates; do not mix v1 or third-party FastMCP examples |
 | stdio only in executable Phase 1 | Local Ubuntu development without a public listener or premature auth service | HTTP/ASGI deployment remains a later explicit task |
-| Three operational read-only tools; five unregistered proposals | Data/mapping admission gates now pass; no fake Tajwid handlers | Unconfigured sources return typed unavailability |
+| Five operational read-only tools; three unregistered Tajwid proposals | Data/mapping admission gates now pass; no fake Tajwid handlers | Unconfigured sources return typed unavailability |
 | Small meaningful modules, no empty engine/adapters | Keeps transport, contracts, data ports and providers distinct without fake implementations | Add services, validators and actual adapters incrementally |
 | Required corpus/version/numbering/riwaya/tariq identity | Equal verse numbers do not prove boundary equality | More metadata for every caller; legacy bare references require explicit conversion at the boundary |
 | Immutable read-only Qaloun adapter | Preserves text and source traceability without corpus duplication | Requires an authorized audited manifest and dependency availability |
@@ -68,3 +68,28 @@ runtime was opened and no sibling file was changed.
 
 The original foundation report remains historical. Current verification and
 exact changed files are in [PHASE2_REPORT](PHASE2_REPORT.md).
+
+## Phase 3 decisions (provider gateway, 0.3.0)
+
+- **Request-scoped client sessions.** Each operation opens an official-SDK
+  streamable-HTTP client, discovers tools, calls and closes. No long-lived session,
+  background task or shared mutable connection; cancellation and timeouts close it.
+- **Admission by schema signature.** A tool is callable only if it is in the audited
+  catalog, annotated read-only and its canonical input/output schema hash equals the
+  pinned sha256. Drift disables the tool; mutating or UI tools are never callable.
+- **Narrow typed adapters, no passthrough.** Only Saadi tafsir search is exposed.
+  Caller-supplied URLs, tool names and arguments do not exist.
+- **Provider text is evidence, never corpus.** Hits carry provider, tool, response and
+  excerpt digests, citation and `validation_status=unreviewed`; compatibility is
+  `unknown` unless a mapped boundary check passed. Nothing is merged into Qaloun text.
+- **Hafs boundary guard.** A scoped search first requires a safe mapping, then compares
+  the provider's Hafs verse text with the local Hafs edition using the pinned mapper's
+  own orthographic skeleton; any difference fails closed (`INCOMPATIBLE_RIWAYA`).
+  Observed: `quran_mcp` passes for Qaloun 6:1-8; `tafsir_mcp` does not (orthography
+  differs for 6 of 7 ayat), so it is limited to unscoped search. The guard was not loosened.
+- **Passage tafsir fetch deferred.** Wirdi AI's Tadabbur flow fetches tafsir by passage;
+  that tool is a Phase 6 decision, not part of Phase 3.
+- **`quran_search_mcp` stays discovery-only** with an empty admitted-tool list.
+- **No cache, no circuit breaker yet.** Both were designed in PROVIDERS and deferred
+  until a licensing review permits retention.
+- `tariq=unspecified` is unaffected: no provider can establish the corpus path.

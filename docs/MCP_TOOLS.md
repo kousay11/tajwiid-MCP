@@ -1,7 +1,8 @@
-# MCP tools — v1.0 business contract, Phase 2 release 0.2.0
+# MCP tools — v1.0 business contract, Phase 3 release 0.3.0
 
-Registered: `health_check`, `get_qaloun_passage`, `resolve_source_mapping`.
-The other five catalog entries remain typed proposals and are not advertised.
+Registered: `health_check`, `get_qaloun_passage`, `resolve_source_mapping`,
+`get_provider_capabilities`, `search_scholarly_sources`.
+The other three catalog entries (Tajwid) remain typed proposals and are not advertised.
 `tools/contracts.py` supplies request and response models; implemented handlers
 are in `tools/quran.py`. All registered tools are read-only and closed-world.
 
@@ -77,9 +78,10 @@ results against the schemas returned by `tools/list`.
 ### `health_check`
 
 No inputs, source reads, paths or credentials. Reports the preserved
-`status=foundation_ready`, service version, all three `available_tools`,
+`status=foundation_ready`, service version, all five `available_tools`,
 `quran_data`/`mapping` as `not_configured` or `configured_unchecked`,
-`external_providers=disabled`, `tajwid_analysis=not_implemented`,
+`external_providers` (`disabled`, or `configured_unchecked` when a provider
+configuration path is set; never a connectivity claim), `tajwid_analysis=not_implemented`,
 `validation_status=not_applicable`. A configured root is not a health assertion
 about files; each data call performs its own admission checks.
 
@@ -177,37 +179,54 @@ explanation template. `NOT_FOUND`, `UNSUPPORTED_VERSION`,
 Candidate annotations must not produce authoritative user-facing explanations.
 The first implementation will use templates; no LLM dependency is planned here.
 
-### `search_scholarly_sources`
+### `search_scholarly_sources` (registered, Phase 3)
 
-Purpose: retrieve attributed evidence without generating an interpretation.
-Required: `query` (1–1,000 characters), `category`
-(`tafsir|linguistics|asbab_an_nuzul|qiraat|tajwid`). Optional: `selection=null`,
-`provider_ids=[]` (policy-selected enabled providers), `limit=10` (1–20),
-`cursor=null`. Passage-scoped searches require verified mapping before dispatch
-to a provider with another numbering convention.
+Purpose: retrieve attributed Saadi tafsir evidence from an opted-in provider without
+generating an interpretation. Input is a single object `request`:
+`query` (1–1,000 characters, non-blank), `category="tafsir"`, `work_id="saadi"` (only
+supported values), `limit=10` (strict integer 1–20), `provider_ids=[]` (empty = every
+enabled provider, tried in order; only `quran_mcp` and `tafsir_mcp` have adapters),
+`selection=null` and `source_identity=null`. `selection` and `source_identity` must be
+supplied together. `source_identity` names the target mapping identity and the exact
+provider source namespace (`provider_sources`) the caller accepts.
 
-`SearchResults` includes hits, next cursor and `partial`. Each hit contains a
-literal licensed excerpt, original source reference when applicable, citations,
-provenance and compatibility (`unknown|mapped|audited_qaloun`). Broad documentary
-search can return unknown compatibility as visibly unreviewed evidence; it
-cannot attach that result as a verified Qaloun passage claim. Unattributed
-results remain quarantined. Errors: `PROVIDER_UNAVAILABLE`, `PROVIDER_TIMEOUT`,
-`SCHEMA_MISMATCH`, `INCOMPATIBLE_RIWAYA`, `UNVERIFIED_EVIDENCE`, mapping errors.
-Valid no-match results differ from failed providers; partial failures appear in
-warnings and must never be hidden by a successful fallback.
+Passage-scoped searches first resolve the selection with the pinned mapper; a
+review-required mapping fails with `AMBIGUOUS_MAPPING` before any discovery or network
+call. Selections are limited to eight source ayat. The gateway then checks the provider's
+Hafs verse text against the local Hafs edition; any boundary difference fails with
+`INCOMPATIBLE_RIWAYA` and no search is sent. The provider is queried with the mapped
+*source* ayat, never the Qaloun selection numbers.
 
-### `get_provider_capabilities`
+`SearchResult` returns `hits`, `partial`, per-provider `attempts` (`success|empty|failed`),
+`issues`, `warnings` and `mapping_status`. Each hit is a `source_excerpt` with exact
+provider text, `excerpt_sha256`, `response_sha256`, provider and tool, a `source_reference`
+in the provider's declared Hafs-style numbering, a `citation` (work, title, author or
+attribution, locator, license notice), `validation_status=unreviewed` and `compatibility`
+(`unknown`, or `mapped_boundaries_checked` after a passing scoped check). Excerpts may
+be truncated and the publication edition is unverified. Hits are never Qaloun text and say
+nothing about transmission path. A valid empty result differs from a failed provider; a
+failure of every provider returns `status=error` with per-provider `issues`. Failures set
+`is_error` and return `GatewayFailure`.
 
-Purpose: show configured/discovered capability metadata without claiming tools
-were called. Optional: `provider_id=null` (all configured), `refresh=false`
-(cached registry only). `refresh=true` explicitly permits discovery for enabled
-providers, under service policy and deadlines; it does not call scholarly tools.
-`Capabilities` returns providers and disabled provider IDs. Each capability
-retains provider/tool IDs, original JSON schemas, schema digest, semantic
-categories, evidence level and Qaloun compatibility. Errors: `NOT_FOUND`,
-`PROVIDER_UNAVAILABLE`, `PROVIDER_TIMEOUT`, `SCHEMA_MISMATCH`. A disabled or
-unreachable provider is never reported as an empty successfully discovered one.
-This tool remains absent through Phase 2 because there is no implemented registry.
+Error codes: `INVALID_CONFIG`, `PROVIDER_UNAVAILABLE`, `PROVIDER_TIMEOUT`,
+`AUTHENTICATION_FAILED`, `RATE_LIMITED`, `PROVIDER_CALL_FAILED`, `SCHEMA_MISMATCH`,
+`RESPONSE_TOO_LARGE`, `UNVERIFIED_EVIDENCE`, `UNSUPPORTED_CAPABILITY`,
+`UNSUPPORTED_VERSION`, `AMBIGUOUS_MAPPING`, `INCOMPATIBLE_RIWAYA` and mapping/source
+codes. Provider text and exception messages are never echoed in errors. Default policy:
+call 8 s, operation 16 s, gateway 35 s, one retry for transient errors, two concurrent
+operations, 2 MiB response cap.
+
+### `get_provider_capabilities` (registered, Phase 3)
+
+Purpose: show provider state without calling scholarly tools. Optional
+`provider_id` (`quran_mcp|tafsir_mcp|quran_search_mcp`) and `refresh=false`.
+Without refresh it returns `disabled` or `not_discovered` and opens no connection.
+`refresh=true` performs MCP discovery for enabled providers only and returns, per tool,
+the original input/output schemas, `signature_sha256`, `admitted`,
+`evidence_level=runtime_discovered` and categories. Tools that are absent from the
+audited catalog, changed or not read-only are listed with `admitted=false`. A provider
+that cannot be reached is `unavailable` with typed issues, never an empty ready one.
+Errors: `INVALID_CONFIG`, `NOT_FOUND`, `PROVIDER_TIMEOUT`.
 
 ## Evolution and conformance
 

@@ -1,9 +1,10 @@
 # Component architecture
 
-Status: Phase 2 implemented, 0.2.0, 2026-10-30. Business schemas are v1.0;
+Status: Phase 3 implemented, 0.3.0, 2026-10-30. Business schemas are v1.0;
 transport protocol negotiation is separate. Diagnostic, direct read-only Qaloun
-access and existing-authority source mapping are operational. Future Tajwid,
-providers, RAG, agents and Wirdi AI backend integration remain unimplemented.
+access, existing-authority source mapping and an opt-in outbound provider gateway
+(`providers/`, two tools) are operational. Future Tajwid, RAG, agents and Wirdi AI
+backend integration remain unimplemented.
 See [SOURCE_AUDIT](SOURCE_AUDIT.md) for the read-only audit made before coding.
 
 ## Responsibilities and dependency direction
@@ -35,13 +36,13 @@ flowchart LR
 | `domain/` | Reference/value contracts, future orchestration and read-only data port | FastAPI or mobile implementation details |
 | `mapping/` | Pinned original mapper and narrow read-only dependency bridge | A second alignment algorithm |
 | `quran/` | Metadata manifest, original public-file reads and exact text/page admission | Database startup or duplicate corpus |
-| `providers/` | Discovery, provider adapters and normalized evidence | Qaloun authority inferred from tool names |
+| `providers/` | Catalog, request-scoped SDK client sessions, schema-signature admission, typed adapters, normalized unreviewed evidence | Qaloun authority inferred from tool names; generic tool passthrough; any corpus write |
 | `knowledge/` package | Storage-independent scholarly records; future repository | Personal progress or user management |
 | root `knowledge/` | Future reviewed metadata/rule files | Unlicensed books or duplicate corpus |
 
 Future `domain/services.py`, `tajwid/`, and `validation/` modules will be added
 when behavior exists. There are no empty `tafsir.py`, detector, registry, provider
-implementation, or repository modules pretending to work. A single
+implementation (beyond the two audited provider adapters), or repository modules pretending to work. A single
 `tools/contracts.py` captures the proposed catalog. Structural guards currently
 live beside their models; scientific validation remains a future service.
 
@@ -146,8 +147,10 @@ hashes. Explanations cite both rule and annotation records. See
 
 ## Reliability, security and observability
 
-Execution remains stdio only: no listening socket, provider connection,
-credential loading, database connection or private user input. The only source
+Execution remains stdio only: no listening socket, no database connection and no
+private user input. Provider connections are outbound-only, opt-in, created per
+operation and closed afterwards; a bearer credential, if ever needed, is read from a
+configured environment variable name and never logged or returned. The only source
 configuration is an absolute public-file root; no caller-provided file paths are accepted. `health_check` reports process-level
 foundation readiness, not corpus integrity or scholarly validity. Its configured/unconfigured flags are not source-integrity claims. It returns no
 paths, environment values, host inventory, or credentials. Python logging writes

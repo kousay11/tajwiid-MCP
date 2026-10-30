@@ -4,11 +4,14 @@ Independent, local-first Quranic knowledge infrastructure for future Wirdi AI
 integration, with Qaloun through Abu Nashit as its explicit target scope.
 Structured retrieval and verifiable evidence come before generated explanations.
 
-**Current release: Phase 2 (0.2.0).** The stdio server exposes three read-only
-tools: `health_check`, `get_qaloun_passage` and `resolve_source_mapping`.
-Quran text is read directly from the original checksum-pinned Wirdi AI public
-source files. No corpus copy, database, external provider, Tajwid detector, RAG
-or agent is included.
+**Current release: Phase 3 (0.3.0).** The stdio server exposes five read-only
+tools: `health_check`, `get_qaloun_passage`, `resolve_source_mapping`, and the
+optional provider gateway tools `get_provider_capabilities` and
+`search_scholarly_sources`. Quran text is read directly from the original
+checksum-pinned Wirdi AI public source files. No corpus copy, database, Tajwid
+detector, RAG or agent is included. External providers are **disabled by default**
+(see [Optional external providers](#optional-external-providers-phase-3)); they
+only supply attributed, unreviewed tafsir search evidence and never Quran text.
 
 The [source audit](docs/SOURCE_AUDIT.md) identifies the 6,214-ayah Qaloun corpus,
 559-page verified map and existing mapper. The existing application was inspected
@@ -72,6 +75,45 @@ The official [`mcp` Python SDK](https://github.com/modelcontextprotocol/python-s
 is pinned to the tested 2.3.0 release. This project uses its `MCPServer` API,
 not the separately distributed `fastmcp` package or older v1 examples.
 
+## Optional external providers (Phase 3)
+
+Disabled unless an administrator opts in. Copy `providers.example.json` to
+`providers.local.json` (git-ignored), set `"enabled": true` for the providers you
+accept, and export an absolute path:
+
+```bash
+export WIRDI_MCP_PROVIDER_CONFIG=/absolute/path/wirdi-mcp/providers.local.json
+```
+
+Endpoints are fixed in the audited `providers/catalog.json`; callers cannot supply
+URLs, tools or arguments. Only catalog tools whose live schema signature matches the
+pinned sha256 and that are annotated read-only are ever invoked.
+
+| Provider | Endpoint | Status |
+| --- | --- | --- |
+| `quran_mcp` | `https://mcp.quran.ai` | Admitted: tafsir search and Hafs boundary verification |
+| `tafsir_mcp` | `https://mcp.tafsir.net/mcp` | Admitted: tafsir search and Hafs boundary verification |
+| `quran_search_mcp` | `https://mcp.quran.us.kg/` | Discovery only; no tool is admitted |
+
+`get_provider_capabilities` reports state (`refresh=true` performs discovery).
+`search_scholarly_sources` searches Saadi tafsir; results are `unreviewed` evidence
+with provider attribution, never Qaloun text and never a transmission-path claim.
+Passage-scoped searches require a mapping with `safe_for_source_retrieval=true`
+and a boundary check against the provider's Hafs text, otherwise they fail closed.
+Details, limits and licensing questions: [PROVIDERS](docs/PROVIDERS.md),
+[PHASE3_REPORT](docs/PHASE3_REPORT.md).
+
+Test categories (keep them separate):
+
+```bash
+.venv/bin/python -m pytest                                   # offline: unit + local stdio, mocked peers
+WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest   # adds read-only real-source tests
+WIRDI_TEST_LIVE_PROVIDERS=1 .venv/bin/python -m pytest tests/integration/test_live_providers.py  # contacts real providers
+.venv/bin/python scripts/record_provider_evidence.py --source-root /abs/wirdi-Ai --out docs/provider-evidence/<date>-live-gateway.json
+```
+
+Mocked results are never live verification.
+
 ## Verify
 
 ```bash
@@ -96,7 +138,8 @@ The stdio tests launch a real subprocess and check discovery, structured schemas
 passages, source mappings, errors and continued Tajwid unavailability. This Codex
 execution sandbox restricts stdio subprocess I/O; these tests pass under its
 authorized unsandboxed test execution. Normal Ubuntu execution uses the commands
-above. No test connects to PostgreSQL or an external MCP service.
+above. No default test connects to PostgreSQL or an external MCP service; live
+provider tests are opt-in (see below).
 
 Results, exact changed files and limitations: [PHASE2_REPORT](docs/PHASE2_REPORT.md).
 The original [FOUNDATION_REPORT](docs/FOUNDATION_REPORT.md) remains historical.
@@ -129,12 +172,14 @@ External material cannot become authoritative Qaloun text through fallback.
 | --- | --- |
 | [SOURCE_AUDIT](docs/SOURCE_AUDIT.md) | Original corpus, checksums, pagination and selected read-only bridge |
 | [ARCHITECTURE](docs/ARCHITECTURE.md) | Boundaries, reference identity, storage, security, extension points |
-| [MCP_TOOLS](docs/MCP_TOOLS.md) | Seven proposed typed tool contracts, availability and failure semantics |
-| [PROVIDERS](docs/PROVIDERS.md) | Dated capability audit, evidence levels, future adapter policy |
+| [MCP_TOOLS](docs/MCP_TOOLS.md) | Typed tool contracts (five registered, three proposed), availability and failure semantics |
+| [PROVIDERS](docs/PROVIDERS.md) | Provider audits, evidence levels, implemented gateway, licensing questions |
+| [PHASE3_REPORT](docs/PHASE3_REPORT.md) | Phase 3 state, exact verification, provider status and limitations |
 | [TAJWID_ENGINE](docs/TAJWID_ENGINE.md) | Rule, candidate, annotation, scholarly review and explanation separation |
 | [INTEGRATION](docs/INTEGRATION.md) | FastAPI client, mapping authority reuse and staged migration |
 | [ROADMAP](docs/ROADMAP.md) | Seven phases and release gates |
 | [DECISIONS](docs/DECISIONS.md) | Decisions and their trade-offs |
 
-Next milestone: Phase 3, optional external provider discovery and evidence normalization.
-It remains unimplemented and disabled. Keep existing source checks and mapping admission intact.
+Phase 3 (optional provider gateway) is implemented and disabled by default. Next milestone:
+Phase 4 (scholarly Tajwid knowledge), which needs an independent Abu Nashit source audit.
+Keep existing source checks and mapping admission intact.

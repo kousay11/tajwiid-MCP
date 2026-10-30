@@ -1,0 +1,24 @@
+[
+  {
+    "provider": "quran_mcp",
+    "mode": "broad",
+    "hits": 2,
+    "issues": []
+  },
+  {
+    "provider": "tafsir_mcp",
+    "mode": "broad",
+    "hits": 2,
+    "issues": []
+  },
+  {
+    "provider": "quran_mcp",
+    "mode": "scoped",
+    "hits": 2,
+    "mapping": "verified_difference",
+    "compatibility": [
+      "mapped_boundaries_checked",
+      "mapped_boundaries_checked"
+    ]
+  }
+]
