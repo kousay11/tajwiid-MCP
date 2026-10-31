@@ -75,13 +75,22 @@ def synthetic_repo(tmp_path):
     return repo
 
 
-@pytest.fixture(scope="session")
-def real_repo():
+@pytest.fixture(scope="session", params=["bundled", "external"])
+def real_repo(request):
+    """The pinned corpus: the bundled snapshot always, a Wirdi AI checkout when one is given."""
+    if request.param == "bundled":
+        return PublicSourceRepository.bundled()
     root = os.environ.get("WIRDI_TEST_SOURCE_ROOT")
     if not root:
-        pytest.skip("Set WIRDI_TEST_SOURCE_ROOT for read-only real-source conformance checks")
+        pytest.skip("Set WIRDI_TEST_SOURCE_ROOT to also check against a Wirdi AI checkout")
     # An explicitly requested inaccessible source fails; it is never silently skipped.
     return PublicSourceRepository(Path(root))
+
+
+@pytest.fixture(scope="session")
+def real_env(real_repo):
+    """Environment that makes a server subprocess use the same source as `real_repo`."""
+    return {} if real_repo.mode == "bundled" else {"WIRDI_AI_ROOT": str(real_repo.root)}
 
 
 REPO_KNOWLEDGE = Path(__file__).resolve().parents[1] / "knowledge"

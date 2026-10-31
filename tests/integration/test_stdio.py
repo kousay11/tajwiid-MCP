@@ -15,7 +15,7 @@ def test_stdio_handshake_discovery_call_and_unavailable_tool(tmp_path):
             command=sys.executable,
             args=["-m", "wirdi_mcp.server"],
             cwd=tmp_path,
-            env={"WIRDI_MCP_LOG_LEVEL": "ERROR"},
+            env={"WIRDI_MCP_LOG_LEVEL": "ERROR", "WIRDI_QURAN_SOURCE": "none"},
         )
         async with asyncio.timeout(20), Client(params, read_timeout_seconds=5) as client:
             assert client.protocol_version

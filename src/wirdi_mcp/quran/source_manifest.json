@@ -274,5 +274,14 @@
   "pagination_reference": "مصحف المدينة النبوية برواية قالون عن نافع — مجمع الملك فهد لطباعة المصحف الشريف، 1427 هـ (559 صفحة مطبوعة)",
   "source": "Qur'anpedia.net mushaf 7 / risan/quran-json",
   "license": "Qur'anpedia.net Data License (checked 2026-09-20): free inside apps; credit Qur'anpedia.net and state the dump version when republishing. Compilation: risan/quran-json CC BY-SA 4.0. Page lists: quran-meta MIT.",
-  "tariq_attestation": "not_established_by_inspected_metadata"
+  "tariq_attestation": "not_established_by_inspected_metadata",
+  "bundled": {
+    "note": "Hashes of the four snapshot files whose bytes differ from the Wirdi AI originals (trimmed schemas and three public notes). The other pinned files are byte-identical in both modes.",
+    "artifacts": {
+      "backend/app/schemas.py": "5df1a6e2a8e526199bca372b21014af080743683a47019fc7cfd2fcf1539c567",
+      "docs/reader-corrections-report.md": "d9fa8517596a424ed9e32a741b12ae62d06f3e3037bff5963ab904fb52f73355",
+      "docs/qaloun-pagination-validation.md": "129ef881c2d49c6bdc1c0ee2bf43d66f518579739142f8208ee196598d5e8465",
+      "docs/day2-final-validation.md": "13df018f5dde725a282a9d3d87bc3e6b30b7a7f47e58f9736e8a43831eb4a231"
+    }
+  }
 }

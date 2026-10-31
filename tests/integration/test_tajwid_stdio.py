@@ -2,11 +2,9 @@
 
 import asyncio
 import json
-import os
 import shutil
 import sys
 
-import pytest
 from conftest import REPO_KNOWLEDGE
 from mcp import Client, StdioServerParameters
 
@@ -52,7 +50,8 @@ def test_isolation_when_stores_are_absent_or_altered(tmp_path):
         async with (
             asyncio.timeout(30),
             Client(
-                params(tmp_path, WIRDI_KNOWLEDGE_ROOT=str(altered)), read_timeout_seconds=10
+                params(tmp_path, WIRDI_KNOWLEDGE_ROOT=str(altered), WIRDI_QURAN_SOURCE="none"),
+                read_timeout_seconds=10,
             ) as c,
         ):
             tampered = await call(c, "get_tajwid_rule", {"rule_id": "iqlab", "version": "1"})
@@ -99,19 +98,11 @@ def test_no_knowledge_store_at_all_is_unavailable_not_a_crash(tmp_path):
     asyncio.run(run())
 
 
-@pytest.fixture
-def real_root():
-    root = os.environ.get("WIRDI_TEST_SOURCE_ROOT")
-    if not root:
-        pytest.skip("Set WIRDI_TEST_SOURCE_ROOT for read-only real-source conformance checks")
-    return root
-
-
-def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_root):
+def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_env):
     async def run():
         async with (
             asyncio.timeout(60),
-            Client(params(tmp_path, WIRDI_AI_ROOT=real_root), read_timeout_seconds=20) as c,
+            Client(params(tmp_path, **real_env), read_timeout_seconds=20) as c,
         ):
             listed = await call(c, "list_tajwid_rules", {})
             assert not listed.is_error and len(listed.structured_content["data"]["rules"]) == 81
@@ -205,14 +196,14 @@ def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_root):
     asyncio.run(run())
 
 
-def test_book_a_families_and_letter_properties_over_stdio(tmp_path, real_root):
+def test_book_a_families_and_letter_properties_over_stdio(tmp_path, real_env):
     """Madd, hamza, tafkhim and taqlil rules are reachable by family, plus the letter tool."""
     al_imran_1_2 = {**KAHF, "start": {**KAHF["start"], "surah": 3, "ayah": 1}, "end_ayah": 4}
 
     async def run():
         async with (
             asyncio.timeout(60),
-            Client(params(tmp_path, WIRDI_AI_ROOT=real_root), read_timeout_seconds=20) as c,
+            Client(params(tmp_path, **real_env), read_timeout_seconds=20) as c,
         ):
             for family, expected in (
                 ("madd", {"madd_lazim_harfi_muthaqqal", "madd_munfasil", "madd_tabii"}),

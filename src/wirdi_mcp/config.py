@@ -17,6 +17,9 @@ class Settings:
     log_level: str = "INFO"
     wirdi_ai_root: Path | None = None
     knowledge_root: Path | None = None
+    # "bundled": the snapshot shipped with the package (default); "external": a Wirdi AI
+    # checkout given by WIRDI_AI_ROOT; "none": no Quran source (tests of the typed failure).
+    quran_source: str = "bundled"
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> "Settings":
@@ -27,6 +30,9 @@ class Settings:
         root = values.get("WIRDI_AI_ROOT", "")
         if root and not Path(root).is_absolute():
             raise ValueError("WIRDI_AI_ROOT must be an absolute path")
+        source = values.get("WIRDI_QURAN_SOURCE", "")
+        if source not in {"", "none"}:
+            raise ValueError("WIRDI_QURAN_SOURCE must be empty or 'none'")
         knowledge = values.get("WIRDI_KNOWLEDGE_ROOT", "")
         if knowledge and not Path(knowledge).is_absolute():
             raise ValueError("WIRDI_KNOWLEDGE_ROOT must be an absolute path")
@@ -34,4 +40,5 @@ class Settings:
             log_level=level,
             wirdi_ai_root=Path(root) if root else None,
             knowledge_root=Path(knowledge) if knowledge else default_knowledge_root(),
+            quran_source="none" if source == "none" else ("external" if root else "bundled"),
         )

@@ -24,6 +24,9 @@ TARIQ_WARNING = (
 )
 
 
+SNAPSHOT_ROOT = Path(__file__).resolve().parent / "snapshot"
+
+
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -41,11 +44,31 @@ class SourceAyah:
 
 
 class PublicSourceRepository:
-    """No database, importer, writes or alternate source lookup. No on-disk cache."""
+    """No database, importer, writes or alternate source lookup. No on-disk cache.
 
-    def __init__(self, root: Path | None):
+    `mode` says which pinned bytes are expected. `external` is a Wirdi AI checkout, whose files
+    are the originals. `bundled` is the snapshot shipped with this package: six files are the
+    same bytes, four (the trimmed schemas and three public notes) differ and have their own
+    pinned hashes in the manifest's `bundled` section.
+    """
+
+    def __init__(self, root: Path | None, mode: str = "external"):
         self.root = root
+        self.mode = mode
         self.manifest = source_manifest()
+        bundled = self.manifest.pop("bundled", {})
+        if mode == "bundled":
+            self.manifest["artifacts"] = {**self.manifest["artifacts"], **bundled["artifacts"]}
+
+    @classmethod
+    def bundled(cls) -> "PublicSourceRepository":
+        return cls(SNAPSHOT_ROOT, "bundled")
+
+    @property
+    def source(self) -> str:
+        if self.root is None:
+            return "none"
+        return "bundled" if self.mode == "bundled" else "external"
 
     def read_artifact(self, relative: str) -> bytes:
         if self.root is None:
@@ -158,12 +181,17 @@ class PublicSourceRepository:
         )
 
     def audit_citation(self, path: str, locator: str) -> Citation:
+        bundled = self.mode == "bundled"
         return Citation(
-            source_id="wirdi-ai:audit",
+            source_id="wirdi-mcp:snapshot-notes" if bundled else "wirdi-ai:audit",
             edition_id=self.manifest["manifest_version"],
             title=path.rsplit("/", 1)[-1],
-            responsible_party="Wirdi AI project audit",
-            publication="Existing local project audit, 2026-10-29",
+            responsible_party="wirdi-mcp snapshot" if bundled else "Wirdi AI project audit",
+            publication=(
+                "Public note bundled with wirdi-mcp"
+                if bundled
+                else "Existing local project audit, 2026-10-29"
+            ),
             locator=locator,
             riwaya="qaloun",
             tariq="unspecified",

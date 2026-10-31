@@ -26,3 +26,11 @@ def test_invalid_configuration_does_not_corrupt_protocol_stdout(tmp_path):
     assert result.stdout == ""
     assert "supported logging level" in result.stderr
     assert "secret-sentinel" not in result.stderr
+
+
+def test_quran_source_defaults_to_bundled_and_can_be_overridden_or_disabled(tmp_path):
+    assert Settings.from_env({}).quran_source == "bundled"
+    assert Settings.from_env({"WIRDI_AI_ROOT": str(tmp_path)}).quran_source == "external"
+    assert Settings.from_env({"WIRDI_QURAN_SOURCE": "none"}).quran_source == "none"
+    with pytest.raises(ValueError):
+        Settings.from_env({"WIRDI_QURAN_SOURCE": "elsewhere"})

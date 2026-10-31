@@ -8,13 +8,13 @@ from jsonschema import validate
 from mcp import Client, StdioServerParameters
 
 
-def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, tmp_path):
+def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, real_env, tmp_path):
     async def run():
         params = StdioServerParameters(
             command=sys.executable,
             args=["-m", "wirdi_mcp.server"],
             cwd=tmp_path,
-            env={"WIRDI_MCP_LOG_LEVEL": "ERROR", "WIRDI_AI_ROOT": str(real_repo.root)},
+            env={"WIRDI_MCP_LOG_LEVEL": "ERROR", **real_env},
         )
         async with asyncio.timeout(30), Client(params, read_timeout_seconds=10) as client:
             tools = (await client.list_tools()).tools

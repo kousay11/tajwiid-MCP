@@ -26,6 +26,7 @@ class HealthReport(ContractModel):
     )
     quran_data: Literal["not_configured", "configured_unchecked"] = "not_configured"
     mapping: Literal["not_configured", "configured_unchecked"] = "not_configured"
+    quran_source: Literal["bundled", "external", "none"] = "none"
     tajwid_analysis: Literal["candidates_only_unreviewed"] = "candidates_only_unreviewed"
     validation_status: Literal["not_applicable"] = "not_applicable"
 

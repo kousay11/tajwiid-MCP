@@ -24,7 +24,8 @@ def create_server(settings: Settings | None = None) -> MCPServer:
         version=__version__,
         log_level=settings.log_level,
         instructions=(
-            "Read-only Qaloun access and source mapping require configured checksum-pinned files. "
+            "Read-only Qaloun access and source mapping use checksum-pinned files (a bundled "
+            "snapshot by default). "
             "Review-required mappings are unsafe for retrieval. Tajwid rules, candidate "
             "annotations and source-page lookup are local-only and unreviewed: no annotation is "
             "scholarly verified and explanations are unavailable. "
@@ -42,13 +43,19 @@ def create_server(settings: Settings | None = None) -> MCPServer:
     )
     def health_check() -> HealthReport:
         """Report process readiness and configuration, without accessing source or private data."""
-        state = "configured_unchecked" if settings.wirdi_ai_root is not None else "not_configured"
+        state = "not_configured" if settings.quran_source == "none" else "configured_unchecked"
         return HealthReport(
             quran_data=state,
             mapping=state,
+            quran_source=settings.quran_source,
         )
 
-    repository = PublicSourceRepository(settings.wirdi_ai_root)
+    if settings.quran_source == "none":
+        repository = PublicSourceRepository(None)
+    elif settings.quran_source == "external":
+        repository = PublicSourceRepository(settings.wirdi_ai_root)
+    else:
+        repository = PublicSourceRepository.bundled()
     registry = RuleRegistry(settings.knowledge_root)
     register_quran_tools(server, repository)
     register_tajwid_tools(

@@ -2,7 +2,6 @@
 
 import asyncio
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -16,8 +15,6 @@ REQUESTS = APPLY["requests"]
 
 def _missing(needs):
     for need in needs:
-        if need == "WIRDI_AI_ROOT" and not os.environ.get("WIRDI_TEST_SOURCE_ROOT"):
-            return "Set WIRDI_TEST_SOURCE_ROOT for read-only real-source checks"
         if need.startswith("local_page_store:"):
             edition = need.split(":", 1)[1]
             if not (ROOT / "knowledge" / "sources" / edition / "pages.jsonl").is_file():
@@ -53,9 +50,8 @@ def test_each_example_behaves_as_documented(request_, tmp_path):
     reason = _missing(request_["needs"])
     if reason:
         pytest.skip(reason)
+    # no WIRDI_AI_ROOT: the examples must work on a clean clone, with the bundled snapshot
     env = {"WIRDI_MCP_LOG_LEVEL": "ERROR"}
-    if os.environ.get("WIRDI_TEST_SOURCE_ROOT"):
-        env["WIRDI_AI_ROOT"] = os.environ["WIRDI_TEST_SOURCE_ROOT"]
     params = StdioServerParameters(
         command=sys.executable, args=["-m", "wirdi_mcp.server"], cwd=tmp_path, env=env
     )
