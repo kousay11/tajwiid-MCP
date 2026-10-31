@@ -96,7 +96,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "كلمات استثنيت من صلة هاء الضمير",
         "C",
-        ("p.19", "p.20"),
+        ("p.18", "p.19", "p.20"),
         "Words where the pronoun ha meets the conditions for the lengthening but is read with a "
         "kasra and no lengthening: نؤته، نوله، نصله، أرجه، يتقه، يؤده, and two words that carry "
         "`variants` instead: يأته (kasra without the lengthening, or the sila; p.19 item 6) and "

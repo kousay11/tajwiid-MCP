@@ -360,7 +360,7 @@
       "rule_id": "madd_sila_ha_exception",
       "version": "1",
       "path": "rules/madd_sila_ha_exception/1.json",
-      "sha256": "94753a08f5ba86ca4a65e9e006f166e241f9926bc79d9e42892f2097e1182b70"
+      "sha256": "44ceb2766be33539fba0b09d388079edba533fe7222b0370ef5615da88676d2a"
     },
     {
       "rule_id": "madd_sila_kubra_ha",

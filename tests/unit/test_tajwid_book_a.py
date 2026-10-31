@@ -522,3 +522,15 @@ def test_the_short_sila_variant_is_forbidden_everywhere():
         text += " " + next_letter + FATHA + "ا"
         for _, _, variants in found(text, "madd_sila_sughra_meem")[0]:
             assert variants == ("iskan", "sila_2_harakat")
+
+
+def test_sila_ha_exception_cites_the_page_that_introduces_its_list():
+    """p.18 ends with the sentence that opens the list of words; the list itself is on p.19-20."""
+    import json
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parents[2] / "knowledge/rules/madd_sila_ha_exception/1.json"
+    rule = json.loads(path.read_text("utf-8"))
+    assert [c["locator"] for c in rule["evidence"]] == ["p.18", "p.19", "p.20"]
+    words = next(c for c in rule["conditions"] if c["clause_id"] == "words")
+    assert [c["locator"] for c in words["evidence"]] == ["p.18", "p.19", "p.20"]
