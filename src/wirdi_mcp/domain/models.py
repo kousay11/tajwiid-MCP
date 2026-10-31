@@ -62,8 +62,6 @@ class Provenance(ContractModel):
     origin_version: NonEmpty
     content_sha256: Sha256
     citations: tuple[Citation, ...] = ()
-    provider_id: NonEmpty | None = None
-    provider_tool: NonEmpty | None = None
     retrieved_at: datetime | None = None
 
 
@@ -186,11 +184,10 @@ class DomainError(ContractModel):
         "NOT_FOUND",
         "UNVERIFIED_EVIDENCE",
         "UNSUPPORTED_CONTEXT",
-        "PROVIDER_UNAVAILABLE",
-        "PROVIDER_TIMEOUT",
         "INCOMPATIBLE_RIWAYA",
         "SCHEMA_MISMATCH",
         "UNSUPPORTED_VERSION",
+        "UNSUPPORTED_CAPABILITY",
     ]
     message: str
     retryable: bool = False

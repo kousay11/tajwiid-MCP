@@ -2,7 +2,7 @@
 
 from typing import Literal
 
-from pydantic import RootModel
+from pydantic import ConfigDict, RootModel
 
 from wirdi_mcp.domain.models import (
     ContractModel,
@@ -16,14 +16,6 @@ from wirdi_mcp.domain.models import (
     TajwidAnnotation,
 )
 from wirdi_mcp.knowledge.models import TajwidRule
-from wirdi_mcp.providers.models import (
-    CapabilitiesResult,
-    GatewayFailure,
-    GatewaySuccess,
-    ProviderId,
-    SearchRequest,
-    SearchResult,
-)
 
 
 class GetPassageInput(ContractModel):
@@ -39,9 +31,13 @@ class ResolveMappingInput(GetPassageInput):
 class PassageToolResponse(RootModel[Success[Passage] | Failure]):
     """Object-shaped result union without the SDK's primitive-result wrapper."""
 
+    model_config = ConfigDict(json_schema_extra={"type": "object"})
+
 
 class MappingToolResponse(RootModel[Success[SourceMapping] | Failure]):
     """Object-shaped result union without the SDK's primitive-result wrapper."""
+
+    model_config = ConfigDict(json_schema_extra={"type": "object"})
 
 
 class GetRuleInput(ContractModel):
@@ -75,16 +71,16 @@ class Explanation(ContractModel):
     template_version: NonEmpty
 
 
-SearchSourcesInput = SearchRequest
-SearchResults = SearchResult
+class RuleToolResponse(RootModel[Success[TajwidRule] | Failure]):
+    model_config = ConfigDict(json_schema_extra={"type": "object"})
 
 
-class ProviderCapabilitiesInput(ContractModel):
-    provider_id: ProviderId | None = None
-    refresh: bool = False
+class AnalysisToolResponse(RootModel[Success[Analysis] | Failure]):
+    model_config = ConfigDict(json_schema_extra={"type": "object"})
 
 
-Capabilities = CapabilitiesResult
+class ExplanationToolResponse(RootModel[Success[Explanation] | Failure]):
+    model_config = ConfigDict(json_schema_extra={"type": "object"})
 
 
 # Input class, result type, earliest phase. Contract presence does not imply availability.
@@ -94,14 +90,4 @@ TOOL_CONTRACTS = {
     "get_tajwid_rule": (GetRuleInput, Success[TajwidRule] | Failure, 4),
     "analyze_qaloun_tajwid": (AnalyzeInput, Success[Analysis] | Failure, 5),
     "get_tajwid_explanation": (GetExplanationInput, Success[Explanation] | Failure, 5),
-    "search_scholarly_sources": (
-        SearchSourcesInput,
-        GatewaySuccess[SearchResults] | GatewayFailure,
-        3,
-    ),
-    "get_provider_capabilities": (
-        ProviderCapabilitiesInput,
-        GatewaySuccess[Capabilities] | GatewayFailure,
-        3,
-    ),
 }

@@ -1,4 +1,4 @@
-"""Real local MCP calls against opt-in public files, never external providers."""
+"""Real local MCP calls against opt-in public files."""
 
 import asyncio
 import sys
@@ -22,8 +22,9 @@ def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, tmp_pat
                 "health_check",
                 "get_qaloun_passage",
                 "resolve_source_mapping",
-                "get_provider_capabilities",
-                "search_scholarly_sources",
+                "get_tajwid_rule",
+                "analyze_qaloun_tajwid",
+                "get_tajwid_explanation",
             }
             schemas = {t.name: t.output_schema for t in tools}
             for tool in tools:
@@ -64,6 +65,14 @@ def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, tmp_pat
             )
             result = await client.call_tool("health_check", {})
             assert result.structured_content["quran_data"] == "configured_unchecked"
-            assert (await client.call_tool("analyze_qaloun_tajwid", {})).is_error
+            tajwid = await client.call_tool(
+                "analyze_qaloun_tajwid",
+                {
+                    "selection": args["selection"],
+                    "reading_context": {"mode": "wasl"},
+                },
+            )
+            assert tajwid.is_error
+            assert tajwid.structured_content["error"]["code"] == "UNSUPPORTED_CAPABILITY"
 
     asyncio.run(run())

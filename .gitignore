@@ -18,4 +18,22 @@ data/
 .idea/
 .vscode/
 .verification/
-providers.local.json
+
+# --- Tajwid knowledge: licensed / unknown-licence material never goes to git ---
+*.pdf
+*.PDF
+docs/**/*.pdf
+# extracted book text, page renders, and anything derived from the coloured mushaf
+knowledge/sources/*/pages*
+knowledge/sources/**/pages/
+knowledge/derived/
+knowledge/mushaf/
+.work/
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+# caches / job state
+.cache/
+*.state.json

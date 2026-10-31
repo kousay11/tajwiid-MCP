@@ -14,12 +14,12 @@ class HealthReport(ContractModel):
         "health_check",
         "get_qaloun_passage",
         "resolve_source_mapping",
-        "get_provider_capabilities",
-        "search_scholarly_sources",
+        "get_tajwid_rule",
+        "analyze_qaloun_tajwid",
+        "get_tajwid_explanation",
     )
     quran_data: Literal["not_configured", "configured_unchecked"] = "not_configured"
     mapping: Literal["not_configured", "configured_unchecked"] = "not_configured"
-    external_providers: Literal["disabled", "configured_unchecked"] = "disabled"
     tajwid_analysis: Literal["not_implemented"] = "not_implemented"
     validation_status: Literal["not_applicable"] = "not_applicable"
 

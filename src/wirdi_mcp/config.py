@@ -10,7 +10,6 @@ from pathlib import Path
 class Settings:
     log_level: str = "INFO"
     wirdi_ai_root: Path | None = None
-    provider_config: Path | None = None
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> "Settings":
@@ -21,9 +20,7 @@ class Settings:
         root = values.get("WIRDI_AI_ROOT", "")
         if root and not Path(root).is_absolute():
             raise ValueError("WIRDI_AI_ROOT must be an absolute path")
-        provider_config = values.get("WIRDI_MCP_PROVIDER_CONFIG", "")
         return cls(
             log_level=level,
             wirdi_ai_root=Path(root) if root else None,
-            provider_config=Path(provider_config) if provider_config else None,
         )

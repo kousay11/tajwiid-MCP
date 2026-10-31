@@ -1,18 +1,15 @@
 # Component architecture
 
-Status: Phase 3 implemented, 0.3.0, 2026-10-30. Business schemas are v1.0;
-transport protocol negotiation is separate. Diagnostic, direct read-only Qaloun
-access, existing-authority source mapping and an opt-in outbound provider gateway
-(`providers/`, two tools) are operational. Future Tajwid, RAG, agents and Wirdi AI
-backend integration remain unimplemented.
+Status: Local Tajwid foundation, 0.4.0. Business schemas are v1.0; transport
+protocol negotiation is separate. Diagnostic, direct read-only Qaloun access,
+existing-authority source mapping and the local Tajwid tool surface are
+operational. Reviewed rules and deterministic detection remain unimplemented.
 See [SOURCE_AUDIT](SOURCE_AUDIT.md) for the read-only audit made before coding.
 
 ## Responsibilities and dependency direction
 
-The server receives MCP requests and exposes approved tools. It is also intended
-to host a separate outbound MCP client gateway. These are distinct roles:
-inbound clients see Wirdi's stable contracts; outbound clients speak each
-provider's discovered contract and never relay unchecked responses directly.
+The server receives MCP requests and exposes approved local tools. It does not
+act as an outbound MCP client and never queries a network service.
 
 ```mermaid
 flowchart LR
@@ -22,10 +19,7 @@ flowchart LR
     Services --> Mapping[SourceMappingAuthority]
     Services --> Tajwid[Rule registry and deterministic detectors]
     Services --> Repository[Knowledge repository]
-    Services --> Gateway[Optional provider gateway]
-    Gateway --> Adapters[Provider-specific adapters]
-    Adapters --> SDK[Official MCP client]
-    Gateway --> Admission[Provenance and compatibility validation]
+    Services --> Admission[Local integrity and review gates]
     Admission --> Services
 ```
 
@@ -36,14 +30,13 @@ flowchart LR
 | `domain/` | Reference/value contracts, future orchestration and read-only data port | FastAPI or mobile implementation details |
 | `mapping/` | Pinned original mapper and narrow read-only dependency bridge | A second alignment algorithm |
 | `quran/` | Metadata manifest, original public-file reads and exact text/page admission | Database startup or duplicate corpus |
-| `providers/` | Catalog, request-scoped SDK client sessions, schema-signature admission, typed adapters, normalized unreviewed evidence | Qaloun authority inferred from tool names; generic tool passthrough; any corpus write |
+| `tools/tajwid.py` | Local Tajwid tool registration and explicit unavailable responses | Scholarly approval or detector logic |
 | `knowledge/` package | Storage-independent scholarly records; future repository | Personal progress or user management |
 | root `knowledge/` | Future reviewed metadata/rule files | Unlicensed books or duplicate corpus |
 
 Future `domain/services.py`, `tajwid/`, and `validation/` modules will be added
-when behavior exists. There are no empty `tafsir.py`, detector, registry, provider
-implementation (beyond the two audited provider adapters), or repository modules pretending to work. A single
-`tools/contracts.py` captures the proposed catalog. Structural guards currently
+when behavior exists. There are no empty detector or repository modules
+pretending to work. A single `tools/contracts.py` captures the tool catalog. Structural guards currently
 live beside their models; scientific validation remains a future service.
 
 ## Quran identity and immutable data
@@ -60,8 +53,8 @@ Pydantic enforces structural constraints (surah 1–114, strict positive integer
 and bounded selection). The file adapter additionally enforces the pinned
 manifest's actual per-surah limits, corpus/version, numbering and tariq.
 Source hashes and structural checks establish machine integrity; scholarly
-review remains a separate responsibility. Do not substitute Hafs limits, a 6,236-entry
-dataset, a provider's global ID, or a 604-page edition for Wirdi's manifest.
+review remains a separate responsibility. Do not substitute Hafs limits, a
+6,236-entry dataset, or a 604-page edition for Wirdi's manifest.
 
 `QalounFileAdapter` reads the original public JSON transcription and verified
 pagination directly from the explicitly configured Wirdi AI root. It rechecks
@@ -156,24 +149,13 @@ foundation readiness, not corpus integrity or scholarly validity. Its configured
 paths, environment values, host inventory, or credentials. Python logging writes
 to stderr; stdout belongs to MCP.
 
-Future tool handlers impose selection, query, response-byte and deadline limits.
-External calls are opt-in with administrator-configured HTTPS origins or pinned
-local executable/argument arrays, never a request-supplied URL or shell command.
-Use domain/redirect allowlists and block unintended private-network destinations
-to prevent SSRF. Deny unapproved discovered tools even if their annotations say
-read-only. Apply schema checks and enforce response limits before parsing large
-payloads. Source text is untrusted data, never instructions.
+Future local handlers impose selection, context, response-size and deadline
+limits. Source text is untrusted data, never instructions. No network origins,
+credentials or caller-provided executable paths are accepted.
 
-Credentials stay server-side in a secret store or restricted environment, with
-least scope. Do not log authorization headers, raw provider payloads, search
-history, or reading context. Retain only redacted request IDs, tool/provider IDs,
-latency, stable error codes, and artifact versions as operational metrics.
-Scholarly raw evidence retention requires a license-aware retention policy.
-
-Local retrieval must never instantiate the external gateway. A provider failure
-is isolated to that provider and cannot block local tools. Run independent
-provider requests under bounded concurrency and cancellation. See
-[PROVIDERS](PROVIDERS.md) for retry, fallback and admission policy.
+Retain only redacted request IDs, stable error codes and artifact versions as
+operational metrics. Scholarly source retention requires a license-aware policy
+when reviewed local knowledge is added.
 
 Future Streamable HTTP must explicitly bind loopback during development and
 add authentication, authorization scopes, origin/host validation, TLS at the

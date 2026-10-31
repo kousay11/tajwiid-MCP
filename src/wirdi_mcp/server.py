@@ -8,11 +8,10 @@ from mcp.types import ToolAnnotations
 
 from wirdi_mcp import __version__
 from wirdi_mcp.config import Settings
-from wirdi_mcp.providers.gateway import ProviderGateway
 from wirdi_mcp.quran.source import PublicSourceRepository
 from wirdi_mcp.tools.diagnostics import HealthReport
-from wirdi_mcp.tools.providers import register_provider_tools
 from wirdi_mcp.tools.quran import register_quran_tools
+from wirdi_mcp.tools.tajwid import register_tajwid_tools
 
 
 def create_server(settings: Settings | None = None) -> MCPServer:
@@ -23,8 +22,8 @@ def create_server(settings: Settings | None = None) -> MCPServer:
         log_level=settings.log_level,
         instructions=(
             "Read-only Qaloun access and source mapping require configured checksum-pinned files. "
-            "Review-required mappings are unsafe for retrieval. Provider access is opt-in; "
-            "external excerpts are unreviewed evidence. Tajwid analysis is unavailable. "
+            "Review-required mappings are unsafe for retrieval. Tajwid rules and analysis are "
+            "local-only and remain unavailable until reviewed rule data is loaded. "
             "Corpus tariq is unspecified, not independently attested."
         ),
     )
@@ -43,17 +42,10 @@ def create_server(settings: Settings | None = None) -> MCPServer:
         return HealthReport(
             quran_data=state,
             mapping=state,
-            external_providers=("configured_unchecked" if settings.provider_config else "disabled"),
         )
 
     register_quran_tools(server, PublicSourceRepository(settings.wirdi_ai_root))
-    register_provider_tools(
-        server,
-        ProviderGateway(
-            PublicSourceRepository(settings.wirdi_ai_root),
-            settings.provider_config,
-        ),
-    )
+    register_tajwid_tools(server)
     return server
 
 

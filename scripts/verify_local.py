@@ -28,8 +28,9 @@ async def verify(source_root: Path) -> dict:
             "health_check",
             "get_qaloun_passage",
             "resolve_source_mapping",
-            "get_provider_capabilities",
-            "search_scholarly_sources",
+            "get_tajwid_rule",
+            "analyze_qaloun_tajwid",
+            "get_tajwid_explanation",
         }
         passage_result = await client.call_tool(
             "get_qaloun_passage",
