@@ -223,6 +223,8 @@ class TajwidAnnotation(ContractModel):
     image: ImageProvenance | None = None
     observed_color: ObservedColor | None = None
     note: Annotated[str, Field(max_length=300)] | None = None  # occurrence-level detail
+    # Readings the cited source permits here (e.g. madd lengths); the engine never picks one.
+    variants: tuple[NonEmpty, ...] = ()
 
     @model_validator(mode="after")
     def consistent_claim(self) -> "TajwidAnnotation":

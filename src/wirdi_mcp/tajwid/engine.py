@@ -123,6 +123,9 @@ class TajwidEngine:
                 mode=context.mode,
                 next_ayah_first=next_first,
                 stops_at_end=stops_at_end,
+                surah=verse.row.surah,
+                ayah=verse.row.number,
+                kufi=verse.row.links,
             )
             run_detectors(view, wanted)
             result.occurrences.extend((verse, o) for o in view.occurrences)
@@ -197,6 +200,7 @@ class TajwidEngine:
                 app_page_start=start, app_page_end=end, app_pagination_sha256=pagination_sha256
             ),
             note=occurrence.note,
+            variants=occurrence.variants,
         )
         assert annotation.status in EMITTABLE_STATUSES
         return annotation
