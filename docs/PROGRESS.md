@@ -38,6 +38,10 @@ Done (all milestones green); see HANDOFF.md
   `docs/BOOK_A_COVERAGE.md`, `docs/TESTING_GUIDE.md`, regenerated audit, E2E and PERF.
   Not committed yet: the working tree carries the change for review.
 
+- 0.6.0 follow-up: every tool tested in the Inspector (journal in `docs/NoteImportant.md`);
+  citations of the Book A rules checked on the page images and completed; plural-meem sila
+  extended; README rewritten as the complete project documentation.
+
 ## Next action
 Nothing automatic. Needs you: name a qualified reviewer, then proofread the 14 rule
 records against the cited pages (see `HANDOFF.md` questions). wirdi-Ai integration was

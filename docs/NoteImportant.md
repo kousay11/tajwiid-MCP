@@ -119,6 +119,17 @@ Nashit : `tariq` reste `unspecified`.
 | 2026-10-31 | `health_check` (Inspector, sans variable) | `quran_data: not_configured` | `WIRDI_AI_ROOT` non transmise |
 | 2026-10-31 | `analyze_app_page` page 263, waqf, sans variable | `DATA_UNAVAILABLE` | même cause |
 | 2026-10-31 | `analyze_app_page` page 263, waqf, toutes familles, avec variable | `ok`, 280 candidats (100 renvoyés) | analysé au point 3 |
+| 2026-10-31 | `analyze_qaloun_tajwid` 2:1-7, `madd_muttasil` et `madd_munfasil` | 6 candidats (3 + 3) | longueurs du livre A confirmées ; un relecteur propose 2 ou 4 / 4 : divergence ouverte |
+| 2026-10-31 | `analyze_qaloun_tajwid` 2:1-7, mim et ghunna | 20 candidats (13 idhar, 1 ikhfa, 6 ghunna) | les « erreurs de verset » du relecteur étaient la numérotation kufienne |
+| 2026-10-31 | `resolve_source_mapping` Qaloun 2:5-7 vers Hafs | `verified_difference` : 2:6, 2:7, 2:8 | confirme la table Qaloun / kufien |
+| 2026-10-31 | `get_qaloun_passage` 2:5-7 | 3 ayat, page 3, empreintes = celles des annotations | texte inchangé |
+| 2026-10-31 | `summarize_tajwid` 2:1-7, madd | 9 règles, somme par ayah exacte | a révélé la mim du pluriel devant ب et م (1 314 places), corrigée |
+| 2026-10-31 | `get_source_page` livre A p.19 | page 19, empreinte `7a2c7a31…` | a révélé la contradiction de « فألقه » |
+| 2026-10-31 | `search_source_pages` « الصلة » | 5 pages (15, 17, 18, 19, 20) | pages relues sur les images |
+| 2026-10-31 | `list_tajwid_rules` | 81 règles, 2 sans détecteur | conforme |
+| 2026-10-31 | `get_tajwid_rule` `madd_sila_ha_exception` | fiche complète | a révélé la p.18 oubliée, ajoutée |
+| 2026-10-31 | `get_tajwid_rule` inexistante, version 9, `../etc` | `NOT_FOUND`, `UNSUPPORTED_VERSION`, `NOT_FOUND` | erreurs typées |
+| 2026-10-31 | `get_letter_properties`, `get_tajwid_explanation` | `ok` ; `UNSUPPORTED_CAPABILITY` | conforme |
 
 Pour chaque nouveau test : ajouter une ligne ci-dessus, puis, si le résultat est instructif, une
 courte analyse (comptes, contrôles de cohérence, points à relire) dans le même style que le point 3.
