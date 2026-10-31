@@ -120,6 +120,13 @@ correspondence. No numeric or approximate fallback is permitted. Technical
 citations point to the existing corpus records and audit locators; no new
 scholarly references are fabricated. No external source retrieval occurs.
 
+## Bundled snapshot, 2026-10-31
+
+The files below are now shipped in `src/wirdi_mcp/quran/snapshot/` so the project runs without a
+Wirdi AI checkout. Six are byte-identical to the originals (same hashes as above); `schemas.py` is
+trimmed and the three audit documents are replaced by short public notes, each with its own hash in
+the `bundled` section of the manifest. With `WIRDI_AI_ROOT` set, the original hashes are checked.
+
 ## Controlled manifest update, 2026-10-31
 
 Two pinned authority files in the Wirdi AI checkout had drifted since the audit:

@@ -2,7 +2,7 @@
 """Run every tool through a real stdio MCP client and write a transcript (markdown).
 
 Book text is never written: page text and search snippets are replaced by lengths/hashes.
-Usage: e2e_report.py --source-root /path/to/wirdi-Ai --out docs/E2E_REPORT.md
+Usage: e2e_report.py [--source-root /path/to/wirdi-Ai] --out docs/E2E_REPORT.md
 """
 
 import argparse
@@ -56,12 +56,15 @@ def shorten(payload, limit=1800):
     return text
 
 
-async def run(source_root: str, out: Path) -> None:
+async def run(source_root: str | None, out: Path) -> None:
     params = StdioServerParameters(
         command=sys.executable,
         args=["-m", "wirdi_mcp.server"],
         cwd=ROOT,
-        env={"WIRDI_MCP_LOG_LEVEL": "ERROR", "WIRDI_AI_ROOT": source_root},
+        env={
+            "WIRDI_MCP_LOG_LEVEL": "ERROR",
+            **({"WIRDI_AI_ROOT": source_root} if source_root else {}),
+        },
     )
     waqf, wasl = {"mode": "waqf"}, {"mode": "wasl"}
     calls = [
@@ -191,7 +194,7 @@ async def run(source_root: str, out: Path) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source-root", required=True)
+    parser.add_argument("--source-root", help="optional Wirdi AI checkout; default: bundled")
     parser.add_argument("--out", type=Path, default=ROOT / "docs" / "E2E_REPORT.md")
     args = parser.parse_args()
     asyncio.run(run(args.source_root, args.out))

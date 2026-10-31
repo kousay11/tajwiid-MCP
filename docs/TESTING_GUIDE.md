@@ -3,11 +3,10 @@
 **Every request below, and one for each tool, is also in [APPLY.json](APPLY.json) ready to paste.**
 
 All requests are MCP tool calls. Use the MCP Inspector or any client; the arguments below are
-the JSON the tool receives. Set `WIRDI_AI_ROOT` to your Wirdi AI checkout first.
+the JSON the tool receives. No configuration is needed: the Quran text and page map are bundled.
 
 ```bash
-WIRDI_AI_ROOT=/home/najjar/Documents/Me/wirdi-Ai npx @modelcontextprotocol/inspector \
-  .venv/bin/wirdi-mcp
+npx @modelcontextprotocol/inspector .venv/bin/wirdi-mcp
 ```
 
 A selection is `{"start": {...reference...}, "end_ayah": N}`. Selections here use the Qaloun count

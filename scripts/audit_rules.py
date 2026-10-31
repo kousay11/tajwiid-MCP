@@ -26,9 +26,15 @@ from wirdi_mcp.tajwid.engine import TajwidEngine  # noqa: E402
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source-root", type=Path, required=True)
+    parser.add_argument(
+        "--source-root", type=Path, help="optional Wirdi AI checkout; default: bundled"
+    )
     args = parser.parse_args()
-    repo = PublicSourceRepository(args.source_root)
+    repo = (
+        PublicSourceRepository(args.source_root)
+        if args.source_root
+        else PublicSourceRepository.bundled()
+    )
     repo.load_edition = functools.cache(repo.load_edition)
     engine = TajwidEngine(repo, RuleRegistry(ROOT / "knowledge"))
     rules = engine.select_rules((), ())

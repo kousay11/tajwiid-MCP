@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Measure cold start and per-call latency of the real stdio server (read-only).
 
-Usage: measure_perf.py --source-root /path/to/wirdi-Ai [--runs 30]
+Usage: measure_perf.py [--source-root /path/to/wirdi-Ai] [--runs 30]
 """
 
 import argparse
@@ -32,12 +32,15 @@ def percentile(values, q):
     return ordered[min(len(ordered) - 1, round(q * (len(ordered) - 1)))]
 
 
-async def measure(source_root: str, runs: int) -> None:
+async def measure(source_root: str | None, runs: int) -> None:
     params = StdioServerParameters(
         command=sys.executable,
         args=["-m", "wirdi_mcp.server"],
         cwd=ROOT,
-        env={"WIRDI_MCP_LOG_LEVEL": "ERROR", "WIRDI_AI_ROOT": source_root},
+        env={
+            "WIRDI_MCP_LOG_LEVEL": "ERROR",
+            **({"WIRDI_AI_ROOT": source_root} if source_root else {}),
+        },
     )
     started = time.perf_counter()
     async with Client(params, read_timeout_seconds=30) as client:
@@ -91,7 +94,7 @@ async def measure(source_root: str, runs: int) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source-root", required=True)
+    parser.add_argument("--source-root", help="optional Wirdi AI checkout; default: bundled")
     parser.add_argument("--runs", type=int, default=30)
     args = parser.parse_args()
     asyncio.run(measure(args.source_root, args.runs))

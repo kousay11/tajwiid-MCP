@@ -2,11 +2,12 @@
   "title": "Ready-made JSON requests for every tool of wirdi-mcp",
   "version": "0.6.0",
   "how_to_use": [
-    "Start the server with WIRDI_AI_ROOT set (see the README) and open the MCP Inspector: npx @modelcontextprotocol/inspector -e WIRDI_AI_ROOT=/path/to/wirdi-Ai .venv/bin/wirdi-mcp",
+    "Start the server (no configuration needed: the Quran text, the page map and the mapping resolver are bundled in the package) and open the MCP Inspector: npx @modelcontextprotocol/inspector .venv/bin/wirdi-mcp",
     "Pick the tool named in `tool`, paste the object in `arguments`, run it, and compare with `expect`.",
-    "`needs` lists what the request depends on: WIRDI_AI_ROOT (the Quran text) or a local page store built with scripts/build_page_store.py.",
+    "`needs` lists what the request depends on beyond the package: a local page store built with scripts/build_page_store.py from your own copy of Book A.",
     "`expect.status` is `ok` or `error`; for an error, `expect.code` is the error code. Counts quoted in `purpose` were measured on the real corpus.",
     "Numbers of ayat are in the Qaloun count (6,214 ayat). Use resolve_source_mapping to convert to the Kufian count of the Tunisian mushaf.",
+    "To check against a Wirdi AI checkout instead of the bundled snapshot, set WIRDI_AI_ROOT (in the Inspector: -e WIRDI_AI_ROOT=/path).",
     "tests/integration/test_apply_json.py runs every request in this file against the real server, so the examples cannot drift from the tools."
   ],
   "reading_context_note": "mode `waqf` stops at the end of each selected ayah only; `wasl` reads on, so the last position needs `following` (a complete reference to the next ayah of the same surah) or `null`; `stop_after_word` stops the last ayah after that many words.",
@@ -23,7 +24,7 @@
     {
       "id": "health_check.basic",
       "tool": "health_check",
-      "purpose": "Readiness. `quran_data` must be `configured_unchecked` when WIRDI_AI_ROOT reaches the server.",
+      "purpose": "Readiness. `quran_data` is `configured_unchecked` and `quran_source` is `bundled` by default.",
       "arguments": {},
       "expect": {
         "status": "foundation_ready"
@@ -51,9 +52,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "get_qaloun_passage.ayah_outside_surah",
@@ -77,9 +76,7 @@
         "status": "error",
         "code": "INVALID_REFERENCE"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "resolve_source_mapping.qaloun_to_hafs",
@@ -105,9 +102,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "list_tajwid_rules.all",
@@ -220,9 +215,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.rule_ids",
@@ -260,9 +253,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.mim_and_ghunna",
@@ -302,9 +293,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.plural_meem_sila",
@@ -342,9 +331,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.wasl_without_following",
@@ -382,9 +369,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.wasl_with_following",
@@ -430,9 +415,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.stop_after_word",
@@ -470,9 +453,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.paging",
@@ -507,9 +488,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_qaloun_tajwid.unknown_rule",
@@ -547,9 +526,7 @@
         "status": "error",
         "code": "NOT_FOUND"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "summarize_tajwid.range",
@@ -576,9 +553,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "summarize_tajwid.whole_surah",
@@ -601,9 +576,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "summarize_tajwid.invalid_surah",
@@ -623,9 +596,7 @@
         "status": "error",
         "code": "INVALID_REFERENCE"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_app_page.madd",
@@ -650,9 +621,7 @@
       "expect": {
         "status": "ok"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "analyze_app_page.invalid_page",
@@ -672,9 +641,7 @@
         "status": "error",
         "code": "INVALID_REFERENCE"
       },
-      "needs": [
-        "WIRDI_AI_ROOT"
-      ]
+      "needs": []
     },
     {
       "id": "get_letter_properties.basic",

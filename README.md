@@ -4,7 +4,7 @@ A **local MCP server for the Qaloun recitation (from Nafi')**. You give it a pas
 it gives you back the **Tajwid rules that apply to it**, letter by letter, each with the page of
 the book that states the rule.
 
-- **Version 0.6.0** · 12 tools · 81 rules · 79 detectors · 232 tests (184 offline)
+- **Version 0.6.0** · 12 tools · 81 rules · 79 detectors · 270 tests (238 on a clean clone, the rest also check the original Wirdi AI files)
 - **Read-only and deterministic**: no LLM, no RAG, no database, no network. The Quran text is read
   from the Wirdi AI files and never modified.
 - **Nothing is scholarly verified.** No qualified reviewer has been named, so every result is a
@@ -70,13 +70,14 @@ Requires Python 3.12+.
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
-export WIRDI_AI_ROOT=/absolute/path/to/wirdi-Ai
 .venv/bin/wirdi-mcp          # waits for MCP input on stdin; no network listener
 ```
 
 | Variable | Purpose |
 | --- | --- |
-| `WIRDI_AI_ROOT` | Root of the Wirdi AI checkout, the only source of Quran text. Without it, tools that read the Quran return `DATA_UNAVAILABLE` and `health_check` shows `quran_data: not_configured` |
+| *(none needed)* | The Quran text, the 559-page map and the mapping resolver are **bundled** in the package (`src/wirdi_mcp/quran/snapshot/`, SHA-256 pinned). A clean clone calls every tool |
+| `WIRDI_AI_ROOT` | Optional. Path of a Wirdi AI checkout: the server then reads and verifies the original files instead of the snapshot |
+| `WIRDI_QURAN_SOURCE` | Optional. `none` disables the Quran source: tools that read it return `DATA_UNAVAILABLE` and `health_check` shows `quran_data: not_configured` |
 | `WIRDI_KNOWLEDGE_ROOT` | Another `knowledge/` directory (default: this repository's) |
 | `WIRDI_MCP_LOG_LEVEL` | Log level, written to stderr |
 | `WIRDI_TEST_SOURCE_ROOT` | Tests only: enables the real-corpus tests |
@@ -88,21 +89,21 @@ export WIRDI_AI_ROOT=/absolute/path/to/wirdi-Ai
   "mcpServers": {
     "wirdi": {
       "command": "/absolute/path/wirdi-mcp/.venv/bin/wirdi-mcp",
-      "env": {"WIRDI_AI_ROOT": "/absolute/path/wirdi-Ai", "WIRDI_MCP_LOG_LEVEL": "INFO"}
+      "env": {"WIRDI_MCP_LOG_LEVEL": "INFO"}
     }
   }
 }
 ```
 
-**Try it in the MCP Inspector.** The Inspector starts the server with a *filtered* environment, so
-a variable written before `npx` does not reach it. Pass it with `-e` (or in the « Environment
-Variables » field), then reconnect:
+**Try it in the MCP Inspector.**
 
 ```bash
-npx @modelcontextprotocol/inspector -e WIRDI_AI_ROOT=/absolute/path/wirdi-Ai .venv/bin/wirdi-mcp
+npx @modelcontextprotocol/inspector .venv/bin/wirdi-mcp
 ```
 
-Then call `health_check`: `quran_data` must be `configured_unchecked`. **Ready-to-paste requests for
+Then call `health_check`: `quran_data` must be `configured_unchecked` and `quran_source` `bundled`.
+(The Inspector starts the server with a *filtered* environment: to set `WIRDI_AI_ROOT`, pass it with
+`-e WIRDI_AI_ROOT=/path`, not as a variable written before `npx`.) **Ready-to-paste requests for
 every tool are in [docs/APPLY.json](docs/APPLY.json).**
 
 ## 3. Key commands
@@ -110,9 +111,9 @@ every tool are in [docs/APPLY.json](docs/APPLY.json).**
 | I want to… | Command |
 | --- | --- |
 | Start the server | `.venv/bin/wirdi-mcp` |
-| Check it works end to end | `.venv/bin/python scripts/verify_local.py --source-root /abs/wirdi-Ai` |
-| Run the tests (offline) | `.venv/bin/python -m pytest` |
-| Run the tests on the real corpus | `WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest` |
+| Check it works end to end | `.venv/bin/python scripts/verify_local.py` |
+| Run the tests (bundled snapshot, real corpus included) | `.venv/bin/python -m pytest` |
+| Also check against a Wirdi AI checkout | `WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest` |
 | Lint and format | `.venv/bin/ruff check . && .venv/bin/ruff format --check .` |
 | Change a rule record | edit the table in `scripts/build_book_a_rules.py`, then `python scripts/build_book_a_rules.py && python scripts/build_rule_manifest.py` |
 | Check the rule files against the manifest | `.venv/bin/python scripts/build_rule_manifest.py --check` |
@@ -303,10 +304,15 @@ three different marks.
 
 | Datum | Origin | Guard |
 | --- | --- | --- |
-| Quran text | Public files of the Wirdi AI checkout: KFGQPC Qaloun via Qur'anpedia (`risan/quran-json`, commit `6523a9ad…`), 6,214 ayat | SHA-256 checked on every call; never modified or copied |
-| 559-page layout | Same checkout | SHA-256 checked; `verified_against_edition` |
+| Quran text | KFGQPC Qaloun via Qur'anpedia (`risan/quran-json`, commit `6523a9ad…`), 6,214 ayat, **bundled** in `src/wirdi_mcp/quran/snapshot/` (CC BY-SA 4.0, see [NOTICE](src/wirdi_mcp/quran/snapshot/NOTICE.md)) | SHA-256 checked on every call; never modified |
+| 559-page layout and mapping resolver | Same snapshot (page map derived from the King Fahd mushaf images; resolver code of the Wirdi AI project, trimmed schemas, short public notes) | SHA-256 checked; `verified_against_edition` |
 | Rules | `knowledge/rules/*/1.json` | `manifest.json` pins every file; one altered byte gives `INTEGRITY_FAILURE` |
 | Books | PDFs placed locally in `docs/` | Never committed; only paraphrased rules with a page citation are |
+
+**Licences.** The code, tests, scripts and docs are MIT ([LICENSE](LICENSE)). The folder
+`src/wirdi_mcp/quran/snapshot/` keeps its own terms ([LICENSE-DATA](src/wirdi_mcp/quran/snapshot/LICENSE-DATA.md)):
+the Quran text is CC BY-SA 4.0 with credit to Qur'anpedia.net and the dump version; ShareAlike
+applies to that data, not to the code that reads it. The books themselves are never in the repository.
 
 **Two numberings meet here.**
 
@@ -357,13 +363,13 @@ All three have an unknown licence. Book A's text layer is raw (inverted lam-alef
 ## 11. Tests
 
 ```bash
-.venv/bin/python -m pytest                                          # offline
-WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + real corpus: 232 tests
+.venv/bin/python -m pytest                                          # everything, on the bundled snapshot
+WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 270 tests
 ```
 
-- **Offline**: synthetic fixtures modelled on the books' examples, real stdio subprocess tests, the
+- **Synthetic and stdio**: synthetic fixtures modelled on the books' examples, real stdio subprocess tests, the
   README and APPLY.json consistency checks, tamper tests.
-- **Real corpus**: every single-ayah selection in both modes, all 559 pages, the closed word lists
+- **Real corpus (bundled)**: every single-ayah selection in both modes, all 559 pages, the closed word lists
   (each must hit exactly the places the book names), and every request of `docs/APPLY.json`.
 - Measured latency ([PERF](docs/PERF.md)): cold start 0.57 s; one application page about 106 ms.
 
@@ -393,7 +399,7 @@ The commands that use the scripts are in [section 3](#3-key-commands).
 
 1. **A named, qualified reviewer.** Without one, nothing moves beyond `candidate`; the validation
    store is ready and empty.
-2. **Licences** of the books and the mushaf, and whether the paraphrased records may stay in the
+2. **Licences** of the books (the code and bundled data are licensed, see section 8), and whether the paraphrased records may stay in the
    repository.
 3. **The Abu Nashit question**: may the corpus be treated as Abu Nashit for these rules?
 4. **Display in version 1**: label unreviewed candidates, or show nothing until a reviewer approves?

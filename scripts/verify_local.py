@@ -13,14 +13,19 @@ from wirdi_mcp.quran.source import PublicSourceRepository
 from wirdi_mcp.tools.contracts import MappingToolResponse, PassageToolResponse
 
 
-async def verify(source_root: Path) -> dict:
-    repository = PublicSourceRepository(source_root)
+async def verify(source_root: Path | None) -> dict:
+    repository = (
+        PublicSourceRepository(source_root) if source_root else PublicSourceRepository.bundled()
+    )
     selection = PassageSelection(start=repository.reference("qalun", 6, 1), end_ayah=8)
     target = repository.manifest["editions"]["hafs"]
     params = StdioServerParameters(
         command=sys.executable,
         args=["-m", "wirdi_mcp.server"],
-        env={"WIRDI_AI_ROOT": str(source_root), "WIRDI_MCP_LOG_LEVEL": "ERROR"},
+        env={
+            **({"WIRDI_AI_ROOT": str(source_root)} if source_root else {}),
+            "WIRDI_MCP_LOG_LEVEL": "ERROR",
+        },
     )
     async with asyncio.timeout(30), Client(params, read_timeout_seconds=10) as client:
         tools = await client.list_tools()
@@ -28,8 +33,14 @@ async def verify(source_root: Path) -> dict:
             "health_check",
             "get_qaloun_passage",
             "resolve_source_mapping",
+            "list_tajwid_rules",
             "get_tajwid_rule",
             "analyze_qaloun_tajwid",
+            "summarize_tajwid",
+            "analyze_app_page",
+            "get_letter_properties",
+            "get_source_page",
+            "search_source_pages",
             "get_tajwid_explanation",
         }
         passage_result = await client.call_tool(
@@ -76,6 +87,12 @@ async def verify(source_root: Path) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source-root", type=Path, required=True)
+    parser.add_argument(
+        "--source-root", type=Path, help="optional Wirdi AI checkout; default: bundled"
+    )
     args = parser.parse_args()
-    print(json.dumps(asyncio.run(verify(args.source_root.resolve())), indent=2))
+    print(
+        json.dumps(
+            asyncio.run(verify(args.source_root.resolve() if args.source_root else None)), indent=2
+        )
+    )

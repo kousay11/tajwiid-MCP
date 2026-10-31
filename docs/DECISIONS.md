@@ -40,3 +40,9 @@ Applied from the mission defaults; revisit each with the project owner.
     open ya with a fatha and the closed one with the yeh barree. Detectors read those signs and
     say so in their notes and limitations.
 
+15. **Self-contained snapshot (2026-10-31):** the Quran text, the 559-page map, the mapping
+    resolver and three short public notes are bundled in `src/wirdi_mcp/quran/snapshot/`, pinned
+    by SHA-256 (`bundled` section of `source_manifest.json`). `schemas.py` is trimmed to
+    `MappingOut` and `PassageReference`; a test shows identical mapping output to the original on
+    all 6,214 selections. `WIRDI_AI_ROOT` stays an optional override that verifies the original
+    files. Code is MIT; the data folder is CC BY-SA 4.0 with Qur'anpedia credit.

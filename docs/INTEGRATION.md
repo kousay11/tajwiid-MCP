@@ -17,7 +17,6 @@ params = StdioServerParameters(
     command="/absolute/path/wirdi-mcp/.venv/bin/wirdi-mcp",
     env={
         "WIRDI_MCP_LOG_LEVEL": "WARNING",
-        "WIRDI_AI_ROOT": "/absolute/path/wirdi-Ai",
     },
 )
 

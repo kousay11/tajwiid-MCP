@@ -101,7 +101,7 @@ not arbitrated.
 ## Reproduce
 
 ```bash
-.venv/bin/python -m pytest -q                       # offline
+.venv/bin/python -m pytest -q                       # bundled snapshot, no setup
 WIRDI_TEST_SOURCE_ROOT=/home/najjar/Documents/Me/wirdi-Ai .venv/bin/python -m pytest -q
 .venv/bin/ruff check . && .venv/bin/ruff format --check .
 .venv/bin/python scripts/build_rule_manifest.py --check

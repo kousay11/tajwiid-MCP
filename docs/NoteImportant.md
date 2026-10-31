@@ -4,6 +4,15 @@ Ce fichier garde ce qu'il faut savoir avant de tester ou d'utiliser le MCP : le 
 rencontré dans l'Inspector, d'où viennent les données, et l'analyse des résultats déjà testés.
 À compléter après chaque nouveau test (voir la fin).
 
+## 0. Mise à jour 2026-10-31 : le projet est autonome
+
+Le texte du Quran, la pagination de 559 pages et le résolveur de correspondance sont maintenant
+**inclus dans le dépôt** (`src/wirdi_mcp/quran/snapshot/`, hachages SHA-256 épinglés). Plus besoin de
+`WIRDI_AI_ROOT` : `health_check` donne `quran_data: configured_unchecked` et `quran_source: bundled`
+directement. La variable reste une option pour vérifier contre un dépôt Wirdi AI réel, et
+`WIRDI_QURAN_SOURCE=none` désactive la source. La section 1 ci-dessous décrit le problème d'origine
+(historique) : il ne concerne plus que le mode `WIRDI_AI_ROOT`.
+
 ## 1. Problème rencontré avec l'Inspector, et sa solution
 
 **Symptôme.** `health_check` répondait, mais les autres tools (par exemple `analyze_app_page`)
@@ -47,7 +56,7 @@ plus `page` et `reading_context.mode`. La requête qui marche :
 
 | Donnée | Origine | Garde-fous |
 | --- | --- | --- |
-| Texte du Quran (Qaloun) | Fichiers publics du dépôt Wirdi AI, lus en lecture seule via `WIRDI_AI_ROOT`. Le jeu est « KFGQPC Qaloun via Qur'anpedia » (distribution `risan/quran-json`, commit `6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123`), soit 6 214 ayat | Empreinte SHA-256 du corpus vérifiée à chaque appel (`ece0a2b0…d1303`) ; le texte n'est jamais modifié ni recopié |
+| Texte du Quran (Qaloun) | Fichiers inclus dans le dépôt (`src/wirdi_mcp/quran/snapshot/`), ou ceux du dépôt Wirdi AI si `WIRDI_AI_ROOT` est donnée. Le jeu est « KFGQPC Qaloun via Qur'anpedia » (distribution `risan/quran-json`, commit `6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123`), soit 6 214 ayat | Empreinte SHA-256 du corpus vérifiée à chaque appel (`ece0a2b0…d1303`) ; le texte n'est jamais modifié ni recopié |
 | Pagination 559 pages | Fichier de pagination du même dépôt | Empreinte vérifiée (`ca7aa4e4…ccfc0`) ; page 263 = « verified_against_edition » |
 | Numérotation | Compte Qaloun du corpus. Le lien vers la numérotation kufienne (celle que cite le livre A) est `number_in_hafs` | Les listes du livre A sont comparées aux numéros kufiens |
 | Règles de tajwid | Paraphrases rédigées pour ce projet, dans `knowledge/rules/` ; sources : livre A (51 p.) pour les 81 règles, livre B (Abu Nashit) pour 12 des 14 premières | Empreinte de chaque fiche vérifiée ; chaque citation donne livre et page |

@@ -65,7 +65,7 @@ never inferred from punctuation.
   `rule_counts` count every occurrence, not only the returned window.
 - `unresolved` counts positions needing missing context; `skipped` counts positions a
   detector deliberately left out (for example lafz al-jalala, letter-name noon).
-- The Tajwid tools need `WIRDI_AI_ROOT` for Quran text and the knowledge store for rules.
+- The Tajwid tools read the bundled Quran snapshot (or `WIRDI_AI_ROOT` when set) for Quran text and the knowledge store for rules.
   A missing or altered store gives `DATA_UNAVAILABLE` or `INTEGRITY_FAILURE` for that tool
   only; other tools keep answering. Errors never contain a path or book text.
 
