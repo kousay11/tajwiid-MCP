@@ -119,3 +119,21 @@ Review-required output is useful diagnostic data, never an accepted
 correspondence. No numeric or approximate fallback is permitted. Technical
 citations point to the existing corpus records and audit locators; no new
 scholarly references are fabricated. No external source retrieval occurs.
+
+## Controlled manifest update, 2026-10-31
+
+Two pinned authority files in the Wirdi AI checkout had drifted since the audit:
+
+| File | Previous SHA-256 | Current SHA-256 |
+| --- | --- | --- |
+| `backend/app/tadabbur/arabic.py` | `abe3e8f8dfa01333e4f7156b5f8ade0e4aa73b8d995bf1ced7b8e614910f4ffc` | `d3e6bb992cb5398fff534aba1f05d12d3b1984f8fca6e14a46fc0ea3943919b7` |
+| `backend/app/schemas.py` | `512a833186853d7ee0026ce5ef2672e21d74a63fb5707f4d48953d1200761108` | `c4cdec8706d33f2a947efcf79f00b381bfb539102fc219f93041cdaef4c3f1a7` |
+
+The Wirdi AI checkout has no git metadata, so the files could not be diffed. The
+update was admitted functionally, not by inspection: with only these two hashes
+changed, the complete real-source suite (`WIRDI_TEST_SOURCE_ROOT` set) passed,
+including the 6,214-selection single-ayah conformance against the existing mapping
+audit and all golden boundary cases (46 passed, 0 failed). Every other pinned hash
+(Qaloun and Hafs text, pagination, `mapping.py`, audit documents) was unchanged.
+The check itself was not relaxed. Only `mapping/adapter.py` reads these two files;
+passage reads were never affected. Any future drift fails closed again.
