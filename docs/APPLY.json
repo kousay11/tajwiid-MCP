@@ -107,7 +107,7 @@
     {
       "id": "list_tajwid_rules.all",
       "tool": "list_tajwid_rules",
-      "purpose": "All 80 rules with family, detectability, tariq and `has_detector`.",
+      "purpose": "All 89 rules with family, detectability, tariq and `has_detector`.",
       "arguments": {},
       "expect": {
         "status": "ok"
@@ -444,6 +444,195 @@
         "rule_ids": [
           "ikhfa_shafawi",
           "madd_sila_sughra_meem"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "analyze_qaloun_tajwid.alif_lam_mim_imran",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Al Imran 3:1 (one ayah in the Qaloun count): `madd_alif_lam_mim_imran` with the two readings in `variants`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 3,
+            "ayah": 1
+          },
+          "end_ayah": 1
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "madd_alif_lam_mim_imran"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "analyze_qaloun_tajwid.tawkid_khafifa",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Yusuf 12:32 holds وليكونا: `noon_tawkid_khafifa_stop` (the note says what a stop would give).",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 12,
+            "ayah": 32
+          },
+          "end_ayah": 32
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "noon_tawkid_khafifa_stop"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "analyze_qaloun_tajwid.arayta",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "al-An'am 6:41 holds أرأيتكم: `hamza_arayta_tashil`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 6,
+            "ayah": 41
+          },
+          "end_ayah": 41
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "hamza_arayta_tashil"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "analyze_qaloun_tajwid.wasl_then_qat",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "al-An'am 6:71 holds ائتنا: `hamza_wasl_then_qat_in_word`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 6,
+            "ayah": 71
+          },
+          "end_ayah": 71
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "hamza_wasl_then_qat_in_word"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "analyze_qaloun_tajwid.istiala_ranks",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "The four ranks of the isti'la letters and the heavy alef after ra, over al-Baqara 2:1-7.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "istiala_rank_1",
+          "istiala_rank_2",
+          "istiala_rank_3",
+          "istiala_rank_4",
+          "alef_tafkhim_after_ra"
         ],
         "families": [],
         "include_candidates": true,

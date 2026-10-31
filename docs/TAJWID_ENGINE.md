@@ -9,8 +9,8 @@ about a passage beyond a rule's cited conditions, and nothing is scholarly verif
 
 | Artifact | State |
 | --- | --- |
-| Rule records | 80 paraphrased records in `knowledge/rules`, each with book and page citations, all `unreviewed`. 13 from the first release (qalqala, noon sakina and tanween, mim sakina, ghunna, article lam) and 67 from Book A (madd, hamza, heavy and light letters, taqlil, idgham, ya'at al-idafa); `scripts/build_book_a_rules.py` writes the latter |
-| Detectors | 78, registered in `src/wirdi_mcp/tajwid/detectors.py` from family modules (`madd.py`, `hamza.py`, `tafkhim.py`, `idgham.py`, `yaat.py`, and the word lists of `lexicon.py`), keyed `(rule_id, version, riwaya, tariq)`; a rule may need more than one pass. Input is the unchanged ayah text tokenised into letters with reversible codepoint offsets (`tajwid/text.py`) and a `waqf`/`wasl` context |
+| Rule records | 89 paraphrased records in `knowledge/rules`, each with book and page citations, all `unreviewed`. 13 from the first release (qalqala, noon sakina and tanween, mim sakina, ghunna, article lam) and 67 from Book A (madd, hamza, heavy and light letters, taqlil, idgham, ya'at al-idafa); `scripts/build_book_a_rules.py` writes the latter |
+| Detectors | 87, registered in `src/wirdi_mcp/tajwid/detectors.py` from family modules (`madd.py`, `hamza.py`, `tafkhim.py`, `idgham.py`, `yaat.py`, and the word lists of `lexicon.py`), keyed `(rule_id, version, riwaya, tariq)`; a rule may need more than one pass. Input is the unchanged ayah text tokenised into letters with reversible codepoint offsets (`tajwid/text.py`) and a `waqf`/`wasl` context |
 | Annotations | `TajwidAnnotation` with status `candidate`, anchor, rule evidence, app page span and a short note |
 | Human validation | Model and an empty `knowledge/validation/records.json`; no reviewer, so no record |
 | Explanation | Not available: no tool, until a reviewer validates annotations |

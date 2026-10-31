@@ -46,6 +46,140 @@ FAMILY_ID = {
 
 # rule_id: (family, name_ar, detectability, pages, definition, conditions, exceptions, limits)
 RULES: dict[str, tuple] = {
+    "hamza_wasl_then_qat_in_word": (
+        "hamza",
+        "اجتماع همزة الوصل وهمزة القطع في الكلمة",
+        "A",
+        ("p.16",),
+        "When two hamzas meet in one word, the first a hamzat al-wasl and the second a hamza qat', "
+        "the wasl hamza is dropped and the qat' hamza is pronounced when joining. When beginning "
+        "on the word, the wasl hamza is pronounced and the qat' hamza is read as a waw if the "
+        "wasl hamza has a damma (اؤتمن) or as a yeh if it has a kasra (ائتنا); the book says to "
+        "measure the similar words the same way.",
+        (("two_hamzas", "The word begins with a hamzat al-wasl followed by a hamza qat'."),),
+        (),
+        (
+            "Read from the spelling: a wasl alef followed by a waw-hamza, or by a yeh and a sakin hamza. The corpus writes the beginning form; the joined form is the book's.",
+            "Words with a prefix before the wasl alef are not seen in the corpus and are not matched.",
+        ),
+    ),
+    "noon_tawkid_khafifa_stop": (
+        "madd",
+        "الوقف على نون التوكيد الخفيفة المرسومة تنوينا",
+        "C",
+        ("p.16", "p.17"),
+        "When the light tawkid noon is written as a tanween with a fatha, stopping on it gives an "
+        "alef. This happens in two words: وليكونا (Yusuf 32) and لنسفعا (al-'Alaq 15). Joined, the "
+        "first is read with an idgham with ghunna before the meem that follows, and the second "
+        "with a meem hidden with ghunna before the ba.",
+        (("words", "The word is one of the two named, at the named place."),),
+        (),
+        (
+            "The rule is about stopping on the word; this engine stops only at the end of an ayah or at an explicit stop word, so the note says what a stop would give.",
+            "A closed list in the Kufian numbering used by the book.",
+        ),
+    ),
+    "madd_alif_lam_mim_imran": (
+        "madd",
+        "الم الله في فاتحة آل عمران وصلا",
+        "C",
+        ("p.23",),
+        "In the opening of Al Imran, alif lam mim joined to the name of Allah has two readings: "
+        "the ya of ميم long with a fatha on the meem, or the ya short with a fatha on the meem.",
+        (("joined", "Alif lam mim is followed, in the same ayah, by the name of Allah."),),
+        (),
+        (
+            "The Qaloun count makes Al Imran 1 one ayah that holds both words, so the pair is read inside the ayah; the waqf sign after الم is not treated as a stop.",
+            "Both readings are listed in `variants`; the book gives no lengths for them and none is added.",
+        ),
+    ),
+    "hamza_arayta_tashil": (
+        "hamza",
+        "تسهيل الهمزة الثانية في أرأيت وأرأيتكم وأرأيتم",
+        "C",
+        ("p.27",),
+        "The second hamza of أرأيت، أرأيتكم، أرأيتم is softened wherever these words occur in the "
+        "Qur'an.",
+        (("words", "The word is one of the three named, anywhere."),),
+        (),
+        (
+            "Only the three forms the book names are matched. Similar forms such as أرأيتك or أفرأيتم are spelled the same way in the corpus but are not named, so they are not annotated.",
+        ),
+    ),
+    "istiala_rank_1": (
+        "tafkhim",
+        "المرتبة الأولى من تفخيم الاستعلاء",
+        "A",
+        ("p.32",),
+        "The strongest heaviness of an isti'la letter (خ ص ض غ ط ق ظ): the letter has a fatha and "
+        "is followed by an alef (للطائفين، الصابرين).",
+        (("fatha_alef", "An isti'la letter with a fatha, followed by an alef."),),
+        (),
+        (
+            "The letter's own vowel is read; a letter with tanween is skipped and counted as skipped.",
+        ),
+    ),
+    "istiala_rank_2": (
+        "tafkhim",
+        "المرتبة الثانية من تفخيم الاستعلاء",
+        "A",
+        ("p.32", "p.33"),
+        "The second rank: an isti'la letter with a fatha and no alef after it (طبع، حضر), or a "
+        "sakin isti'la letter after a fatha (مطلع الفجر).",
+        (
+            ("fatha", "An isti'la letter with a fatha and no alef after it."),
+            ("sakin_after_fatha", "A sakin isti'la letter after a fatha."),
+        ),
+        (),
+        (
+            "A final letter that is sakin only because of a stop is not rated; a sakin letter right after a wasl alef is skipped, because its vowel depends on the reading.",
+        ),
+    ),
+    "istiala_rank_3": (
+        "tafkhim",
+        "المرتبة الثالثة من تفخيم الاستعلاء",
+        "A",
+        ("p.32", "p.33"),
+        "The third rank: an isti'la letter with a damma (ضرب، طوبى), or a sakin isti'la letter "
+        "after a damma (مقمحون).",
+        (
+            ("damma", "An isti'la letter with a damma."),
+            ("sakin_after_damma", "A sakin isti'la letter after a damma."),
+        ),
+        (),
+        (
+            "A final letter that is sakin only because of a stop is not rated; a sakin letter right after a wasl alef is skipped, because its vowel depends on the reading.",
+        ),
+    ),
+    "istiala_rank_4": (
+        "tafkhim",
+        "المرتبة الرابعة من تفخيم الاستعلاء",
+        "A",
+        ("p.32", "p.33"),
+        "The lowest rank: an isti'la letter with a kasra (دخلت، قسمة), or a sakin isti'la letter "
+        "after a kasra (اطعام، اخراج).",
+        (
+            ("kasra", "An isti'la letter with a kasra."),
+            ("sakin_after_kasra", "A sakin isti'la letter after a kasra."),
+        ),
+        (),
+        (
+            "A final letter that is sakin only because of a stop is not rated; a sakin letter right after a wasl alef is skipped, because its vowel depends on the reading.",
+        ),
+    ),
+    "alef_tafkhim_after_ra": (
+        "tafkhim",
+        "تفخيم الألف بعد الراء غير المقللة",
+        "A",
+        ("p.35",),
+        "The alef is heavy after a ra that is not inclined (ولو ترى). The book names only التوراة "
+        "as a word with taqlil after a ra, so the alef after any other ra is heavy.",
+        (("after_ra", "The alef follows a ra that has a fatha."),),
+        (("inclined", "The word التوراة, handled by the taqlil rule."),),
+        (
+            "The ra is called 'not inclined' because the book lists no other word with taqlil after a ra. The imala of هار puts the inclined alef before the ra, so it does not touch this rule.",
+        ),
+    ),
     "alef_thabita": (
         "madd",
         "الألفات الثابتة وقفا ووصلا",
@@ -869,8 +1003,9 @@ RULES: dict[str, tuple] = {
         "ترقيق الألف",
         "B",
         ("p.35",),
-        "A madd alef is light after any other letter.",
-        (("after_light", "The letter before the alef is not heavy."),),
+        "A madd alef is light after any other letter, except after a ra that is not inclined, which "
+        "has its own heavy rule.",
+        (("after_light", "The letter before the alef is not heavy and is not a ra."),),
         (),
         (),
     ),

@@ -5,9 +5,11 @@ a letter), so structure is read from the letters and the vowel signs. What needs
 list is in `lexicon.py`; what would need morphology is reported as not covered.
 """
 
+import re
+
 from wirdi_mcp.tajwid.lexicon import skeleton
 from wirdi_mcp.tajwid.text import HAMZA_FORMS, WASL_STOP, Letter, Word
-from wirdi_mcp.tajwid.view import AyahView, emit, following
+from wirdi_mcp.tajwid.view import AyahView, emit, following, starts_with_wasl
 
 FATHA, DAMMA, KASRA = chr(0x064E), chr(0x064F), chr(0x0650)
 DAGGER_ALEF = chr(0x0670)
@@ -187,7 +189,48 @@ def detect_sakin_before_wasl(view: AyahView) -> None:
             emit(view, "sakin_before_hamzat_wasl", word, last, kind)
 
 
+def detect_wasl_then_qat_in_word(view: AyahView) -> None:
+    """Book A p.16: hamzat al-wasl followed by a hamza qat' in the same word (اؤتمن، ائتنا)."""
+    for word in view.words:
+        letters = word.letters
+        if len(letters) < 3 or not starts_with_wasl(word):
+            continue
+        second = letters[1]
+        if second.char == "ؤ":
+            carrier, qat = "waw", second
+        elif second.char == "ي" and letters[2].char == "ء" and letters[2].has_sukun:
+            carrier, qat = "yeh", letters[2]
+        else:
+            continue
+        emit(
+            view,
+            "hamza_wasl_then_qat_in_word",
+            word,
+            qat,
+            f"wasl hamza then qat' hamza: dropped when joined; when beginning, the qat' hamza "
+            f"is read as a {carrier}",
+        )
+
+
+ARAYTA_WORDS = re.compile(r"^ءريت(?:كم|م)?$")  # أرأيت، أرأيتكم، أرأيتم as the corpus spells them
+
+
+def detect_arayta(view: AyahView) -> None:
+    """Book A p.27: the second hamza of أرأيت، أرأيتكم، أرأيتم is softened wherever they occur."""
+    for word in view.words:
+        if ARAYTA_WORDS.match(skeleton(word)):
+            emit(
+                view,
+                "hamza_arayta_tashil",
+                word,
+                word.letters[2] if len(word.letters) > 2 else word.letters[0],
+                "the second hamza is softened (tashil), as the corpus spells it",
+            )
+
+
 HAMZA_DETECTORS = {
+    "hamza_wasl_then_qat_in_word": detect_wasl_then_qat_in_word,
+    "hamza_arayta_tashil": detect_arayta,
     "hamza_double_in_word": detect_double_hamza_in_word,
     "hamza_nabi": detect_nabi,
     "hamza_nabi_exception": detect_nabi,

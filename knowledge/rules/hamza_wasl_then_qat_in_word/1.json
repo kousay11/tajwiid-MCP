@@ -1,0 +1,56 @@
+{
+  "rule_id": "hamza_wasl_then_qat_in_word",
+  "version": "1",
+  "name_ar": "اجتماع همزة الوصل وهمزة القطع في الكلمة",
+  "definition": "When two hamzas meet in one word, the first a hamzat al-wasl and the second a hamza qat', the wasl hamza is dropped and the qat' hamza is pronounced when joining. When beginning on the word, the wasl hamza is pronounced and the qat' hamza is read as a waw if the wasl hamza has a damma (اؤتمن) or as a yeh if it has a kasra (ائتنا); the book says to measure the similar words the same way.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "hamza",
+  "detectability": "A",
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
+    "Read from the spelling: a wasl alef followed by a waw-hamza, or by a yeh and a sakin hamza. The corpus writes the beginning form; the joined form is the book's.",
+    "Words with a prefix before the wasl alef are not seen in the corpus and are not matched."
+  ],
+  "conditions": [
+    {
+      "clause_id": "two_hamzas",
+      "kind": "condition",
+      "description": "The word begins with a hamzat al-wasl followed by a hamza qat'.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.16",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.16",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

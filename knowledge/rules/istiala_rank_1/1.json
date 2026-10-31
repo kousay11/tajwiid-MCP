@@ -1,0 +1,55 @@
+{
+  "rule_id": "istiala_rank_1",
+  "version": "1",
+  "name_ar": "المرتبة الأولى من تفخيم الاستعلاء",
+  "definition": "The strongest heaviness of an isti'la letter (خ ص ض غ ط ق ظ): the letter has a fatha and is followed by an alef (للطائفين، الصابرين).",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "tafkhim_tarqiq",
+  "detectability": "A",
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
+    "The letter's own vowel is read; a letter with tanween is skipped and counted as skipped."
+  ],
+  "conditions": [
+    {
+      "clause_id": "fatha_alef",
+      "kind": "condition",
+      "description": "An isti'la letter with a fatha, followed by an alef.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.32",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.32",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

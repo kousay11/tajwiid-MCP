@@ -14,25 +14,25 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | 1-3 | Lives of Qaloun and Nafi' | none | not a rule |
 | 4-13 | Noon, tanween, meem, qalqala, lam, ghunna | 13 first-release rules | detected (0.5.0) |
 | 14-15 | Natural madd; badal | `madd_tabii`, `madd_badal` | detected |
-| 15 | Joining hamzat al-wasl and hamzat al-qat' in one word | none | **not covered** (needs morphology) |
+| 16 | Joining hamzat al-wasl and hamzat al-qat' in one word (اؤتمن، ائتنا) | `hamza_wasl_then_qat_in_word` | detected from the spelling, 16 places |
 | 16-17 | Madd al-'iwad, alef of حي طهر | `madd_iwad`, `madd_harf_hay_tahar` | detected |
 | 17-20 | Sila of the plural meem and of the pronoun ha, with its exceptions | `madd_sila_sughra_meem`, `madd_sila_kubra_meem`, `madd_sila_sughra_ha`, `madd_sila_kubra_ha`, `madd_sila_ha_exception` | detected; the ha follows the sign the corpus writes, the meem lists both readings (see "The plural meem before ba and meem") |
-| 17 | Waqf on a verb with a tanween-like light tawkid noon (وليكونا، لنسفعا) | none | **not covered** (two words) |
+| 16-17 | Waqf on a verb with a tanween-like light tawkid noon (وليكونا، لنسفعا) | `noon_tawkid_khafifa_stop` | detected, two words; the note says what a stop would give |
 | 19-20 | Muttasil, munfasil | `madd_muttasil`, `madd_munfasil` | detected, lengths in `variants` |
 | 20-21 | 'Arid lil-sukun, muttasil 'arid, lin | `madd_arid_sukun`, `madd_muttasil_arid`, `madd_lin` | detected, waqf only |
 | 21-22 | Lazim kalimi (muthaqqal, mukhaffaf: محياي، آلآن) | `madd_lazim_kalimi_muthaqqal`, `madd_lazim_kalimi_mukhaffaf` | detected |
 | 22-23 | Lazim harfi (نقص عسلكم) | `madd_lazim_harfi_muthaqqal`, `madd_lazim_harfi_mukhaffaf` | detected at the 29 opening ayat |
-| 23 | الم الله (two readings when joined) | none | **not covered** |
+| 23 | الم الله (two readings when joined) | `madd_alif_lam_mim_imran` | detected in Al Imran 3:1 (one ayah in the Qaloun count); both readings in `variants` |
 | 23-24 | Alefs kept at a stop; the alef of أنا | `alef_thabita`, `alef_ana_before_hamza`, `alef_ana_before_hamza_kasra`, `alef_ana_dropped` | detected |
 | 24 | Madd letter dropped between two sakin | `madd_letter_dropped` | detected, wasl only |
 | 25 | Single hamza replaced or changed | `hamza_ibdal_yajuj`, `hamza_ibdal_ruya`, `hamza_ibdal_minsaa`, `hamza_ibdal_saala`, `hamza_ibdal_musada`, `hamza_waw_huzu_kufu` | detected (word lists) |
 | 25-26 | The prophet and its derivatives; two exceptions | `hamza_nabi`, `hamza_nabi_exception` | detected |
-| 26-27 | Two hamzas in one word; exceptions; added interrogative hamza | `hamza_double_in_word`, `hamza_double_exception`, `hamza_istifham_added` | detected; the softening of أرأيت is **not covered** |
+| 26-27 | Two hamzas in one word; exceptions; added interrogative hamza | `hamza_double_in_word`, `hamza_double_exception`, `hamza_istifham_added` | detected; the softening of أرأيت is `hamza_arayta_tashil` (p.27, 22 places) |
 | 27 | The 11 repeated interrogatives | `istifham_repeated_first`, `istifham_repeated_second` | detected at ayah level (anchored on the ayah's first word) |
 | 27-29 | Two hamzas in two words (same, different) | `hamza_two_words_same`, `hamza_two_words_different` | **record only**: the Qaloun text already carries the result, not the original hamzas |
 | 29-31 | Hamzat al-wasl: article, 7 nouns, verbs | `hamzat_wasl_article`, `hamzat_wasl_noun`, `hamzat_wasl_verb` | detected; verbs are recognised from the spelling, with no morphology |
 | 31 | Vowel given to a sakin letter before hamzat al-wasl | `sakin_before_hamzat_wasl` | partial: من, the plural meem and tanween only |
-| 32-35 | Isti'la, ra, lam of Allah, alef, ghunna | `ra_*` (6), `lam_jalala_*` (2), `alef_tafkhim`, `alef_tarqiq`, `ghunna_tafkhim`, `ghunna_tarqiq` | detected; the degrees of the isti'la letters are **not covered** |
+| 32-35 | Isti'la, ra, lam of Allah, alef, ghunna | `ra_*` (6), `lam_jalala_*` (2), `alef_tafkhim`, `alef_tafkhim_after_ra`, `alef_tarqiq`, `ghunna_tafkhim`, `ghunna_tarqiq`, `istiala_rank_1` to `istiala_rank_4` | detected; the four ranks of the isti'la letters follow the vowel |
 | 35 | Taqlil and imala | `taqlil_tawrat`, `imala_har` | detected |
 | 36-39 | Idgham kabir and saghir; naqis | `idgham_kabir_mutamathil`, `idgham_mutamathilayn`, `idgham_mutajanisayn`, `idgham_mutaqaribayn`, `idgham_naqis` | detected; second readings the book mentions are listed only for the two-reading words |
 | 40-45 | Places of articulation and characteristics | tool `get_letter_properties` | static tables, 29 letters |
@@ -111,10 +111,10 @@ Two content points came out of that reading:
 
 - **Fixed:** p.31 says that امشوا، ابنوا، امضوا، اقضوا begin with a kasra (the damma on their third
   letter is accidental). The detector now says so; before it said damma for them.
-- **Not fixed, needs a decision:** p.35 says the alef is heavy also after a ra that is not
-  inclined (غير المقللة, example « ولو ترى »). `alef_tafkhim` only covers the isti'la letters and the
-  heavy lam of the name of Allah, so it misses the alef after ra. It is not implemented because
-  deciding which ra is "not inclined" needs the book's list of taqlil words.
+- **Added:** p.35 says the alef is heavy also after a ra that is not inclined (غير المقللة, example
+  « ولو ترى »). The book's own list is closed: the only taqlil after a ra is التوراة. So
+  `alef_tafkhim_after_ra` covers the alef after every other ra, and `alef_tarqiq` no longer fires
+  there. Real Qaloun teaching may differ; the rule follows Book A.
 
 ## Honest limits
 
@@ -126,4 +126,4 @@ Two content points came out of that reading:
 - Rule texts are paraphrases written by an automated drafter. No reviewer has confirmed any of them
   or any detected occurrence; the highest status served is `candidate`.
 - The corpus `tariq` is `unspecified` and Book A attests Qaloun without naming a tariq, so all
-  80 rules carry `tariq: "unspecified"`.
+  89 rules carry `tariq: "unspecified"`.

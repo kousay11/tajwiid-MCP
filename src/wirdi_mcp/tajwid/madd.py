@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 from wirdi_mcp.tajwid.lexicon import skeleton
 from wirdi_mcp.tajwid.text import HAMZA_FORMS, MADDAH, WASL_STOP, Letter, Word
-from wirdi_mcp.tajwid.view import AyahView, emit, following
+from wirdi_mcp.tajwid.view import AyahView, emit, following, starts_with_wasl
 
 FATHA, DAMMA, KASRA = chr(0x064E), chr(0x064F), chr(0x0650)
 DAGGER_ALEF = chr(0x0670)
@@ -469,8 +469,52 @@ def detect_ana(view: AyahView) -> None:
             emit(view, "alef_ana_dropped", word, alef, "ana joined to a letter that is not a hamza")
 
 
+# Book A pp.16-17: the light tawkid noon written as a fathatan-like noon, in two words only.
+TAWKID_KHAFIFA = {"وليكونا": (12, 32), "لنسفعا": (96, 15)}  # Kufian places named by the book
+
+
+def detect_tawkid_khafifa(view: AyahView) -> None:
+    for wi, word in enumerate(view.words):
+        place = TAWKID_KHAFIFA.get(skeleton(word))
+        if place is None or not any((view.surah, k) == place for k in view.kufi):
+            continue
+        if view.stops_at_end and wi == len(view.words) - 1:
+            note = "stopped on: the tanween-like noon is read as an alef"
+        elif wi == 0 and len(view.words) == 1:
+            note = "joined: read with the tanween rules"
+        else:
+            note = (
+                "joined: read with the tanween rules of the next letter (idgham with ghunna "
+                "before meem, meem hidden with ghunna before ba); stopping on it gives an alef"
+            )
+        emit(view, "noon_tawkid_khafifa_stop", word, word.letters[-1], note)
+
+
+ALIF_LAM_MIM = ("الم", "ءلم")  # the corpus writes the first letter as a hamza-alef
+
+
+# Book A p.23: the opening alif lam mim of Al Imran, joined to the name of Allah. The Qaloun
+# count makes Al Imran 1 one ayah that holds both, so the pair is read inside the ayah.
+def detect_alif_lam_mim_imran(view: AyahView) -> None:
+    if view.surah != 3 or 1 not in view.kufi or len(view.words) < 2:
+        return
+    first, second = view.words[0], view.words[1]
+    if skeleton(first) in ALIF_LAM_MIM and starts_with_wasl(second):
+        emit(
+            view,
+            "madd_alif_lam_mim_imran",
+            first,
+            first.letters[-1],
+            "alif lam mim joined to the name of Allah: the meem takes a fatha, two readings of "
+            "the ya",
+            ("ya_long", "ya_short"),
+        )
+
+
 MADD_DETECTORS.update(
     {
+        "noon_tawkid_khafifa_stop": detect_tawkid_khafifa,
+        "madd_alif_lam_mim_imran": detect_alif_lam_mim_imran,
         "alef_ana_before_hamza": detect_ana,
         "alef_ana_before_hamza_kasra": detect_ana,
         "alef_ana_dropped": detect_ana,

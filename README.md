@@ -4,7 +4,7 @@ A **local MCP server for the Qaloun recitation (from Nafi')**. You give it a pas
 it gives you back the **Tajwid rules that apply to it**, letter by letter, each with the page of
 the book that states the rule.
 
-- **Version 0.6.0** · 11 tools · 80 rules · 78 detectors · 265 tests (233 on a clean clone, the rest also check the original Wirdi AI files)
+- **Version 0.6.0** · 11 tools · 89 rules · 87 detectors · 289 tests (257 on a clean clone, the rest also check the original Wirdi AI files)
 - **Read-only and deterministic**: no LLM, no RAG, no database, no network. The Quran text is read
   from the Wirdi AI files and never modified.
 - **Nothing is scholarly verified.** No qualified reviewer has been named, so every result is a
@@ -25,7 +25,7 @@ the book that states the rule.
 4. [The 11 tools](#4-the-11-tools)
 5. [Selections and reading context](#5-selections-and-reading-context)
 6. [What an annotation says](#6-what-an-annotation-says)
-7. [All 80 rules](#7-all-80-rules)
+7. [All 89 rules](#7-all-89-rules)
 8. [Data and numbering](#8-data-and-numbering)
 9. [Sources and where they disagree](#9-sources-and-where-they-disagree)
 10. [What is not covered](#10-what-is-not-covered)
@@ -133,7 +133,7 @@ warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
 | `health_check` | nothing | Readiness and configuration; reads no data |
 | `get_qaloun_passage` | `selection` | The unchanged ayat, their SHA-256 and their 559-page span |
 | `resolve_source_mapping` | `selection`, `target_corpus_id`, `target_corpus_version`, `target_numbering_system` | Where the selection falls in another numbering (e.g. Kufian/Hafs), `mapping_status`, `safe_for_source_retrieval` |
-| `list_tajwid_rules` | `family?` | The 80 rules: id, Arabic name, family, type, `has_detector` |
+| `list_tajwid_rules` | `family?` | The 89 rules: id, Arabic name, family, type, `has_detector` |
 | `get_tajwid_rule` | `rule_id`, `version` | One rule record: definition, conditions, exceptions, limits, book and page |
 | `analyze_qaloun_tajwid` | `selection` (1 to 100 ayat), `reading_context`, `rule_ids?`, `families?`, `limit` (≤500), `offset` | Candidate annotations, paged, with counts, `unresolved`, `skipped`, `coverage` |
 | `summarize_tajwid` | `surah`, `start_ayah?`, `end_ayah?`, `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Counts per rule and per ayah (≤300 ayat) |
@@ -185,7 +185,7 @@ never fire in `wasl`. Waqf signs written inside an ayah are not treated as stops
 A short or empty result is **not** a claim that the passage has no other rule: only the rules you
 ask for are evaluated, and `coverage` says whether every position could be decided.
 
-## 7. All 80 rules
+## 7. All 89 rules
 
 Each rule is a short paraphrase written for this project, page-cited, **unreviewed**. Legend:
 
@@ -201,6 +201,7 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `alef_ana_before_hamza_kasra` | ألف أنا قبل همزة مكسورة | `madd` | B | yes | 24 |
 | `alef_ana_dropped` | حذف ألف أنا وصلا | `madd` | B | yes | 23, 24 |
 | `alef_thabita` | الألفات الثابتة وقفا ووصلا | `madd` | C | yes | 23, 24 |
+| `madd_alif_lam_mim_imran` | الم الله في فاتحة آل عمران وصلا | `madd` | C | yes | 23 |
 | `madd_arid_sukun` | المد العارض للسكون | `madd` | B | yes | 20 |
 | `madd_badal` | مد البدل | `madd` | A | yes | 15, 16 |
 | `madd_harf_hay_tahar` | الألف في هجاء أحرف حي طهر | `madd` | A | yes | 15, 17, 23 |
@@ -220,6 +221,8 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `madd_sila_sughra_ha` | الصلة الصغرى في هاء الضمير | `madd` | A | yes | 17, 18, 19 |
 | `madd_sila_sughra_meem` | الصلة الصغرى في ميم الجمع | `madd` | A | yes | 17, 18 |
 | `madd_tabii` | المد الطبيعي | `madd` | A | yes | 14, 15 |
+| `noon_tawkid_khafifa_stop` | الوقف على نون التوكيد الخفيفة المرسومة تنوينا | `madd` | C | yes | 16, 17 |
+| `hamza_arayta_tashil` | تسهيل الهمزة الثانية في أرأيت وأرأيتكم وأرأيتم | `hamza` | C | yes | 27 |
 | `hamza_double_exception` | استثناءات الهمزتين في كلمة | `hamza` | C | yes | 26, 27 |
 | `hamza_double_in_word` | الهمزتان في كلمة | `hamza` | A | yes | 26 |
 | `hamza_ibdal_minsaa` | إبدال الهمزة في منسأته | `hamza` | C | yes | 25 |
@@ -232,6 +235,7 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `hamza_nabi_exception` | استثناء النبي في موضعي الأحزاب | `hamza` | C | yes | 26 |
 | `hamza_two_words_different` | الهمزتان المختلفتان في كلمتين | `hamza` | C | **no** | 28, 29 |
 | `hamza_two_words_same` | الهمزتان المتفقتان في كلمتين | `hamza` | C | **no** | 27, 28 |
+| `hamza_wasl_then_qat_in_word` | اجتماع همزة الوصل وهمزة القطع في الكلمة | `hamza` | A | yes | 16 |
 | `hamza_waw_huzu_kufu` | همز الواو في هزوا وكفوا | `hamza` | C | yes | 25 |
 | `hamzat_wasl_article` | همزة الوصل في أل التعريف | `hamza` | A | yes | 29, 31 |
 | `hamzat_wasl_noun` | همزة الوصل في الأسماء | `hamza` | C | yes | 29, 30, 31 |
@@ -240,9 +244,14 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `istifham_repeated_second` | الاستفهام المكرر: ما أثبتت همزته في الثاني | `hamza` | C | yes | 27 |
 | `sakin_before_hamzat_wasl` | تحريك الساكن قبل همزة الوصل | `hamza` | B | yes | 31 |
 | `alef_tafkhim` | تفخيم الألف | `tafkhim_tarqiq` | B | yes | 32, 35 |
+| `alef_tafkhim_after_ra` | تفخيم الألف بعد الراء غير المقللة | `tafkhim_tarqiq` | A | yes | 35 |
 | `alef_tarqiq` | ترقيق الألف | `tafkhim_tarqiq` | B | yes | 35 |
 | `ghunna_tafkhim` | تفخيم الغنة | `tafkhim_tarqiq` | B | yes | 35 |
 | `ghunna_tarqiq` | ترقيق الغنة | `tafkhim_tarqiq` | B | yes | 35 |
+| `istiala_rank_1` | المرتبة الأولى من تفخيم الاستعلاء | `tafkhim_tarqiq` | A | yes | 32 |
+| `istiala_rank_2` | المرتبة الثانية من تفخيم الاستعلاء | `tafkhim_tarqiq` | A | yes | 32, 33 |
+| `istiala_rank_3` | المرتبة الثالثة من تفخيم الاستعلاء | `tafkhim_tarqiq` | A | yes | 32, 33 |
+| `istiala_rank_4` | المرتبة الرابعة من تفخيم الاستعلاء | `tafkhim_tarqiq` | A | yes | 32, 33 |
 | `lam_jalala_tafkhim` | تفخيم لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | 34, 35 |
 | `lam_jalala_tarqiq` | ترقيق لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | 34, 35 |
 | `ra_jawaz` | جواز الوجهين في راء فرق | `tafkhim_tarqiq` | C | yes | 34 |
@@ -280,9 +289,9 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 
 | Family | Rules | What it covers |
 | --- | ---: | --- |
-| `madd` | 23 | natural, badal, 'iwad, muttasil, munfasil, 'arid, lin, lazim, sila of the ha and meem, fixed alefs, alef of ana |
-| `hamza` | 19 | replaced hamzas, prophet words, two hamzas, repeated interrogatives, hamzat al-wasl |
-| `tafkhim_tarqiq` | 12 | ra, lam of Allah, alef, ghunna |
+| `madd` | 25 | natural, badal, 'iwad, muttasil, munfasil, 'arid, lin, lazim, sila of the ha and meem, fixed alefs, alef of ana, light tawkid noon, الم الله |
+| `hamza` | 21 | replaced hamzas, prophet words, two hamzas, repeated interrogatives, hamzat al-wasl, wasl then qat' in one word, أرأيت |
+| `tafkhim_tarqiq` | 17 | ra, lam of Allah, alef (also after ra), ghunna, the four ranks of the isti'la letters |
 | `ya_idafa` | 6 | open and closed first-person ya, `معي`, `ربي` of Fussilat |
 | `idgham_general` | 5 | identical, same-place and close letters, naqis, the great idgham |
 | `noon_sakina_tanween` | 6 | idhar, idgham, iqlab, ikhfa |
@@ -326,7 +335,7 @@ never compared by number, only through the verse.
 
 | Source | Role | State |
 | --- | --- | --- |
-| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The only source of the 80 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
+| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The only source of the 89 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
 
 Book A has an unknown licence (it is never committed). Its text layer is raw (inverted lam-alef ligatures).
 
@@ -345,9 +354,8 @@ Book A has an unknown licence (it is never committed). Its text layer is raw (in
 ## 10. What is not covered
 
 - Waqf and ibtida rules; waqf signs inside an ayah.
-- The alef after a non-inclined ra (Book A p.35), the vowel of sakin letters before hamzat al-wasl
-  beyond `من`, the plural meem and tanween, two hamzas in two words, and joining a wasl and a qat'
-  hamza in one word.
+- The vowel of sakin letters before hamzat al-wasl beyond `من`, the plural meem and tanween, and
+  two hamzas in two words.
 - The default closed ya before an ordinary letter, beyond the seven named examples.
 - Everything Book A does not say (it is a 51-page summary).
 
@@ -357,7 +365,7 @@ Book A has an unknown licence (it is never committed). Its text layer is raw (in
 
 ```bash
 .venv/bin/python -m pytest                                          # everything, on the bundled snapshot
-WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 265 tests
+WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 289 tests
 ```
 
 - **Synthetic and stdio**: synthetic fixtures modelled on the books' examples, real stdio subprocess tests, the
@@ -377,7 +385,7 @@ src/wirdi_mcp/
   tajwid/                     tokenizer and detectors: madd, hamza, tafkhim, idgham, yaat,
                               lexicon (word lists), letters (static tables), engine, service
   tools/                      the 11 MCP tools and their contracts
-knowledge/rules/              80 rule records + manifest.json     (committed)
+knowledge/rules/              89 rule records + manifest.json     (committed)
 knowledge/sources/            edition metadata only               (no book text)
 knowledge/validation/         empty, ready for a reviewer's records
 scripts/                      rule generation, manifest, audit, page store, local check

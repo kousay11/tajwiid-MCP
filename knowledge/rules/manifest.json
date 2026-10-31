@@ -27,10 +27,16 @@
       "sha256": "c0002b9c800ab47487fc5c354db12dee2b8db212938d9d28cf0653768742b458"
     },
     {
+      "rule_id": "alef_tafkhim_after_ra",
+      "version": "1",
+      "path": "rules/alef_tafkhim_after_ra/1.json",
+      "sha256": "b0d6c0212c8bbf6d78f7d72811dddc9427cd895f58331aa6f33aea489dbd749c"
+    },
+    {
       "rule_id": "alef_tarqiq",
       "version": "1",
       "path": "rules/alef_tarqiq/1.json",
-      "sha256": "ce21a768feac16e93938b5de0d0fa836b06fd8274d8ad4c6963456fb7580a13b"
+      "sha256": "6a9c7ddc1d253c0e5df3af8a867d1b0f9c3c63f5fbf9813262d3b68f79e59ed8"
     },
     {
       "rule_id": "alef_thabita",
@@ -55,6 +61,12 @@
       "version": "1",
       "path": "rules/ghunna_tarqiq/1.json",
       "sha256": "1e6f5119351378ded9681b0989b7b19c861e46a8f574dd99fc182b36f951bc4f"
+    },
+    {
+      "rule_id": "hamza_arayta_tashil",
+      "version": "1",
+      "path": "rules/hamza_arayta_tashil/1.json",
+      "sha256": "5e07a933c0f462b3fd37f63a1e65c4f531d1652bd0fae3858ad77347813de1d1"
     },
     {
       "rule_id": "hamza_double_exception",
@@ -127,6 +139,12 @@
       "version": "1",
       "path": "rules/hamza_two_words_same/1.json",
       "sha256": "473d005def62c72eebb6dee1bd59ea464102722ea91c4634bd4812a61bfe2569"
+    },
+    {
+      "rule_id": "hamza_wasl_then_qat_in_word",
+      "version": "1",
+      "path": "rules/hamza_wasl_then_qat_in_word/1.json",
+      "sha256": "d4587ffd90513911176fdd8ec1341ed8dd611e4870f26e999373e7849f807614"
     },
     {
       "rule_id": "hamza_waw_huzu_kufu",
@@ -243,6 +261,30 @@
       "sha256": "34384d08fae774a47a1625656d7717bd6ba6badfe1bba814cdccf88e6df17964"
     },
     {
+      "rule_id": "istiala_rank_1",
+      "version": "1",
+      "path": "rules/istiala_rank_1/1.json",
+      "sha256": "20b5447bd1866420e555c28cd11f204fdf84a4a3baeea73c93eb46c935ca1796"
+    },
+    {
+      "rule_id": "istiala_rank_2",
+      "version": "1",
+      "path": "rules/istiala_rank_2/1.json",
+      "sha256": "973aa1bfe59df87b3085a6178e345d1d6067bf9db71756f2d014e8acea82a9db"
+    },
+    {
+      "rule_id": "istiala_rank_3",
+      "version": "1",
+      "path": "rules/istiala_rank_3/1.json",
+      "sha256": "3b3af1541dd36c0e1dcfcb7584c5ba85578a6b9b274151271a800cddb856454d"
+    },
+    {
+      "rule_id": "istiala_rank_4",
+      "version": "1",
+      "path": "rules/istiala_rank_4/1.json",
+      "sha256": "b50d0d17130f2fda162073bca1640d6437ff491680a88e96a3695c5174121eab"
+    },
+    {
       "rule_id": "istifham_repeated_first",
       "version": "1",
       "path": "rules/istifham_repeated_first/1.json",
@@ -277,6 +319,12 @@
       "version": "1",
       "path": "rules/lam_shamsiya/1.json",
       "sha256": "2ad214590b1ec80511841b24564e0235b6a588df4f72c410417b63679cda3972"
+    },
+    {
+      "rule_id": "madd_alif_lam_mim_imran",
+      "version": "1",
+      "path": "rules/madd_alif_lam_mim_imran/1.json",
+      "sha256": "646678bcac1daaa480d55f2cf04be024e4ec195ab66bf08588d5ebeefbfecb81"
     },
     {
       "rule_id": "madd_arid_sukun",
@@ -391,6 +439,12 @@
       "version": "1",
       "path": "rules/madd_tabii/1.json",
       "sha256": "0ea215a544cc04fca9f3ce2efb4b90cc0c1d1f5750e75503dcb9f36a1644085f"
+    },
+    {
+      "rule_id": "noon_tawkid_khafifa_stop",
+      "version": "1",
+      "path": "rules/noon_tawkid_khafifa_stop/1.json",
+      "sha256": "321bb14006d7396c605d1836ec1b98b7f2ddfd760c330f6f8837f2a070a5ede8"
     },
     {
       "rule_id": "qalqala",

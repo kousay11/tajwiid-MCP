@@ -1,0 +1,56 @@
+{
+  "rule_id": "madd_alif_lam_mim_imran",
+  "version": "1",
+  "name_ar": "الم الله في فاتحة آل عمران وصلا",
+  "definition": "In the opening of Al Imran, alif lam mim joined to the name of Allah has two readings: the ya of ميم long with a fatha on the meem, or the ya short with a fatha on the meem.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "madd",
+  "detectability": "C",
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
+    "The Qaloun count makes Al Imran 1 one ayah that holds both words, so the pair is read inside the ayah; the waqf sign after الم is not treated as a stop.",
+    "Both readings are listed in `variants`; the book gives no lengths for them and none is added."
+  ],
+  "conditions": [
+    {
+      "clause_id": "joined",
+      "kind": "condition",
+      "description": "Alif lam mim is followed, in the same ayah, by the name of Allah.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.23",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.23",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

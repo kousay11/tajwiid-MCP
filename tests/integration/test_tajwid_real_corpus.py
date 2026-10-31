@@ -57,6 +57,10 @@ CLOSED_LISTS = {
     "ya_idafa_rabbi_two_readings": 1,
     "ya_idafa_iskan_before_letter": 7,  # the seven words of Book A p.47
     "ya_idafa_maee": 11,  # every معي in the corpus
+    "madd_alif_lam_mim_imran": 1,  # Al Imran 1, one ayah in the Qaloun count
+    "noon_tawkid_khafifa_stop": 2,  # وليكونا and لنسفعا
+    "hamza_wasl_then_qat_in_word": 16,  # اؤتمن and fifteen words of the type ائتنا
+    "hamza_arayta_tashil": 22,  # the three forms the book names; أرأيتك and أفرأيتم are not named
 }
 
 

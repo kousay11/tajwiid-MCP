@@ -2,7 +2,7 @@
   "rule_id": "alef_tarqiq",
   "version": "1",
   "name_ar": "ترقيق الألف",
-  "definition": "A madd alef is light after any other letter.",
+  "definition": "A madd alef is light after any other letter, except after a ra that is not inclined, which has its own heavy rule.",
   "riwaya": "qaloun",
   "tariq": "unspecified",
   "family": "tafkhim_tarqiq",
@@ -15,7 +15,7 @@
     {
       "clause_id": "after_light",
       "kind": "condition",
-      "description": "The letter before the alef is not heavy.",
+      "description": "The letter before the alef is not heavy and is not a ra.",
       "evidence": [
         {
           "source_id": "book-a",
