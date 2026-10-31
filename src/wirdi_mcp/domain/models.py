@@ -126,6 +126,8 @@ class SourceMapping(ContractModel):
 
 class ReadingContext(ContractModel):
     mode: Literal["wasl", "waqf"]
+    # "source_default": the context a source edition was marked for, not a user request.
+    basis: Literal["requested", "source_default"] = "requested"
     # None means unknown, never an assumed reading boundary.
     preceding: QalounReference | None = None
     following: QalounReference | None = None
@@ -146,22 +148,99 @@ class TextAnchor(ContractModel):
         return self
 
 
+AnnotationStatus = Literal[
+    "candidate",
+    "source_annotated",
+    "cross_checked",
+    "conflict",
+    "not_annotated_in_source",
+    "unsupported_context",
+    "scholarly_verified",  # reserved: needs a named reviewer's ValidationRecord, never emitted
+    "rejected",
+]
+# Statuses a service may emit while no qualified reviewer exists.
+EMITTABLE_STATUSES = frozenset(AnnotationStatus.__args__) - {"scholarly_verified"}
+
+
+class PageRefs(ContractModel):
+    """Both pagination systems are kept; alignment is by verse, never by page number."""
+
+    app_page_start: Annotated[int, Field(strict=True, ge=1, le=559)] | None = None
+    app_page_end: Annotated[int, Field(strict=True, ge=1, le=559)] | None = None
+    app_pagination_sha256: Sha256 | None = None
+    source_edition_id: NonEmpty | None = None
+    source_page_pdf: PositiveInt | None = None
+    source_page_printed: NonEmpty | None = None  # annex pages are labelled, e.g. "م11"
+
+
+class SourceVerseRef(ContractModel):
+    numbering_system: NonEmpty  # e.g. a Kufian 6236 count, linked through number_in_hafs
+    surah: Annotated[int, Field(strict=True, ge=1, le=114)]
+    ayah: PositiveInt
+
+
+class ImageProvenance(ContractModel):
+    edition_id: NonEmpty
+    pdf_page: PositiveInt
+    printed_page: NonEmpty | None = None
+    bbox: tuple[int, int, int, int]  # x0, y0, x1, y1 in pixels of the source image
+    image_sha256: Sha256
+    extractor_version: NonEmpty
+
+    @model_validator(mode="after")
+    def ordered_bbox(self) -> "ImageProvenance":
+        x0, y0, x1, y1 = self.bbox
+        if not (0 <= x0 < x1 and 0 <= y0 < y1):
+            raise ValueError("bbox must be a nonempty rectangle with nonnegative origin")
+        return self
+
+
+class ObservedColor(ContractModel):
+    color_id: Literal[1, 2, 3]  # legend numbers: grey, red, orange
+    rgb: tuple[
+        Annotated[int, Field(ge=0, le=255)],
+        Annotated[int, Field(ge=0, le=255)],
+        Annotated[int, Field(ge=0, le=255)],
+    ]
+    pixel_count: PositiveInt
+
+
 class TajwidAnnotation(ContractModel):
     annotation_id: NonEmpty
     version: NonEmpty
-    rule_id: NonEmpty
-    rule_version: NonEmpty
+    # A coloured source identifies a legend class, not necessarily a precise rule.
+    rule_id: NonEmpty | None = None
+    rule_version: NonEmpty | None = None
+    legend_class_id: NonEmpty | None = None
     anchor: TextAnchor
     reading_context: ReadingContext
     detector_version: NonEmpty | None = None
-    status: Literal["candidate", "scholarly_verified", "rejected"]
+    status: AnnotationStatus
     evidence: Annotated[tuple[Citation, ...], Field(min_length=1)]
     validation_record_ids: tuple[NonEmpty, ...] = ()
+    page_refs: PageRefs | None = None
+    source_verse: SourceVerseRef | None = None
+    image: ImageProvenance | None = None
+    observed_color: ObservedColor | None = None
 
     @model_validator(mode="after")
-    def review_required(self) -> "TajwidAnnotation":
+    def consistent_claim(self) -> "TajwidAnnotation":
         if self.status == "scholarly_verified" and not self.validation_record_ids:
             raise ValueError("Verified annotations require scholarly validation records")
+        if (self.rule_id is None) != (self.rule_version is None):
+            raise ValueError("rule_id and rule_version must be given together")
+        if self.rule_id is None and self.legend_class_id is None:
+            raise ValueError("An annotation needs a rule or a legend class")
+        if self.status == "candidate" and (self.rule_id is None or self.detector_version is None):
+            raise ValueError("A candidate needs a rule and the detector version that produced it")
+        if self.status in ("source_annotated", "cross_checked", "conflict") and (
+            self.observed_color is None or self.image is None
+        ):
+            raise ValueError("A source-derived status needs the observed colour and image")
+        if self.status in ("cross_checked", "conflict") and (
+            self.rule_id is None or self.detector_version is None
+        ):
+            raise ValueError("Cross-checking needs a rule and the detector version")
         return self
 
 
