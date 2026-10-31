@@ -32,10 +32,13 @@ async with Client(params, read_timeout_seconds=5) as client:
     )
 ```
 
-The current analysis response is an explicit
-`UNSUPPORTED_CAPABILITY` error until local rules and a detector are loaded.
-The application must preserve that distinction and must not display it as an
-empty or verified Tajwid result.
+`analyze_qaloun_tajwid` now returns **candidate** annotations (status `candidate`,
+unreviewed, with book and page citations and the app's 559-page span). The application
+must show them as unreviewed, or not at all: nothing is scholarly verified and
+`get_tajwid_explanation` still returns `UNSUPPORTED_CAPABILITY`. It must also preserve
+the difference between an empty result, a `partial` coverage with `unresolved` positions,
+and a typed error (`DATA_UNAVAILABLE`, `INTEGRITY_FAILURE`); none of them means "the passage
+has no Tajwid rule". Integration into the application is not started.
 
 ## Boundaries
 
@@ -46,5 +49,5 @@ empty or verified Tajwid result.
 - Integrate only after the local MCP tests and real-source checks pass.
 
 The mapping authority remains reusable through its existing read-only adapter.
-The Tajwid engine will be added behind the local tool contracts, so the
-application client does not need to change when reviewed rules become available.
+Reviewed validation records, when they exist, will be added behind the same tool
+contracts, so the application client will not need to change.

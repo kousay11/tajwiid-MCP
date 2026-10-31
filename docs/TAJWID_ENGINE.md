@@ -1,8 +1,35 @@
-# Planned Qaloun Tajwid knowledge and analysis
+# Qaloun Tajwid knowledge and analysis
 
-No detection rules, annotations or scholarly rule definitions are implemented or
-seeded. This is a design for Qaloun through Abu Nashit, subject to edition- and
-path-specific scholarly audit. It does not infer a ruling about any passage.
+The five-artifact design below is implemented up to the review gate: rule records, a
+deterministic detector registry and candidate annotations exist; human validation and
+reviewed explanations do not (no reviewer has been named). Nothing here infers a ruling
+about a passage beyond a rule's cited conditions, and nothing is scholarly verified.
+
+## Implemented state (0.5.0)
+
+| Artifact | State |
+| --- | --- |
+| Rule records | 14 paraphrased records in `knowledge/rules`, each with book and page citations, all `unreviewed`. Families: qalqala (2), noon sakina and tanween (6), mim sakina (3), ghunna of geminated noon and mim (1), article lam (2) |
+| Detectors | One per rule in `src/wirdi_mcp/tajwid/detectors.py`, keyed `(rule_id, version, riwaya, tariq)`. Input is the unchanged ayah text tokenised into letters with reversible codepoint offsets (`tajwid/text.py`) and a `waqf`/`wasl` context |
+| Annotations | `TajwidAnnotation` with status `candidate`, anchor, rule evidence, app page span and a short note |
+| Human validation | Model and an empty `knowledge/validation/records.json`; no reviewer, so no record |
+| Explanation | Not available; `get_tajwid_explanation` returns `UNSUPPORTED_CAPABILITY` |
+
+What the detectors rely on, found by inspecting the corpus (not assumed): the sakin noon
+and mim before idgham, ikhfa and iqlab letters are written **without a sukun**, iqlab uses a
+small high meem on the noon, tanween uses standard marks only before throat letters and
+stacked marks otherwise, hamzat al-wasl is an alef with a rounded high stop, a hamza is
+sometimes carried by a tatweel, and "الليل" is spelled without its doubled lam. The orthography
+is used to recognise a sakin letter; the **rule itself comes from the following letter**
+as the books state it. A full-corpus audit ([RULE_AUDIT](RULE_AUDIT.md)) confirms that
+the standard-mark tanween occurs only where the detector says idhar halqi, that every
+iqlab noon carries the small meem, and that idhar mutlaq hits only the four words book A
+names.
+
+Not covered: madd, hamza rules, imala and fath, ya'at, tafkhim and tarqiq, waqf and
+ibtida, lafz al-jalala, letter-name cases (ن, يس), the optional connection of the plural
+mim, and waqf signs inside an ayah. Where books A and B disagree (the completeness of the
+idgham with ghunna) the rule record states both.
 
 ## Five independent artifacts
 
@@ -65,7 +92,7 @@ or that citations support a claim. The Phase 4/5 publication service must resolv
 foreign keys and verify approved scholarly records matching each subject hash,
 edition, riwaya/tariq and context. Only that gate can publish a scientific claim.
 
-## Detection extension, without detection implementation
+## Detection extension
 
 A future registry selects detectors by rule/version and explicit supported
 riwaya/tariq. The conceptual detector interface is:
@@ -89,10 +116,9 @@ result, never an assumed condition. Boundary context must be fetched from the
 same immutable manifest without silently expanding the displayed passage.
 
 Model context-dependent alternatives separately. Do not infer one universally
-valid reading from multiple scholarly options. Conditions and exceptions need
-their own precise citations and deterministic evaluation specifications before
-code is written. This phase intentionally contains no such specifications or
-patterns asserting actual Tajwid rules.
+valid reading from multiple scholarly options. Conditions and exceptions carry their own
+page citations (`RuleClause.evidence`), and every detector has fixtures built from the
+books' examples.
 
 ## Admission and scientific validation
 
@@ -128,3 +154,14 @@ may return page-grounded excerpts using Arabic/multilingual embeddings and
 possibly Qdrant. Retrieval is supporting evidence: it cannot execute conditions,
 replace the deterministic detector or grant scholarly approval. No RAG, models,
 vector service, LLM or agent is installed in this phase.
+
+## Coloured mushaf as a second source: tried, NO-GO
+
+The Hannibal mushaf prints its own colouring. Extracting it as an independent
+`source_annotated` layer (with detectors as the cross-check) was piloted on ten pages and
+rejected: the pages are rasters without glyph data, colour blobs cannot be tied to codepoints
+without glyph recognition, the legend's two red-like colours do not separate on the text, and
+recall and ornament masking were inadequate. See [PILOT_REPORT](PILOT_REPORT.md). The model
+keeps the fields (`image`, `observed_color`, `legend_class_id`) and the statuses
+(`source_annotated`, `cross_checked`, `conflict`, `not_annotated_in_source`) so a future
+attempt needs no schema change, but no data uses them.

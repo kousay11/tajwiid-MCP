@@ -35,22 +35,22 @@ with the available tooling**, so the full extraction (J5) was not run.
    small strokes of a diacritic). Merging by proximity gives clusters, but a cluster can
    still be a letter plus a neighbouring dot.
 3. **Recall is incomplete.** Thin crimson strokes fall below the saturation threshold. On
-   page 300 two visibly coloured letters (a ra in the word before "وَحَشَرْنَاهُمْ" and the ra at
-   the end of "نُغَادِرْ") were not detected at all.
+   page 300 two visibly coloured letters (a ra in the word before "وحشرناهم" and the ra at
+   the end of "نغادر") were not detected at all.
 4. **Ornaments produce false positives and also hide real hits.** One ring (46) on page 300
    was not masked and gave two blobs. On page 3 the circle detector reported 21 rings for
    a page with about a dozen, so masking can also remove genuine letter blobs.
 5. **The legend colours do not separate on the text.** Sampled swatches on page م11:
    grey (hue undefined), "red" #2 = pure red (hue 0, BGR ≈ 18,15,240) and "orange" #3 =
    a crimson (hue 173, BGR ≈ 84,39,236), not orange. On page 300 **every** coloured blob
-   has hue 170–177 (crimson), including the red qalqala letter of "لَقَدْ" and the waw
+   has hue 170–177 (crimson), including the red qalqala letter of "لقد" and the waw
    after a tanween. By the swatches that is colour #3, yet the legend assigns ghunna and
    qalqala to #2. Either the legend swatches are not faithful or the printer used one
    colour for both; this is a conflict between the legend and the pages and needs the
    publisher or a reviewer. Pure red appears only on a few pages (30 small blobs on pages 301
    and 605) and its meaning is unknown.
 6. **Some colourings are not explained by the legend or the detectors**, for example the
-   coloured ra at the end of "نُغَادِرْ": no implemented rule explains it. Colour alone
+   coloured ra at the end of "نغادر": no implemented rule explains it. Colour alone
    cannot be turned into a rule without a reviewer.
 
 Examples of failure (page 300): ring 46 blobs; undetected thin ra; a hollow-dot fragment

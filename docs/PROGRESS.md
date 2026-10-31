@@ -3,7 +3,7 @@
 Branch: `feat/tajwid-knowledge`. Never push. Resume by reading this file first.
 
 ## Current milestone
-J7 (final verification and documentation)
+Done (all milestones green); see HANDOFF.md
 
 ## Done
 - J0 hygiene: `.gitignore` extended before any commit (PDFs, page renders, derived

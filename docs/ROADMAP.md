@@ -1,18 +1,21 @@
 # Local Tajwid roadmap
 
-The project is intentionally local-first. The MCP server uses stdio and reads
-only the explicitly configured, checksum-pinned Qaloun source files.
+The project is local-first. The MCP server uses stdio and reads only the explicitly
+configured, checksum-pinned Qaloun source files and its own hash-pinned knowledge files.
 
-| Phase | Scope | Gate |
-| --- | --- | --- |
-| 1 — Foundation | Packaging, MCP stdio transport, diagnostics and typed contracts | Unit tests, protocol smoke test and lint pass |
-| 2 — Quran tools | Read-only Qaloun access and existing mapping authority | Integrity checks and mapping conformance pass |
-| 3 — Tajwid knowledge | Audited local sources, licenses, review records and first rules | Qualified review and versioned local artifact |
-| 4 — Tajwid engine | Deterministic detectors, context handling and candidate annotations | Positive, negative, exception and Wasl/Waqf fixtures pass |
-| 5 — Local integration | Stable backend client and UI-facing adapters in the initial application | Regression, privacy and failure-isolation tests pass |
+| Phase | Scope | Gate | State |
+| --- | --- | --- | --- |
+| 1 Foundation | Packaging, stdio transport, diagnostics, typed contracts | Tests, smoke test, lint | done |
+| 2 Quran tools | Read-only Qaloun access and the existing mapping authority | Integrity and conformance | done |
+| 3 Tajwid knowledge | Audited sources, page-cited rule records, local page store | Tamper tests, citations resolve | done for 14 rules (unreviewed) |
+| 4 Tajwid engine | Deterministic detectors, wasl/waqf context, candidate annotations | Fixtures; full-corpus run; frequency audit | done for the same 14 rules |
+| 5 Scholarly validation | Named reviewer, validation records, reviewed explanations | Records bound to subject hashes | **blocked: no reviewer** |
+| 6 Coloured-mushaf source | Extract the publisher's colouring as a second source | Pilot: 95% attach, 90% agreement | **NO-GO** (see PILOT_REPORT) |
+| 7 Application integration | Managed MCP client in wirdi-Ai, UI of verified annotations only | Regression, privacy, failure isolation | not started, out of scope so far |
 
-Current state: **local Tajwid foundation (0.4.0)**. Quran access and mapping
-are operational. The three Tajwid tools are registered and tested through MCP,
-but return `UNSUPPORTED_CAPABILITY` until reviewed local rules and detectors are
-implemented. No network provider, outbound MCP client, RAG or agent is part of
+Current state: **0.5.0, local Tajwid candidates.** Quran access, mapping, rule lookup,
+candidate analysis, summaries, per-page analysis and local page lookup all work through
+stdio. Everything Tajwid is unreviewed. Not covered at all: madd, hamza, imala, ya'at,
+tafkhim and tarqiq, waqf rules, lafz al-jalala, and every Book B section that is not named
+in [HANDOFF](HANDOFF.md). No network provider, outbound MCP client, RAG or agent is part of
 this project.

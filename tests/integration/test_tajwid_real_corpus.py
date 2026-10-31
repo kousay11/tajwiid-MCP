@@ -72,3 +72,85 @@ def test_corpus_orthography_agrees_with_tanween_classification(engine, all_rules
                 continue
             marked = rows[verse.index].text[occurrence.start : occurrence.end]
             assert any(c in standard for c in marked) == (occurrence.rule_id == "idhar_halqi")
+
+
+def _service(real_repo, engine):
+    from wirdi_mcp.tajwid.service import TajwidService
+
+    return TajwidService(real_repo, engine.registry)
+
+
+def test_every_app_page_can_be_analysed_and_spanning_ayat_are_reported_not_duplicated(
+    real_repo, engine
+):
+    service = _service(real_repo, engine)
+    context = ReadingContext(mode="waqf")
+    pages = real_repo.load_pages()
+    owned_total, spanning_total = 0, 0
+    for page in range(1, 560):
+        result = service.analyze_page(page, context, (), (), 500, 0)
+        owned_total += len(result.verses)
+        spanning_total += len(result.continued_from_previous_page)
+        # an ayah is analysed on the page where it starts, never also as "continued"
+        owned = {(v.surah, v.ayah) for v in result.verses}
+        assert not owned & {(v.surah, v.ayah) for v in result.continued_from_previous_page}
+        assert all(v.page_start == page for v in result.verses)
+        assert all(v.page_start < page <= v.page_end for v in result.continued_from_previous_page)
+        for annotation in result.analysis.annotations:
+            assert annotation.page_refs.app_page_start == page
+    assert owned_total == 6214  # every ayah belongs to exactly one page
+    assert spanning_total == sum(
+        1 for start, end in pages if end > start for _ in range(end - start)
+    )
+
+
+def test_wasl_continues_across_a_page_internal_boundary_but_not_across_a_surah(real_repo, engine):
+    service = _service(real_repo, engine)
+    wasl = ReadingContext(mode="wasl")
+    from wirdi_mcp.domain.models import PassageSelection
+
+    selection = PassageSelection(start=real_repo.reference("qalun", 18, 45), end_ayah=52)
+    inner = service.analyze(selection, wasl, ("idhar_halqi", "idgham_bighunna"), (), True, 500, 0)
+    # the last position needs the next ayah; the earlier ones were resolved from the selection
+    assert inner.coverage == "partial" and inner.total > 0
+    following = real_repo.reference("qalun", 18, 53)
+    resolved = ReadingContext(mode="wasl", following=following)
+    full = service.analyze(
+        selection, resolved, ("idhar_halqi", "idgham_bighunna"), (), True, 500, 0
+    )
+    assert full.total >= inner.total and sum(full.unresolved.values()) <= sum(
+        inner.unresolved.values()
+    )
+    from wirdi_mcp.domain.exceptions import KnowledgeError
+
+    wrong = ReadingContext(mode="wasl", following=real_repo.reference("qalun", 18, 60))
+    import pytest
+
+    with pytest.raises(KnowledgeError):
+        service.analyze(selection, wrong, (), (), True, 10, 0)
+
+
+def test_stop_after_word_truncates_the_last_ayah_and_treats_it_as_a_stop(real_repo, engine):
+    service = _service(real_repo, engine)
+    from wirdi_mcp.domain.models import PassageSelection
+
+    selection = PassageSelection(start=real_repo.reference("qalun", 18, 45), end_ayah=45)
+    everything = service.analyze(selection, ReadingContext(mode="wasl"), (), (), True, 500, 0)
+    stopped = service.analyze(
+        selection, ReadingContext(mode="wasl", stop_after_word=3), (), (), True, 500, 0
+    )
+    assert 0 < stopped.total < everything.total
+    assert all(a.anchor.word_index <= 3 for a in stopped.annotations)
+
+
+def test_paging_covers_every_occurrence_exactly_once(real_repo, engine):
+    service = _service(real_repo, engine)
+    from wirdi_mcp.domain.models import PassageSelection
+
+    selection = PassageSelection(start=real_repo.reference("qalun", 2, 1), end_ayah=30)
+    seen, offset = [], 0
+    while offset is not None:
+        page = service.analyze(selection, ReadingContext(mode="waqf"), (), (), True, 37, offset)
+        seen += [a.annotation_id for a in page.annotations]
+        offset = page.next_offset
+    assert len(seen) == len(set(seen)) == page.total

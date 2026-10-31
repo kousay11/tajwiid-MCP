@@ -1,64 +1,84 @@
-# MCP tools — local Tajwid foundation
+# MCP tools: local Tajwid candidates (0.5.0)
 
-The stdio server exposes six read-only tools:
+The stdio server exposes eleven read-only tools. There is no outbound MCP client, HTTP
+provider, network fallback or external scholarly search. All tools use closed-world
+contracts and return structured success or error envelopes. Contracts are in
+`src/wirdi_mcp/tools/contracts.py` (`TOOL_CONTRACTS`); registration is in
+`tools/quran.py` and `tools/tajwid.py`.
 
-- `health_check`
-- `get_qaloun_passage`
-- `resolve_source_mapping`
-- `get_tajwid_rule`
-- `analyze_qaloun_tajwid`
-- `get_tajwid_explanation`
+| Tool | Purpose |
+| --- | --- |
+| `health_check` | Readiness and configuration only |
+| `get_qaloun_passage` | Unchanged Qaloun ayat with verified 559-page spans |
+| `resolve_source_mapping` | The existing pinned mapping authority; review-required results are unsafe for retrieval |
+| `list_tajwid_rules` | Rules available locally, with family, detectability and whether a detector exists |
+| `get_tajwid_rule` | One rule record with conditions, exceptions, limitations and book and page citations |
+| `analyze_qaloun_tajwid` | Candidate occurrences for 1 to 100 ayat; filters `rule_ids` and `families`; paged |
+| `summarize_tajwid` | Per-rule counts for a surah or ayah range (at most 300 ayat) with paged per-ayah counts |
+| `analyze_app_page` | Candidates for the ayat that begin on a page (1 to 559) of the verified Qaloun layout |
+| `get_tajwid_explanation` | Always `UNSUPPORTED_CAPABILITY` until validation records by a named reviewer exist |
+| `get_source_page` | 1 to 5 pages of a locally placed source book (printed page numbers) |
+| `search_source_pages` | Literal, lossy-normalized Arabic search over local pages; returns page hits |
 
-There is no outbound MCP client, HTTP provider, network fallback or external
-scholarly search. All tools use closed-world contracts and return structured
-success/error envelopes.
+## What an annotation is
 
-## Local data tools
+Every served annotation has `status: "candidate"`: a deterministic procedure proposed it, and
+no reviewer confirmed it. Each carries the rule and version, a `TextAnchor` (ayah SHA-256,
+half-open codepoint range into the unchanged ayah text, word index), the reading context,
+the detector version, `evidence` (book and page citations of the rule), `page_refs` (the
+application's 559-page span of the ayah) and an occurrence `note`. The model also defines
+`source_annotated`, `cross_checked`, `conflict`, `not_annotated_in_source` and
+`unsupported_context`; none is produced because the coloured-mushaf extraction was a
+NO-GO ([PILOT_REPORT](PILOT_REPORT.md)). `scholarly_verified` is reserved and never
+emitted (`EMITTABLE_STATUSES`).
 
-`get_qaloun_passage` reads unchanged Qaloun ayat from the explicitly configured,
-checksum-pinned Wirdi AI source files. `resolve_source_mapping` reuses the
-verified local mapping authority. Both require explicit corpus identity and
-fail closed for missing, altered or unsupported source data.
+## Reading context
 
-## Local Tajwid tools
+`reading_context.mode` is `waqf` (reading stops at the end of each selected ayah, tanween
+and a final noon are dropped, a final qalqala letter is evaluated at the stop) or `wasl`
+(continuous reading across the selected ayat). In `wasl`, the last ayah's final position
+needs the following ayah: pass it as `following` (must be the next ayah of the same
+surah) or the position is reported under `unresolved` and the coverage becomes `partial`.
+`stop_after_word` ends the last ayah after that word. Waqf signs inside an ayah are not
+stops. `preceding` is accepted but no implemented rule uses it. The reading context is
+never inferred from punctuation.
 
-The three Tajwid tools are registered so the MCP interface can be tested before
-the engine is integrated into the main application:
+## Result semantics
 
-| Tool | Purpose | Current state |
-| --- | --- | --- |
-| `get_tajwid_rule` | Read a reviewed local rule by ID and version | Returns `UNSUPPORTED_CAPABILITY` until local rules are loaded |
-| `analyze_qaloun_tajwid` | Analyze a bounded passage with explicit Wasl/Waqf context | Returns `UNSUPPORTED_CAPABILITY` until a detector is available |
-| `get_tajwid_explanation` | Read a reviewed Arabic explanation | Returns `UNSUPPORTED_CAPABILITY` until annotations exist |
+- `coverage` is `complete_for_requested_rules` only when no position was left unresolved;
+  it never claims the passage has no other Tajwid rule. Zero results are not a claim of
+  absence.
+- `total`, `offset`, `next_offset` page the annotations (`limit` 1 to 500, default 100);
+  `rule_counts` count every occurrence, not only the returned window.
+- `unresolved` counts positions needing missing context; `skipped` counts positions a
+  detector deliberately left out (for example lafz al-jalala, letter-name noon).
+- The Tajwid tools need `WIRDI_AI_ROOT` for Quran text and the knowledge store for rules.
+  A missing or altered store gives `DATA_UNAVAILABLE` or `INTEGRITY_FAILURE` for that tool
+  only; other tools keep answering. Errors never contain a path or book text.
 
-An unavailable analysis is never represented as an empty successful result. The
-absence of a rule or detector is explicit, so a future local implementation can
-be added without changing the MCP transport or silently making scholarly claims.
+## Source-page tools
+
+Books are not distributed and their licence is unknown, so pages exist only where a user built
+them locally (git-ignored) with `scripts/build_page_store.py`. The store is verified by hash on
+every read. `text_quality` states that extraction is raw (book A has inverted lam-alef
+ligatures). `search_source_pages` folds marks, letter variants and that inversion, so its
+`snippet` is a normalized search form, not source text. Copy-protected PDFs are never
+extracted.
 
 ## Shared response contract
 
 ```text
 Success[T] = {
-  schema_version: "1.0",
-  status: "ok",
-  data: T,
-  provenance: [...],
-  validation_status: "...",
-  warnings: [...]
+  schema_version: "1.0", status: "ok", data: T,
+  provenance: [...], validation_status: "...", warnings: [...]
 }
-
 Failure = {
-  schema_version: "1.0",
-  status: "error",
-  error: {
-    code: "...",
-    message: "...",
-    retryable: false
-  }
+  schema_version: "1.0", status: "error",
+  error: { code: "...", message: "...", retryable: false }
 }
 ```
 
-The exact Pydantic contracts are in `src/wirdi_mcp/tools/contracts.py`; the
-local Tajwid registration is in `src/wirdi_mcp/tools/tajwid.py`. Real stdio
-tests validate discovery, schemas, local Qaloun calls and explicit Tajwid
-unavailability.
+Typed error codes used by these tools: `INVALID_REFERENCE`, `NOT_FOUND`,
+`UNSUPPORTED_VERSION`, `DATA_UNAVAILABLE`, `INTEGRITY_FAILURE`, `UNSUPPORTED_CAPABILITY`.
+Real stdio tests (`tests/integration/test_tajwid_stdio.py`) exercise every tool, the
+isolation cases and the error semantics; [E2E_REPORT](E2E_REPORT.md) is a transcript.

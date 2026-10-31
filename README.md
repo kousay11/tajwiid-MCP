@@ -4,12 +4,15 @@ Independent, local-first Quranic knowledge infrastructure for future Wirdi AI
 integration, with Qaloun through Abu Nashit as its explicit target scope.
 Structured retrieval and verifiable evidence come before generated explanations.
 
-**Current release: local Tajwid foundation (0.4.0).** The stdio server exposes
-six read-only local tools: `health_check`, Qaloun passage and mapping tools, and
-three Tajwid tools. Quran text is read directly from the original
-checksum-pinned Wirdi AI public source files. No external MCP client, network
-provider, database, RAG or agent is used. Tajwid rules and detectors fail closed
-until reviewed local data is loaded.
+**Current release: local Tajwid candidates (0.5.0).** The stdio server exposes
+eleven read-only local tools: diagnostics, Qaloun passage and mapping tools, and
+eight Tajwid tools. Quran text is read directly from the original checksum-pinned
+Wirdi AI public source files. No external MCP client, network provider, database,
+RAG, embedding or LLM is used. Fourteen Tajwid rules are available as paraphrased,
+page-cited, **unreviewed** records, and deterministic detectors propose **candidate**
+annotations for them. Nothing is scholarly verified: there is no named reviewer, the
+highest status ever served is `candidate`, and `get_tajwid_explanation` stays
+unavailable.
 
 The [source audit](docs/SOURCE_AUDIT.md) identifies the 6,214-ayah Qaloun corpus,
 559-page verified map and existing mapper. The existing application was inspected
@@ -40,15 +43,17 @@ set -a
 set +a
 ```
 
-Set the existing repository root explicitly to enable data access:
+Set the existing repository root explicitly to enable Quran data access. Tajwid
+rules are read from this repository's `knowledge/` directory (override with
+`WIRDI_KNOWLEDGE_ROOT`):
 
 ```bash
 export WIRDI_AI_ROOT=/home/najjar/Documents/Me/wirdi-Ai
 .venv/bin/wirdi-mcp
 ```
 
-Without this setting, diagnostics remain operational and both data tools return
-`DATA_UNAVAILABLE`. Configuration is not proof of corpus integrity; data calls
+Without this setting, diagnostics and rule lookup remain operational and every tool
+that needs Quran text returns `DATA_UNAVAILABLE`. Configuration is not proof of corpus integrity; data calls
 check the pinned hashes on every request. Source changes require a reviewed
 manifest update, never automatic trust or a fallback corpus.
 
@@ -108,6 +113,25 @@ execution sandbox restricts stdio subprocess I/O; these tests pass under its
 authorized unsandboxed test execution. Normal Ubuntu execution uses the commands
 above. No test connects to PostgreSQL, a network service or an external MCP server.
 
+## Tools
+
+| Tool | Purpose |
+| --- | --- |
+| `health_check` | Readiness and configuration, no data access |
+| `get_qaloun_passage` | Unchanged Qaloun ayat with verified page spans |
+| `resolve_source_mapping` | Existing pinned mapping authority |
+| `list_tajwid_rules`, `get_tajwid_rule` | Rule records with book and page citations |
+| `analyze_qaloun_tajwid` | Candidate occurrences for 1 to 100 ayat, paged, with rule filter |
+| `summarize_tajwid` | Per-rule counts for a surah or range, with per-ayah counts |
+| `analyze_app_page` | Candidates for the ayat that begin on a page of the verified 559-page layout |
+| `get_tajwid_explanation` | `UNSUPPORTED_CAPABILITY` until a named reviewer validates annotations |
+| `get_source_page`, `search_source_pages` | Locally placed source-book pages; fail closed when absent |
+
+Details, statuses and failure semantics are in [MCP_TOOLS](docs/MCP_TOOLS.md). Source
+books are never in git: build the local page store from your own copy with
+`scripts/build_page_store.py` (only PDFs with a real text layer; copy-protected PDFs are
+refused).
+
 ## Intended architecture
 
 ```mermaid
@@ -118,9 +142,8 @@ flowchart TD
     Server --> Domain[Reusable domain services]
     Domain --> Data[Read-only Qaloun adapter]
     Domain --> Mapping[Existing verified mapping authority]
-    Domain --> Rules[Future deterministic Tajwid engine]
-    Domain --> Knowledge[Future structured knowledge repository]
-    Domain -. future .-> Knowledge[Reviewed local Tajwid knowledge]
+    Domain --> Rules[Deterministic Tajwid candidate detectors]
+    Domain --> Knowledge[Local Tajwid rule records, unreviewed]
 ```
 
 Every reference carries corpus version, numbering system, riwaya, and tariq.
@@ -137,8 +160,12 @@ No external material is queried or used as a fallback.
 | [MCP_TOOLS](docs/MCP_TOOLS.md) | Local tool contracts, availability and failure semantics |
 | [TAJWID_ENGINE](docs/TAJWID_ENGINE.md) | Rule, candidate, annotation, scholarly review and explanation separation |
 | [INTEGRATION](docs/INTEGRATION.md) | FastAPI client, mapping authority reuse and staged migration |
-| [ROADMAP](docs/ROADMAP.md) | Seven phases and release gates |
-The next milestone is loading reviewed local Tajwid rules and implementing a
-deterministic detector. milestone:
-Phase 4 (scholarly Tajwid knowledge), which needs an independent Abu Nashit source audit.
-Keep existing source checks and mapping admission intact.
+| [ROADMAP](docs/ROADMAP.md) | Phases, gates and current state |
+| [SOURCES_INTAKE](docs/SOURCES_INTAKE.md) | The three source PDFs: identity, shape, legend, path claims |
+| [RULE_AUDIT](docs/RULE_AUDIT.md) | Per-rule detector frequencies over the whole corpus |
+| [PILOT_REPORT](docs/PILOT_REPORT.md) | Coloured-mushaf pilot (NO-GO) and why |
+| [PERF](docs/PERF.md), [E2E_REPORT](docs/E2E_REPORT.md) | Measured latency and a real stdio transcript |
+| [HANDOFF](docs/HANDOFF.md), [DECISIONS](docs/DECISIONS.md), [BLOCKERS](docs/BLOCKERS.md), [PROGRESS](docs/PROGRESS.md) | Where the work stands and what needs a human |
+
+The next milestone needs a **named qualified reviewer**: without one nothing can move
+beyond `candidate`. Keep existing source checks and mapping admission intact.

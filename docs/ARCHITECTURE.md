@@ -1,9 +1,10 @@
 # Component architecture
 
-Status: Local Tajwid foundation, 0.4.0. Business schemas are v1.0; transport
-protocol negotiation is separate. Diagnostic, direct read-only Qaloun access,
-existing-authority source mapping and the local Tajwid tool surface are
-operational. Reviewed rules and deterministic detection remain unimplemented.
+Status: Local Tajwid candidates, 0.5.0. Business schemas are v1.0; transport
+protocol negotiation is separate. Diagnostics, direct read-only Qaloun access,
+existing-authority source mapping, a hash-pinned rule registry, deterministic candidate
+detectors (`tajwid/`), a local page store and the Tajwid tools are operational. Every
+rule and annotation is unreviewed; scholarly validation is not implemented.
 See [SOURCE_AUDIT](SOURCE_AUDIT.md) for the read-only audit made before coding.
 
 ## Responsibilities and dependency direction
@@ -30,13 +31,13 @@ flowchart LR
 | `domain/` | Reference/value contracts, future orchestration and read-only data port | FastAPI or mobile implementation details |
 | `mapping/` | Pinned original mapper and narrow read-only dependency bridge | A second alignment algorithm |
 | `quran/` | Metadata manifest, original public-file reads and exact text/page admission | Database startup or duplicate corpus |
-| `tools/tajwid.py` | Local Tajwid tool registration and explicit unavailable responses | Scholarly approval or detector logic |
-| `knowledge/` package | Storage-independent scholarly records; future repository | Personal progress or user management |
-| root `knowledge/` | Future reviewed metadata/rule files | Unlicensed books or duplicate corpus |
+| `tools/tajwid.py` | Tajwid tool registration, typed error translation | Scholarly approval or detector logic |
+| `tajwid/` | Tokenizer with reversible offsets, detectors, engine and service | Scholarly approval; any LLM, RAG or network use |
+| `knowledge/` package | Scholarly record models, hash-pinned `RuleRegistry`, local `PageStore` | Personal progress or user management |
+| root `knowledge/` | `rules/` records and manifest, `sources/editions.json` metadata | Source books, extracted book text, a copied corpus |
 
-Future `domain/services.py`, `tajwid/`, and `validation/` modules will be added
-when behavior exists. There are no empty detector or repository modules
-pretending to work. A single `tools/contracts.py` captures the tool catalog. Structural guards currently
+A `validation/` module will be added when a named reviewer exists. There are no empty
+modules pretending to work. A single `tools/contracts.py` captures the tool catalog. Structural guards currently
 live beside their models; scientific validation remains a future service.
 
 ## Quran identity and immutable data
