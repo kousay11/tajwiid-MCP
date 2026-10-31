@@ -27,10 +27,15 @@ Done (all milestones green); see HANDOFF.md
   paging (default 100, max 500), size limits, typed errors with no path leakage,
   `docs/PERF.md`: page call p50 84 ms, cold start 0.56 s.
 
+- J7 final verification and documentation: E2E transcript (`docs/E2E_REPORT.md`), rule audit,
+  reviewer worksheet, edge-case and hygiene tests, README/ROADMAP/MCP_TOOLS/TAJWID_ENGINE
+  updates, version 0.5.0, `docs/HANDOFF.md`. Final commit `J7`.
+  Last full run: 105 passed offline, 129 passed with the real source; ruff clean.
+
 ## Next action
-J4: install numpy/opencv/scikit-image/pillow in `.venv`, render 10 sample mushaf pages
-losslessly, detect coloured blobs, attach to letters, measure, write `docs/PILOT_REPORT.md`
-(GO only if >= 95% red blobs on the right letter and >= 90% agree with the detector).
+Nothing automatic. Needs you: name a qualified reviewer, then proofread the 14 rule
+records against the cited pages (see `HANDOFF.md` questions). wirdi-Ai integration was
+not started.
 
 ## Resume commands
 ```bash
