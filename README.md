@@ -162,6 +162,7 @@ No external material is queried or used as a fallback.
 | [ARCHITECTURE](docs/ARCHITECTURE.md) | Boundaries, reference identity, storage, security, extension points |
 | [MCP_TOOLS](docs/MCP_TOOLS.md) | Local tool contracts, availability and failure semantics |
 | [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md), [TESTING_GUIDE](docs/TESTING_GUIDE.md) | What Book A rule is detected, and requests to try every family |
+| [NoteImportant](docs/NoteImportant.md) | Problèmes rencontrés, origine des données, analyse des résultats testés |
 | [TAJWID_ENGINE](docs/TAJWID_ENGINE.md) | Rule, candidate, annotation, scholarly review and explanation separation |
 | [INTEGRATION](docs/INTEGRATION.md) | FastAPI client, mapping authority reuse and staged migration |
 | [ROADMAP](docs/ROADMAP.md) | Phases, gates and current state |
