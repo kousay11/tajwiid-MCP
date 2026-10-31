@@ -1,0 +1,56 @@
+{
+  "rule_id": "alef_tafkhim",
+  "version": "1",
+  "name_ar": "تفخيم الألف",
+  "definition": "A madd alef is heavy after an isti'la letter (خ ص ض غ ط ق ظ) or after the heavy lam of the name of Allah.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "tafkhim_tarqiq",
+  "detectability": "B",
+  "legend_class_ids": [],
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
+    "The heavy lam of the name of Allah is taken from the same word only."
+  ],
+  "conditions": [
+    {
+      "clause_id": "after_heavy",
+      "kind": "condition",
+      "description": "The letter before the alef is an isti'la letter or the heavy lam.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.35",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.35",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

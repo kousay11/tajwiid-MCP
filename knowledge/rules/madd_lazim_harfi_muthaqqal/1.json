@@ -1,0 +1,56 @@
+{
+  "rule_id": "madd_lazim_harfi_muthaqqal",
+  "version": "1",
+  "name_ar": "المد اللازم الحرفي المثقل",
+  "definition": "In an isolated letter whose last sound is assimilated into the next letter (the lam of الم and the sin of طسم) the madd is six harakat.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "madd",
+  "detectability": "A",
+  "legend_class_ids": [],
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
+    "Openings are located by the verse-1 position of the 29 surahs that start with letters."
+  ],
+  "conditions": [
+    {
+      "clause_id": "assimilated",
+      "kind": "condition",
+      "description": "An isolated letter from نقص عسلكم is merged into the next letter.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.22",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.22",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

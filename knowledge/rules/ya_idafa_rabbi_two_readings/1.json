@@ -1,0 +1,56 @@
+{
+  "rule_id": "ya_idafa_rabbi_two_readings",
+  "version": "1",
+  "name_ar": "ياء ربي في فصلت",
+  "definition": "The ya of ربي in Fussilat 50 (إن لي عنده للحسنى) may be read with fatha or sukun; the fatha is the reading put first in teaching.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "ya_idafa",
+  "detectability": "C",
+  "legend_class_ids": [],
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
+    "One place."
+  ],
+  "conditions": [
+    {
+      "clause_id": "place",
+      "kind": "condition",
+      "description": "The word ربي in Fussilat 50.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.46",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.46",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}
