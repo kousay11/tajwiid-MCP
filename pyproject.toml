@@ -11,6 +11,7 @@ requires-python = ">=3.12"
 dependencies = ["mcp==2.3.0", "pydantic>=2.12,<3"]
 
 [project.optional-dependencies]
+mushaf = ["numpy", "opencv-python-headless", "scikit-image", "pillow"]
 dev = ["pytest>=8,<10", "ruff>=0.14,<1", "hatchling>=1.27,<2", "jsonschema>=4.20,<5"]
 
 [project.scripts]

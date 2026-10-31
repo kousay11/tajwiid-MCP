@@ -3,7 +3,7 @@
 Branch: `feat/tajwid-knowledge`. Never push. Resume by reading this file first.
 
 ## Current milestone
-J4 (mushaf pilot, 10 pages)
+J6 (performance and reliability)
 
 ## Done
 - J0 hygiene: `.gitignore` extended before any commit (PDFs, page renders, derived
@@ -19,6 +19,9 @@ J4 (mushaf pilot, 10 pages)
 - J3 tokenizer, 14 detectors, `TajwidEngine`/`TajwidService`, 11 MCP tools, frequency
   audit (`scripts/audit_rules.py`): all 6,214 single-ayah selections run in both modes with
   no exception, no rule at zero, idhar mutlaq hits only the four lexemes of book A p.6.
+
+- J4 mushaf pilot on 10 pages: **NO-GO** (see `docs/PILOT_REPORT.md`); J5 skipped.
+  Image libraries installed in the project `.venv` only; optional extra `mushaf` added.
 
 ## Next action
 J4: install numpy/opencv/scikit-image/pillow in `.venv`, render 10 sample mushaf pages
