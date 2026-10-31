@@ -85,7 +85,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "حذف ألف أنا وصلا",
         "B",
-        ("p.23",),
+        ("p.23", "p.24"),
         "The alef of أنا is not pronounced when joined to a following word that does not begin "
         "with a hamza; it is pronounced when stopping.",
         (("joined", "The reading continues into a word that does not begin with a hamza."),),
@@ -346,7 +346,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "مد العوض",
         "A",
-        ("p.16",),
+        ("p.15", "p.16"),
         "When a word that ends in tanween with a fatha is stopped on, the tanween is replaced by "
         "an alef of two harakat. A tanween on the feminine ta (ة) is stopped on with a ha instead.",
         (

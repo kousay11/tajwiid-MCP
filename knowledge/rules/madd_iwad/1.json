@@ -25,6 +25,19 @@
           "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
           "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
           "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.15",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
           "locator": "p.16",
           "riwaya": "qaloun",
           "tariq": "unspecified",
@@ -39,6 +52,19 @@
       "kind": "condition",
       "description": "The last letter carries a tanween fatha.",
       "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.15",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
         {
           "source_id": "book-a",
           "edition_id": "book-a-2010",
@@ -67,6 +93,19 @@
           "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
           "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
           "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.15",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
           "locator": "p.16",
           "riwaya": "qaloun",
           "tariq": "unspecified",
@@ -78,6 +117,19 @@
     }
   ],
   "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.15",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
     {
       "source_id": "book-a",
       "edition_id": "book-a-2010",

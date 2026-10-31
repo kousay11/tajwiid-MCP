@@ -18,7 +18,7 @@
       "rule_id": "alef_ana_dropped",
       "version": "1",
       "path": "rules/alef_ana_dropped/1.json",
-      "sha256": "1351b733389945717bdb6be0b402e359926cfe8c2e5ab958338b245f1472b608"
+      "sha256": "873ac404825e6e9031b5a2777939058b29b0da8f8a66bf89dadef15f675ae063"
     },
     {
       "rule_id": "alef_tafkhim",
@@ -300,7 +300,7 @@
       "rule_id": "madd_iwad",
       "version": "1",
       "path": "rules/madd_iwad/1.json",
-      "sha256": "b45cc359eeaa401e0e795a0cd0079c2235616655d4215cd2ce510b6a2b4d025a"
+      "sha256": "abbe3aecd9a4d4070ea8f19faa6f7402e8e73ad34e91153ec06baa56a8fd6b88"
     },
     {
       "rule_id": "madd_lazim_harfi_mukhaffaf",

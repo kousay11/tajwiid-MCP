@@ -557,3 +557,23 @@ def test_the_sila_rules_cite_the_pages_that_define_them():
                 rule_id,
                 clause["clause_id"],
             )
+
+
+def test_madd_iwad_and_ana_dropped_cite_the_pages_found_missing_on_the_images():
+    """p.15 states the two harakat of the madd al-iwad; p.24 states that the alef of ana is kept
+    when stopping."""
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "knowledge/rules"
+    for rule_id, pages in (
+        ("madd_iwad", ["p.15", "p.16"]),
+        ("alef_ana_dropped", ["p.23", "p.24"]),
+    ):
+        rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
+        assert [c["locator"] for c in rule["evidence"]] == pages, rule_id
+        for clause in rule["conditions"]:
+            assert [c["locator"] for c in clause["evidence"]] == pages, (
+                rule_id,
+                clause["clause_id"],
+            )
