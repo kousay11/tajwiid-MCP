@@ -534,3 +534,26 @@ def test_sila_ha_exception_cites_the_page_that_introduces_its_list():
     assert [c["locator"] for c in rule["evidence"]] == ["p.18", "p.19", "p.20"]
     words = next(c for c in rule["conditions"] if c["clause_id"] == "words")
     assert [c["locator"] for c in words["evidence"]] == ["p.18", "p.19", "p.20"]
+
+
+def test_the_sila_rules_cite_the_pages_that_define_them():
+    """Checked on the page images: p.17 defines the sila, p.19 defines the major sila."""
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "knowledge/rules"
+    expected = {
+        "madd_sila_sughra_ha": ["p.17", "p.18", "p.19"],
+        "madd_sila_sughra_meem": ["p.17", "p.18"],
+        "madd_sila_kubra_ha": ["p.19", "p.20"],
+        "madd_sila_kubra_meem": ["p.19", "p.20"],
+        "madd_sila_ha_exception": ["p.18", "p.19", "p.20"],
+    }
+    for rule_id, pages in expected.items():
+        rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
+        assert [c["locator"] for c in rule["evidence"]] == pages, rule_id
+        for clause in rule["conditions"]:
+            assert [c["locator"] for c in clause["evidence"]] == pages, (
+                rule_id,
+                clause["clause_id"],
+            )

@@ -366,19 +366,19 @@
       "rule_id": "madd_sila_kubra_ha",
       "version": "1",
       "path": "rules/madd_sila_kubra_ha/1.json",
-      "sha256": "fa08b1c77ca3fab6028040d877f6537053a44147b56555b0e4a81b05303a82cc"
+      "sha256": "b5d0fb0da74daa681a3782226dcfae48cc1670a3890fe2b1164814b7aa85c8ce"
     },
     {
       "rule_id": "madd_sila_kubra_meem",
       "version": "1",
       "path": "rules/madd_sila_kubra_meem/1.json",
-      "sha256": "ada7f8ebaa785969bdfb97d7e40815512299e6970263229466c83a3b05bd2ba1"
+      "sha256": "8035e1d4de38cda84a70f585ff1f4b576cbc610db28026864df8312151d62746"
     },
     {
       "rule_id": "madd_sila_sughra_ha",
       "version": "1",
       "path": "rules/madd_sila_sughra_ha/1.json",
-      "sha256": "fd5a7aea70941356766856ea85fcc5d32f9a71493196393750fd2c55532dd3c7"
+      "sha256": "ed97a8f95fb019abd07522e933932a1131649f0a32fcfb875b9eda4bc1c74adf"
     },
     {
       "rule_id": "madd_sila_sughra_meem",

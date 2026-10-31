@@ -371,7 +371,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "الصلة الصغرى في هاء الضمير",
         "A",
-        ("p.18", "p.19"),
+        ("p.17", "p.18", "p.19"),
         "A pronoun ha between two vowelled letters is lengthened with a waw or yeh of two harakat "
         "when no hamza follows.",
         (
@@ -444,7 +444,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "الصلة الكبرى في هاء الضمير",
         "A",
-        ("p.20",),
+        ("p.19", "p.20"),
         "A pronoun ha before a hamza that begins the next word is lengthened with a waw or yeh "
         "measured like the separated madd.",
         (("hamza_next", "The ha is a pronoun ha and the next word begins with a hamza."),),
@@ -465,7 +465,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "الصلة الكبرى في ميم الجمع",
         "A",
-        ("p.20",),
+        ("p.19", "p.20"),
         "A plural pronoun meem before a hamza that begins the next word may be read with a sukun "
         "or joined with a waw measured like the separated madd.",
         (("plural_meem", "A final sakin plural-pronoun meem followed by a hamza."),),
