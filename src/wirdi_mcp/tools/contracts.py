@@ -234,6 +234,29 @@ class ExplanationToolResponse(RootModel[Success[Explanation] | Failure]):
     model_config = ConfigDict(json_schema_extra={"type": "object"})
 
 
+class GetLetterPropertiesInput(ContractModel):
+    letters: Annotated[tuple[NonEmpty, ...], Field(min_length=1, max_length=29)]
+
+
+class LetterProperties(ContractModel):
+    letter: NonEmpty
+    makhraj_region: NonEmpty
+    makhraj_place: NonEmpty
+    # one characteristic from each of the five opposed pairs, in the book's order
+    paired_characteristics: tuple[NonEmpty, ...]
+    other_characteristics: tuple[NonEmpty, ...]
+
+
+class LetterPropertiesData(ContractModel):
+    letters: tuple[LetterProperties, ...]
+    source_pages: tuple[NonEmpty, ...]
+    limitations: tuple[NonEmpty, ...]
+
+
+class LetterPropertiesResponse(RootModel[Success[LetterPropertiesData] | Failure]):
+    model_config = ConfigDict(json_schema_extra={"type": "object"})
+
+
 # Input class, result type, earliest phase. Contract presence does not imply availability.
 TOOL_CONTRACTS = {
     "get_qaloun_passage": (GetPassageInput, Success[Passage] | Failure, 2),
@@ -246,4 +269,5 @@ TOOL_CONTRACTS = {
     "get_tajwid_explanation": (GetExplanationInput, Success[Explanation] | Failure, 5),
     "get_source_page": (GetSourcePageInput, Success[SourcePages] | Failure, 4),
     "search_source_pages": (SearchSourcePagesInput, Success[SourcePageHits] | Failure, 4),
+    "get_letter_properties": (GetLetterPropertiesInput, Success[LetterPropertiesData] | Failure, 4),
 }

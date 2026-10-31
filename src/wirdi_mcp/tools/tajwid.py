@@ -24,13 +24,18 @@ from wirdi_mcp.domain.models import (
 )
 from wirdi_mcp.knowledge.pages import PageStore
 from wirdi_mcp.quran.source import TARIQ_WARNING, PublicSourceRepository
+from wirdi_mcp.tajwid.letters import normalize_letter, properties
 from wirdi_mcp.tajwid.service import TajwidService
 from wirdi_mcp.tools.contracts import (
     AnalysisToolResponse,
     AppPageInput,
     AppPageToolResponse,
     ExplanationToolResponse,
+    GetLetterPropertiesInput,
     GetSourcePageInput,
+    LetterProperties,
+    LetterPropertiesData,
+    LetterPropertiesResponse,
     ListRulesInput,
     RuleListResponse,
     RuleToolResponse,
@@ -326,6 +331,47 @@ def register_tajwid_tools(
                     "Matching is lossy: marks and letter variants are folded, and the extractor's "
                     "inverted lam-alef order is tolerated.",
                 ),
+            )
+
+        return await asyncio.to_thread(_guard, run)
+
+    @server.tool(annotations=annotations)
+    async def get_letter_properties(
+        letters: tuple[NonEmpty, ...],
+    ) -> Annotated[CallToolResult, LetterPropertiesResponse]:
+        """Place of articulation and characteristics of 1 to 29 Arabic letters (Book A pp.40-45)."""
+
+        def run():
+            request = GetLetterPropertiesInput(letters=letters)
+            found = []
+            for given in request.letters:
+                base = normalize_letter(given) if len(given) == 1 else None
+                if base is None:
+                    raise KnowledgeError(
+                        "INVALID_REFERENCE", "Each entry must be one base Arabic letter"
+                    )
+                data = properties(base)
+                found.append(
+                    LetterProperties(
+                        letter=base,
+                        makhraj_region=data.region,
+                        makhraj_place=data.place,
+                        paired_characteristics=data.paired,
+                        other_characteristics=data.other,
+                    )
+                )
+            return Success(
+                data=LetterPropertiesData(
+                    letters=tuple(found),
+                    source_pages=("book-a-2010 p.40", "p.41", "p.42", "p.43", "p.44", "p.45"),
+                    limitations=(
+                        "Static tables from the cited pages; hamza and alef are counted "
+                        "separately (29 letters). Not scholarly reviewed.",
+                    ),
+                ),
+                provenance=(service.rules_provenance(),),
+                validation_status="unreviewed",
+                warnings=("Letter data is a paraphrase of Book A and is not scholarly reviewed.",),
             )
 
         return await asyncio.to_thread(_guard, run)

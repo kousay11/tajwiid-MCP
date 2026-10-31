@@ -22,6 +22,7 @@ class HealthReport(ContractModel):
         "get_tajwid_explanation",
         "get_source_page",
         "search_source_pages",
+        "get_letter_properties",
     )
     quran_data: Literal["not_configured", "configured_unchecked"] = "not_configured"
     mapping: Literal["not_configured", "configured_unchecked"] = "not_configured"
