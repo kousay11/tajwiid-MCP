@@ -1,6 +1,6 @@
 # Phase 2 source audit and read-only interface
 
-Audit date: 2026-10-30. Repository: `/home/najjar/Documents/Me/wirdi-Ai`.
+Audit date: 2026-10-30. Repository: the Wirdi AI checkout.
 Inspection is read-only. No importer, application startup, migrations, database
 connection, credentials or private tables were accessed. Existing reports are
 evidence of the project's previous verification, not a new scholarly audit.

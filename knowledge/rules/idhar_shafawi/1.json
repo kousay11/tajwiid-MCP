@@ -4,10 +4,9 @@
   "name_ar": "الإظهار الشفوي",
   "definition": "A mim sakina followed by any letter other than ب or م is pronounced clearly; Book A stresses clarity before و and ف.",
   "riwaya": "qaloun",
-  "tariq": "abu_nashit",
+  "tariq": "unspecified",
   "family": "mim_sakina",
   "detectability": "B",
-  "legend_class_ids": [],
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Qaloun's optional connection of the plural mim is not modelled; only an explicit sukun on the mim triggers the detector."
@@ -28,19 +27,6 @@
           "riwaya": "qaloun",
           "tariq": "unspecified",
           "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
-          "validation_status": "unreviewed",
-          "uri": null
-        },
-        {
-          "source_id": "book-b",
-          "edition_id": "book-b-2010",
-          "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
-          "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
-          "publication": "Algeria, 1st ed., 1431 H / 2010",
-          "locator": "printed p.63 (pdf p.64)",
-          "riwaya": "qaloun",
-          "tariq": "abu_nashit",
-          "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
           "validation_status": "unreviewed",
           "uri": null
         }
@@ -72,19 +58,6 @@
       "riwaya": "qaloun",
       "tariq": "unspecified",
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
-      "validation_status": "unreviewed",
-      "uri": null
-    },
-    {
-      "source_id": "book-b",
-      "edition_id": "book-b-2010",
-      "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
-      "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
-      "publication": "Algeria, 1st ed., 1431 H / 2010",
-      "locator": "printed p.63 (pdf p.64)",
-      "riwaya": "qaloun",
-      "tariq": "abu_nashit",
-      "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
       "validation_status": "unreviewed",
       "uri": null
     }

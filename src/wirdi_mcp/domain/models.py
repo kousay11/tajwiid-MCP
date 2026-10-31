@@ -150,10 +150,6 @@ class TextAnchor(ContractModel):
 
 AnnotationStatus = Literal[
     "candidate",
-    "source_annotated",
-    "cross_checked",
-    "conflict",
-    "not_annotated_in_source",
     "unsupported_context",
     "scholarly_verified",  # reserved: needs a named reviewer's ValidationRecord, never emitted
     "rejected",
@@ -179,39 +175,11 @@ class SourceVerseRef(ContractModel):
     ayah: PositiveInt
 
 
-class ImageProvenance(ContractModel):
-    edition_id: NonEmpty
-    pdf_page: PositiveInt
-    printed_page: NonEmpty | None = None
-    bbox: tuple[int, int, int, int]  # x0, y0, x1, y1 in pixels of the source image
-    image_sha256: Sha256
-    extractor_version: NonEmpty
-
-    @model_validator(mode="after")
-    def ordered_bbox(self) -> "ImageProvenance":
-        x0, y0, x1, y1 = self.bbox
-        if not (0 <= x0 < x1 and 0 <= y0 < y1):
-            raise ValueError("bbox must be a nonempty rectangle with nonnegative origin")
-        return self
-
-
-class ObservedColor(ContractModel):
-    color_id: Literal[1, 2, 3]  # legend numbers: grey, red, orange
-    rgb: tuple[
-        Annotated[int, Field(ge=0, le=255)],
-        Annotated[int, Field(ge=0, le=255)],
-        Annotated[int, Field(ge=0, le=255)],
-    ]
-    pixel_count: PositiveInt
-
-
 class TajwidAnnotation(ContractModel):
     annotation_id: NonEmpty
     version: NonEmpty
-    # A coloured source identifies a legend class, not necessarily a precise rule.
     rule_id: NonEmpty | None = None
     rule_version: NonEmpty | None = None
-    legend_class_id: NonEmpty | None = None
     anchor: TextAnchor
     reading_context: ReadingContext
     detector_version: NonEmpty | None = None
@@ -220,8 +188,6 @@ class TajwidAnnotation(ContractModel):
     validation_record_ids: tuple[NonEmpty, ...] = ()
     page_refs: PageRefs | None = None
     source_verse: SourceVerseRef | None = None
-    image: ImageProvenance | None = None
-    observed_color: ObservedColor | None = None
     note: Annotated[str, Field(max_length=300)] | None = None  # occurrence-level detail
     # Readings the cited source permits here (e.g. madd lengths); the engine never picks one.
     variants: tuple[NonEmpty, ...] = ()
@@ -232,18 +198,10 @@ class TajwidAnnotation(ContractModel):
             raise ValueError("Verified annotations require scholarly validation records")
         if (self.rule_id is None) != (self.rule_version is None):
             raise ValueError("rule_id and rule_version must be given together")
-        if self.rule_id is None and self.legend_class_id is None:
-            raise ValueError("An annotation needs a rule or a legend class")
+        if self.rule_id is None and self.status != "unsupported_context":
+            raise ValueError("An annotation needs a rule")
         if self.status == "candidate" and (self.rule_id is None or self.detector_version is None):
             raise ValueError("A candidate needs a rule and the detector version that produced it")
-        if self.status in ("source_annotated", "cross_checked", "conflict") and (
-            self.observed_color is None or self.image is None
-        ):
-            raise ValueError("A source-derived status needs the observed colour and image")
-        if self.status in ("cross_checked", "conflict") and (
-            self.rule_id is None or self.detector_version is None
-        ):
-            raise ValueError("Cross-checking needs a rule and the detector version")
         return self
 
 

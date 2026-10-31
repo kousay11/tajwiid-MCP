@@ -27,7 +27,6 @@ def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, real_en
                 "analyze_qaloun_tajwid",
                 "summarize_tajwid",
                 "analyze_app_page",
-                "get_tajwid_explanation",
                 "get_source_page",
                 "search_source_pages",
                 "get_letter_properties",
@@ -85,10 +84,5 @@ def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, real_en
                 assert annotation["status"] == "candidate"
                 assert annotation["evidence"] and annotation["page_refs"]["app_page_start"]
                 assert annotation["reading_context"]["mode"] == "wasl"
-            explanation = await client.call_tool(
-                "get_tajwid_explanation",
-                {"annotation_id": "x", "annotation_version": "1"},
-            )
-            assert explanation.structured_content["error"]["code"] == "UNSUPPORTED_CAPABILITY"
 
     asyncio.run(run())

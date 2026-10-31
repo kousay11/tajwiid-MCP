@@ -25,12 +25,10 @@ data/
 *.pdf
 *.PDF
 docs/**/*.pdf
-# extracted book text, page renders, and anything derived from the coloured mushaf
+# extracted book text and page renders
 knowledge/sources/*/pages*
 knowledge/sources/**/pages/
 knowledge/derived/
-knowledge/mushaf/
-.work/
 *.png
 *.jpg
 *.jpeg

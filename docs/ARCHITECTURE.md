@@ -47,7 +47,7 @@ live beside their models; scientific validation remains a future service.
 explicitly as unknown during quarantine; it cannot satisfy the Qaloun admission
 gate. `QalounReference` restricts riwaya to `qaloun` and permits `unspecified` or
 `abu_nashit` tariq. The audited active corpus accepts only `unspecified`; the
-source metadata does not establish Abu Nashit.
+source metadata does not establish Abu Nashit, and no rule names a tariq.
 These are application identifiers, not claims that all traditions fit one enum.
 
 Pydantic enforces structural constraints (surah 1–114, strict positive integers

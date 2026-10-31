@@ -694,21 +694,6 @@
       ]
     },
     {
-      "id": "get_source_page.book_b_unavailable",
-      "tool": "get_source_page",
-      "purpose": "Error case: Book B is a copy-protected scan with no page store.",
-      "arguments": {
-        "edition_id": "book-b-2010",
-        "page_start": 63,
-        "page_end": 63
-      },
-      "expect": {
-        "status": "error",
-        "code": "DATA_UNAVAILABLE"
-      },
-      "needs": []
-    },
-    {
       "id": "search_source_pages.basic",
       "tool": "search_source_pages",
       "purpose": "Which pages of Book A contain « الصلة »: 15, 17, 18, 19, 20. Needs the local page store.",
@@ -740,21 +725,6 @@
       "expect": {
         "status": "error",
         "code": "INVALID_REFERENCE"
-      },
-      "needs": []
-    },
-    {
-      "id": "get_tajwid_explanation.always_unsupported",
-      "tool": "get_tajwid_explanation",
-      "purpose": "Always `UNSUPPORTED_CAPABILITY`: no explanation exists until a named reviewer validates an annotation.",
-      "arguments": {
-        "annotation_id": "madd_munfasil:1:2:3:26-27:waqf",
-        "annotation_version": "1.0.0",
-        "language": "ar"
-      },
-      "expect": {
-        "status": "error",
-        "code": "UNSUPPORTED_CAPABILITY"
       },
       "needs": []
     }

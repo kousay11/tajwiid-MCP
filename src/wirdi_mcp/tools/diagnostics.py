@@ -19,7 +19,6 @@ class HealthReport(ContractModel):
         "analyze_qaloun_tajwid",
         "summarize_tajwid",
         "analyze_app_page",
-        "get_tajwid_explanation",
         "get_source_page",
         "search_source_pages",
         "get_letter_properties",

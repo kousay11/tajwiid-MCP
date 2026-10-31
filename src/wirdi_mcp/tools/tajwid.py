@@ -1,13 +1,12 @@
 """Local Tajwid tool surface.
 
 Rules, candidates and summaries come only from checksum-pinned local data. Every failure is
-a typed envelope; none leaks a path, a source text or a raw exception message. Explanations
-stay unavailable until a named reviewer's validation records exist.
+a typed envelope; none leaks a path, a source text or a raw exception message.
 """
 
 import asyncio
 from collections.abc import Callable
-from typing import Annotated, Literal
+from typing import Annotated
 
 from mcp.server import MCPServer
 from mcp.types import CallToolResult, ToolAnnotations
@@ -30,7 +29,6 @@ from wirdi_mcp.tools.contracts import (
     AnalysisToolResponse,
     AppPageInput,
     AppPageToolResponse,
-    ExplanationToolResponse,
     GetLetterPropertiesInput,
     GetSourcePageInput,
     LetterProperties,
@@ -246,22 +244,6 @@ def register_tajwid_tools(
             )
 
         return await asyncio.to_thread(_guard, run)
-
-    @server.tool(annotations=annotations)
-    async def get_tajwid_explanation(
-        annotation_id: NonEmpty,
-        annotation_version: NonEmpty,
-        language: Literal["ar"] = "ar",
-    ) -> Annotated[CallToolResult, ExplanationToolResponse]:
-        """Unavailable until a named reviewer has validated an annotation; never invented."""
-        return tool_result(
-            Failure(
-                error={
-                    "code": "UNSUPPORTED_CAPABILITY",
-                    "message": "No scholarly validation exists, so no explanation is available",
-                }
-            )
-        )
 
     @server.tool(annotations=annotations)
     async def get_source_page(

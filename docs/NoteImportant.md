@@ -34,8 +34,8 @@ environnement filtré. Sans la variable, tout tool qui lit le Quran échoue de f
 **Solution.** Passer la variable à l'Inspector :
 
 ```bash
-cd /home/najjar/Documents/Me/wirdi-mcp
-npx @modelcontextprotocol/inspector -e WIRDI_AI_ROOT=/home/najjar/Documents/Me/wirdi-Ai .venv/bin/wirdi-mcp
+cd /chemin/vers/wirdi-mcp
+npx @modelcontextprotocol/inspector -e WIRDI_AI_ROOT=/chemin/vers/wirdi-Ai .venv/bin/wirdi-mcp
 ```
 
 ou la saisir dans « Environment Variables » de l'interface, puis Disconnect / Connect. Contrôle :
@@ -59,10 +59,10 @@ plus `page` et `reading_context.mode`. La requête qui marche :
 | Texte du Quran (Qaloun) | Fichiers inclus dans le dépôt (`src/wirdi_mcp/quran/snapshot/`), ou ceux du dépôt Wirdi AI si `WIRDI_AI_ROOT` est donnée. Le jeu est « KFGQPC Qaloun via Qur'anpedia » (distribution `risan/quran-json`, commit `6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123`), soit 6 214 ayat | Empreinte SHA-256 du corpus vérifiée à chaque appel (`ece0a2b0…d1303`) ; le texte n'est jamais modifié ni recopié |
 | Pagination 559 pages | Fichier de pagination du même dépôt | Empreinte vérifiée (`ca7aa4e4…ccfc0`) ; page 263 = « verified_against_edition » |
 | Numérotation | Compte Qaloun du corpus. Le lien vers la numérotation kufienne (celle que cite le livre A) est `number_in_hafs` | Les listes du livre A sont comparées aux numéros kufiens |
-| Règles de tajwid | Paraphrases rédigées pour ce projet, dans `knowledge/rules/` ; sources : livre A (51 p.) pour les 81 règles, livre B (Abu Nashit) pour 12 des 14 premières | Empreinte de chaque fiche vérifiée ; chaque citation donne livre et page |
+| Règles de tajwid | Paraphrases rédigées pour ce projet, dans `knowledge/rules/` ; source : livre A (51 p.) pour les 81 règles | Empreinte de chaque fiche vérifiée ; chaque citation donne livre et page |
 | Détection | Code déterministe local (aucun LLM, aucun RAG, aucun réseau) | Chaque résultat est `candidate`, jamais vérifié |
 
-Le texte vient du Wirdi AI, jamais d'un PDF. Les PDF (livres A, B et mushaf) servent seulement à
+Le texte vient du Wirdi AI, jamais d'un PDF. Le PDF du livre A sert seulement à
 rédiger les fiches ; ils ne sont pas dans git. Le corpus identifie Qaloun mais n'atteste pas Abu
 Nashit : `tariq` reste `unspecified`.
 
@@ -115,7 +115,6 @@ Nashit : `tariq` reste `unspecified`.
 
 ## 4. Autres points à retenir
 
-- `get_tajwid_explanation` renvoie toujours `UNSUPPORTED_CAPABILITY` tant qu'aucun relecteur n'a validé d'annotation.
 - `get_source_page` et `search_source_pages` ne marchent que si le magasin de pages local du livre a été construit sur la machine (`scripts/build_page_store.py`) ; sinon `DATA_UNAVAILABLE`.
 - En `wasl`, la dernière position de la sélection dépend de l'ayah suivante : sans `following`, elle est dans `unresolved`.
 - Ce que le MCP ne détecte pas est listé dans [BOOK_A_COVERAGE](BOOK_A_COVERAGE.md).
@@ -138,7 +137,7 @@ Nashit : `tariq` reste `unspecified`.
 | 2026-10-31 | `list_tajwid_rules` | 81 règles, 2 sans détecteur | conforme |
 | 2026-10-31 | `get_tajwid_rule` `madd_sila_ha_exception` | fiche complète | a révélé la p.18 oubliée, ajoutée |
 | 2026-10-31 | `get_tajwid_rule` inexistante, version 9, `../etc` | `NOT_FOUND`, `UNSUPPORTED_VERSION`, `NOT_FOUND` | erreurs typées |
-| 2026-10-31 | `get_letter_properties`, `get_tajwid_explanation` | `ok` ; `UNSUPPORTED_CAPABILITY` | conforme |
+| 2026-10-31 | `get_letter_properties` | `ok` | conforme |
 
 Pour chaque nouveau test : ajouter une ligne ci-dessus, puis, si le résultat est instructif, une
 courte analyse (comptes, contrôles de cohérence, points à relire) dans le même style que le point 3.

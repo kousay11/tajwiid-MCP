@@ -934,7 +934,6 @@ def build_rule(rule_id: str, spec: tuple) -> TajwidRule:
         tariq="unspecified",
         family=FAMILY_ID[family],
         detectability=detectability,
-        legend_class_ids=(),
         limitations=COMMON_LIMITATIONS + tuple(limits),
         conditions=tuple(clause("condition", c) for c in conditions),
         exceptions=tuple(clause("exception", e) for e in exceptions),

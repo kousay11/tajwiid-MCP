@@ -37,12 +37,6 @@ def test_pages_are_returned_with_a_hash_and_printed_label(knowledge_copy):
     assert page[0].text_sha256 == hashlib.sha256(b"SENTINEL beta").hexdigest()
 
 
-def test_printed_and_pdf_pages_differ_by_the_edition_offset(knowledge_copy):
-    build_store(knowledge_copy, "book-b-2010")
-    page = PageStore(RuleRegistry(knowledge_copy)).get_pages("book-b-2010", 1, 1)[0]
-    assert (page.printed_page, page.pdf_page) == ("1", 2)
-
-
 def test_missing_store_fails_closed(knowledge_copy):
     with pytest.raises(KnowledgeError) as exc_info:
         PageStore(RuleRegistry(knowledge_copy)).get_pages("book-a-2010", 1, 1)

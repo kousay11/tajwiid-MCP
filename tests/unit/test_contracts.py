@@ -73,7 +73,7 @@ def test_unreviewed_occurrence_cannot_claim_scholarly_verification():
 
 
 def test_all_local_tool_contracts_have_serializable_input_and_output_schemas():
-    assert len(TOOL_CONTRACTS) == 11
+    assert len(TOOL_CONTRACTS) == 10
     for input_model, output_type, phase in TOOL_CONTRACTS.values():
         assert input_model.model_json_schema()["type"] == "object"
         assert TypeAdapter(output_type).json_schema()["anyOf"]

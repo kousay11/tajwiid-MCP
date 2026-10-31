@@ -36,7 +36,6 @@ def test_the_file_lists_every_tool_and_every_id_is_unique():
         "get_letter_properties",
         "get_source_page",
         "search_source_pages",
-        "get_tajwid_explanation",
     }
     ids = [r["id"] for r in REQUESTS]
     assert len(ids) == len(set(ids))

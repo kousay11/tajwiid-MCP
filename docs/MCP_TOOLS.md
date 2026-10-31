@@ -1,6 +1,6 @@
 # MCP tools: local Tajwid candidates (0.6.0)
 
-The stdio server exposes twelve read-only tools. There is no outbound MCP client, HTTP
+The stdio server exposes eleven read-only tools. There is no outbound MCP client, HTTP
 provider, network fallback or external scholarly search. All tools use closed-world
 contracts and return structured success or error envelopes. Contracts are in
 `src/wirdi_mcp/tools/contracts.py` (`TOOL_CONTRACTS`); registration is in
@@ -16,7 +16,6 @@ contracts and return structured success or error envelopes. Contracts are in
 | `analyze_qaloun_tajwid` | Candidate occurrences for 1 to 100 ayat; filters `rule_ids` and `families`; paged |
 | `summarize_tajwid` | Per-rule counts for a surah or ayah range (at most 300 ayat) with paged per-ayah counts |
 | `analyze_app_page` | Candidates for the ayat that begin on a page (1 to 559) of the verified Qaloun layout |
-| `get_tajwid_explanation` | Always `UNSUPPORTED_CAPABILITY` until validation records by a named reviewer exist |
 | `get_source_page` | 1 to 5 pages of a locally placed source book (printed page numbers) |
 | `search_source_pages` | Literal, lossy-normalized Arabic search over local pages; returns page hits |
 | `get_letter_properties` | Static place of articulation and characteristics for 1 to 29 base letters (Book A pp.40-45); an entry that is not one base letter is `INVALID_REFERENCE` |
@@ -29,11 +28,8 @@ half-open codepoint range into the unchanged ayah text, word index), the reading
 the detector version, `evidence` (book and page citations of the rule), `page_refs` (the
 application's 559-page span of the ayah), an occurrence `note` and `variants`: the readings
 the source permits for that occurrence (for example 2, 3 or 4 harakat for a separated madd,
-or sukun versus a sila for a plural meem). The engine never picks one of them. The model also defines
-`source_annotated`, `cross_checked`, `conflict`, `not_annotated_in_source` and
-`unsupported_context`; none is produced because the coloured-mushaf extraction was a
-NO-GO ([PILOT_REPORT](PILOT_REPORT.md)). `scholarly_verified` is reserved and never
-emitted (`EMITTABLE_STATUSES`).
+or sukun versus a sila for a plural meem). The engine never picks one of them. The other statuses are `unsupported_context`, `rejected` and
+`scholarly_verified`, which is reserved and never emitted (`EMITTABLE_STATUSES`).
 
 ## Rule families
 
@@ -94,4 +90,4 @@ Failure = {
 Typed error codes used by these tools: `INVALID_REFERENCE`, `NOT_FOUND`,
 `UNSUPPORTED_VERSION`, `DATA_UNAVAILABLE`, `INTEGRITY_FAILURE`, `UNSUPPORTED_CAPABILITY`.
 Real stdio tests (`tests/integration/test_tajwid_stdio.py`) exercise every tool, the
-isolation cases and the error semantics; [E2E_REPORT](E2E_REPORT.md) is a transcript.
+isolation cases and the error semantics.

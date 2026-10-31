@@ -30,7 +30,6 @@ def test_stdio_handshake_discovery_call_and_unavailable_tool(tmp_path):
                 "analyze_qaloun_tajwid",
                 "summarize_tajwid",
                 "analyze_app_page",
-                "get_tajwid_explanation",
                 "get_source_page",
                 "search_source_pages",
                 "get_letter_properties",
@@ -98,5 +97,5 @@ def test_tool_list_is_valid_for_legacy_protocol_versions():
         finally:
             proc.kill()
         assert "error" not in reply, reply
-        assert len(reply["result"]["tools"]) == 12
+        assert len(reply["result"]["tools"]) == 11
         assert all(t["outputSchema"]["type"] == "object" for t in reply["result"]["tools"])

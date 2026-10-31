@@ -13,7 +13,7 @@ about a passage beyond a rule's cited conditions, and nothing is scholarly verif
 | Detectors | 79, registered in `src/wirdi_mcp/tajwid/detectors.py` from family modules (`madd.py`, `hamza.py`, `tafkhim.py`, `idgham.py`, `yaat.py`, and the word lists of `lexicon.py`), keyed `(rule_id, version, riwaya, tariq)`; a rule may need more than one pass. Input is the unchanged ayah text tokenised into letters with reversible codepoint offsets (`tajwid/text.py`) and a `waqf`/`wasl` context |
 | Annotations | `TajwidAnnotation` with status `candidate`, anchor, rule evidence, app page span and a short note |
 | Human validation | Model and an empty `knowledge/validation/records.json`; no reviewer, so no record |
-| Explanation | Not available; `get_tajwid_explanation` returns `UNSUPPORTED_CAPABILITY` |
+| Explanation | Not available: no tool, until a reviewer validates annotations |
 
 What the detectors rely on, found by inspecting the corpus (not assumed): the sakin noon
 and mim before idgham, ikhfa and iqlab letters are written **without a sukun**, iqlab uses a
@@ -27,8 +27,7 @@ iqlab noon carries the small meem, and that idhar mutlaq hits only the four word
 names.
 
 Not covered: the items [BOOK_A_COVERAGE](BOOK_A_COVERAGE.md) lists, waqf and ibtida rules,
-the Book B sections not drafted, and waqf signs inside an ayah. Where books A and B disagree (the completeness of the
-idgham with ghunna) the rule record states both.
+and waqf signs inside an ayah. Where Book A states a word two ways the rule record keeps both.
 
 ## Five independent artifacts
 
@@ -122,8 +121,7 @@ books' examples.
 ## Admission and scientific validation
 
 1. Confirm source authenticity, edition and authorization to store/use excerpts.
-2. Establish rule scope through qualified scholarly review specific to Qaloun
-   and Abu Nashit. Record disputes and limitations explicitly.
+2. Establish rule scope through qualified scholarly review specific to Qaloun. Record disputes and limitations explicitly.
 3. Bind every detector release to reviewed rule versions, positive/negative and
    exception fixtures, and a stable token alignment definition.
 4. Produce candidates with hashes and reproducible context; keep them out of
@@ -153,14 +151,3 @@ may return page-grounded excerpts using Arabic/multilingual embeddings and
 possibly Qdrant. Retrieval is supporting evidence: it cannot execute conditions,
 replace the deterministic detector or grant scholarly approval. No RAG, models,
 vector service, LLM or agent is installed in this phase.
-
-## Coloured mushaf as a second source: tried, NO-GO
-
-The Hannibal mushaf prints its own colouring. Extracting it as an independent
-`source_annotated` layer (with detectors as the cross-check) was piloted on ten pages and
-rejected: the pages are rasters without glyph data, colour blobs cannot be tied to codepoints
-without glyph recognition, the legend's two red-like colours do not separate on the text, and
-recall and ornament masking were inadequate. See [PILOT_REPORT](PILOT_REPORT.md). The model
-keeps the fields (`image`, `observed_color`, `legend_class_id`) and the statuses
-(`source_annotated`, `cross_checked`, `conflict`, `not_annotated_in_source`) so a future
-attempt needs no schema change, but no data uses them.

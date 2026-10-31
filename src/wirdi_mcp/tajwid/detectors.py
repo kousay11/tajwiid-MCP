@@ -219,13 +219,13 @@ Group = Callable[[AyahView], None]
 # and one rule may need several groups (a structural pass plus a word-list pass).
 DETECTORS: dict[str, tuple[tuple[Group, ...], str, str, str]] = {
     **{
-        r: ((detect_noon_sakina_and_tanween,), "1", "qaloun", "abu_nashit")
+        r: ((detect_noon_sakina_and_tanween,), "1", "qaloun", "unspecified")
         for r in NOON_SAKINA_TANWEEN_RULES
     },
-    **{r: ((detect_mim_sakina,), "1", "qaloun", "abu_nashit") for r in MIM_SAKINA_RULES},
-    **{r: ((detect_qalqala,), "1", "qaloun", "abu_nashit") for r in QALQALA_RULES},
+    **{r: ((detect_mim_sakina,), "1", "qaloun", "unspecified") for r in MIM_SAKINA_RULES},
+    **{r: ((detect_qalqala,), "1", "qaloun", "unspecified") for r in QALQALA_RULES},
     **{r: ((detect_lam,), "1", "qaloun", "unspecified") for r in LAM_RULES},
-    **{r: ((detect_ghunna_mushaddad,), "1", "qaloun", "abu_nashit") for r in GHUNNA_RULES},
+    **{r: ((detect_ghunna_mushaddad,), "1", "qaloun", "unspecified") for r in GHUNNA_RULES},
 }
 
 # Book A families. The source is a Qaloun text that does not name Abu Nashit, so tariq is

@@ -188,11 +188,6 @@ def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_env):
                 result = await call(c, *bad)
                 assert result.is_error and result.structured_content["status"] == "error"
 
-            explanation = await call(
-                c, "get_tajwid_explanation", {"annotation_id": "x", "annotation_version": "1"}
-            )
-            assert explanation.structured_content["error"]["code"] == "UNSUPPORTED_CAPABILITY"
-
     asyncio.run(run())
 
 

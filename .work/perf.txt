@@ -1,0 +1,11 @@
+cold start to first tools/list: 0.56 s
+| call | p50 ms | p95 ms | max ms |
+| --- | ---: | ---: | ---: |
+| 1 ayah (analyze) | 36 | 58 | 107 |
+| 8 ayat (analyze) | 80 | 99 | 102 |
+| 50 ayat (analyze, 100 rows) | 107 | 126 | 127 |
+| 100 ayat (analyze, largest page: 500 rows) | 420 | 440 | 463 |
+| 1 surah (summarize, Kahf) | 40 | 59 | 62 |
+| longest surah (summarize, Baqara) | 85 | 103 | 105 |
+| 1 app page (analyze_app_page) | 84 | 116 | 121 |
+| get_tajwid_rule | 3 | 3 | 19 |

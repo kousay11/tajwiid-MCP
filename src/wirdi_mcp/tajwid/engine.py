@@ -33,8 +33,8 @@ GENERAL_LIMITATIONS = (
     "scholarly verified and no named reviewer exists.",
     "An empty or short result is not a claim that a passage has no Tajwid rules: only the "
     "listed rules are evaluated.",
-    "The corpus tariq is unspecified. Rule sources attest Qaloun (book A) and Abu Nashit "
-    "(book B); applying them to this corpus is a documented hypothesis.",
+    "The corpus tariq is unspecified. The rule source (book A) attests Qaloun without naming "
+    "a tariq; applying it to this corpus is a documented hypothesis.",
     "Waqf means the reading stops at the end of each selected ayah. Waqf signs inside an "
     "ayah are not treated as stops. `preceding` is accepted but no implemented rule uses it.",
 )

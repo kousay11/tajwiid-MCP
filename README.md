@@ -4,7 +4,7 @@ A **local MCP server for the Qaloun recitation (from Nafi')**. You give it a pas
 it gives you back the **Tajwid rules that apply to it**, letter by letter, each with the page of
 the book that states the rule.
 
-- **Version 0.6.0** · 12 tools · 81 rules · 79 detectors · 270 tests (238 on a clean clone, the rest also check the original Wirdi AI files)
+- **Version 0.6.0** · 11 tools · 81 rules · 79 detectors · 265 tests (233 on a clean clone, the rest also check the original Wirdi AI files)
 - **Read-only and deterministic**: no LLM, no RAG, no database, no network. The Quran text is read
   from the Wirdi AI files and never modified.
 - **Nothing is scholarly verified.** No qualified reviewer has been named, so every result is a
@@ -22,7 +22,7 @@ the book that states the rule.
 1. [How it works](#1-how-it-works)
 2. [Quick start](#2-quick-start)
 3. [Key commands](#3-key-commands)
-4. [The 12 tools](#4-the-12-tools)
+4. [The 11 tools](#4-the-11-tools)
 5. [Selections and reading context](#5-selections-and-reading-context)
 6. [What an annotation says](#6-what-an-annotation-says)
 7. [All 81 rules](#7-all-81-rules)
@@ -118,14 +118,12 @@ every tool are in [docs/APPLY.json](docs/APPLY.json).**
 | Change a rule record | edit the table in `scripts/build_book_a_rules.py`, then `python scripts/build_book_a_rules.py && python scripts/build_rule_manifest.py` |
 | Check the rule files against the manifest | `.venv/bin/python scripts/build_rule_manifest.py --check` |
 | Count every rule over the 6,214 ayat | `.venv/bin/python scripts/audit_rules.py --source-root /abs/wirdi-Ai` |
-| Regenerate the real stdio transcript | `.venv/bin/python scripts/e2e_report.py --source-root /abs/wirdi-Ai --out docs/E2E_REPORT.md` |
-| Measure latency | `.venv/bin/python scripts/measure_perf.py --source-root /abs/wirdi-Ai` |
 | Build the local page store of a book | `.venv/bin/python scripts/build_page_store.py <pdf> <edition-id>` |
 
 **After changing a rule or a detector**, in this order: regenerate the records and the manifest →
-run both test suites → regenerate the audit (`RULE_AUDIT.md`) and the E2E report.
+run both test suites → regenerate the audit (`RULE_AUDIT.md`).
 
-## 4. The 12 tools
+## 4. The 11 tools
 
 Every tool is read-only. A success is `{status: "ok", data, provenance, validation_status,
 warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
@@ -135,7 +133,7 @@ warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
 | `health_check` | nothing | Readiness and configuration; reads no data |
 | `get_qaloun_passage` | `selection` | The unchanged ayat, their SHA-256 and their 559-page span |
 | `resolve_source_mapping` | `selection`, `target_corpus_id`, `target_corpus_version`, `target_numbering_system` | Where the selection falls in another numbering (e.g. Kufian/Hafs), `mapping_status`, `safe_for_source_retrieval` |
-| `list_tajwid_rules` | `family?` | The 81 rules: id, Arabic name, family, type, tariq, `has_detector` |
+| `list_tajwid_rules` | `family?` | The 81 rules: id, Arabic name, family, type, `has_detector` |
 | `get_tajwid_rule` | `rule_id`, `version` | One rule record: definition, conditions, exceptions, limits, book and page |
 | `analyze_qaloun_tajwid` | `selection` (1 to 100 ayat), `reading_context`, `rule_ids?`, `families?`, `limit` (≤500), `offset` | Candidate annotations, paged, with counts, `unresolved`, `skipped`, `coverage` |
 | `summarize_tajwid` | `surah`, `start_ayah?`, `end_ayah?`, `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Counts per rule and per ayah (≤300 ayat) |
@@ -143,7 +141,6 @@ warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
 | `get_letter_properties` | `letters` (1 to 29 base letters) | Place of articulation and characteristics (Book A pp.40-45) |
 | `get_source_page` | `edition_id`, `page_start`, `page_end` (≤5) | Raw text of pages from the local page store |
 | `search_source_pages` | `query` (2 to 80 characters), `edition_ids`, `limit` | The pages that contain the word, with a normalised snippet |
-| `get_tajwid_explanation` | `annotation_id`, `annotation_version`, `language` | **Always** `UNSUPPORTED_CAPABILITY` until a reviewer validates annotations |
 
 **Error codes:** `INVALID_REFERENCE`, `NOT_FOUND`, `UNSUPPORTED_VERSION`, `DATA_UNAVAILABLE`,
 `INTEGRITY_FAILURE`, `UNSUPPORTED_CAPABILITY`. A missing or altered store fails that one tool, typed;
@@ -196,92 +193,91 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
   word list named by the book (matched on the book's own Kufian ayah numbers).
 - **Detector**: **no** means the rule is readable (`get_tajwid_rule`) but nothing is detected: the
   Qaloun text already carries the result of the rule, not the original hamzas.
-- **Tariq**: *Abu Nashit* for the 12 rules that cite Book B (the Abu Nashit source); `—` means
-  `unspecified` (the 69 rules that rest on Book A alone, which names Qaloun but not Abu Nashit).
+- **Tariq**: no rule names one. Book A attests Qaloun without naming a tariq, so every rule is `unspecified`.
 
-| Rule | Arabic name | Family | Type | Detector | Tariq | Pages (A = Book A, B = Book B) |
-| --- | --- | --- | :-: | :-: | --- | --- |
-| `alef_ana_before_hamza` | ألف أنا قبل همزة مفتوحة أو مضمومة | `madd` | B | yes | — | A 23, 24 |
-| `alef_ana_before_hamza_kasra` | ألف أنا قبل همزة مكسورة | `madd` | B | yes | — | A 24 |
-| `alef_ana_dropped` | حذف ألف أنا وصلا | `madd` | B | yes | — | A 23, 24 |
-| `alef_thabita` | الألفات الثابتة وقفا ووصلا | `madd` | C | yes | — | A 23, 24 |
-| `madd_arid_sukun` | المد العارض للسكون | `madd` | B | yes | — | A 20 |
-| `madd_badal` | مد البدل | `madd` | A | yes | — | A 15, 16 |
-| `madd_harf_hay_tahar` | الألف في هجاء أحرف حي طهر | `madd` | A | yes | — | A 15, 17, 23 |
-| `madd_iwad` | مد العوض | `madd` | A | yes | — | A 15, 16, 17 |
-| `madd_lazim_harfi_mukhaffaf` | المد اللازم الحرفي المخفف | `madd` | A | yes | — | A 22, 23 |
-| `madd_lazim_harfi_muthaqqal` | المد اللازم الحرفي المثقل | `madd` | A | yes | — | A 22 |
-| `madd_lazim_kalimi_mukhaffaf` | المد اللازم الكلمي المخفف | `madd` | C | yes | — | A 21, 22 |
-| `madd_lazim_kalimi_muthaqqal` | المد اللازم الكلمي المثقل | `madd` | A | yes | — | A 21 |
-| `madd_letter_dropped` | حذف حرف المد لالتقاء الساكنين | `madd` | B | yes | — | A 24 |
-| `madd_lin` | مد اللين | `madd` | B | yes | — | A 20, 21 |
-| `madd_munfasil` | المد الجائز المنفصل | `madd` | A | yes | — | A 19 |
-| `madd_muttasil` | المد الواجب المتصل | `madd` | A | yes | — | A 19 |
-| `madd_muttasil_arid` | المد المتصل العارض | `madd` | B | yes | — | A 20 |
-| `madd_sila_ha_exception` | كلمات استثنيت من صلة هاء الضمير | `madd` | C | yes | — | A 18, 19, 20 |
-| `madd_sila_kubra_ha` | الصلة الكبرى في هاء الضمير | `madd` | A | yes | — | A 19, 20 |
-| `madd_sila_kubra_meem` | الصلة الكبرى في ميم الجمع | `madd` | A | yes | — | A 19, 20 |
-| `madd_sila_sughra_ha` | الصلة الصغرى في هاء الضمير | `madd` | A | yes | — | A 17, 18, 19 |
-| `madd_sila_sughra_meem` | الصلة الصغرى في ميم الجمع | `madd` | A | yes | — | A 17, 18 |
-| `madd_tabii` | المد الطبيعي | `madd` | A | yes | — | A 14, 15 |
-| `hamza_double_exception` | استثناءات الهمزتين في كلمة | `hamza` | C | yes | — | A 26, 27 |
-| `hamza_double_in_word` | الهمزتان في كلمة | `hamza` | A | yes | — | A 26 |
-| `hamza_ibdal_minsaa` | إبدال الهمزة في منسأته | `hamza` | C | yes | — | A 25 |
-| `hamza_ibdal_musada` | إبدال الهمزة في مؤصدة | `hamza` | C | yes | — | A 25 |
-| `hamza_ibdal_ruya` | إبدال الهمزة في رئيا | `hamza` | C | yes | — | A 25 |
-| `hamza_ibdal_saala` | إبدال الهمزة في سأل | `hamza` | C | yes | — | A 25 |
-| `hamza_ibdal_yajuj` | إبدال الهمزة ألفا في يأجوج ومأجوج | `hamza` | C | yes | — | A 25 |
-| `hamza_istifham_added` | همزة الاستفهام المزيدة في ءامنتم وءأله | `hamza` | C | yes | — | A 27 |
-| `hamza_nabi` | همز النبي ونحوها | `hamza` | C | yes | — | A 25, 26 |
-| `hamza_nabi_exception` | استثناء النبي في موضعي الأحزاب | `hamza` | C | yes | — | A 26 |
-| `hamza_two_words_different` | الهمزتان المختلفتان في كلمتين | `hamza` | C | **no** | — | A 28, 29 |
-| `hamza_two_words_same` | الهمزتان المتفقتان في كلمتين | `hamza` | C | **no** | — | A 27, 28 |
-| `hamza_waw_huzu_kufu` | همز الواو في هزوا وكفوا | `hamza` | C | yes | — | A 25 |
-| `hamzat_wasl_article` | همزة الوصل في أل التعريف | `hamza` | A | yes | — | A 29, 31 |
-| `hamzat_wasl_noun` | همزة الوصل في الأسماء | `hamza` | C | yes | — | A 29, 30, 31 |
-| `hamzat_wasl_verb` | همزة الوصل في الأفعال | `hamza` | B | yes | — | A 30, 31 |
-| `istifham_repeated_first` | الاستفهام المكرر: ما أثبتت همزته في الأول | `hamza` | C | yes | — | A 27 |
-| `istifham_repeated_second` | الاستفهام المكرر: ما أثبتت همزته في الثاني | `hamza` | C | yes | — | A 27 |
-| `sakin_before_hamzat_wasl` | تحريك الساكن قبل همزة الوصل | `hamza` | B | yes | — | A 31 |
-| `alef_tafkhim` | تفخيم الألف | `tafkhim_tarqiq` | B | yes | — | A 32, 35 |
-| `alef_tarqiq` | ترقيق الألف | `tafkhim_tarqiq` | B | yes | — | A 35 |
-| `ghunna_tafkhim` | تفخيم الغنة | `tafkhim_tarqiq` | B | yes | — | A 35 |
-| `ghunna_tarqiq` | ترقيق الغنة | `tafkhim_tarqiq` | B | yes | — | A 35 |
-| `lam_jalala_tafkhim` | تفخيم لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | — | A 34, 35 |
-| `lam_jalala_tarqiq` | ترقيق لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | — | A 34, 35 |
-| `ra_jawaz` | جواز الوجهين في راء فرق | `tafkhim_tarqiq` | C | yes | — | A 34 |
-| `ra_mutatarrif_jawaz` | جواز الوجهين في الراء المتطرفة | `tafkhim_tarqiq` | C | yes | — | A 34 |
-| `ra_mutatarrif_tafkhim` | تفخيم الراء المتطرفة | `tafkhim_tarqiq` | B | yes | — | A 34 |
-| `ra_mutatarrif_tarqiq` | ترقيق الراء المتطرفة | `tafkhim_tarqiq` | B | yes | — | A 34 |
-| `ra_tafkhim` | تفخيم الراء | `tafkhim_tarqiq` | B | yes | — | A 33, 34 |
-| `ra_tarqiq` | ترقيق الراء | `tafkhim_tarqiq` | B | yes | — | A 33, 34 |
-| `ya_idafa_fath` | فتح ياء الإضافة قبل الهمزة | `ya_idafa` | B | yes | — | A 45, 46, 47, 48, 49, 50 |
-| `ya_idafa_fath_exception` | ياءات الإضافة المفتوحة استثناء | `ya_idafa` | C | yes | — | A 50 |
-| `ya_idafa_iskan_before_letter` | ياءات الإضافة الساكنة قبل الحروف | `ya_idafa` | C | yes | — | A 47, 50 |
-| `ya_idafa_iskan_exception` | ياءات الإضافة الساكنة استثناء | `ya_idafa` | C | yes | — | A 46, 48, 49, 50 |
-| `ya_idafa_maee` | ياء الإضافة في كلمة معي | `ya_idafa` | C | yes | — | A 47 |
-| `ya_idafa_rabbi_two_readings` | ياء ربي في فصلت | `ya_idafa` | C | yes | — | A 46, 49 |
-| `idgham_kabir_mutamathil` | الإدغام الكبير المتماثل | `idgham_general` | C | yes | — | A 36 |
-| `idgham_mutajanisayn` | إدغام المتجانسين | `idgham_general` | A | yes | — | A 36, 37, 38 |
-| `idgham_mutamathilayn` | إدغام المتماثلين | `idgham_general` | A | yes | — | A 36 |
-| `idgham_mutaqaribayn` | إدغام المتقاربين | `idgham_general` | A | yes | — | A 38 |
-| `idgham_naqis` | الإدغام الناقص | `idgham_general` | C | yes | — | A 38, 39 |
-| `idgham_bighunna` | الإدغام بغنة | `noon_sakina_tanween` | B | yes | Abu Nashit | A 5, 6 · B 57, 58 |
-| `idgham_bilaghunna` | الإدغام بغير غنة | `noon_sakina_tanween` | B | yes | Abu Nashit | A 5 · B 57, 58 |
-| `idhar_halqi` | الإظهار الحلقي | `noon_sakina_tanween` | B | yes | Abu Nashit | A 4, 5 · B 56, 57 |
-| `idhar_mutlaq` | الإظهار المطلق | `noon_sakina_tanween` | C | yes | Abu Nashit | A 6 · B 58 |
-| `ikhfa_haqiqi` | الإخفاء الحقيقي | `noon_sakina_tanween` | B | yes | Abu Nashit | A 7, 8 · B 60 |
-| `iqlab` | الإقلاب | `noon_sakina_tanween` | B | yes | Abu Nashit | A 7 · B 59 |
-| `idgham_shafawi` | الإدغام الشفوي | `mim_sakina` | B | yes | Abu Nashit | A 9 · B 62 |
-| `idhar_shafawi` | الإظهار الشفوي | `mim_sakina` | B | yes | Abu Nashit | A 9, 10 · B 63 |
-| `ikhfa_shafawi` | الإخفاء الشفوي | `mim_sakina` | B | yes | Abu Nashit | A 9 · B 62 |
-| `ghunna_mushaddad` | غنة النون والميم المشددتين | `ghunna` | A | yes | Abu Nashit | A 11 · B 63 |
-| `qalqala_kubra` | القلقلة الكبرى | `qalqala` | A | yes | Abu Nashit | A 44 · B 52, 53 |
-| `qalqala_sughra` | القلقلة الصغرى | `qalqala` | A | yes | Abu Nashit | A 44 · B 52, 53 |
-| `lam_qamariya` | اللام القمرية | `lam_taarif` | A | yes | — | A 13 |
-| `lam_shamsiya` | اللام الشمسية | `lam_taarif` | A | yes | — | A 12, 13 |
-| `imala_har` | الإمالة في هار | `imala_taqlil` | C | yes | — | A 35 |
-| `taqlil_tawrat` | التقليل في التوراة | `imala_taqlil` | C | yes | — | A 35 |
+| Rule | Arabic name | Family | Type | Detector | Pages (Book A) |
+| --- | --- | --- | :-: | :-: | --- |
+| `alef_ana_before_hamza` | ألف أنا قبل همزة مفتوحة أو مضمومة | `madd` | B | yes | 23, 24 |
+| `alef_ana_before_hamza_kasra` | ألف أنا قبل همزة مكسورة | `madd` | B | yes | 24 |
+| `alef_ana_dropped` | حذف ألف أنا وصلا | `madd` | B | yes | 23, 24 |
+| `alef_thabita` | الألفات الثابتة وقفا ووصلا | `madd` | C | yes | 23, 24 |
+| `madd_arid_sukun` | المد العارض للسكون | `madd` | B | yes | 20 |
+| `madd_badal` | مد البدل | `madd` | A | yes | 15, 16 |
+| `madd_harf_hay_tahar` | الألف في هجاء أحرف حي طهر | `madd` | A | yes | 15, 17, 23 |
+| `madd_iwad` | مد العوض | `madd` | A | yes | 15, 16, 17 |
+| `madd_lazim_harfi_mukhaffaf` | المد اللازم الحرفي المخفف | `madd` | A | yes | 22, 23 |
+| `madd_lazim_harfi_muthaqqal` | المد اللازم الحرفي المثقل | `madd` | A | yes | 22 |
+| `madd_lazim_kalimi_mukhaffaf` | المد اللازم الكلمي المخفف | `madd` | C | yes | 21, 22 |
+| `madd_lazim_kalimi_muthaqqal` | المد اللازم الكلمي المثقل | `madd` | A | yes | 21 |
+| `madd_letter_dropped` | حذف حرف المد لالتقاء الساكنين | `madd` | B | yes | 24 |
+| `madd_lin` | مد اللين | `madd` | B | yes | 20, 21 |
+| `madd_munfasil` | المد الجائز المنفصل | `madd` | A | yes | 19 |
+| `madd_muttasil` | المد الواجب المتصل | `madd` | A | yes | 19 |
+| `madd_muttasil_arid` | المد المتصل العارض | `madd` | B | yes | 20 |
+| `madd_sila_ha_exception` | كلمات استثنيت من صلة هاء الضمير | `madd` | C | yes | 18, 19, 20 |
+| `madd_sila_kubra_ha` | الصلة الكبرى في هاء الضمير | `madd` | A | yes | 19, 20 |
+| `madd_sila_kubra_meem` | الصلة الكبرى في ميم الجمع | `madd` | A | yes | 19, 20 |
+| `madd_sila_sughra_ha` | الصلة الصغرى في هاء الضمير | `madd` | A | yes | 17, 18, 19 |
+| `madd_sila_sughra_meem` | الصلة الصغرى في ميم الجمع | `madd` | A | yes | 17, 18 |
+| `madd_tabii` | المد الطبيعي | `madd` | A | yes | 14, 15 |
+| `hamza_double_exception` | استثناءات الهمزتين في كلمة | `hamza` | C | yes | 26, 27 |
+| `hamza_double_in_word` | الهمزتان في كلمة | `hamza` | A | yes | 26 |
+| `hamza_ibdal_minsaa` | إبدال الهمزة في منسأته | `hamza` | C | yes | 25 |
+| `hamza_ibdal_musada` | إبدال الهمزة في مؤصدة | `hamza` | C | yes | 25 |
+| `hamza_ibdal_ruya` | إبدال الهمزة في رئيا | `hamza` | C | yes | 25 |
+| `hamza_ibdal_saala` | إبدال الهمزة في سأل | `hamza` | C | yes | 25 |
+| `hamza_ibdal_yajuj` | إبدال الهمزة ألفا في يأجوج ومأجوج | `hamza` | C | yes | 25 |
+| `hamza_istifham_added` | همزة الاستفهام المزيدة في ءامنتم وءأله | `hamza` | C | yes | 27 |
+| `hamza_nabi` | همز النبي ونحوها | `hamza` | C | yes | 25, 26 |
+| `hamza_nabi_exception` | استثناء النبي في موضعي الأحزاب | `hamza` | C | yes | 26 |
+| `hamza_two_words_different` | الهمزتان المختلفتان في كلمتين | `hamza` | C | **no** | 28, 29 |
+| `hamza_two_words_same` | الهمزتان المتفقتان في كلمتين | `hamza` | C | **no** | 27, 28 |
+| `hamza_waw_huzu_kufu` | همز الواو في هزوا وكفوا | `hamza` | C | yes | 25 |
+| `hamzat_wasl_article` | همزة الوصل في أل التعريف | `hamza` | A | yes | 29, 31 |
+| `hamzat_wasl_noun` | همزة الوصل في الأسماء | `hamza` | C | yes | 29, 30, 31 |
+| `hamzat_wasl_verb` | همزة الوصل في الأفعال | `hamza` | B | yes | 30, 31 |
+| `istifham_repeated_first` | الاستفهام المكرر: ما أثبتت همزته في الأول | `hamza` | C | yes | 27 |
+| `istifham_repeated_second` | الاستفهام المكرر: ما أثبتت همزته في الثاني | `hamza` | C | yes | 27 |
+| `sakin_before_hamzat_wasl` | تحريك الساكن قبل همزة الوصل | `hamza` | B | yes | 31 |
+| `alef_tafkhim` | تفخيم الألف | `tafkhim_tarqiq` | B | yes | 32, 35 |
+| `alef_tarqiq` | ترقيق الألف | `tafkhim_tarqiq` | B | yes | 35 |
+| `ghunna_tafkhim` | تفخيم الغنة | `tafkhim_tarqiq` | B | yes | 35 |
+| `ghunna_tarqiq` | ترقيق الغنة | `tafkhim_tarqiq` | B | yes | 35 |
+| `lam_jalala_tafkhim` | تفخيم لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | 34, 35 |
+| `lam_jalala_tarqiq` | ترقيق لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | 34, 35 |
+| `ra_jawaz` | جواز الوجهين في راء فرق | `tafkhim_tarqiq` | C | yes | 34 |
+| `ra_mutatarrif_jawaz` | جواز الوجهين في الراء المتطرفة | `tafkhim_tarqiq` | C | yes | 34 |
+| `ra_mutatarrif_tafkhim` | تفخيم الراء المتطرفة | `tafkhim_tarqiq` | B | yes | 34 |
+| `ra_mutatarrif_tarqiq` | ترقيق الراء المتطرفة | `tafkhim_tarqiq` | B | yes | 34 |
+| `ra_tafkhim` | تفخيم الراء | `tafkhim_tarqiq` | B | yes | 33, 34 |
+| `ra_tarqiq` | ترقيق الراء | `tafkhim_tarqiq` | B | yes | 33, 34 |
+| `ya_idafa_fath` | فتح ياء الإضافة قبل الهمزة | `ya_idafa` | B | yes | 45, 46, 47, 48, 49, 50 |
+| `ya_idafa_fath_exception` | ياءات الإضافة المفتوحة استثناء | `ya_idafa` | C | yes | 50 |
+| `ya_idafa_iskan_before_letter` | ياءات الإضافة الساكنة قبل الحروف | `ya_idafa` | C | yes | 47, 50 |
+| `ya_idafa_iskan_exception` | ياءات الإضافة الساكنة استثناء | `ya_idafa` | C | yes | 46, 48, 49, 50 |
+| `ya_idafa_maee` | ياء الإضافة في كلمة معي | `ya_idafa` | C | yes | 47 |
+| `ya_idafa_rabbi_two_readings` | ياء ربي في فصلت | `ya_idafa` | C | yes | 46, 49 |
+| `idgham_kabir_mutamathil` | الإدغام الكبير المتماثل | `idgham_general` | C | yes | 36 |
+| `idgham_mutajanisayn` | إدغام المتجانسين | `idgham_general` | A | yes | 36, 37, 38 |
+| `idgham_mutamathilayn` | إدغام المتماثلين | `idgham_general` | A | yes | 36 |
+| `idgham_mutaqaribayn` | إدغام المتقاربين | `idgham_general` | A | yes | 38 |
+| `idgham_naqis` | الإدغام الناقص | `idgham_general` | C | yes | 38, 39 |
+| `idgham_bighunna` | الإدغام بغنة | `noon_sakina_tanween` | B | yes | 5, 6 |
+| `idgham_bilaghunna` | الإدغام بغير غنة | `noon_sakina_tanween` | B | yes | 5 |
+| `idhar_halqi` | الإظهار الحلقي | `noon_sakina_tanween` | B | yes | 4, 5 |
+| `idhar_mutlaq` | الإظهار المطلق | `noon_sakina_tanween` | C | yes | 6 |
+| `ikhfa_haqiqi` | الإخفاء الحقيقي | `noon_sakina_tanween` | B | yes | 7, 8 |
+| `iqlab` | الإقلاب | `noon_sakina_tanween` | B | yes | 7 |
+| `idgham_shafawi` | الإدغام الشفوي | `mim_sakina` | B | yes | 9 |
+| `idhar_shafawi` | الإظهار الشفوي | `mim_sakina` | B | yes | 9, 10 |
+| `ikhfa_shafawi` | الإخفاء الشفوي | `mim_sakina` | B | yes | 9 |
+| `ghunna_mushaddad` | غنة النون والميم المشددتين | `ghunna` | A | yes | 11 |
+| `qalqala_kubra` | القلقلة الكبرى | `qalqala` | A | yes | 44 |
+| `qalqala_sughra` | القلقلة الصغرى | `qalqala` | A | yes | 44 |
+| `lam_qamariya` | اللام القمرية | `lam_taarif` | A | yes | 13 |
+| `lam_shamsiya` | اللام الشمسية | `lam_taarif` | A | yes | 12, 13 |
+| `imala_har` | الإمالة في هار | `imala_taqlil` | C | yes | 35 |
+| `taqlil_tawrat` | التقليل في التوراة | `imala_taqlil` | C | yes | 35 |
 
 | Family | Rules | What it covers |
 | --- | ---: | --- |
@@ -318,7 +314,7 @@ applies to that data, not to the code that reads it. The books themselves are ne
 
 | | Qaloun count | Kufian count |
 | --- | --- | --- |
-| Used by | the corpus, the tools, the application | the Tunisian Hannibal mushaf, the place numbers of Book A |
+| Used by | the corpus, the tools, the application | the place numbers of Book A |
 | Ayat | 6,214 | 6,236 |
 | Kept in the corpus as | the ayah number | `number_in_hafs` |
 | Pages | 559 (application) | 604 (Hannibal) |
@@ -331,11 +327,9 @@ never compared by number, only through the verse.
 
 | Source | Role | State |
 | --- | --- | --- |
-| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | Base of the 67 newest rules; Qaloun, does not name Abu Nashit | Citations checked on the page images; inconsistent in places (below) |
-| **Book B**, *مذكرة في أحكام الترتيل… من طريق أبي نشيط* (156 pp.) | Cited by 12 first-release rules | A copy-protected scan: protection is never bypassed, no OCR; cited from page images only |
-| **Hannibal mushaf** (Tunis, coloured) | Evaluated to extract the colours | **NO-GO** ([PILOT_REPORT](docs/PILOT_REPORT.md)); not used |
+| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The only source of the 81 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
 
-All three have an unknown licence. Book A's text layer is raw (inverted lam-alef ligatures).
+Book A has an unknown licence (it is never committed). Its text layer is raw (inverted lam-alef ligatures).
 
 **Where Book A contradicts itself or the corpus** (each case is in the rule limits and in
 [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md); none is arbitrated):
@@ -356,7 +350,7 @@ All three have an unknown licence. Book A's text layer is raw (inverted lam-alef
   beyond `من`, the plural meem and tanween, two hamzas in two words, and joining a wasl and a qat'
   hamza in one word.
 - The default closed ya before an ordinary letter, beyond the seven named examples.
-- The Book B sections not drafted, and everything Book A does not say (it is a 51-page summary).
+- Everything Book A does not say (it is a 51-page summary).
 
 [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) lists each section of the book and its state.
 
@@ -364,14 +358,13 @@ All three have an unknown licence. Book A's text layer is raw (inverted lam-alef
 
 ```bash
 .venv/bin/python -m pytest                                          # everything, on the bundled snapshot
-WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 270 tests
+WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 265 tests
 ```
 
 - **Synthetic and stdio**: synthetic fixtures modelled on the books' examples, real stdio subprocess tests, the
   README and APPLY.json consistency checks, tamper tests.
 - **Real corpus (bundled)**: every single-ayah selection in both modes, all 559 pages, the closed word lists
   (each must hit exactly the places the book names), and every request of `docs/APPLY.json`.
-- Measured latency ([PERF](docs/PERF.md)): cold start 0.57 s; one application page about 106 ms.
 
 ## 12. Repository layout and scripts
 
@@ -384,11 +377,11 @@ src/wirdi_mcp/
   knowledge/                  rule registry (hash-pinned) and local page store (fail-closed)
   tajwid/                     tokenizer and detectors: madd, hamza, tafkhim, idgham, yaat,
                               lexicon (word lists), letters (static tables), engine, service
-  tools/                      the 12 MCP tools and their contracts
+  tools/                      the 11 MCP tools and their contracts
 knowledge/rules/              81 rule records + manifest.json     (committed)
 knowledge/sources/            edition metadata only               (no book text)
 knowledge/validation/         empty, ready for a reviewer's records
-scripts/                      rule generation, manifest, audit, E2E report, perf, page store
+scripts/                      rule generation, manifest, audit, page store, local check
 tests/                        unit and integration tests
 docs/                         design, audits, reports, guides and APPLY.json (PDFs are git-ignored)
 ```
@@ -401,7 +394,7 @@ The commands that use the scripts are in [section 3](#3-key-commands).
    store is ready and empty.
 2. **Licences** of the books (the code and bundled data are licensed, see section 8), and whether the paraphrased records may stay in the
    repository.
-3. **The Abu Nashit question**: may the corpus be treated as Abu Nashit for these rules?
+3. **Which tariq?** Book A names none; the corpus does not attest one either.
 4. **Display in version 1**: label unreviewed candidates, or show nothing until a reviewer approves?
 5. **Arbitration** of the divergences in section 9, with the reviewer.
 6. **Integration into Wirdi AI** (not started): [INTEGRATION](docs/INTEGRATION.md).
@@ -415,12 +408,10 @@ The commands that use the scripts are in [section 3](#3-key-commands).
 | [TESTING_GUIDE](docs/TESTING_GUIDE.md) | A request per rule family and what to check |
 | [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) | Each Book A section, its rules, its state and the page contradictions |
 | [MCP_TOOLS](docs/MCP_TOOLS.md) | Tool contracts, statuses, reading context, failure semantics |
-| [TAJWID_ENGINE](docs/TAJWID_ENGINE.md) | Rule, detector, annotation, review and explanation, kept separate |
+| [TAJWID_ENGINE](docs/TAJWID_ENGINE.md) | Rule, detector, annotation and review, kept separate |
 | [RULE_AUDIT](docs/RULE_AUDIT.md) | Per-rule counts over the whole corpus |
 | [ARCHITECTURE](docs/ARCHITECTURE.md), [SOURCE_AUDIT](docs/SOURCE_AUDIT.md) | Boundaries, reference identity, the corpus and its checksums |
-| [PERF](docs/PERF.md), [E2E_REPORT](docs/E2E_REPORT.md) | Latency; a real stdio transcript |
-| [SOURCES_INTAKE](docs/SOURCES_INTAKE.md), [PILOT_REPORT](docs/PILOT_REPORT.md) | The three source PDFs; the coloured-mushaf pilot |
-| [DECISIONS](docs/DECISIONS.md), [BLOCKERS](docs/BLOCKERS.md), [PROGRESS](docs/PROGRESS.md), [HANDOFF](docs/HANDOFF.md), [ROADMAP](docs/ROADMAP.md) | Decisions, blockers, where the work stands |
+| [DECISIONS](docs/DECISIONS.md) | Design decisions |
 | [INTEGRATION](docs/INTEGRATION.md) | The planned client contract for Wirdi AI |
 
 The official [`mcp` Python SDK](https://github.com/modelcontextprotocol/python-sdk) is pinned to

@@ -37,12 +37,11 @@ class TajwidRule(ContractModel):
     name_ar: NonEmpty
     definition: str
     riwaya: Literal["qaloun"]
-    # "abu_nashit" when a cited source attests that path; the corpus itself stays unspecified.
+    # Book A names no tariq, so every rule is "unspecified"; the corpus itself is unspecified too.
     tariq: Literal["abu_nashit", "unspecified"]
     family: NonEmpty = "unclassified"
     # A: mechanical, B: depends on wasl/waqf or the neighbouring word, C: Qaloun lexical list.
     detectability: Literal["A", "B", "C"] = "A"
-    legend_class_ids: tuple[NonEmpty, ...] = ()
     limitations: tuple[str, ...] = ()
     conditions: tuple[RuleClause, ...]
     exceptions: tuple[RuleClause, ...]

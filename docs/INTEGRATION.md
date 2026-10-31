@@ -33,8 +33,7 @@ async with Client(params, read_timeout_seconds=5) as client:
 
 `analyze_qaloun_tajwid` now returns **candidate** annotations (status `candidate`,
 unreviewed, with book and page citations and the app's 559-page span). The application
-must show them as unreviewed, or not at all: nothing is scholarly verified and
-`get_tajwid_explanation` still returns `UNSUPPORTED_CAPABILITY`. It must also preserve
+must show them as unreviewed, or not at all: nothing is scholarly verified. It must also preserve
 the difference between an empty result, a `partial` coverage with `unresolved` positions,
 and a typed error (`DATA_UNAVAILABLE`, `INTEGRITY_FAILURE`); none of them means "the passage
 has no Tajwid rule". Integration into the application is not started.

@@ -7,10 +7,8 @@
   "tariq": "unspecified",
   "family": "lam_taarif",
   "detectability": "A",
-  "legend_class_ids": [],
   "limitations": [
-    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
-    "Only Book A is cited; Book B (the Abu Nashit source) has not been read for this rule."
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed."
   ],
   "conditions": [
     {

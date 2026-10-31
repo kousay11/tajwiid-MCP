@@ -28,7 +28,7 @@ def create_server(settings: Settings | None = None) -> MCPServer:
             "snapshot by default). "
             "Review-required mappings are unsafe for retrieval. Tajwid rules, candidate "
             "annotations and source-page lookup are local-only and unreviewed: no annotation is "
-            "scholarly verified and explanations are unavailable. "
+            "scholarly verified "
             "Corpus tariq is unspecified, not independently attested."
         ),
     )

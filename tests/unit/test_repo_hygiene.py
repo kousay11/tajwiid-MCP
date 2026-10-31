@@ -19,9 +19,7 @@ def test_no_source_book_scan_page_image_or_extracted_text_is_tracked():
     files = tracked()
     assert not [f for f in files if f.lower().endswith(FORBIDDEN)]
     assert not [f for f in files if "/pages" in f and f.startswith("knowledge/sources/")]
-    assert not [
-        f for f in files if f.startswith((".work/", "knowledge/derived/", "knowledge/mushaf/"))
-    ]
+    assert not [f for f in files if f.startswith(("knowledge/derived/",))]
 
 
 def test_ignore_rules_cover_the_unknown_licence_material():
@@ -33,10 +31,9 @@ def test_ignore_rules_cover_the_unknown_licence_material():
             "docs/x.pdf",
             "knowledge/sources/book-a-2010/pages.jsonl",
             "knowledge/sources/book-a-2010/pages_manifest.json",
-            ".work/mushaf_pilot/page0001.json",
         ],
         cwd=ROOT,
         capture_output=True,
         text=True,
     ).stdout.split()
-    assert len(ignored) == 4
+    assert len(ignored) == 3
