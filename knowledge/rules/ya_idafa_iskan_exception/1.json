@@ -11,7 +11,8 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "A closed list in the Kufian numbering used by the book."
+    "A closed list in the Kufian numbering used by the book.",
+    "The book disagrees with itself on four places. Each word was looked up in the corpus: (1) تدعونني: p.46 item 13 gives Ghafir 43 only, p.49 item 6 gives 41 and 43; the word is in both, both are kept. (2) أنظرني: p.46 item 6 gives al-A'raf 40, p.49 item 1 gives 14; the word is in 7:14 only, 7:14 is kept. (3) فأنظرني: p.46 item 6 gives Sad 79, p.49 item 4 gives Sad 147, which does not exist; the word is in 38:79, kept. (4) أوزعني: p.49 item 6 gives al-Ahqaf 14; the word is in 46:15, with ذريتي (p.46 item 15), and not in 46:14, so 46:15 is kept. The count of 21 on p.46 lists only 20 places because of (1)."
   ],
   "conditions": [
     {

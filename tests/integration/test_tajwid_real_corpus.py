@@ -113,6 +113,37 @@ def test_alan_is_found_twice_with_three_readings(engine, all_rules):
     assert len(three) == 2 and all("tashil_without_madd" in o.variants for o in three)
 
 
+def test_disputed_words_are_in_the_retained_ayah_and_not_in_the_other_cited_number(engine):
+    """Each word Book A places in two ways is looked up in the corpus under both numbers."""
+    from wirdi_mcp.tajwid.lexicon import skeleton
+    from wirdi_mcp.tajwid.text import tokenize
+
+    rows = engine.repository.load_edition("qalun")
+
+    def has(surah, kufi, pattern):
+        import re
+
+        return any(
+            re.fullmatch(pattern, skeleton(w))
+            for r in rows
+            if r.surah == surah and kufi in r.links
+            for w in tokenize(r.text)
+        )
+
+    kept = [
+        (7, 14, "ءنظرني"),
+        (38, 79, "فءنظرني"),
+        (46, 15, "ءوزعني"),
+        (46, 15, "ذريتي"),
+        (40, 41, "و?تدعونني"),
+        (40, 43, "و?تدعونني"),
+        (2, 124, "عهدي"),
+    ]
+    rejected = [(7, 40, "ءنظرني"), (38, 147, "فءنظرني"), (46, 14, "ءوزعني"), (2, 144, "عهدي")]
+    assert all(has(*k) for k in kept), [k for k in kept if not has(*k)]
+    assert not any(has(*k) for k in rejected), [k for k in rejected if has(*k)]
+
+
 def test_idhar_mutlaq_hits_only_the_four_words_the_book_names(engine, all_rules):
     """Book A p.6 names four words; detector hits must all belong to those lexemes."""
     rows = engine.repository.load_edition("qalun")

@@ -11,7 +11,8 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "Recognised from the open ya the corpus spells with a fatha; the third-person pronoun هي is skipped."
+    "Recognised from the open ya the corpus spells with a fatha; the third-person pronoun هي is skipped.",
+    "Book A p.47 item 1 gives « عهدي الظالمين » at al-Baqara 144; the word is in the Kufian ayah 2:124 in the corpus and not in 2:144. The number is the book's error and has no effect here, since this rule is read from the spelling and not from a place."
   ],
   "conditions": [
     {

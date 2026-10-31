@@ -48,6 +48,22 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 - The other words of that list (نؤته، نوله، نصله، أرجه، يتقه، يؤده) are stated one way and carry no
   `variants`.
 
+## Contradictions between pages of Book A (ya'at al-idafa)
+
+Read from the page images (pp.46-50) and checked against the corpus. Places are the book's Kufian
+numbers; "kept" means the word is in that ayah of the corpus.
+
+| Word | Page A says | Page B says | Corpus check | Kept |
+| --- | --- | --- | --- | --- |
+| تدعونني | p.46 item 13: Ghafir 43 only | p.49 item 6: Ghafir 41 and 43 | in 40:41 and 40:43 | both |
+| أنظرني | p.46 item 6: al-A'raf 40 | p.49 item 1: al-A'raf 14 | in 7:14, not in 7:40 | 7:14 |
+| فأنظرني | p.46 item 6: al-Hijr 36, Sad 79 | p.49 item 4: al-Hijr 36, Sad 147 | in 15:36 and 38:79; Sad has no 147 | 15:36, 38:79 |
+| أوزعني | p.49 item 6: al-Ahqaf 14 | p.46 item 15 puts ذريتي in 15, the same ayah | in 46:15, not in 46:14 | 46:15 |
+| عهدي الظالمين | p.47 item 1: al-Baqara 144 | (no other page) | in 2:124, not in 2:144 | no place used |
+
+The heading of p.46 announces 21 closed words but its list gives 20 places (it omits Ghafir 41);
+p.48-49 list 21. Nothing in the code depends on the p.46 count.
+
 ## Ya'at al-idafa
 
 The corpus spells the open ya with a fatha and the closed ya with the yeh barree, but the yeh

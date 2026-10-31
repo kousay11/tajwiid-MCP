@@ -445,3 +445,29 @@ def test_ana_before_a_fatha_or_damma_hamza_takes_the_munfasil_lengths():
     ana = "أ" + FATHA + "ن" + FATHA + "ا"
     hits, _ = found(ana + " أ" + FATHA + "ن", "alef_ana_before_hamza", mode="wasl", stops=False)
     assert hits and hits[0][2] == ("2_harakat", "3_harakat", "4_harakat")
+
+
+# --- contradictions between pages are recorded, and the retained places are the checked ones ----
+def test_retained_places_of_the_disputed_ya_words():
+    from wirdi_mcp.tajwid.lexicon import LEXEMES
+
+    places = {
+        lx.pattern.pattern: lx.places for lx in LEXEMES if lx.rule_id == "ya_idafa_iskan_exception"
+    }
+    assert places["^ءنظرني$"] == ((7, 14),)  # not 7:40
+    assert places["^فءنظرني$"] == ((15, 36), (38, 79))  # not 38:147
+    assert places["^ءوزعني$"] == ((27, 19), (46, 15))  # not 46:14
+    assert places["^و?تدعونني$"] == ((40, 41), (40, 43))  # both pages' places
+
+
+def test_the_rule_limits_name_both_pages_of_each_contradiction():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "knowledge" / "rules"
+    iskan = json.loads((root / "ya_idafa_iskan_exception" / "1.json").read_text("utf-8"))
+    text = " ".join(iskan["limitations"])
+    for needle in ("p.46", "p.49", "Ghafir", "al-A'raf", "Sad 147", "al-Ahqaf 14", "46:15"):
+        assert needle in text, needle
+    fath = json.loads((root / "ya_idafa_fath" / "1.json").read_text("utf-8"))
+    assert "p.47" in " ".join(fath["limitations"]) and "2:124" in " ".join(fath["limitations"])

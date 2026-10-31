@@ -456,7 +456,7 @@
       "rule_id": "ya_idafa_fath",
       "version": "1",
       "path": "rules/ya_idafa_fath/1.json",
-      "sha256": "809ecc440fb23954553cebbb1de8940e01de193849d69772a6befe3c1e53b415"
+      "sha256": "28a58a4b78a887787901eb5fa2ca9e302cdf074bc4ad28fd4d24132bc88d72c1"
     },
     {
       "rule_id": "ya_idafa_fath_exception",
@@ -474,7 +474,7 @@
       "rule_id": "ya_idafa_iskan_exception",
       "version": "1",
       "path": "rules/ya_idafa_iskan_exception/1.json",
-      "sha256": "1e626c1efa45c9b8067a7eaa9138ea343da01835b42c8abffcc68b492c4a9e38"
+      "sha256": "51f20097196c4e57f38a23b2ca547ed9f51de12db7ead51a9caee1cb8888f2bd"
     },
     {
       "rule_id": "ya_idafa_maee",

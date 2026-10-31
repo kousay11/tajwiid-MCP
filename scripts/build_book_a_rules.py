@@ -229,6 +229,9 @@ RULES: dict[str, tuple] = {
         (("closed_ya", "Words listed in `ya_idafa_iskan_exception` are closed."),),
         (
             "Recognised from the open ya the corpus spells with a fatha; the third-person pronoun هي is skipped.",
+            "Book A p.47 item 1 gives « عهدي الظالمين » at al-Baqara 144; the word is in the Kufian "
+            "ayah 2:124 in the corpus and not in 2:144. The number is the book's error and has no "
+            "effect here, since this rule is read from the spelling and not from a place.",
         ),
     ),
     "ya_idafa_iskan_exception": (
@@ -248,7 +251,17 @@ RULES: dict[str, tuple] = {
             ),
         ),
         (),
-        ("A closed list in the Kufian numbering used by the book.",),
+        (
+            "A closed list in the Kufian numbering used by the book.",
+            "The book disagrees with itself on four places. Each word was looked up in the corpus: "
+            "(1) تدعونني: p.46 item 13 gives Ghafir 43 only, p.49 item 6 gives 41 and 43; the word "
+            "is in both, both are kept. (2) أنظرني: p.46 item 6 gives al-A'raf 40, p.49 item 1 gives "
+            "14; the word is in 7:14 only, 7:14 is kept. (3) فأنظرني: p.46 item 6 gives Sad 79, "
+            "p.49 item 4 gives Sad 147, which does not exist; the word is in 38:79, kept. "
+            "(4) أوزعني: p.49 item 6 gives al-Ahqaf 14; the word is in 46:15, with ذريتي (p.46 item "
+            "15), and not in 46:14, so 46:15 is kept. The count of 21 on p.46 lists only 20 places "
+            "because of (1).",
+        ),
     ),
     "ya_idafa_fath_exception": (
         "yaat",
