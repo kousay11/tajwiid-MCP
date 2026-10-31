@@ -1,0 +1,138 @@
+[
+  {
+    "file": "BOOK_21652_1.pdf",
+    "sha256": "cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+    "bytes": 612602,
+    "pdfinfo": {
+      "Author": "NAJWA",
+      "Creator": "Microsoft® Word 2010",
+      "Producer": "Microsoft® Word 2010",
+      "CreationDate": "Tue Dec 26 17:05:08 2017 CET",
+      "Pages": "51",
+      "Encrypted": "no"
+    },
+    "protected_copy": false,
+    "sampled_pages": [
+      {
+        "pdf_page": 1,
+        "text_chars": 655,
+        "images": 0
+      },
+      {
+        "pdf_page": 2,
+        "text_chars": 1312,
+        "images": 0
+      },
+      {
+        "pdf_page": 3,
+        "text_chars": 1413,
+        "images": 0
+      },
+      {
+        "pdf_page": 25,
+        "text_chars": 1036,
+        "images": 0
+      },
+      {
+        "pdf_page": 50,
+        "text_chars": 1213,
+        "images": 0
+      },
+      {
+        "pdf_page": 51,
+        "text_chars": 324,
+        "images": 0
+      }
+    ]
+  },
+  {
+    "file": "Noor-Book.com  أحكام التجويد قالون عن نافع 3 .pdf",
+    "sha256": "db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+    "bytes": 2897113,
+    "pdfinfo": {
+      "Creator": "Canon",
+      "Producer": "",
+      "CreationDate": "Sun Aug 10 12:07:09 2014 CET",
+      "Pages": "156",
+      "Encrypted": "yes (print:yes copy:no change:no addNotes:no algorithm:AES)"
+    },
+    "protected_copy": true,
+    "sampled_pages": [
+      {
+        "pdf_page": 1,
+        "text_chars": null,
+        "images": 1
+      },
+      {
+        "pdf_page": 2,
+        "text_chars": null,
+        "images": 1
+      },
+      {
+        "pdf_page": 3,
+        "text_chars": null,
+        "images": 1
+      },
+      {
+        "pdf_page": 78,
+        "text_chars": null,
+        "images": 1
+      },
+      {
+        "pdf_page": 155,
+        "text_chars": null,
+        "images": 1
+      },
+      {
+        "pdf_page": 156,
+        "text_chars": null,
+        "images": 1
+      }
+    ]
+  },
+  {
+    "file": "مصحف-قالون-الطبعة-التونسية-1.pdf",
+    "sha256": "b4be5ddedc2e9098dfbe5164e73d7a3858ad7e31d37cf0fe8bb1d2d6eafb76a2",
+    "bytes": 468299383,
+    "pdfinfo": {
+      "Creator": "Canon SC1011(Infix Pro)",
+      "Producer": "MP Navigator EX",
+      "CreationDate": "Thu Feb 13 07:44:56 2014 CET",
+      "Pages": "627",
+      "Encrypted": "no"
+    },
+    "protected_copy": false,
+    "sampled_pages": [
+      {
+        "pdf_page": 1,
+        "text_chars": 0,
+        "images": 1
+      },
+      {
+        "pdf_page": 2,
+        "text_chars": 62,
+        "images": 4
+      },
+      {
+        "pdf_page": 3,
+        "text_chars": 200,
+        "images": 1
+      },
+      {
+        "pdf_page": 313,
+        "text_chars": 247,
+        "images": 1
+      },
+      {
+        "pdf_page": 626,
+        "text_chars": 300,
+        "images": 1
+      },
+      {
+        "pdf_page": 627,
+        "text_chars": 21,
+        "images": 1
+      }
+    ]
+  }
+]
