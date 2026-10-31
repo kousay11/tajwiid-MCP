@@ -567,9 +567,56 @@ def test_madd_iwad_and_ana_dropped_cite_the_pages_found_missing_on_the_images():
 
     root = Path(__file__).resolve().parents[2] / "knowledge/rules"
     for rule_id, pages in (
-        ("madd_iwad", ["p.15", "p.16"]),
+        ("madd_iwad", ["p.15", "p.16", "p.17"]),
         ("alef_ana_dropped", ["p.23", "p.24"]),
     ):
+        rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
+        assert [c["locator"] for c in rule["evidence"]] == pages, rule_id
+        for clause in rule["conditions"]:
+            assert [c["locator"] for c in clause["evidence"]] == pages, (
+                rule_id,
+                clause["clause_id"],
+            )
+
+
+def test_the_four_verbs_with_an_accidental_damma_begin_with_a_kasra():
+    """p.31: امشوا، ابنوا، امضوا، اقضوا have a damma on the third letter that is not original."""
+    for third_letter, word_end in (("ش", "امشوا"), ("ن", "ابنوا"), ("ض", "امضوا")):
+        second = word_end[1]
+        text = "ا" + LOW_STOP + second + SUKUN + third_letter + DAMMA + "و" + "ا" + SUKUN
+        _, view = found(text, "hamzat_wasl_verb")
+        assert view.occurrences, word_end
+        assert "kasra" in view.occurrences[0].note, word_end
+    # an ordinary verb whose third letter has a damma still begins with a damma (p.31)
+    ordinary = "ا" + LOW_STOP + "خ" + SUKUN + "ر" + DAMMA + "ج" + SUKUN
+    _, view = found(ordinary, "hamzat_wasl_verb")
+    assert "damma" in view.occurrences[0].note
+
+
+def test_pages_found_missing_on_the_images_of_pp_25_to_50_are_cited():
+    """Page images read for hamza, heavy and light letters, idgham and ya'at (and some madd)."""
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "knowledge/rules"
+    expected = {
+        "hamzat_wasl_article": ["p.29", "p.31"],
+        "hamzat_wasl_noun": ["p.29", "p.30", "p.31"],
+        "hamzat_wasl_verb": ["p.30", "p.31"],
+        "ra_tafkhim": ["p.33", "p.34"],
+        "lam_jalala_tarqiq": ["p.34", "p.35"],
+        "alef_tafkhim": ["p.32", "p.35"],
+        "ya_idafa_fath": ["p.45", "p.46", "p.47", "p.48", "p.49", "p.50"],
+        "ya_idafa_iskan_before_letter": ["p.47", "p.50"],
+        "ya_idafa_iskan_exception": ["p.46", "p.48", "p.49", "p.50"],
+        "ya_idafa_rabbi_two_readings": ["p.46", "p.49"],
+        "idgham_mutajanisayn": ["p.36", "p.37", "p.38"],
+        "madd_badal": ["p.15", "p.16"],
+        "madd_harf_hay_tahar": ["p.15", "p.17", "p.23"],
+        "madd_lin": ["p.20", "p.21"],
+        "madd_iwad": ["p.15", "p.16", "p.17"],
+    }
+    for rule_id, pages in expected.items():
         rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
         assert [c["locator"] for c in rule["evidence"]] == pages, rule_id
         for clause in rule["conditions"]:

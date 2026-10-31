@@ -184,7 +184,7 @@ RULES: dict[str, tuple] = {
         "idgham",
         "إدغام المتجانسين",
         "A",
-        ("p.36", "p.37"),
+        ("p.36", "p.37", "p.38"),
         "A sakin letter merges into a letter of the same place but different quality: ت/ط, ط/ت, "
         "ت/د, د/ت, ث/ذ, ذ/ظ, ب/م.",
         (("pair", "The pair is one of the seven listed and the second letter has a shadda."),),
@@ -217,7 +217,7 @@ RULES: dict[str, tuple] = {
         "yaat",
         "فتح ياء الإضافة قبل الهمزة",
         "B",
-        ("p.45", "p.46", "p.48", "p.49", "p.50"),
+        ("p.45", "p.46", "p.47", "p.48", "p.49", "p.50"),
         "Qaloun opens (fatha) the first-person ya before every hamza qat' and before hamzat "
         "al-wasl, with the exceptions in the next record.",
         (
@@ -238,7 +238,7 @@ RULES: dict[str, tuple] = {
         "yaat",
         "ياءات الإضافة الساكنة استثناء",
         "C",
-        ("p.46", "p.48", "p.49"),
+        ("p.46", "p.48", "p.49", "p.50"),
         "First-person ya read with sukun although it precedes a hamza or hamzat al-wasl: eight "
         "words before a fatha hamza (فاذكروني، أرني، تفتني، ترحمني، فاتبعني، أوزعني ×2، ذروني، "
         "ادعوني), eight before a kasra hamza (أنظرني، يدعونني، إخوتي، فأنظرني ×2، يصدقني، "
@@ -279,7 +279,7 @@ RULES: dict[str, tuple] = {
         "yaat",
         "ياءات الإضافة الساكنة قبل الحروف",
         "C",
-        ("p.47",),
+        ("p.47", "p.50"),
         "Before an ordinary letter the first-person ya is closed; Book A names seven examples: "
         "ومحياي (al-An'am 162), وما كان لي عليكم (Ibrahim 22), ولي فيها (Ta-Ha 18), مالي لا أرى "
         "(an-Naml 20), ولي نعجة (Sad 23), ما كان لي من علم (Sad 69), بيتي مؤمنا (Nuh 28).",
@@ -310,7 +310,7 @@ RULES: dict[str, tuple] = {
         "yaat",
         "ياء ربي في فصلت",
         "C",
-        ("p.46",),
+        ("p.46", "p.49"),
         "The ya of ربي in Fussilat 50 (إن لي عنده للحسنى) may be read with fatha or sukun; the "
         "fatha is the reading put first in teaching.",
         (("place", "The word ربي in Fussilat 50."),),
@@ -335,7 +335,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "مد البدل",
         "A",
-        ("p.15",),
+        ("p.15", "p.16"),
         "A madd letter that replaces the second of two hamzas takes the same two harakat as the "
         "natural madd; it follows a hamza in the same word.",
         (("after_hamza", "The madd letter comes right after a hamza in the same word."),),
@@ -346,7 +346,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "مد العوض",
         "A",
-        ("p.15", "p.16"),
+        ("p.15", "p.16", "p.17"),
         "When a word that ends in tanween with a fatha is stopped on, the tanween is replaced by "
         "an alef of two harakat. A tanween on the feminine ta (ة) is stopped on with a ha instead.",
         (
@@ -360,7 +360,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "الألف في هجاء أحرف حي طهر",
         "A",
-        ("p.17",),
+        ("p.15", "p.17", "p.23"),
         "In the isolated letters ح ي ط ه ر at the opening of a surah the spelled-out name has an "
         "alef that lengthens by two harakat only.",
         (("opening", "The letter is one of ح ي ط ه ر at the opening of a surah."),),
@@ -504,7 +504,7 @@ RULES: dict[str, tuple] = {
         "madd",
         "مد اللين",
         "B",
-        ("p.21",),
+        ("p.20", "p.21"),
         "A sakin waw or yeh after a fatha, right before the last letter of a stopped word, may be "
         "lengthened by two, four or six harakat.",
         (
@@ -715,7 +715,7 @@ RULES: dict[str, tuple] = {
         "hamza",
         "همزة الوصل في أل التعريف",
         "A",
-        ("p.29",),
+        ("p.29", "p.31"),
         "Hamzat al-wasl in the article is pronounced with a fatha when the reading starts there "
         "and dropped when joined.",
         (("article", "The word begins with the article alef-lam."),),
@@ -726,7 +726,7 @@ RULES: dict[str, tuple] = {
         "hamza",
         "همزة الوصل في الأسماء",
         "C",
-        ("p.29", "p.30"),
+        ("p.29", "p.30", "p.31"),
         "Hamzat al-wasl occurs in seven nouns: اسم، ابن، ابنة، امرؤ، امرأة، اثنان/اثنين، "
         "اثنتان/اثنتين; the reading starts on it with a kasra.",
         (("nouns", "The word is one of the seven nouns."),),
@@ -737,7 +737,7 @@ RULES: dict[str, tuple] = {
         "hamza",
         "همزة الوصل في الأفعال",
         "B",
-        ("p.30",),
+        ("p.30", "p.31"),
         "Hamzat al-wasl begins the imperative of three-letter verbs and the past tense, imperative "
         "and verbal noun of five- and six-letter verbs; the reading starts on it with a damma if "
         "the third letter has a damma, otherwise a kasra.",
@@ -766,7 +766,7 @@ RULES: dict[str, tuple] = {
         "tafkhim",
         "تفخيم الراء",
         "B",
-        ("p.33",),
+        ("p.33", "p.34"),
         "A ra that is not word-final is heavy when it has a fatha or damma, or is sakin after a "
         "fatha, a damma, an accidental kasra, or an original kasra followed by a non-kasra "
         "isti'la letter.",
@@ -846,7 +846,7 @@ RULES: dict[str, tuple] = {
         "tafkhim",
         "ترقيق لام لفظ الجلالة",
         "B",
-        ("p.35",),
+        ("p.34", "p.35"),
         "The lam of the name of Allah is light when the letter before it has a kasra, including "
         "a tanween that takes a kasra before it.",
         (("name", "The word is the name of Allah."),),
@@ -857,7 +857,7 @@ RULES: dict[str, tuple] = {
         "tafkhim",
         "تفخيم الألف",
         "B",
-        ("p.35",),
+        ("p.32", "p.35"),
         "A madd alef is heavy after an isti'la letter (خ ص ض غ ط ق ظ) or after the heavy lam of "
         "the name of Allah.",
         (("after_heavy", "The letter before the alef is an isti'la letter or the heavy lam."),),

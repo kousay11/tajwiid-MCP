@@ -6,7 +6,7 @@ and no source-book or Quran text is written. Reading context is waqf unless stat
 
 Server `wirdi-mcp` 0.6.0; 12 tools: `health_check`, `get_qaloun_passage`, `resolve_source_mapping`, `get_tajwid_rule`, `list_tajwid_rules`, `analyze_qaloun_tajwid`, `summarize_tajwid`, `analyze_app_page`, `get_tajwid_explanation`, `get_source_page`, `search_source_pages`, `get_letter_properties`
 
-## `health_check` (ok: not_applicable, 34 ms)
+## `health_check` (ok: not_applicable, 37 ms)
 
 Arguments: `{}`
 
@@ -36,7 +36,7 @@ Arguments: `{}`
 }
 ```
 
-## `list_tajwid_rules` (ok: unreviewed, 57 ms)
+## `list_tajwid_rules` (ok: unreviewed, 52 ms)
 
 Arguments: `{}`
 
@@ -118,7 +118,7 @@ Arguments: `{}`
 ... (18890 more characters)
 ```
 
-## `get_tajwid_rule` (ok: unreviewed, 20 ms)
+## `get_tajwid_rule` (ok: unreviewed, 21 ms)
 
 Arguments: `{"rule_id": "qalqala_kubra", "version": "1"}`
 
@@ -170,7 +170,7 @@ Arguments: `{"rule_id": "qalqala_kubra", "version": "1"}`
 ... (3102 more characters)
 ```
 
-## `get_qaloun_passage` (ok: machine_checked, 45 ms)
+## `get_qaloun_passage` (ok: machine_checked, 46 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 18, "ayah": 45}, "end_ayah": 52}}`
 
@@ -227,7 +227,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (12554 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 100 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 107 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 18, "ayah": 45}, "end_ayah": 52}, "reading_c`
 
@@ -280,20 +280,19 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "validation_status": "unreviewed",
       "uri": null
-     }
-    ],
-    "validation_record_ids": [],
-    "page_refs": {
-     "app_page_start": 263,
-     "app_page_end": 263,
-     "app_pagination_sha256": "ca7aa4e4749c74bd08e07bb814b34b8cf876189a3c184df10bf23884264ccfc0",
-     "source_edition_id": null,
-     "source_page_pdf": null,
-     "source_page_pr
-... (11491 more characters)
+     },
+     {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.31",
+  
+... (12007 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 42 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 44 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 18, "ayah": 45}, "end_ayah": 52}, "reading_c`
 
@@ -346,20 +345,19 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "validation_status": "unreviewed",
       "uri": null
-     }
-    ],
-    "validation_record_ids": [],
-    "page_refs": {
-     "app_page_start": 263,
-     "app_page_end": 263,
-     "app_pagination_sha256": "ca7aa4e4749c74bd08e07bb814b34b8cf876189a3c184df10bf23884264ccfc0",
-     "source_edition_id": null,
-     "source_page_pdf": null,
-     "source_page_pr
-... (7264 more characters)
+     },
+     {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.31",
+  
+... (7780 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 34 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 38 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 112, "ayah": 1}, "end_ayah": 4}, "reading_co`
 
@@ -423,7 +421,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (15685 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 43 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 44 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 1}, "end_ayah": 40}, "reading_con`
 
@@ -490,7 +488,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (6917 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 43 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 42 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 1}, "end_ayah": 7}, "reading_cont`
 
@@ -556,7 +554,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (10551 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 30 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 36 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 1}, "end_ayah": 7}, "reading_cont`
 
@@ -609,20 +607,19 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "validation_status": "unreviewed",
       "uri": null
-     }
-    ],
-    "validation_record_ids": [],
-    "page_refs": {
-     "app_page_start": 2,
-     "app_page_end": 2,
-     "app_pagination_sha256": "ca7aa4e4749c74bd08e07bb814b34b8cf876189a3c184df10bf23884264ccfc0",
-     "source_edition_id": null,
-     "source_page_pdf": null,
-     "source_page_printe
-... (8325 more characters)
+     },
+     {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.31",
+  
+... (9873 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 54 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 62 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 8}, "end_ayah": 20}, "reading_con`
 
@@ -747,7 +744,7 @@ Arguments: `{"rule_id": "madd_munfasil", "version": "1"}`
 ... (576 more characters)
 ```
 
-## `get_letter_properties` (ok: unreviewed, 19 ms)
+## `get_letter_properties` (ok: unreviewed, 17 ms)
 
 Arguments: `{"letters": ["ق", "ء", "ر"]}`
 
@@ -818,7 +815,7 @@ Arguments: `{"letters": ["ق", "ء", "ر"]}`
   {
    "origin_id": "wirdi-mcp:tajwid-rules",
    "origin_version": "wirdi-mcp-rules-v1",
-   "content_sha256": "c5ea1646a15a52e68b58844cd0640e30ee94b935d355f05fc20f504784e80e0c",
+   "content_sha256": "0bb3c83a400efe453de9629108c285f0375b59de827cbe5391e381bf93a155b9",
    "citations": [],
    "retrieved_at": null
   }
@@ -830,7 +827,7 @@ Arguments: `{"letters": ["ق", "ء", "ر"]}`
 }
 ```
 
-## `summarize_tajwid` (ok: unreviewed, 104 ms)
+## `summarize_tajwid` (ok: unreviewed, 100 ms)
 
 Arguments: `{"surah": 18, "reading_context": {"mode": "waqf"}, "limit": 3}`
 
@@ -918,7 +915,7 @@ Arguments: `{"surah": 18, "reading_context": {"mode": "waqf"}, "limit": 3}`
 ... (4836 more characters)
 ```
 
-## `analyze_app_page` (ok: unreviewed, 89 ms)
+## `analyze_app_page` (ok: unreviewed, 83 ms)
 
 Arguments: `{"page": 263, "reading_context": {"mode": "waqf"}, "limit": 3}`
 
@@ -1019,7 +1016,7 @@ Arguments: `{"page": 263, "reading_context": {"mode": "waqf"}, "limit": 3}`
       },
       "ayah_sha256": "0b7893b1d53303f2a0d74877210606674658eb7256102a61aba44676c849d407",
       "start_codepoint": 6
-... (13241 more characters)
+... (14299 more characters)
 ```
 
 ## `get_tajwid_explanation` (error: UNSUPPORTED_CAPABILITY, 2 ms)
@@ -1038,7 +1035,7 @@ Arguments: `{"annotation_id": "lam_qamariya:1:18:45:3-5:waqf", "annotation_versi
 }
 ```
 
-## `get_source_page` (ok: unreviewed, 17 ms)
+## `get_source_page` (ok: unreviewed, 15 ms)
 
 Arguments: `{"edition_id": "book-a-2010", "page_start": 44, "page_end": 44}`
 
@@ -1062,7 +1059,7 @@ Arguments: `{"edition_id": "book-a-2010", "page_start": 44, "page_end": 44}`
   {
    "origin_id": "wirdi-mcp:tajwid-rules",
    "origin_version": "wirdi-mcp-rules-v1",
-   "content_sha256": "c5ea1646a15a52e68b58844cd0640e30ee94b935d355f05fc20f504784e80e0c",
+   "content_sha256": "0bb3c83a400efe453de9629108c285f0375b59de827cbe5391e381bf93a155b9",
    "citations": [],
    "retrieved_at": null
   }
@@ -1074,7 +1071,7 @@ Arguments: `{"edition_id": "book-a-2010", "page_start": 44, "page_end": 44}`
 }
 ```
 
-## `search_source_pages` (ok: unreviewed, 46 ms)
+## `search_source_pages` (ok: unreviewed, 38 ms)
 
 Arguments: `{"query": "القلقلة", "edition_ids": ["book-a-2010"], "limit": 5}`
 
@@ -1097,7 +1094,7 @@ Arguments: `{"query": "القلقلة", "edition_ids": ["book-a-2010"], "limit":
   {
    "origin_id": "wirdi-mcp:tajwid-rules",
    "origin_version": "wirdi-mcp-rules-v1",
-   "content_sha256": "c5ea1646a15a52e68b58844cd0640e30ee94b935d355f05fc20f504784e80e0c",
+   "content_sha256": "0bb3c83a400efe453de9629108c285f0375b59de827cbe5391e381bf93a155b9",
    "citations": [],
    "retrieved_at": null
   }
@@ -1109,7 +1106,7 @@ Arguments: `{"query": "القلقلة", "edition_ids": ["book-a-2010"], "limit":
 }
 ```
 
-## `analyze_qaloun_tajwid` (error: NOT_FOUND, 32 ms)
+## `analyze_qaloun_tajwid` (error: NOT_FOUND, 27 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 18, "ayah": 45}, "end_ayah": 52}, "reading_c`
 

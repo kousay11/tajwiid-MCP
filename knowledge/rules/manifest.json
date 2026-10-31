@@ -24,7 +24,7 @@
       "rule_id": "alef_tafkhim",
       "version": "1",
       "path": "rules/alef_tafkhim/1.json",
-      "sha256": "329ad304a0981063e1e09004d980282ee8cf0e96260f94f2d20f6e8ce55204bd"
+      "sha256": "e3d826f0a8ee3ce93c5480699c03f09d2bf56e3b446efe052cd7b116375c3bd9"
     },
     {
       "rule_id": "alef_tarqiq",
@@ -138,19 +138,19 @@
       "rule_id": "hamzat_wasl_article",
       "version": "1",
       "path": "rules/hamzat_wasl_article/1.json",
-      "sha256": "315695789038343a86174a18efdaeb71aa70bab4abe428c50fb07ff1b7acf6df"
+      "sha256": "9f7d3c777806d9b87b31386d82a4610c0fd40e29328d299dc478d566d53b6719"
     },
     {
       "rule_id": "hamzat_wasl_noun",
       "version": "1",
       "path": "rules/hamzat_wasl_noun/1.json",
-      "sha256": "d3ea70212ac79697544cb10a58a4927fd689202cf2e595b87ecfe51d327bab93"
+      "sha256": "e2b75c2e8f19a33cfa4ab4b610281abae230f6237ae7d7acf2fbb1dd4d882aee"
     },
     {
       "rule_id": "hamzat_wasl_verb",
       "version": "1",
       "path": "rules/hamzat_wasl_verb/1.json",
-      "sha256": "e968e8540d3c8e07f5db97ff7ea9d928e2008de7952b3ca2b2f24a7786e57c59"
+      "sha256": "de844de5279f83e544bf61a1dc76da41d200a3fd00e0f7d5979701c8020cd377"
     },
     {
       "rule_id": "idgham_bighunna",
@@ -174,7 +174,7 @@
       "rule_id": "idgham_mutajanisayn",
       "version": "1",
       "path": "rules/idgham_mutajanisayn/1.json",
-      "sha256": "68713f5c2fe01700d271916a49c01c8c6aba0669512bf3a9b427fbbb9372a932"
+      "sha256": "3b2219a10d5f33b52c87c206eb58303eb864eb5841396f49d3723efe6570b2b7"
     },
     {
       "rule_id": "idgham_mutamathilayn",
@@ -264,7 +264,7 @@
       "rule_id": "lam_jalala_tarqiq",
       "version": "1",
       "path": "rules/lam_jalala_tarqiq/1.json",
-      "sha256": "93c612e24097e39992940c2974af72cb070f71f61c2195515b08fff9ea2d2277"
+      "sha256": "45219066d685975efa7849c68464769d39e2d4cf474b4aa15f8b1c34b3d442ff"
     },
     {
       "rule_id": "lam_qamariya",
@@ -288,19 +288,19 @@
       "rule_id": "madd_badal",
       "version": "1",
       "path": "rules/madd_badal/1.json",
-      "sha256": "7e538e86d5624e5885d8c9afeae812ed33cbbe41243b53ad771d28d351210223"
+      "sha256": "3a352294910f7efa0b6ece2ff06da46eab79a117872daac3c8cacc7673a04dd3"
     },
     {
       "rule_id": "madd_harf_hay_tahar",
       "version": "1",
       "path": "rules/madd_harf_hay_tahar/1.json",
-      "sha256": "3e3084c4ad68c9b1d657625d4e385365233d2b5e247af135033a8d869364b620"
+      "sha256": "a589548961c452cc3ee46e36bae5b72deb684c1edb56ce0493cf10aec3b8e5f2"
     },
     {
       "rule_id": "madd_iwad",
       "version": "1",
       "path": "rules/madd_iwad/1.json",
-      "sha256": "abbe3aecd9a4d4070ea8f19faa6f7402e8e73ad34e91153ec06baa56a8fd6b88"
+      "sha256": "ea4a8fad971158265bdd1cc8e3c8fa377954ac87fdfd19761882603050f26376"
     },
     {
       "rule_id": "madd_lazim_harfi_mukhaffaf",
@@ -336,7 +336,7 @@
       "rule_id": "madd_lin",
       "version": "1",
       "path": "rules/madd_lin/1.json",
-      "sha256": "a7e16734bb422333c771bd90834a2051aa2ff6cec669e229c34bbeda89b05707"
+      "sha256": "7d02cf0316a07d5e1acc6bd0afb304adc5f9477ae1406b15943d9c4bd8bdeb4b"
     },
     {
       "rule_id": "madd_munfasil",
@@ -432,7 +432,7 @@
       "rule_id": "ra_tafkhim",
       "version": "1",
       "path": "rules/ra_tafkhim/1.json",
-      "sha256": "546c77d075f3a4ae5a3b67af05dc7ee305460c413220d4bbc2dee95dab5274f7"
+      "sha256": "21dd38603394b0ee426e47f6ffcbf93e9ef2eb37c175ba311023bf586acffbc4"
     },
     {
       "rule_id": "ra_tarqiq",
@@ -456,7 +456,7 @@
       "rule_id": "ya_idafa_fath",
       "version": "1",
       "path": "rules/ya_idafa_fath/1.json",
-      "sha256": "28a58a4b78a887787901eb5fa2ca9e302cdf074bc4ad28fd4d24132bc88d72c1"
+      "sha256": "f46f811d0a8e4fa4f8496ee589d7c6d055151ce13513dd91a1694bf92e069b29"
     },
     {
       "rule_id": "ya_idafa_fath_exception",
@@ -468,13 +468,13 @@
       "rule_id": "ya_idafa_iskan_before_letter",
       "version": "1",
       "path": "rules/ya_idafa_iskan_before_letter/1.json",
-      "sha256": "09c6930f03770ec5a78109659945089775ecce76fb9daa276d88d22be4a72c60"
+      "sha256": "62bfa6b926db030d8ec12158ea6749eaf4f245dc9483a01559ce8e6a110b7f7b"
     },
     {
       "rule_id": "ya_idafa_iskan_exception",
       "version": "1",
       "path": "rules/ya_idafa_iskan_exception/1.json",
-      "sha256": "51f20097196c4e57f38a23b2ca547ed9f51de12db7ead51a9caee1cb8888f2bd"
+      "sha256": "25a23b11570fdeb7e3a03e3bf8db80913234d0b328851122faa24d236ec0a4c4"
     },
     {
       "rule_id": "ya_idafa_maee",
@@ -486,7 +486,7 @@
       "rule_id": "ya_idafa_rabbi_two_readings",
       "version": "1",
       "path": "rules/ya_idafa_rabbi_two_readings/1.json",
-      "sha256": "bca365550de307cfd5b359cc13f0de28ae1553004aff37b17a4beb865afd49ec"
+      "sha256": "5e5f3684c8718c117d17828f05c2bb050542b7876327e82b0dd97ae7516cc0e3"
     }
   ]
 }

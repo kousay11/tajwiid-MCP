@@ -98,6 +98,24 @@ barree also ends ordinary words (في، الذي). So:
   also what the book's own classes 1 and 6 give. `ya_idafa_maee` reports each occurrence with what
   the corpus spells and chooses nothing.
 
+## Citations checked on the page images
+
+The cited pages of every Book A rule were checked against the page images (pp.14-39 and 45-50), not
+against extracted text. Pages that fund a rule but were missing were added: for the sila (p.17,
+p.18, p.19), `madd_iwad` (p.15, p.17), `madd_badal` (p.16), `madd_harf_hay_tahar` (p.15, p.23),
+`madd_lin` (p.20), `alef_ana_dropped` (p.24), the three hamzat al-wasl rules (p.31), `ra_tafkhim`
+(p.34), `lam_jalala_tarqiq` (p.34), `alef_tafkhim` (p.32), `idgham_mutajanisayn` (p.38) and the ya'at
+rules (p.47, p.49, p.50). A test pins the pages of each.
+
+Two content points came out of that reading:
+
+- **Fixed:** p.31 says that امشوا، ابنوا، امضوا، اقضوا begin with a kasra (the damma on their third
+  letter is accidental). The detector now says so; before it said damma for them.
+- **Not fixed, needs a decision:** p.35 says the alef is heavy also after a ra that is not
+  inclined (غير المقللة, example « ولو ترى »). `alef_tafkhim` only covers the isti'la letters and the
+  heavy lam of the name of Allah, so it misses the alef after ra. It is not implemented because
+  deciding which ra is "not inclined" needs the book's list of taqlil words.
+
 ## Honest limits
 
 - This is a summary book. Word-by-word rules (farsh) beyond its lists are not in it, so

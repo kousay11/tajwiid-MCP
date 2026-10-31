@@ -152,7 +152,10 @@ def detect_hamzat_wasl(view: AyahView) -> None:
             )
         else:
             third = letters[2]
-            start = "damma" if DAMMA in third.marks else "kasra"
+            # p.31: four verbs have a damma on the third letter that is accidental, so they begin
+            # with a kasra
+            damma = DAMMA in third.marks and sk not in HAMZAT_WASL_VERB_EXCEPTIONS
+            start = "damma" if damma else "kasra"
             emit(
                 view,
                 "hamzat_wasl_verb",
