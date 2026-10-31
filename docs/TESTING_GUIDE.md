@@ -1,5 +1,7 @@
 # Testing guide: try every rule family
 
+**Every request below, and one for each tool, is also in [APPLY.json](APPLY.json) ready to paste.**
+
 All requests are MCP tool calls. Use the MCP Inspector or any client; the arguments below are
 the JSON the tool receives. Set `WIRDI_AI_ROOT` to your Wirdi AI checkout first.
 

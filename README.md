@@ -1,36 +1,69 @@
 # Wirdi MCP
 
-A local, read-only MCP server for **Qaloun (from Nafi')**: it serves the unchanged Qaloun text of
-the Wirdi AI corpus and proposes **candidate** Tajwid annotations, each tied to the exact letters,
-the reading context and the page of the book that states the rule. Everything is deterministic:
-there is no LLM, no embedding, no RAG, no database and no network access.
+A **local MCP server for the Qaloun recitation (from Nafi')**. You give it a passage of the Quran;
+it gives you back the **Tajwid rules that apply to it**, letter by letter, each with the page of
+the book that states the rule.
 
-**Version 0.6.0.** 12 tools over stdio, 81 rule records (14 + 67 from Book A), 79 detectors.
-**Nothing is scholarly verified**: no qualified reviewer has been named, so the highest status the
-server ever returns is `candidate`.
+- **Version 0.6.0** · 12 tools · 81 rules · 79 detectors · 232 tests (184 offline)
+- **Read-only and deterministic**: no LLM, no RAG, no database, no network. The Quran text is read
+  from the Wirdi AI files and never modified.
+- **Nothing is scholarly verified.** No qualified reviewer has been named, so every result is a
+  `candidate`. The server never says more than that.
 
-> **Résumé en français.** Serveur MCP local (stdio) pour la riwaya de Qaloun d'après Nafi'. Il lit
-> le texte Qaloun du dépôt Wirdi AI (sans le modifier) et propose des annotations de tajwid
-> *candidates* (madd, hamza, tafkhim/tarqiq, idgham, ياءات الإضافة, noon/mim sakina, qalqala…), avec
-> la lettre exacte, le contexte (waqf/wasl), la page de l'application et la page du livre cité.
-> Aucune annotation n'est validée par un savant : le statut maximal est `candidate`.
-> Pour tester : [docs/TESTING_GUIDE.md](docs/TESTING_GUIDE.md) ; pour les pièges rencontrés :
+> **En français.** Serveur MCP local (stdio) pour Qaloun d'après Nafi'. Vous donnez un passage ; il
+> renvoie les règles de tajwid applicables (madd, hamza, tafkhim/tarqiq, idgham, ياءات الإضافة,
+> noon/mim sakina, qalqala…), avec la lettre exacte, le contexte (waqf/wasl) et la page du livre
+> cité. Aucune annotation n'est validée par un savant : le statut maximal est `candidate`.
+> Requêtes prêtes à coller : [docs/APPLY.json](docs/APPLY.json). Pièges déjà rencontrés :
 > [docs/NoteImportant.md](docs/NoteImportant.md).
 
-## What it is, and what it is not
+## Contents
 
-| It is | It is not |
+1. [How it works](#1-how-it-works)
+2. [Quick start](#2-quick-start)
+3. [Key commands](#3-key-commands)
+4. [The 12 tools](#4-the-12-tools)
+5. [Selections and reading context](#5-selections-and-reading-context)
+6. [What an annotation says](#6-what-an-annotation-says)
+7. [All 81 rules](#7-all-81-rules)
+8. [Data and numbering](#8-data-and-numbering)
+9. [Sources and where they disagree](#9-sources-and-where-they-disagree)
+10. [What is not covered](#10-what-is-not-covered)
+11. [Tests](#11-tests)
+12. [Repository layout and scripts](#12-repository-layout-and-scripts)
+13. [What needs a human](#13-what-needs-a-human)
+14. [Documentation index](#14-documentation-index)
+
+---
+
+## 1. How it works
+
+```
+ your request                                      the answer
+ ───────────                                       ──────────
+ selection (surah, ayah range)        ┌─────────►  annotations: rule, exact letters,
+ + reading context (waqf / wasl)      │            note, variants, page, book citation
+ + optional filter (family, rules)    │            + counts, unresolved, skipped, coverage
+        │                             │
+        ▼                             │
+ 1. check   the corpus SHA-256 matches the pinned one (fail closed)
+ 2. read    the unchanged ayat of the Qaloun corpus
+ 3. split   each ayah into words and letters, with reversible codepoint offsets
+ 4. detect  one deterministic detector per rule family reads the letters and their signs
+ 5. attach  rule record (hash-checked) → citation, page; the ayah's 559-page span
+ 6. report  what could not be decided: `unresolved` (missing context), `skipped` (out of scope)
+```
+
+Four ideas hold the design together:
+
+| Idea | What it means in practice |
 | --- | --- |
-| A deterministic source of *candidate* annotations, each with its evidence and its page | A statement that a recitation is correct |
-| Read-only: the Quran text is never modified or copied | A Quran database, an importer or a search engine over the Quran |
-| Explicit about what it cannot decide (`unresolved`, `skipped`, `variants`, `limitations`) | A chooser between readings the books allow: `variants` lists them all |
-| Local: stdio only, no network listener | An integration into the Wirdi AI application (not started) |
+| **A candidate is not a verdict** | Every annotation is `candidate`. Nothing is promoted without a named reviewer |
+| **The text decides, not an assumption** | Detectors read the signs the corpus writes (maddah, small waw/yeh, sukun, shadda…); no Hafs rule is assumed |
+| **Several readings are listed, never chosen** | Where a book allows 2, 3 or 4 harakat, `variants` shows all of them |
+| **Missing context is said, not guessed** | A word-final letter at the end of a `wasl` selection is `unresolved` until you give the next ayah |
 
-Rules the project keeps: the Quran text is immutable; no Hafs rule is assumed for Qaloun; a status
-above `candidate` needs a named reviewer; divergent sources are shown, never silently arbitrated;
-no PDF, page image or book text is committed.
-
-## Quick start
+## 2. Quick start
 
 Requires Python 3.12+.
 
@@ -38,20 +71,17 @@ Requires Python 3.12+.
 python3 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
 export WIRDI_AI_ROOT=/absolute/path/to/wirdi-Ai
-.venv/bin/wirdi-mcp          # waits for MCP input on stdin
+.venv/bin/wirdi-mcp          # waits for MCP input on stdin; no network listener
 ```
 
 | Variable | Purpose |
 | --- | --- |
-| `WIRDI_AI_ROOT` | Root of the Wirdi AI checkout. Its public files are the only source of Quran text. Without it every tool that reads the Quran returns `DATA_UNAVAILABLE` and `health_check` shows `quran_data: not_configured` |
-| `WIRDI_KNOWLEDGE_ROOT` | Alternative `knowledge/` directory (default: the one in this repository) |
+| `WIRDI_AI_ROOT` | Root of the Wirdi AI checkout, the only source of Quran text. Without it, tools that read the Quran return `DATA_UNAVAILABLE` and `health_check` shows `quran_data: not_configured` |
+| `WIRDI_KNOWLEDGE_ROOT` | Another `knowledge/` directory (default: this repository's) |
 | `WIRDI_MCP_LOG_LEVEL` | Log level, written to stderr |
-| `WIRDI_TEST_SOURCE_ROOT` | Tests only: enables the read-only real-corpus tests |
+| `WIRDI_TEST_SOURCE_ROOT` | Tests only: enables the real-corpus tests |
 
-`.env` is not loaded automatically. An installed wheel does not contain `knowledge/`: point
-`WIRDI_KNOWLEDGE_ROOT` at it, or run from the checkout.
-
-**MCP host configuration**
+**Use it from an MCP client** (replace the paths):
 
 ```json
 {
@@ -64,185 +94,288 @@ export WIRDI_AI_ROOT=/absolute/path/to/wirdi-Ai
 }
 ```
 
-**MCP Inspector.** The Inspector starts the server with a filtered environment, so a variable
-written before `npx` does not reach it. Pass it with `-e`, or in the « Environment Variables » field
-of the interface, then reconnect:
+**Try it in the MCP Inspector.** The Inspector starts the server with a *filtered* environment, so
+a variable written before `npx` does not reach it. Pass it with `-e` (or in the « Environment
+Variables » field), then reconnect:
 
 ```bash
 npx @modelcontextprotocol/inspector -e WIRDI_AI_ROOT=/absolute/path/wirdi-Ai .venv/bin/wirdi-mcp
 ```
 
-Check with `health_check`: `quran_data` must be `configured_unchecked`.
+Then call `health_check`: `quran_data` must be `configured_unchecked`. **Ready-to-paste requests for
+every tool are in [docs/APPLY.json](docs/APPLY.json).**
 
-## The 12 tools
+## 3. Key commands
 
-All tools are read-only and return `{status: "ok", data, provenance, validation_status, warnings}`
-or `{status: "error", error: {code, message, retryable}}`.
+| I want to… | Command |
+| --- | --- |
+| Start the server | `.venv/bin/wirdi-mcp` |
+| Check it works end to end | `.venv/bin/python scripts/verify_local.py --source-root /abs/wirdi-Ai` |
+| Run the tests (offline) | `.venv/bin/python -m pytest` |
+| Run the tests on the real corpus | `WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest` |
+| Lint and format | `.venv/bin/ruff check . && .venv/bin/ruff format --check .` |
+| Change a rule record | edit the table in `scripts/build_book_a_rules.py`, then `python scripts/build_book_a_rules.py && python scripts/build_rule_manifest.py` |
+| Check the rule files against the manifest | `.venv/bin/python scripts/build_rule_manifest.py --check` |
+| Count every rule over the 6,214 ayat | `.venv/bin/python scripts/audit_rules.py --source-root /abs/wirdi-Ai` |
+| Regenerate the real stdio transcript | `.venv/bin/python scripts/e2e_report.py --source-root /abs/wirdi-Ai --out docs/E2E_REPORT.md` |
+| Measure latency | `.venv/bin/python scripts/measure_perf.py --source-root /abs/wirdi-Ai` |
+| Build the local page store of a book | `.venv/bin/python scripts/build_page_store.py <pdf> <edition-id>` |
 
-| Tool | Arguments | Returns |
+**After changing a rule or a detector**, in this order: regenerate the records and the manifest →
+run both test suites → regenerate the audit (`RULE_AUDIT.md`) and the E2E report.
+
+## 4. The 12 tools
+
+Every tool is read-only. A success is `{status: "ok", data, provenance, validation_status,
+warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
+
+| Tool | You give | You get |
 | --- | --- | --- |
-| `health_check` | none | Readiness and configuration; reads no data |
-| `get_qaloun_passage` | `selection` | The unchanged ayat with their SHA-256 and the 559-page span |
-| `resolve_source_mapping` | `selection`, `target_corpus_id`, `target_corpus_version`, `target_numbering_system` | Mapping of the selection to another numbering (e.g. Hafs/Kufian), with `mapping_status` and `safe_for_source_retrieval` |
-| `list_tajwid_rules` | `family?` | The 81 rules: id, Arabic name, family, detectability, tariq, `has_detector` |
-| `get_tajwid_rule` | `rule_id`, `version` | One rule record: definition, conditions, exceptions, limitations, book and page citations |
+| `health_check` | nothing | Readiness and configuration; reads no data |
+| `get_qaloun_passage` | `selection` | The unchanged ayat, their SHA-256 and their 559-page span |
+| `resolve_source_mapping` | `selection`, `target_corpus_id`, `target_corpus_version`, `target_numbering_system` | Where the selection falls in another numbering (e.g. Kufian/Hafs), `mapping_status`, `safe_for_source_retrieval` |
+| `list_tajwid_rules` | `family?` | The 81 rules: id, Arabic name, family, type, tariq, `has_detector` |
+| `get_tajwid_rule` | `rule_id`, `version` | One rule record: definition, conditions, exceptions, limits, book and page |
 | `analyze_qaloun_tajwid` | `selection` (1 to 100 ayat), `reading_context`, `rule_ids?`, `families?`, `limit` (≤500), `offset` | Candidate annotations, paged, with counts, `unresolved`, `skipped`, `coverage` |
 | `summarize_tajwid` | `surah`, `start_ayah?`, `end_ayah?`, `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Counts per rule and per ayah (≤300 ayat) |
-| `analyze_app_page` | `page` (1 to 559), `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Candidates for the ayat that begin on that page of the verified 559-page layout |
+| `analyze_app_page` | `page` (1 to 559), `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Candidates for the ayat that begin on that page of the application layout |
 | `get_letter_properties` | `letters` (1 to 29 base letters) | Place of articulation and characteristics (Book A pp.40-45) |
-| `get_source_page` | `edition_id`, `page_start`, `page_end` (≤5 pages) | Raw page text from the local, git-ignored page store |
-| `search_source_pages` | `query` (2 to 80 chars), `edition_ids`, `limit` | Pages containing the word, with a normalised search snippet |
-| `get_tajwid_explanation` | `annotation_id`, `annotation_version`, `language` | **Always** `UNSUPPORTED_CAPABILITY` until a named reviewer validates annotations |
+| `get_source_page` | `edition_id`, `page_start`, `page_end` (≤5) | Raw text of pages from the local page store |
+| `search_source_pages` | `query` (2 to 80 characters), `edition_ids`, `limit` | The pages that contain the word, with a normalised snippet |
+| `get_tajwid_explanation` | `annotation_id`, `annotation_version`, `language` | **Always** `UNSUPPORTED_CAPABILITY` until a reviewer validates annotations |
 
-**Error codes**: `INVALID_REFERENCE`, `NOT_FOUND`, `UNSUPPORTED_VERSION`, `DATA_UNAVAILABLE`,
-`INTEGRITY_FAILURE`, `UNSUPPORTED_CAPABILITY`. A missing or altered store fails that tool only, and
-typed; errors never contain a path or book text.
+**Error codes:** `INVALID_REFERENCE`, `NOT_FOUND`, `UNSUPPORTED_VERSION`, `DATA_UNAVAILABLE`,
+`INTEGRITY_FAILURE`, `UNSUPPORTED_CAPABILITY`. A missing or altered store fails that one tool, typed;
+an error never contains a path or book text.
 
-### Selections and the reading context
+## 5. Selections and reading context
 
-A selection is `{"start": <reference>, "end_ayah": N}`. A reference carries the corpus identity:
+A **selection** is `{"start": <reference>, "end_ayah": N}`. A **reference** names the corpus:
 
 ```json
-{"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0…d1303",
+{"corpus_id": "wirdi-ai:quranpedia:qalun",
+ "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
  "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified",
  "surah": 2, "ayah": 5}
 ```
 
-`reading_context.mode` decides what a word-final letter does:
+The **reading context** decides what a word-final letter does:
 
-- **`waqf`**: the reading stops at the end of **each selected ayah, and nowhere else**. Inside an
-  ayah the reading is continuous, so a mim in the middle of an ayah is still read with the next
-  word. Waqf signs inside an ayah are not treated as stops. To simulate a stop on a word, pass
-  `stop_after_word`.
-- **`wasl`**: continuous reading across the selection. The last position of the last ayah needs the
-  following ayah: pass `following` (a full reference to the next ayah of the same surah) or the
-  position is reported under `unresolved`.
+| Field | Meaning |
+| --- | --- |
+| `mode: "waqf"` | The reading stops at the end of **each selected ayah, and nowhere else**. Inside an ayah the reading is continuous: a mim in the middle of an ayah is still read with the next word |
+| `mode: "wasl"` | Continuous reading across the whole selection. The last position of the last ayah needs the next ayah, otherwise it is reported under `unresolved` |
+| `following` | A complete reference to the next ayah of the same surah (for `wasl`), or `null` |
+| `stop_after_word` | Stop the last ayah after that many words, to simulate a stop inside an ayah |
 
-Waqf-only rules (`madd_arid_sukun`, `madd_lin`, `madd_iwad`, `madd_muttasil_arid`,
-`ra_mutatarrif_*`) never fire in `wasl`. `following` must be `null` or a complete reference.
+Waqf-only rules (`madd_arid_sukun`, `madd_lin`, `madd_iwad`, `madd_muttasil_arid`, `ra_mutatarrif_*`)
+never fire in `wasl`. Waqf signs written inside an ayah are not treated as stops.
 
-## What an annotation says
+## 6. What an annotation says
 
-```
-rule_id, rule_version        which rule, and its version
-anchor                       ayah SHA-256 + codepoint range into the unchanged text + word index
-reading_context              waqf or wasl, and what was assumed
-status                       always "candidate"
-evidence                     book, edition and page of the rule (never a verdict)
-page_refs                    the 559-page application span of the ayah
-note                         what the detector saw, in words
-variants                     the readings the book allows here; the engine never picks one
-```
+| Field | Content |
+| --- | --- |
+| `rule_id`, `rule_version` | Which rule |
+| `anchor` | The ayah's SHA-256, the codepoint range into the unchanged text, the word index |
+| `reading_context` | Waqf or wasl, and what was assumed |
+| `status` | Always `candidate` |
+| `evidence` | Book, edition and page of the rule (a source, never a verdict) |
+| `page_refs` | The 559-page application span of the ayah |
+| `note` | What the detector saw, in words |
+| `variants` | The readings the book allows here; the engine never picks one |
 
-An empty or short result is **not** a claim that a passage has no other rule: only the listed
-rules are evaluated, and `coverage` says whether every requested position could be decided.
+A short or empty result is **not** a claim that the passage has no other rule: only the rules you
+ask for are evaluated, and `coverage` says whether every position could be decided.
 
-## Rules
+## 7. All 81 rules
 
-81 paraphrased, page-cited records in `knowledge/rules/`, all `unreviewed`. The text of a record is
-a short paraphrase written for this project, never a quotation.
+Each rule is a short paraphrase written for this project, page-cited, **unreviewed**. Legend:
 
-| Family | Rules | Examples |
+- **Type**: `A` mechanical · `B` depends on the stop or on the neighbouring word · `C` a closed
+  word list named by the book (matched on the book's own Kufian ayah numbers).
+- **Detector**: **no** means the rule is readable (`get_tajwid_rule`) but nothing is detected: the
+  Qaloun text already carries the result of the rule, not the original hamzas.
+- **Tariq**: *Abu Nashit* for the 12 rules that cite Book B (the Abu Nashit source); `—` means
+  `unspecified` (the 69 rules that rest on Book A alone, which names Qaloun but not Abu Nashit).
+
+| Rule | Arabic name | Family | Type | Detector | Tariq | Pages (A = Book A, B = Book B) |
+| --- | --- | --- | :-: | :-: | --- | --- |
+| `alef_ana_before_hamza` | ألف أنا قبل همزة مفتوحة أو مضمومة | `madd` | B | yes | — | A 23, 24 |
+| `alef_ana_before_hamza_kasra` | ألف أنا قبل همزة مكسورة | `madd` | B | yes | — | A 24 |
+| `alef_ana_dropped` | حذف ألف أنا وصلا | `madd` | B | yes | — | A 23, 24 |
+| `alef_thabita` | الألفات الثابتة وقفا ووصلا | `madd` | C | yes | — | A 23, 24 |
+| `madd_arid_sukun` | المد العارض للسكون | `madd` | B | yes | — | A 20 |
+| `madd_badal` | مد البدل | `madd` | A | yes | — | A 15, 16 |
+| `madd_harf_hay_tahar` | الألف في هجاء أحرف حي طهر | `madd` | A | yes | — | A 15, 17, 23 |
+| `madd_iwad` | مد العوض | `madd` | A | yes | — | A 15, 16, 17 |
+| `madd_lazim_harfi_mukhaffaf` | المد اللازم الحرفي المخفف | `madd` | A | yes | — | A 22, 23 |
+| `madd_lazim_harfi_muthaqqal` | المد اللازم الحرفي المثقل | `madd` | A | yes | — | A 22 |
+| `madd_lazim_kalimi_mukhaffaf` | المد اللازم الكلمي المخفف | `madd` | C | yes | — | A 21, 22 |
+| `madd_lazim_kalimi_muthaqqal` | المد اللازم الكلمي المثقل | `madd` | A | yes | — | A 21 |
+| `madd_letter_dropped` | حذف حرف المد لالتقاء الساكنين | `madd` | B | yes | — | A 24 |
+| `madd_lin` | مد اللين | `madd` | B | yes | — | A 20, 21 |
+| `madd_munfasil` | المد الجائز المنفصل | `madd` | A | yes | — | A 19 |
+| `madd_muttasil` | المد الواجب المتصل | `madd` | A | yes | — | A 19 |
+| `madd_muttasil_arid` | المد المتصل العارض | `madd` | B | yes | — | A 20 |
+| `madd_sila_ha_exception` | كلمات استثنيت من صلة هاء الضمير | `madd` | C | yes | — | A 18, 19, 20 |
+| `madd_sila_kubra_ha` | الصلة الكبرى في هاء الضمير | `madd` | A | yes | — | A 19, 20 |
+| `madd_sila_kubra_meem` | الصلة الكبرى في ميم الجمع | `madd` | A | yes | — | A 19, 20 |
+| `madd_sila_sughra_ha` | الصلة الصغرى في هاء الضمير | `madd` | A | yes | — | A 17, 18, 19 |
+| `madd_sila_sughra_meem` | الصلة الصغرى في ميم الجمع | `madd` | A | yes | — | A 17, 18 |
+| `madd_tabii` | المد الطبيعي | `madd` | A | yes | — | A 14, 15 |
+| `hamza_double_exception` | استثناءات الهمزتين في كلمة | `hamza` | C | yes | — | A 26, 27 |
+| `hamza_double_in_word` | الهمزتان في كلمة | `hamza` | A | yes | — | A 26 |
+| `hamza_ibdal_minsaa` | إبدال الهمزة في منسأته | `hamza` | C | yes | — | A 25 |
+| `hamza_ibdal_musada` | إبدال الهمزة في مؤصدة | `hamza` | C | yes | — | A 25 |
+| `hamza_ibdal_ruya` | إبدال الهمزة في رئيا | `hamza` | C | yes | — | A 25 |
+| `hamza_ibdal_saala` | إبدال الهمزة في سأل | `hamza` | C | yes | — | A 25 |
+| `hamza_ibdal_yajuj` | إبدال الهمزة ألفا في يأجوج ومأجوج | `hamza` | C | yes | — | A 25 |
+| `hamza_istifham_added` | همزة الاستفهام المزيدة في ءامنتم وءأله | `hamza` | C | yes | — | A 27 |
+| `hamza_nabi` | همز النبي ونحوها | `hamza` | C | yes | — | A 25, 26 |
+| `hamza_nabi_exception` | استثناء النبي في موضعي الأحزاب | `hamza` | C | yes | — | A 26 |
+| `hamza_two_words_different` | الهمزتان المختلفتان في كلمتين | `hamza` | C | **no** | — | A 28, 29 |
+| `hamza_two_words_same` | الهمزتان المتفقتان في كلمتين | `hamza` | C | **no** | — | A 27, 28 |
+| `hamza_waw_huzu_kufu` | همز الواو في هزوا وكفوا | `hamza` | C | yes | — | A 25 |
+| `hamzat_wasl_article` | همزة الوصل في أل التعريف | `hamza` | A | yes | — | A 29, 31 |
+| `hamzat_wasl_noun` | همزة الوصل في الأسماء | `hamza` | C | yes | — | A 29, 30, 31 |
+| `hamzat_wasl_verb` | همزة الوصل في الأفعال | `hamza` | B | yes | — | A 30, 31 |
+| `istifham_repeated_first` | الاستفهام المكرر: ما أثبتت همزته في الأول | `hamza` | C | yes | — | A 27 |
+| `istifham_repeated_second` | الاستفهام المكرر: ما أثبتت همزته في الثاني | `hamza` | C | yes | — | A 27 |
+| `sakin_before_hamzat_wasl` | تحريك الساكن قبل همزة الوصل | `hamza` | B | yes | — | A 31 |
+| `alef_tafkhim` | تفخيم الألف | `tafkhim_tarqiq` | B | yes | — | A 32, 35 |
+| `alef_tarqiq` | ترقيق الألف | `tafkhim_tarqiq` | B | yes | — | A 35 |
+| `ghunna_tafkhim` | تفخيم الغنة | `tafkhim_tarqiq` | B | yes | — | A 35 |
+| `ghunna_tarqiq` | ترقيق الغنة | `tafkhim_tarqiq` | B | yes | — | A 35 |
+| `lam_jalala_tafkhim` | تفخيم لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | — | A 34, 35 |
+| `lam_jalala_tarqiq` | ترقيق لام لفظ الجلالة | `tafkhim_tarqiq` | B | yes | — | A 34, 35 |
+| `ra_jawaz` | جواز الوجهين في راء فرق | `tafkhim_tarqiq` | C | yes | — | A 34 |
+| `ra_mutatarrif_jawaz` | جواز الوجهين في الراء المتطرفة | `tafkhim_tarqiq` | C | yes | — | A 34 |
+| `ra_mutatarrif_tafkhim` | تفخيم الراء المتطرفة | `tafkhim_tarqiq` | B | yes | — | A 34 |
+| `ra_mutatarrif_tarqiq` | ترقيق الراء المتطرفة | `tafkhim_tarqiq` | B | yes | — | A 34 |
+| `ra_tafkhim` | تفخيم الراء | `tafkhim_tarqiq` | B | yes | — | A 33, 34 |
+| `ra_tarqiq` | ترقيق الراء | `tafkhim_tarqiq` | B | yes | — | A 33, 34 |
+| `ya_idafa_fath` | فتح ياء الإضافة قبل الهمزة | `ya_idafa` | B | yes | — | A 45, 46, 47, 48, 49, 50 |
+| `ya_idafa_fath_exception` | ياءات الإضافة المفتوحة استثناء | `ya_idafa` | C | yes | — | A 50 |
+| `ya_idafa_iskan_before_letter` | ياءات الإضافة الساكنة قبل الحروف | `ya_idafa` | C | yes | — | A 47, 50 |
+| `ya_idafa_iskan_exception` | ياءات الإضافة الساكنة استثناء | `ya_idafa` | C | yes | — | A 46, 48, 49, 50 |
+| `ya_idafa_maee` | ياء الإضافة في كلمة معي | `ya_idafa` | C | yes | — | A 47 |
+| `ya_idafa_rabbi_two_readings` | ياء ربي في فصلت | `ya_idafa` | C | yes | — | A 46, 49 |
+| `idgham_kabir_mutamathil` | الإدغام الكبير المتماثل | `idgham_general` | C | yes | — | A 36 |
+| `idgham_mutajanisayn` | إدغام المتجانسين | `idgham_general` | A | yes | — | A 36, 37, 38 |
+| `idgham_mutamathilayn` | إدغام المتماثلين | `idgham_general` | A | yes | — | A 36 |
+| `idgham_mutaqaribayn` | إدغام المتقاربين | `idgham_general` | A | yes | — | A 38 |
+| `idgham_naqis` | الإدغام الناقص | `idgham_general` | C | yes | — | A 38, 39 |
+| `idgham_bighunna` | الإدغام بغنة | `noon_sakina_tanween` | B | yes | Abu Nashit | A 5, 6 · B 57, 58 |
+| `idgham_bilaghunna` | الإدغام بغير غنة | `noon_sakina_tanween` | B | yes | Abu Nashit | A 5 · B 57, 58 |
+| `idhar_halqi` | الإظهار الحلقي | `noon_sakina_tanween` | B | yes | Abu Nashit | A 4, 5 · B 56, 57 |
+| `idhar_mutlaq` | الإظهار المطلق | `noon_sakina_tanween` | C | yes | Abu Nashit | A 6 · B 58 |
+| `ikhfa_haqiqi` | الإخفاء الحقيقي | `noon_sakina_tanween` | B | yes | Abu Nashit | A 7, 8 · B 60 |
+| `iqlab` | الإقلاب | `noon_sakina_tanween` | B | yes | Abu Nashit | A 7 · B 59 |
+| `idgham_shafawi` | الإدغام الشفوي | `mim_sakina` | B | yes | Abu Nashit | A 9 · B 62 |
+| `idhar_shafawi` | الإظهار الشفوي | `mim_sakina` | B | yes | Abu Nashit | A 9, 10 · B 63 |
+| `ikhfa_shafawi` | الإخفاء الشفوي | `mim_sakina` | B | yes | Abu Nashit | A 9 · B 62 |
+| `ghunna_mushaddad` | غنة النون والميم المشددتين | `ghunna` | A | yes | Abu Nashit | A 11 · B 63 |
+| `qalqala_kubra` | القلقلة الكبرى | `qalqala` | A | yes | Abu Nashit | A 44 · B 52, 53 |
+| `qalqala_sughra` | القلقلة الصغرى | `qalqala` | A | yes | Abu Nashit | A 44 · B 52, 53 |
+| `lam_qamariya` | اللام القمرية | `lam_taarif` | A | yes | — | A 13 |
+| `lam_shamsiya` | اللام الشمسية | `lam_taarif` | A | yes | — | A 12, 13 |
+| `imala_har` | الإمالة في هار | `imala_taqlil` | C | yes | — | A 35 |
+| `taqlil_tawrat` | التقليل في التوراة | `imala_taqlil` | C | yes | — | A 35 |
+
+| Family | Rules | What it covers |
 | --- | ---: | --- |
-| `madd` | 23 | natural, badal, 'iwad, muttasil, munfasil, 'arid, lin, lazim (kalimi/harfi), sila of the ha and of the meem, fixed alefs, alef of ana |
-| `hamza` | 19 | replaced hamzas, the prophet words, two hamzas in a word, repeated interrogatives, hamzat al-wasl, vowel of a sakin before it |
-| `tafkhim_tarqiq` | 12 | ra, the lam of Allah, the alef, the ghunna |
+| `madd` | 23 | natural, badal, 'iwad, muttasil, munfasil, 'arid, lin, lazim, sila of the ha and meem, fixed alefs, alef of ana |
+| `hamza` | 19 | replaced hamzas, prophet words, two hamzas, repeated interrogatives, hamzat al-wasl |
+| `tafkhim_tarqiq` | 12 | ra, lam of Allah, alef, ghunna |
 | `ya_idafa` | 6 | open and closed first-person ya, `معي`, `ربي` of Fussilat |
-| `idgham_general` | 5 | mutamathilayn, mutajanisayn, mutaqaribayn, naqis, the great idgham of تأمنا |
-| `noon_sakina_tanween` | 6 | idhar halqi/mutlaq, idgham with/without ghunna, iqlab, ikhfa |
-| `mim_sakina` | 3 | ikhfa, idgham, idhar shafawi |
-| `imala_taqlil`, `lam_taarif`, `qalqala` | 2 each | taqlil of التوراة, imala of هار; article lam; qalqala sughra/kubra |
+| `idgham_general` | 5 | identical, same-place and close letters, naqis, the great idgham |
+| `noon_sakina_tanween` | 6 | idhar, idgham, iqlab, ikhfa |
+| `mim_sakina`, `lam_taarif`, `imala_taqlil`, `qalqala` | 3 · 2 · 2 · 2 | shafawi rules, article lam, taqlil and imala, qalqala |
 | `ghunna` | 1 | geminated noon and meem |
 
-Each record has a **detectability**: `A` mechanical, `B` depends on the stop or the neighbouring
-word, `C` a closed word list named by the book. Two records (`hamza_two_words_same`,
-`hamza_two_words_different`) have no detector: the Qaloun text already carries the result of the
-rule, not the original hamzas.
+**What the detectors read.** A maddah marks the long madds; a superscript alef marks a madd alef;
+a small waw or yeh on a ha marks the sila; a sakin noon or meem before idgham, ikhfa and iqlab
+letters has no sukun; an alef inserted between two hamzas is a superscript alef; the open
+first-person ya is spelled with a fatha and the closed one with the yeh barree; hamzat al-wasl has
+three different marks.
 
-**Tariq.** The corpus identifies Qaloun but does not attest Abu Nashit, so its tariq is
-`unspecified`. The 12 first-release rules that cite Book B (the Abu Nashit source) carry
-`abu_nashit`; the 69 others, which rest on Book A alone, carry `unspecified`.
-
-### What the corpus spelling tells the detectors
-
-The detectors read signs the corpus writes, not assumptions: a maddah marks the long madds; a
-superscript alef marks a madd alef; the small waw or yeh on a ha marks the sila; a sakin noon or
-meem before idgham, ikhfa and iqlab letters has no sukun; an alef inserted between two hamzas is a
-superscript alef; the open first-person ya is spelled with a fatha and the closed one with the yeh
-barree; hamzat al-wasl has three different marks. Where a rule needs a word list, the list is the
-book's own, matched on a normalised skeleton and on the **Kufian** ayah number the book uses.
-
-## Data and numbering
+## 8. Data and numbering
 
 | Datum | Origin | Guard |
 | --- | --- | --- |
-| Quran text | The public files of the Wirdi AI checkout: KFGQPC Qaloun via Qur'anpedia (`risan/quran-json`, commit `6523a9ad…`), 6,214 ayat | SHA-256 of the corpus checked on every call; text never modified or copied |
+| Quran text | Public files of the Wirdi AI checkout: KFGQPC Qaloun via Qur'anpedia (`risan/quran-json`, commit `6523a9ad…`), 6,214 ayat | SHA-256 checked on every call; never modified or copied |
 | 559-page layout | Same checkout | SHA-256 checked; `verified_against_edition` |
 | Rules | `knowledge/rules/*/1.json` | `manifest.json` pins every file; one altered byte gives `INTEGRITY_FAILURE` |
-| Books | Local PDFs in `docs/` | Never committed; only paraphrased rules with a page citation are |
+| Books | PDFs placed locally in `docs/` | Never committed; only paraphrased rules with a page citation are |
 
-**Two numberings meet here.** The corpus, the tools and the application use the **Qaloun count**
-(6,214 ayat, `wirdi-ai:qalun-6214`). The Tunisian Hannibal mushaf and the place numbers of Book A
-use the **Kufian count** (6,236 ayat), kept in the corpus as `number_in_hafs`. 78 Qaloun ayat
-gather two Kufian numbers and 59 Kufian ayat are split, touching 59 surahs: in Al-Baqara, Qaloun
-2:5 is Kufian 2:6 and Qaloun 2:7 is 2:8. Use `resolve_source_mapping` to convert. The application
-layout has **559** pages and the Hannibal mushaf 604: pages are never compared by number, only
-through the verse.
+**Two numberings meet here.**
 
-## Sources and their limits
+| | Qaloun count | Kufian count |
+| --- | --- | --- |
+| Used by | the corpus, the tools, the application | the Tunisian Hannibal mushaf, the place numbers of Book A |
+| Ayat | 6,214 | 6,236 |
+| Kept in the corpus as | the ayah number | `number_in_hafs` |
+| Pages | 559 (application) | 604 (Hannibal) |
+
+78 Qaloun ayat gather two Kufian numbers and 59 Kufian ayat are split, touching 59 surahs. In
+Al-Baqara: Qaloun 2:5 = Kufian 2:6, Qaloun 2:7 = 2:8. Convert with `resolve_source_mapping`. Pages are
+never compared by number, only through the verse.
+
+## 9. Sources and where they disagree
 
 | Source | Role | State |
 | --- | --- | --- |
-| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp., text layer) | Base of the 67 new rules; Qaloun, does not name Abu Nashit | Read on page images for the citations; inconsistent in places (below) |
-| **Book B**, *مذكرة في أحكام الترتيل… من طريق أبي نشيط* (156 pp.) | Cited by 12 first-release rules | A copy-protected scan: protection is never bypassed, there is no OCR; cited from page images only |
-| **Hannibal mushaf** (Tunis, coloured) | Evaluated for extracting the colours | **NO-GO** ([PILOT_REPORT](docs/PILOT_REPORT.md)); not used |
+| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | Base of the 67 newest rules; Qaloun, does not name Abu Nashit | Citations checked on the page images; inconsistent in places (below) |
+| **Book B**, *مذكرة في أحكام الترتيل… من طريق أبي نشيط* (156 pp.) | Cited by 12 first-release rules | A copy-protected scan: protection is never bypassed, no OCR; cited from page images only |
+| **Hannibal mushaf** (Tunis, coloured) | Evaluated to extract the colours | **NO-GO** ([PILOT_REPORT](docs/PILOT_REPORT.md)); not used |
 
 All three have an unknown licence. Book A's text layer is raw (inverted lam-alef ligatures).
 
-**Where Book A contradicts itself** (each case is recorded in the rule limits and in
-[BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md); none is arbitrated): `فألقه` (p.19 against p.20) and
-`يأته` carry `variants`; `آلآن` has three readings; four place numbers of the ya'at lists differ
-between p.46 and p.49; the sentence on `معي` (p.47) is the reverse of the corpus spelling and of the
-book's own classes. The 1,314 plural meems written bare before ba and meem take the sila by the
-general wording of p.17; their interaction with ikhfa/idgham shafawi is an **inference**, written in
-both annotations. A reviewer has also questioned the madd lengths (2 or 4, and 4) that Book A gives
-as 2, 3 or 4, and 3 or 4: the divergence is open.
+**Where Book A contradicts itself or the corpus** (each case is in the rule limits and in
+[BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md); none is arbitrated):
 
-## Not covered
+| Case | What happens |
+| --- | --- |
+| `فألقه` (p.19 against p.20), `يأته` | Both readings are in `variants` |
+| `آلآن` (p.21) | Three readings in `variants` |
+| Ya'at lists (p.46 against p.49) | Four place numbers differ; each word was looked up in the corpus and the retained place is documented |
+| `معي` (p.47) | The book's sentence is the reverse of the corpus spelling and of its own classes; each occurrence reports what the corpus spells |
+| Plural meem before ba and meem (1,314 places) | Sila by the general wording of p.17; its exclusion of ikhfa/idgham shafawi is an **inference**, written in both annotations |
+| Madd lengths | A reviewer proposes 2 or 4 (munfasil) and 4 (muttasil); Book A says 2, 3 or 4 and 3 or 4. Open |
 
-Waqf and ibtida rules; the alef after a non-inclined ra (p.35); two hamzas in two words; the default
-closed ya before an ordinary letter beyond the seven named examples; joining a wasl and a qat' hamza
-in one word; the vowel of sakin letters before hamzat al-wasl beyond `من`, the plural meem and
-tanween; the Book B sections not drafted; and everything Book A itself does not say (it is a
-51-page summary). [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) lists each section and its state.
+## 10. What is not covered
 
-## Tests and verification
+- Waqf and ibtida rules; waqf signs inside an ayah.
+- The alef after a non-inclined ra (Book A p.35), the vowel of sakin letters before hamzat al-wasl
+  beyond `من`, the plural meem and tanween, two hamzas in two words, and joining a wasl and a qat'
+  hamza in one word.
+- The default closed ya before an ordinary letter, beyond the seven named examples.
+- The Book B sections not drafted, and everything Book A does not say (it is a 51-page summary).
+
+[BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) lists each section of the book and its state.
+
+## 11. Tests
 
 ```bash
-.venv/bin/python -m pytest                                          # offline: 166 tests
-WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + real corpus: 197 tests
-.venv/bin/ruff check . && .venv/bin/ruff format --check .
-.venv/bin/python scripts/build_rule_manifest.py --check
+.venv/bin/python -m pytest                                          # offline
+WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + real corpus: 232 tests
 ```
 
-- The offline suite uses synthetic orthographic fixtures modelled on the books' examples, and real
-  stdio subprocess tests. The real-corpus suite runs every single-ayah selection in both modes,
-  every one of the 559 pages, the closed word lists (each must hit exactly the places the book
-  names) and the corpus lookups behind the page contradictions.
-- [TESTING_GUIDE](docs/TESTING_GUIDE.md) gives a request for every rule family; run them in the
-  Inspector and compare with [NoteImportant](docs/NoteImportant.md), which records the tests already
-  done and their analysis.
-- Measured latency ([PERF](docs/PERF.md)): cold start 0.57 s; one application page about 106 ms (p50).
+- **Offline**: synthetic fixtures modelled on the books' examples, real stdio subprocess tests, the
+  README and APPLY.json consistency checks, tamper tests.
+- **Real corpus**: every single-ayah selection in both modes, all 559 pages, the closed word lists
+  (each must hit exactly the places the book names), and every request of `docs/APPLY.json`.
+- Measured latency ([PERF](docs/PERF.md)): cold start 0.57 s; one application page about 106 ms.
 
-## Repository layout
+## 12. Repository layout and scripts
 
 ```
 src/wirdi_mcp/
   server.py, config.py        entry point and configuration
   domain/                     typed contracts (Pydantic): annotations, statuses, references
   quran/                      checksum-pinned, read-only access to the Wirdi AI files
-  mapping/                    the existing mapping authority (Qaloun <-> Hafs)
-  knowledge/                  rule registry (hash-pinned), page store (local, fail-closed)
+  mapping/                    the mapping authority (Qaloun <-> Hafs)
+  knowledge/                  rule registry (hash-pinned) and local page store (fail-closed)
   tajwid/                     tokenizer and detectors: madd, hamza, tafkhim, idgham, yaat,
                               lexicon (word lists), letters (static tables), engine, service
   tools/                      the 12 MCP tools and their contracts
@@ -251,45 +384,37 @@ knowledge/sources/            edition metadata only               (no book text)
 knowledge/validation/         empty, ready for a reviewer's records
 scripts/                      rule generation, manifest, audit, E2E report, perf, page store
 tests/                        unit and integration tests
-docs/                         design, audits, reports and guides (PDFs here are git-ignored)
+docs/                         design, audits, reports, guides and APPLY.json (PDFs are git-ignored)
 ```
 
-| Script | Use |
-| --- | --- |
-| `build_book_a_rules.py` | Writes the 67 Book A rule records from one table; then run `build_rule_manifest.py` |
-| `build_rule_manifest.py [--check]` | Validates every record and writes or checks the manifest |
-| `audit_rules.py --source-root …` | Counts every rule over all 6,214 ayat in both modes, flags zero or abnormal ones |
-| `e2e_report.py --source-root … --out …` | Real stdio transcript of every tool, with no Quran or book text |
-| `measure_perf.py --source-root …` | Cold start and per-call latency |
-| `build_page_store.py <pdf> <edition>` | Builds the local page store for a PDF with a text layer (refuses protected PDFs) |
-| `verify_local.py --source-root …` | Short real-stdio verification |
+The commands that use the scripts are in [section 3](#3-key-commands).
 
-## What needs a human
+## 13. What needs a human
 
-1. **A named, qualified reviewer.** Without one nothing moves beyond `candidate`; the validation
+1. **A named, qualified reviewer.** Without one, nothing moves beyond `candidate`; the validation
    store is ready and empty.
 2. **Licences** of the books and the mushaf, and whether the paraphrased records may stay in the
    repository.
 3. **The Abu Nashit question**: may the corpus be treated as Abu Nashit for these rules?
-4. **Display in version 1** of the application: label unreviewed candidates, or show nothing until
-   a reviewer approves?
-5. **Arbitration** of the divergences listed above, with the reviewer.
-6. **Integration into Wirdi AI** (not started): see [INTEGRATION](docs/INTEGRATION.md).
+4. **Display in version 1**: label unreviewed candidates, or show nothing until a reviewer approves?
+5. **Arbitration** of the divergences in section 9, with the reviewer.
+6. **Integration into Wirdi AI** (not started): [INTEGRATION](docs/INTEGRATION.md).
 
-## Documentation
+## 14. Documentation index
 
 | Document | Contents |
 | --- | --- |
-| [NoteImportant](docs/NoteImportant.md) | Inspector setup, data origin, results already tested and their analysis |
+| [APPLY.json](docs/APPLY.json) | One ready-to-paste JSON request per tool, with the expected result; checked by a test |
+| [NoteImportant](docs/NoteImportant.md) | Inspector setup, data origin, every test done and its analysis |
 | [TESTING_GUIDE](docs/TESTING_GUIDE.md) | A request per rule family and what to check |
 | [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) | Each Book A section, its rules, its state and the page contradictions |
-| [MCP_TOOLS](docs/MCP_TOOLS.md) | Tool contracts, statuses, reading context and failure semantics |
+| [MCP_TOOLS](docs/MCP_TOOLS.md) | Tool contracts, statuses, reading context, failure semantics |
 | [TAJWID_ENGINE](docs/TAJWID_ENGINE.md) | Rule, detector, annotation, review and explanation, kept separate |
 | [RULE_AUDIT](docs/RULE_AUDIT.md) | Per-rule counts over the whole corpus |
 | [ARCHITECTURE](docs/ARCHITECTURE.md), [SOURCE_AUDIT](docs/SOURCE_AUDIT.md) | Boundaries, reference identity, the corpus and its checksums |
-| [PERF](docs/PERF.md), [E2E_REPORT](docs/E2E_REPORT.md) | Measured latency; a real stdio transcript |
-| [SOURCES_INTAKE](docs/SOURCES_INTAKE.md), [PILOT_REPORT](docs/PILOT_REPORT.md) | The three source PDFs; the coloured-mushaf pilot (NO-GO) |
-| [DECISIONS](docs/DECISIONS.md), [BLOCKERS](docs/BLOCKERS.md), [PROGRESS](docs/PROGRESS.md), [HANDOFF](docs/HANDOFF.md), [ROADMAP](docs/ROADMAP.md) | Decisions taken, blockers, where the work stands |
+| [PERF](docs/PERF.md), [E2E_REPORT](docs/E2E_REPORT.md) | Latency; a real stdio transcript |
+| [SOURCES_INTAKE](docs/SOURCES_INTAKE.md), [PILOT_REPORT](docs/PILOT_REPORT.md) | The three source PDFs; the coloured-mushaf pilot |
+| [DECISIONS](docs/DECISIONS.md), [BLOCKERS](docs/BLOCKERS.md), [PROGRESS](docs/PROGRESS.md), [HANDOFF](docs/HANDOFF.md), [ROADMAP](docs/ROADMAP.md) | Decisions, blockers, where the work stands |
 | [INTEGRATION](docs/INTEGRATION.md) | The planned client contract for Wirdi AI |
 
 The official [`mcp` Python SDK](https://github.com/modelcontextprotocol/python-sdk) is pinned to

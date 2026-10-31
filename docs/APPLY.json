@@ -1,0 +1,795 @@
+{
+  "title": "Ready-made JSON requests for every tool of wirdi-mcp",
+  "version": "0.6.0",
+  "how_to_use": [
+    "Start the server with WIRDI_AI_ROOT set (see the README) and open the MCP Inspector: npx @modelcontextprotocol/inspector -e WIRDI_AI_ROOT=/path/to/wirdi-Ai .venv/bin/wirdi-mcp",
+    "Pick the tool named in `tool`, paste the object in `arguments`, run it, and compare with `expect`.",
+    "`needs` lists what the request depends on: WIRDI_AI_ROOT (the Quran text) or a local page store built with scripts/build_page_store.py.",
+    "`expect.status` is `ok` or `error`; for an error, `expect.code` is the error code. Counts quoted in `purpose` were measured on the real corpus.",
+    "Numbers of ayat are in the Qaloun count (6,214 ayat). Use resolve_source_mapping to convert to the Kufian count of the Tunisian mushaf.",
+    "tests/integration/test_apply_json.py runs every request in this file against the real server, so the examples cannot drift from the tools."
+  ],
+  "reading_context_note": "mode `waqf` stops at the end of each selected ayah only; `wasl` reads on, so the last position needs `following` (a complete reference to the next ayah of the same surah) or `null`; `stop_after_word` stops the last ayah after that many words.",
+  "reference_template": {
+    "corpus_id": "wirdi-ai:quranpedia:qalun",
+    "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+    "numbering_system": "wirdi-ai:qalun-6214",
+    "riwaya": "qaloun",
+    "tariq": "unspecified",
+    "surah": 2,
+    "ayah": 1
+  },
+  "requests": [
+    {
+      "id": "health_check.basic",
+      "tool": "health_check",
+      "purpose": "Readiness. `quran_data` must be `configured_unchecked` when WIRDI_AI_ROOT reaches the server.",
+      "arguments": {},
+      "expect": {
+        "status": "foundation_ready"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_qaloun_passage.basic",
+      "tool": "get_qaloun_passage",
+      "purpose": "The unchanged text of Al-Baqara 2:5-7 (Qaloun count) with SHA-256 and the 559-page span.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 5
+          },
+          "end_ayah": 7
+        }
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "get_qaloun_passage.ayah_outside_surah",
+      "tool": "get_qaloun_passage",
+      "purpose": "Error case: an ayah that does not exist in that surah.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 286
+          },
+          "end_ayah": 286
+        }
+      },
+      "expect": {
+        "status": "error",
+        "code": "INVALID_REFERENCE"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "resolve_source_mapping.qaloun_to_hafs",
+      "tool": "resolve_source_mapping",
+      "purpose": "Where Qaloun 2:5-7 falls in the Kufian/Hafs count (expected 2:6-8, `verified_difference`).",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 5
+          },
+          "end_ayah": 7
+        },
+        "target_corpus_id": "wirdi-ai:quranpedia:hafs",
+        "target_corpus_version": "sha256:0136b913aeb5a6a0389681f988215791ddd848c4347f7cf5e9d2574db7f1da49",
+        "target_numbering_system": "wirdi-ai:qpc-hafs-6236"
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "list_tajwid_rules.all",
+      "tool": "list_tajwid_rules",
+      "purpose": "All 81 rules with family, detectability, tariq and `has_detector`.",
+      "arguments": {},
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "list_tajwid_rules.family",
+      "tool": "list_tajwid_rules",
+      "purpose": "Only the 23 madd rules.",
+      "arguments": {
+        "family": "madd"
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_tajwid_rule.basic",
+      "tool": "get_tajwid_rule",
+      "purpose": "One rule record: definition, conditions, exceptions, limitations, citations.",
+      "arguments": {
+        "rule_id": "madd_munfasil",
+        "version": "1"
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_tajwid_rule.two_readings",
+      "tool": "get_tajwid_rule",
+      "purpose": "A rule whose words carry two readings (`variants`) and a contradiction of the book.",
+      "arguments": {
+        "rule_id": "madd_sila_ha_exception",
+        "version": "1"
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_tajwid_rule.not_found",
+      "tool": "get_tajwid_rule",
+      "purpose": "Error case: unknown rule.",
+      "arguments": {
+        "rule_id": "regle_inexistante",
+        "version": "1"
+      },
+      "expect": {
+        "status": "error",
+        "code": "NOT_FOUND"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_tajwid_rule.unsupported_version",
+      "tool": "get_tajwid_rule",
+      "purpose": "Error case: the rule exists, this version does not.",
+      "arguments": {
+        "rule_id": "madd_tabii",
+        "version": "9"
+      },
+      "expect": {
+        "status": "error",
+        "code": "UNSUPPORTED_VERSION"
+      },
+      "needs": []
+    },
+    {
+      "id": "analyze_qaloun_tajwid.family",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Every madd candidate of 2:1-7 in waqf (family filter).",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [],
+        "families": [
+          "madd"
+        ],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.rule_ids",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Only the connected and separated madd: 6 candidates, with their `variants`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "madd_muttasil",
+          "madd_munfasil"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.mim_and_ghunna",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "The mim sakina rules and the ghunna of the geminated noon/mim: 20 candidates.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "idhar_shafawi",
+          "ikhfa_shafawi",
+          "idgham_shafawi",
+          "ghunna_mushaddad"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.plural_meem_sila",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "The sila of the plural meem, including the bare meems before ba and meem (variants `iskan`, `sila_2_harakat`).",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 7
+          },
+          "end_ayah": 9
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "madd_sila_sughra_meem",
+          "madd_sila_kubra_meem"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.wasl_without_following",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Continuous reading with nothing after the last ayah: the last position comes back under `unresolved`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "wasl",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "madd_munfasil",
+          "madd_tabii"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.wasl_with_following",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Same, with the next ayah (2:8) given as `following`: nothing is left unresolved.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "wasl",
+          "basis": "requested",
+          "preceding": null,
+          "following": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 8
+          },
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "madd_munfasil",
+          "madd_tabii"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.stop_after_word",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Simulate a stop inside an ayah: 2:7 is read up to its 10th word only.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 7
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": 10
+        },
+        "rule_ids": [
+          "ikhfa_shafawi",
+          "madd_sila_sughra_meem"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.paging",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Second page of results: `offset` follows `next_offset` of the previous answer.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 18,
+            "ayah": 39
+          },
+          "end_ayah": 48
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [],
+        "families": [],
+        "include_candidates": true,
+        "limit": 100,
+        "offset": 100
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_qaloun_tajwid.unknown_rule",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Error case: a rule id that has no detector.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "no_such_rule"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "error",
+        "code": "NOT_FOUND"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "summarize_tajwid.range",
+      "tool": "summarize_tajwid",
+      "purpose": "Counts per rule and per ayah for 2:1-7, madd family (9 rules, 7 ayat).",
+      "arguments": {
+        "surah": 2,
+        "start_ayah": 1,
+        "end_ayah": 7,
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [],
+        "families": [
+          "madd"
+        ],
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "summarize_tajwid.whole_surah",
+      "tool": "summarize_tajwid",
+      "purpose": "A whole surah: leave out `start_ayah` and `end_ayah`; `next_offset` pages the per-ayah list.",
+      "arguments": {
+        "surah": 112,
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [],
+        "families": [],
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "summarize_tajwid.invalid_surah",
+      "tool": "summarize_tajwid",
+      "purpose": "Error case: surah 0.",
+      "arguments": {
+        "surah": 0,
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        }
+      },
+      "expect": {
+        "status": "error",
+        "code": "INVALID_REFERENCE"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_app_page.madd",
+      "tool": "analyze_app_page",
+      "purpose": "Candidates for the ayat that begin on page 263 of the 559-page layout (Kahf 18:39-48).",
+      "arguments": {
+        "page": 263,
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [],
+        "families": [
+          "madd"
+        ],
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "analyze_app_page.invalid_page",
+      "tool": "analyze_app_page",
+      "purpose": "Error case: the layout has pages 1 to 559.",
+      "arguments": {
+        "page": 560,
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        }
+      },
+      "expect": {
+        "status": "error",
+        "code": "INVALID_REFERENCE"
+      },
+      "needs": [
+        "WIRDI_AI_ROOT"
+      ]
+    },
+    {
+      "id": "get_letter_properties.basic",
+      "tool": "get_letter_properties",
+      "purpose": "Place of articulation and characteristics (Book A pp.40-45). One base letter per entry.",
+      "arguments": {
+        "letters": [
+          "ق",
+          "ء",
+          "ر",
+          "ا",
+          "و",
+          "ي"
+        ]
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_letter_properties.not_a_letter",
+      "tool": "get_letter_properties",
+      "purpose": "Error case: an entry must be a single letter.",
+      "arguments": {
+        "letters": [
+          "قط"
+        ]
+      },
+      "expect": {
+        "status": "error",
+        "code": "INVALID_REFERENCE"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_source_page.book_a",
+      "tool": "get_source_page",
+      "purpose": "Raw text of printed page 19 of Book A (madd muttasil, munfasil, sila kubra). Needs the local page store.",
+      "arguments": {
+        "edition_id": "book-a-2010",
+        "page_start": 19,
+        "page_end": 19
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "local_page_store:book-a-2010"
+      ]
+    },
+    {
+      "id": "get_source_page.book_b_unavailable",
+      "tool": "get_source_page",
+      "purpose": "Error case: Book B is a copy-protected scan with no page store.",
+      "arguments": {
+        "edition_id": "book-b-2010",
+        "page_start": 63,
+        "page_end": 63
+      },
+      "expect": {
+        "status": "error",
+        "code": "DATA_UNAVAILABLE"
+      },
+      "needs": []
+    },
+    {
+      "id": "search_source_pages.basic",
+      "tool": "search_source_pages",
+      "purpose": "Which pages of Book A contain « الصلة »: 15, 17, 18, 19, 20. Needs the local page store.",
+      "arguments": {
+        "query": "الصلة",
+        "edition_ids": [
+          "book-a-2010"
+        ],
+        "limit": 20
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": [
+        "local_page_store:book-a-2010"
+      ]
+    },
+    {
+      "id": "search_source_pages.too_short",
+      "tool": "search_source_pages",
+      "purpose": "Error case: a query has at least 2 characters.",
+      "arguments": {
+        "query": "ص",
+        "edition_ids": [
+          "book-a-2010"
+        ],
+        "limit": 20
+      },
+      "expect": {
+        "status": "error",
+        "code": "INVALID_REFERENCE"
+      },
+      "needs": []
+    },
+    {
+      "id": "get_tajwid_explanation.always_unsupported",
+      "tool": "get_tajwid_explanation",
+      "purpose": "Always `UNSUPPORTED_CAPABILITY`: no explanation exists until a named reviewer validates an annotation.",
+      "arguments": {
+        "annotation_id": "madd_munfasil:1:2:3:26-27:waqf",
+        "annotation_version": "1.0.0",
+        "language": "ar"
+      },
+      "expect": {
+        "status": "error",
+        "code": "UNSUPPORTED_CAPABILITY"
+      },
+      "needs": []
+    }
+  ]
+}
