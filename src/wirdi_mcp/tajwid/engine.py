@@ -60,6 +60,7 @@ class TajwidEngine:
     def __init__(self, repository: PublicSourceRepository, registry: RuleRegistry):
         self.repository = repository
         self.registry = registry
+        self._references: dict[int, QalounReference] = {}  # immutable, so safe to share
 
     # -- rule selection ---------------------------------------------------------------
     def select_rules(
@@ -69,21 +70,21 @@ class TajwidEngine:
             if rule_id not in DETECTORS:
                 raise KnowledgeError("NOT_FOUND", "No detector exists for a requested rule")
         wanted = rule_ids or tuple(sorted(DETECTORS))
-        rules = {rid: self.registry.get_rule(rid, DETECTORS[rid][1]) for rid in wanted}
+        rules = self.registry.get_rules(tuple((rid, DETECTORS[rid][1]) for rid in wanted))
         if families:
             rules = {rid: r for rid, r in rules.items() if r.family in families}
         return rules
 
     # -- verse selection --------------------------------------------------------------
-    def load_verses(self, first_index: int, last_index: int) -> list[Verse]:
-        rows = self.repository.load_edition("qalun")
+    @staticmethod
+    def load_verses(rows: tuple[SourceAyah, ...], first_index: int, last_index: int) -> list[Verse]:
         return [
             Verse(i, rows[i], hashlib.sha256(rows[i].text.encode("utf-8")).hexdigest())
             for i in range(first_index, last_index + 1)
         ]
 
-    def locate(self, surah: int, ayah: int) -> int:
-        rows = self.repository.load_edition("qalun")
+    @staticmethod
+    def locate(rows: tuple[SourceAyah, ...], surah: int, ayah: int) -> int:
         for i, row in enumerate(rows):
             if row.surah == surah and row.number == ayah:
                 return i
@@ -92,13 +93,13 @@ class TajwidEngine:
     # -- detection --------------------------------------------------------------------
     def detect(
         self,
+        rows: tuple[SourceAyah, ...],
         first_index: int,
         last_index: int,
         context: ReadingContext,
         rules: dict[str, TajwidRule],
     ) -> EngineResult:
-        rows = self.repository.load_edition("qalun")
-        verses = self.load_verses(first_index, last_index)
+        verses = self.load_verses(rows, first_index, last_index)
         wanted = frozenset(rules)
         result = EngineResult(verses, [], rules)
         following_letter = self._explicit_following(rows, last_index, context)
@@ -167,8 +168,11 @@ class TajwidEngine:
         pages: tuple[tuple[int, int], ...],
         pagination_sha256: str,
     ) -> TajwidAnnotation:
-        reference = self.repository.reference("qalun", verse.row.surah, verse.row.number)
-        assert isinstance(reference, QalounReference)
+        reference = self._references.get(verse.index)
+        if reference is None:
+            reference = self.repository.reference("qalun", verse.row.surah, verse.row.number)
+            assert isinstance(reference, QalounReference)
+            self._references[verse.index] = reference
         start, end = pages[verse.index]
         annotation = TajwidAnnotation(
             annotation_id=(

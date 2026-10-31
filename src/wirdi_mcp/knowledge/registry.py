@@ -59,9 +59,10 @@ class RuleRegistry:
             raise KnowledgeError("INTEGRITY_FAILURE", "The rule manifest is malformed")
         return doc
 
-    def editions(self) -> dict[str, dict]:
+    def editions(self, manifest: dict | None = None) -> dict[str, dict]:
         raw = self._read("sources/editions.json")
-        if digest(raw) != self.manifest()["editions_sha256"]:
+        manifest = manifest or self.manifest()
+        if digest(raw) != manifest["editions_sha256"]:
             raise KnowledgeError("INTEGRITY_FAILURE", "Source edition metadata checksum mismatch")
         try:
             return {e["edition_id"]: e for e in json.loads(raw)["editions"]}
@@ -74,27 +75,36 @@ class RuleRegistry:
         return tuple((e["rule_id"], e["version"]) for e in self.manifest()["rules"])
 
     def get_rule(self, rule_id: str, version: str) -> TajwidRule:
-        if not RULE_ID.fullmatch(rule_id) or not VERSION.fullmatch(version):
-            raise KnowledgeError("NOT_FOUND", "No such local Tajwid rule")
-        entries = [e for e in self.manifest()["rules"] if e["rule_id"] == rule_id]
-        if not entries:
-            raise KnowledgeError("NOT_FOUND", "No such local Tajwid rule")
-        entry = next((e for e in entries if e["version"] == version), None)
-        if entry is None:
-            raise KnowledgeError("UNSUPPORTED_VERSION", "Rule version is not available locally")
-        raw = self._read(entry["path"])
-        if digest(raw) != entry["sha256"]:
-            raise KnowledgeError("INTEGRITY_FAILURE", "Rule record checksum mismatch")
-        try:
-            rule = TajwidRule.model_validate_json(raw)
-        except ValidationError:
-            raise KnowledgeError("INTEGRITY_FAILURE", "Rule record is malformed") from None
-        if (rule.rule_id, rule.version) != (rule_id, version):
-            raise KnowledgeError("INTEGRITY_FAILURE", "Rule record identity mismatch")
-        editions = self.editions()
-        for citation in iter_citations(rule):
-            check_citation(citation, editions)
-        return rule
+        return self.get_rules(((rule_id, version),))[rule_id]
+
+    def get_rules(self, wanted: tuple[tuple[str, str], ...]) -> dict[str, TajwidRule]:
+        """Load rules with one read of the manifest and of the edition metadata."""
+        for rule_id, version in wanted:
+            if not RULE_ID.fullmatch(rule_id) or not VERSION.fullmatch(version):
+                raise KnowledgeError("NOT_FOUND", "No such local Tajwid rule")
+        manifest = self.manifest()
+        editions = self.editions(manifest)
+        rules: dict[str, TajwidRule] = {}
+        for rule_id, version in wanted:
+            entries = [e for e in manifest["rules"] if e["rule_id"] == rule_id]
+            if not entries:
+                raise KnowledgeError("NOT_FOUND", "No such local Tajwid rule")
+            entry = next((e for e in entries if e["version"] == version), None)
+            if entry is None:
+                raise KnowledgeError("UNSUPPORTED_VERSION", "Rule version is not available locally")
+            raw = self._read(entry["path"])
+            if digest(raw) != entry["sha256"]:
+                raise KnowledgeError("INTEGRITY_FAILURE", "Rule record checksum mismatch")
+            try:
+                rule = TajwidRule.model_validate_json(raw)
+            except ValidationError:
+                raise KnowledgeError("INTEGRITY_FAILURE", "Rule record is malformed") from None
+            if (rule.rule_id, rule.version) != (rule_id, version):
+                raise KnowledgeError("INTEGRITY_FAILURE", "Rule record identity mismatch")
+            for citation in iter_citations(rule):
+                check_citation(citation, editions)
+            rules[rule_id] = rule
+        return rules
 
 
 def iter_citations(rule: TajwidRule):

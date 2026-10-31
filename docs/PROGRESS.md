@@ -3,7 +3,7 @@
 Branch: `feat/tajwid-knowledge`. Never push. Resume by reading this file first.
 
 ## Current milestone
-J6 (performance and reliability)
+J7 (final verification and documentation)
 
 ## Done
 - J0 hygiene: `.gitignore` extended before any commit (PDFs, page renders, derived
@@ -22,6 +22,10 @@ J6 (performance and reliability)
 
 - J4 mushaf pilot on 10 pages: **NO-GO** (see `docs/PILOT_REPORT.md`); J5 skipped.
   Image libraries installed in the project `.venv` only; optional extra `mushaf` added.
+
+- J6 performance and reliability: one corpus/pagination/manifest read per request,
+  paging (default 100, max 500), size limits, typed errors with no path leakage,
+  `docs/PERF.md`: page call p50 84 ms, cold start 0.56 s.
 
 ## Next action
 J4: install numpy/opencv/scikit-image/pillow in `.venv`, render 10 sample mushaf pages

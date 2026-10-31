@@ -17,6 +17,7 @@ from wirdi_mcp.knowledge.registry import RuleRegistry, digest
 
 MAX_PAGES_PER_CALL = 5
 MAX_STORE_BYTES = 32 * 1024 * 1024
+MAX_PAGE_CHARS = 20_000
 EDITION_ID = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}$")
 _BIDI = dict.fromkeys(
     [*range(0x202A, 0x202F), 0x200E, 0x200F, *range(0x2066, 0x206A), 0x0640], None
@@ -71,7 +72,11 @@ class PageStore:
             for line in raw.decode("utf-8").splitlines():
                 row = json.loads(line)
                 pdf_page = int(row["pdf_page"])
-                if not 1 <= pdf_page <= edition["page_count"] or pdf_page in pages:
+                if (
+                    not 1 <= pdf_page <= edition["page_count"]
+                    or pdf_page in pages
+                    or len(row["text"]) > MAX_PAGE_CHARS
+                ):
                     raise ValueError
                 pages[pdf_page] = StoredPage(
                     edition_id,

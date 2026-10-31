@@ -29,9 +29,10 @@ def all_rules(engine):
 @pytest.mark.parametrize("mode", ["waqf", "wasl"])
 def test_every_single_ayah_selection_runs_without_exception(engine, all_rules, mode):
     context = ReadingContext(mode=mode)
+    rows = engine.repository.load_edition("qalun")
     counts = Counter()
     for index in range(6214):
-        result = engine.detect(index, index, context, all_rules)
+        result = engine.detect(rows, index, index, context, all_rules)
         counts.update(o.rule_id for _, o in result.occurrences)
         for verse, occurrence in result.occurrences:
             # every anchor resolves back to the unchanged text inside the ayah
@@ -49,7 +50,7 @@ def test_idhar_mutlaq_hits_only_the_four_words_the_book_names(engine, all_rules)
     rows = engine.repository.load_edition("qalun")
     words = set()
     for index in range(6214):
-        result = engine.detect(index, index, ReadingContext(mode="waqf"), all_rules)
+        result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), all_rules)
         for verse, occurrence in result.occurrences:
             if occurrence.rule_id == "idhar_mutlaq":
                 text = rows[verse.index].text
@@ -65,7 +66,7 @@ def test_corpus_orthography_agrees_with_tanween_classification(engine, all_rules
     standard = {chr(0x64B), chr(0x64C), chr(0x64D)}
     rows = engine.repository.load_edition("qalun")
     for index in range(0, 6214, 7):
-        result = engine.detect(index, index, ReadingContext(mode="waqf"), all_rules)
+        result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), all_rules)
         for verse, occurrence in result.occurrences:
             if not (occurrence.note or "").startswith("tanween"):
                 continue

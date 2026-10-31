@@ -57,7 +57,7 @@ class AnalyzeInput(GetPassageInput):
     families: RuleIds = ()
     # Candidates are the only kind that exists; False asks for reviewed annotations only.
     include_candidates: bool = True
-    limit: Limit = 200
+    limit: Limit = 100
     offset: Offset = 0
 
 
@@ -113,7 +113,7 @@ class AppPageInput(ContractModel):
     reading_context: ReadingContext
     rule_ids: RuleIds = ()
     families: RuleIds = ()
-    limit: Limit = 200
+    limit: Limit = 100
     offset: Offset = 0
 
 

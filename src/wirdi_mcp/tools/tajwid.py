@@ -127,7 +127,7 @@ def register_tajwid_tools(
         rule_ids: tuple[NonEmpty, ...] = (),
         include_candidates: bool = True,
         families: tuple[NonEmpty, ...] = (),
-        limit: int = 200,
+        limit: int = 100,
         offset: int = 0,
     ) -> Annotated[CallToolResult, AnalysisToolResponse]:
         """Candidate Tajwid occurrences for 1 to 100 Qaloun ayat, paged, each with its citations."""
@@ -211,7 +211,7 @@ def register_tajwid_tools(
         reading_context: ReadingContext,
         rule_ids: tuple[NonEmpty, ...] = (),
         families: tuple[NonEmpty, ...] = (),
-        limit: int = 200,
+        limit: int = 100,
         offset: int = 0,
     ) -> Annotated[CallToolResult, AppPageToolResponse]:
         """Candidates for the ayat that begin on a page of the verified 559-page Qaloun layout."""

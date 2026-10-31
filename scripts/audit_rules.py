@@ -28,14 +28,15 @@ def main() -> int:
     repo.load_edition = functools.cache(repo.load_edition)
     engine = TajwidEngine(repo, RuleRegistry(ROOT / "knowledge"))
     rules = engine.select_rules((), ())
-    letters = sum(len(r.text) for r in repo.load_edition("qalun"))
+    rows = repo.load_edition("qalun")
+    letters = sum(len(r.text) for r in rows)
     flags = []
     print("| rule | waqf | wasl |\n| --- | ---: | ---: |")
     totals, notes = {}, {}
     for mode in ("waqf", "wasl"):
         counts, unresolved, skipped = Counter(), Counter(), Counter()
         for i in range(6214):
-            result = engine.detect(i, i, ReadingContext(mode=mode), rules)
+            result = engine.detect(rows, i, i, ReadingContext(mode=mode), rules)
             counts.update(o.rule_id for _, o in result.occurrences)
             unresolved.update(result.unresolved)
             skipped.update(result.skipped)

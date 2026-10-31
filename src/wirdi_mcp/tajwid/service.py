@@ -73,11 +73,13 @@ class TajwidService:
         offset: int,
     ) -> Analysis:
         self.repository.validate_selection(selection)
-        first = self.engine.locate(selection.start.surah, selection.start.ayah)
-        last = self.engine.locate(selection.start.surah, selection.end_ayah)
+        rows = self.repository.load_edition("qalun")
+        pages = self.repository.load_pages()
+        first = self.engine.locate(rows, selection.start.surah, selection.start.ayah)
+        last = self.engine.locate(rows, selection.start.surah, selection.end_ayah)
         rules = self.engine.select_rules(rule_ids, families)
-        result = self.engine.detect(first, last, context, rules)
-        return self._assemble(result, context, include_candidates, limit, offset)
+        result = self.engine.detect(rows, first, last, context, rules)
+        return self._assemble(result, context, include_candidates, limit, offset, pages)
 
     def _assemble(
         self,
@@ -86,8 +88,8 @@ class TajwidService:
         include_candidates: bool,
         limit: int,
         offset: int,
+        pages: tuple[tuple[int, int], ...],
     ) -> Analysis:
-        pages = self.repository.load_pages()
         pagination_sha = self.repository.manifest["pagination_sha256"]
         occurrences = result.occurrences if include_candidates else []
         window = occurrences[offset : offset + limit]
@@ -138,8 +140,9 @@ class TajwidService:
                 "INVALID_REFERENCE", "Ayah range is outside the surah or too large"
             )
         rules = self.engine.select_rules(rule_ids, families)
-        first, last = self.engine.locate(surah, lo), self.engine.locate(surah, hi)
-        result = self.engine.detect(first, last, context, rules)
+        rows = self.repository.load_edition("qalun")
+        first, last = self.engine.locate(rows, surah, lo), self.engine.locate(rows, surah, hi)
+        result = self.engine.detect(rows, first, last, context, rules)
         per_verse: dict[int, Counter] = {v.index: Counter() for v in result.verses}
         for verse, occurrence in result.occurrences:
             per_verse[verse.index][occurrence.rule_id] += 1
@@ -192,11 +195,10 @@ class TajwidService:
             )
 
         if owned:
-            result = self.engine.detect(owned[0], owned[-1], context, rules)
-            analysis = self._assemble(result, context, True, limit, offset)
+            result = self.engine.detect(rows, owned[0], owned[-1], context, rules)
         else:
-            empty = EngineResult([], [], rules)
-            analysis = self._assemble(empty, context, True, limit, offset)
+            result = EngineResult([], [], rules)
+        analysis = self._assemble(result, context, True, limit, offset, pages)
         return AppPageAnalysis(
             page=page,
             pagination_status="verified_against_edition",
