@@ -36,7 +36,7 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | 35 | Taqlil and imala | `taqlil_tawrat`, `imala_har` | detected |
 | 36-39 | Idgham kabir and saghir; naqis | `idgham_kabir_mutamathil`, `idgham_mutamathilayn`, `idgham_mutajanisayn`, `idgham_mutaqaribayn`, `idgham_naqis` | detected; second readings the book mentions are listed only for the two-reading words |
 | 40-45 | Places of articulation and characteristics | tool `get_letter_properties` | static tables, 29 letters |
-| 45-50 | Ya'at al-idafa | `ya_idafa_fath`, `ya_idafa_iskan_exception`, `ya_idafa_fath_exception`, `ya_idafa_rabbi_two_readings` | partial (see below) |
+| 45-50 | Ya'at al-idafa | `ya_idafa_fath`, `ya_idafa_iskan_exception`, `ya_idafa_fath_exception`, `ya_idafa_iskan_before_letter`, `ya_idafa_maee`, `ya_idafa_rabbi_two_readings` | partial (see below) |
 
 ## Words Book A states in two ways
 
@@ -56,8 +56,13 @@ barree also ends ordinary words (في، الذي). So:
 - An open ya before a hamza or hamzat al-wasl is **detected** from its spelling (`ya_idafa_fath`).
 - The closed ones that the book names against its own class (24 places) and the open ones it names
   against the "closed" default (6 places) are matched from its lists.
-- The default for "before any other letter" is closed, and it is **not detected**: a closed ya is
-  indistinguishable from an ordinary final yeh.
+- The default for "before any other letter" is closed, and it is **not detected** beyond the seven
+  examples the book names on p.47 (`ya_idafa_iskan_before_letter`): a closed ya is indistinguishable
+  from an ordinary final yeh.
+- **معي** (p.47, last sentence): the book says the ya is open unless a fatha hamza follows, but the
+  corpus spells it the other way round (open only before a fatha hamza, 2 of 11 places), which is
+  also what the book's own classes 1 and 6 give. `ya_idafa_maee` reports each occurrence with what
+  the corpus spells and chooses nothing.
 
 ## Honest limits
 
@@ -69,4 +74,4 @@ barree also ends ordinary words (في، الذي). So:
 - Rule texts are paraphrases written by an automated drafter. No reviewer has confirmed any of them
   or any detected occurrence; the highest status served is `candidate`.
 - The corpus `tariq` is `unspecified` and Book A attests Qaloun without naming Abu Nashit, so the
-  63 rules from Book A carry `tariq: "unspecified"`.
+  65 rules from Book A carry `tariq: "unspecified"`.

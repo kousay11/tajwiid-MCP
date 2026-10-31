@@ -442,7 +442,8 @@ def detect_ana(view: AyahView) -> None:
                     "alef_ana_before_hamza",
                     word,
                     alef,
-                    "ana before a hamza with a fatha or damma: alef kept and lengthened",
+                    "ana before a hamza with a fatha or damma: alef kept, separated madd (p.24)",
+                    PLUS_LENGTHS_MUNFASIL,
                 )
         else:
             emit(view, "alef_ana_dropped", word, alef, "ana joined to a letter that is not a hamza")

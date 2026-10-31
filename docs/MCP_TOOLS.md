@@ -39,7 +39,7 @@ emitted (`EMITTABLE_STATUSES`).
 
 `families` filters `analyze_qaloun_tajwid`, `summarize_tajwid` and `analyze_app_page`:
 `madd` (23 rules), `hamza` (19), `tafkhim_tarqiq` (12), `imala_taqlil` (2), `idgham_general` (5),
-`ya_idafa` (4) and the first-release families (`qalqala`, `noon_sakina_tanween`, `mim_sakina`,
+`ya_idafa` (6) and the first-release families (`qalqala`, `noon_sakina_tanween`, `mim_sakina`,
 `ghunna`, `lam_taarif`). Two hamza rules have a
 record but no detector (`has_detector: false` in `list_tajwid_rules`). Book A coverage is in
 [BOOK_A_COVERAGE](BOOK_A_COVERAGE.md); a request for each family is in

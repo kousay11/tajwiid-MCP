@@ -66,7 +66,9 @@ RULES: dict[str, tuple] = {
         "word begins with a hamza that has a fatha or a damma.",
         (("hamza_next", "The next word begins with a hamza with a fatha or a damma."),),
         (),
-        ("Wasl only; at a stop the alef is always kept.",),
+        (
+            "Wasl only; at a stop the alef is always kept. The lengths are those of the separated madd, as the book says (p.24).",
+        ),
     ),
     "alef_ana_before_hamza_kasra": (
         "madd",
@@ -259,6 +261,37 @@ RULES: dict[str, tuple] = {
         (("words", "The word is one of the listed words at its named place."),),
         (),
         ("A closed list in the Kufian numbering used by the book.",),
+    ),
+    "ya_idafa_iskan_before_letter": (
+        "yaat",
+        "ياءات الإضافة الساكنة قبل الحروف",
+        "C",
+        ("p.47",),
+        "Before an ordinary letter the first-person ya is closed; Book A names seven examples: "
+        "ومحياي (al-An'am 162), وما كان لي عليكم (Ibrahim 22), ولي فيها (Ta-Ha 18), مالي لا أرى "
+        "(an-Naml 20), ولي نعجة (Sad 23), ما كان لي من علم (Sad 69), بيتي مؤمنا (Nuh 28).",
+        (("words", "The word is one of the seven, at its named place, before the named word."),),
+        (),
+        (
+            "A closed list in the Kufian numbering used by the book. The default (closed before an "
+            "ordinary letter) is not detected beyond these seven.",
+        ),
+    ),
+    "ya_idafa_maee": (
+        "yaat",
+        "ياء الإضافة في كلمة معي",
+        "C",
+        ("p.47",),
+        "Book A's last sentence on this page says the ya of معي is open wherever it occurs, "
+        "provided no hamza qat' with a fatha follows. The corpus spells the opposite: closed "
+        "everywhere except before a fatha hamza (9:83 and 67:28 in the Kufian count).",
+        (("word", "The word is معي, with or without a one-letter prefix."),),
+        (),
+        (
+            "Not arbitrated: the sentence contradicts both the corpus spelling and the book's own "
+            "classes 1 and 6 on pp.48-50, which give the reverse. Each occurrence reports what the "
+            "corpus spells and nothing is chosen.",
+        ),
     ),
     "ya_idafa_rabbi_two_readings": (
         "yaat",

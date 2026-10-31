@@ -7,8 +7,8 @@ configured, checksum-pinned Qaloun source files and its own hash-pinned knowledg
 | --- | --- | --- | --- |
 | 1 Foundation | Packaging, stdio transport, diagnostics, typed contracts | Tests, smoke test, lint | done |
 | 2 Quran tools | Read-only Qaloun access and the existing mapping authority | Integrity and conformance | done |
-| 3 Tajwid knowledge | Audited sources, page-cited rule records, local page store | Tamper tests, citations resolve | done for 79 rules (unreviewed): 14 first release + 65 from Book A |
-| 4 Tajwid engine | Deterministic detectors, wasl/waqf context, candidate annotations | Fixtures; full-corpus run; frequency audit | done for 77 rules; 2 hamza rules are record-only |
+| 3 Tajwid knowledge | Audited sources, page-cited rule records, local page store | Tamper tests, citations resolve | done for 81 rules (unreviewed): 14 first release + 67 from Book A |
+| 4 Tajwid engine | Deterministic detectors, wasl/waqf context, candidate annotations | Fixtures; full-corpus run; frequency audit | done for 79 rules; 2 hamza rules are record-only |
 | 5 Scholarly validation | Named reviewer, validation records, reviewed explanations | Records bound to subject hashes | **blocked: no reviewer** |
 | 6 Coloured-mushaf source | Extract the publisher's colouring as a second source | Pilot: 95% attach, 90% agreement | **NO-GO** (see PILOT_REPORT) |
 | 7 Application integration | Managed MCP client in wirdi-Ai, UI of verified annotations only | Regression, privacy, failure isolation | not started, out of scope so far |

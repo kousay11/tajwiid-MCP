@@ -413,3 +413,35 @@ def test_alan_keeps_its_three_readings_and_the_sukun_case_keeps_none():
     text = "م" + FATHA + "ح" + SUKUN + "ي" + FATHA + "ا" + MADDAH + "ي" + SUKUN
     hits, _ = found(text, "madd_lazim_kalimi_mukhaffaf")
     assert hits and hits[0][2] == ()
+
+
+# --- the seven closed ya words, maee and the lengths of ana --------------------------------------
+def test_a_closed_ya_word_needs_its_place_and_its_next_word():
+    li = "ل" + KASRA + YEH_BARREE
+    first = li + " ع" + FATHA + "ل" + FATHA + "ي" + SUKUN + "ك" + DAMMA + "م" + SUKUN
+    second = li + " ف" + FATHA + "ل" + FATHA + "ا"
+    kwargs = dict(surah=14, ayah=24, kufi=(22,))
+    assert rules_in(first, "ya_idafa_iskan_before_letter", **kwargs) == [
+        "ya_idafa_iskan_before_letter"
+    ]
+    # the second لي of the same ayah is followed by another word and is not the book's example
+    assert rules_in(second, "ya_idafa_iskan_before_letter", **kwargs) == []
+    assert rules_in(first, "ya_idafa_iskan_before_letter", surah=14, ayah=1, kufi=(1,)) == []
+
+
+def test_maee_reports_what_the_corpus_spells_and_does_not_choose():
+    closed = "م" + FATHA + "ع" + KASRA + YEH_BARREE + " ص" + FATHA + "ب" + SUKUN + "ر" + FATHA
+    open_ya = "م" + FATHA + "ع" + KASRA + "ي" + FATHA + " أ" + FATHA + "ب" + FATHA + "د" + FATHA
+    hits, view = found(closed, "ya_idafa_maee")
+    note = view.occurrences[0].note
+    assert hits and "closed (yeh barree)" in note and "not before a fatha hamza" in note
+    hits, view = found(open_ya, "ya_idafa_maee")
+    note = view.occurrences[0].note
+    assert hits and "open (fatha)" in note and ", before a fatha hamza" in note
+    assert len(note) <= 300 and hits[0][2] == ()
+
+
+def test_ana_before_a_fatha_or_damma_hamza_takes_the_munfasil_lengths():
+    ana = "أ" + FATHA + "ن" + FATHA + "ا"
+    hits, _ = found(ana + " أ" + FATHA + "ن", "alef_ana_before_hamza", mode="wasl", stops=False)
+    assert hits and hits[0][2] == ("2_harakat", "3_harakat", "4_harakat")

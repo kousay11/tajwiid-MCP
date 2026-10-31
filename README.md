@@ -8,10 +8,10 @@ Structured retrieval and verifiable evidence come before generated explanations.
 twelve read-only local tools: diagnostics, Qaloun passage and mapping tools, and
 nine Tajwid tools. Quran text is read directly from the original checksum-pinned
 Wirdi AI public source files. No external MCP client, network provider, database,
-RAG, embedding or LLM is used. Seventy-nine Tajwid rules are available as paraphrased,
-page-cited, **unreviewed** records (14 from the first release, 65 from every section of
+RAG, embedding or LLM is used. Eighty-one Tajwid rules are available as paraphrased,
+page-cited, **unreviewed** records (14 from the first release, 67 from every section of
 Book A: madd, hamza, heavy and light letters, taqlil, idgham, ya'at al-idafa), and
-deterministic detectors propose **candidate** annotations for 77 of them. See
+deterministic detectors propose **candidate** annotations for 79 of them. See
 [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) for what is and is not detected. Nothing is scholarly verified: there is no named reviewer, the
 highest status ever served is `candidate`, and `get_tajwid_explanation` stays
 unavailable.

@@ -17,7 +17,7 @@ what was decided without you.
 - The corpus checksum drift was resolved by a controlled manifest update after the full
   mapping conformance passed ([SOURCE_AUDIT](SOURCE_AUDIT.md)); mapping works again.
 - Offline suite: 140+ tests; with `WIRDI_TEST_SOURCE_ROOT` the full suite (170) passes.
-- **0.6.0 adds Book A** (every section of its 51 pages): 65 more rule records and 63 more
+- **0.6.0 adds Book A** (every section of its 51 pages): 67 more rule records and 65 more
   detectors for madd, hamza, heavy and light letters, taqlil, general idgham and ya'at al-idafa,
   and the `get_letter_properties` tool. [BOOK_A_COVERAGE](BOOK_A_COVERAGE.md) says rule by rule
   what is detected and what is not; [TESTING_GUIDE](TESTING_GUIDE.md) has a request for each family.
@@ -67,8 +67,8 @@ what was decided without you.
 
 ## Pages and items to review first
 
-1. The 79 records in `knowledge/rules/` against the cited pages (the 14 first records: A pp.4-13
-   and 44, B pp.52-53, 56-60, 62-63; the 65 Book A records: the pages in each citation, which
+1. The 81 records in `knowledge/rules/` against the cited pages (the 14 first records: A pp.4-13
+   and 44, B pp.52-53, 56-60, 62-63; the 67 Book A records: the pages in each citation, which
    are where the section begins).
 2. [REVIEW_SAMPLE](REVIEW_SAMPLE.md): five candidates per rule, references only.
 3. The 49 alef-lam words skipped as not fitting the article pattern (audit, "skipped"), and the

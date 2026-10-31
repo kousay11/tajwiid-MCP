@@ -35,7 +35,7 @@ def rules_of(text, **kw):
 def test_every_detector_has_a_rule_record_key():
     assert all(len(v) == 4 and v[1] == "1" and v[2] == "qaloun" for v in DETECTORS.values())
     assert all(isinstance(v[0], tuple) and v[0] for v in DETECTORS.values())
-    assert len(DETECTORS) == 77
+    assert len(DETECTORS) == 79
 
 
 @pytest.mark.parametrize(

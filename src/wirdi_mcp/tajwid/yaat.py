@@ -40,4 +40,23 @@ def detect_ya_idafa_fath(view: AyahView) -> None:
             emit(view, "ya_idafa_fath", word, last, f"ya of the first person with a fatha {kind}")
 
 
-YAAT_DETECTORS = {"ya_idafa_fath": detect_ya_idafa_fath}
+MAEE_NOTE = (
+    "Book A p.47: the ya of معي is open unless a fatha hamza follows. The corpus spells it "
+    "{spelling}{before}. This differs from the sentence; the divergence is not arbitrated"
+)
+
+
+def detect_maee(view: AyahView) -> None:
+    """Flag the word معي with what the corpus spells, since the book's sentence disagrees."""
+    for wi, word in enumerate(view.words):
+        if skeleton(word) not in ("معي", "ومعي", "فمعي"):
+            continue
+        last = word.letters[-1]
+        spelling = "open (fatha)" if FATHA in last.marks else "closed (yeh barree)"
+        nxt = view.words[wi + 1].letters[0] if wi + 1 < len(view.words) else None
+        fatha_hamza = nxt is not None and nxt.char in HAMZA_FORMS and FATHA in nxt.marks
+        before = ", before a fatha hamza" if fatha_hamza else ", not before a fatha hamza"
+        emit(view, "ya_idafa_maee", word, last, MAEE_NOTE.format(spelling=spelling, before=before))
+
+
+YAAT_DETECTORS = {"ya_idafa_fath": detect_ya_idafa_fath, "ya_idafa_maee": detect_maee}

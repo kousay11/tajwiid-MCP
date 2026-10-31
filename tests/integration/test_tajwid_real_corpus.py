@@ -55,6 +55,8 @@ CLOSED_LISTS = {
     "ya_idafa_iskan_exception": 24,  # 9 + 10 + 2 + 3 words named by the book
     "ya_idafa_fath_exception": 6,
     "ya_idafa_rabbi_two_readings": 1,
+    "ya_idafa_iskan_before_letter": 7,  # the seven words of Book A p.47
+    "ya_idafa_maee": 11,  # every معي in the corpus
 }
 
 

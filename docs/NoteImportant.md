@@ -50,7 +50,7 @@ plus `page` et `reading_context.mode`. La requête qui marche :
 | Texte du Quran (Qaloun) | Fichiers publics du dépôt Wirdi AI, lus en lecture seule via `WIRDI_AI_ROOT`. Le jeu est « KFGQPC Qaloun via Qur'anpedia » (distribution `risan/quran-json`, commit `6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123`), soit 6 214 ayat | Empreinte SHA-256 du corpus vérifiée à chaque appel (`ece0a2b0…d1303`) ; le texte n'est jamais modifié ni recopié |
 | Pagination 559 pages | Fichier de pagination du même dépôt | Empreinte vérifiée (`ca7aa4e4…ccfc0`) ; page 263 = « verified_against_edition » |
 | Numérotation | Compte Qaloun du corpus. Le lien vers la numérotation kufienne (celle que cite le livre A) est `number_in_hafs` | Les listes du livre A sont comparées aux numéros kufiens |
-| Règles de tajwid | Paraphrases rédigées pour ce projet, dans `knowledge/rules/` ; sources : livre A (51 p.) pour les 79 règles, livre B (Abu Nashit) pour 12 des 14 premières | Empreinte de chaque fiche vérifiée ; chaque citation donne livre et page |
+| Règles de tajwid | Paraphrases rédigées pour ce projet, dans `knowledge/rules/` ; sources : livre A (51 p.) pour les 81 règles, livre B (Abu Nashit) pour 12 des 14 premières | Empreinte de chaque fiche vérifiée ; chaque citation donne livre et page |
 | Détection | Code déterministe local (aucun LLM, aucun RAG, aucun réseau) | Chaque résultat est `candidate`, jamais vérifié |
 
 Le texte vient du Wirdi AI, jamais d'un PDF. Les PDF (livres A, B et mushaf) servent seulement à
@@ -70,7 +70,7 @@ Nashit : `tariq` reste `unspecified`.
 - `coverage: complete_for_requested_rules`, `unresolved: {}` : aucune position n'a manqué de contexte.
 - `skipped` : 10 tanwins à l'arrêt (aucune règle de noon ne s'y applique), 2 lafz al-jalala
   (famille traitée par `lam_jalala_*`), 1 noon nu devant alef.
-- 77 règles évaluées. Tous les statuts sont `candidate`, `validation_status: unreviewed`.
+- 77 règles évaluées (à la date de ce test ; il y en a 79 aujourd'hui). Tous les statuts sont `candidate`, `validation_status: unreviewed`.
 
 **Comptes par règle sur les 280 candidats** (`rule_counts`) :
 

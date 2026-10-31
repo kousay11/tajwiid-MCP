@@ -21,7 +21,7 @@ corpus reference; only `surah` and `ayah` change:
 
 ## 1. See what exists
 
-- `list_tajwid_rules {}`: 79 rules, each with `family` and `has_detector`. Pass `{"family": "madd"}`
+- `list_tajwid_rules {}`: 81 rules, each with `family` and `has_detector`. Pass `{"family": "madd"}`
   to filter. Families: `madd`, `hamza`, `tafkhim_tarqiq`, `imala_taqlil`, `idgham_general`,
   `ya_idafa` and the first-release families `qalqala`, `noon_sakina_tanween`, `mim_sakina`,
   `ghunna`, `lam_taarif`.

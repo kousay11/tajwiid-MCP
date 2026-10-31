@@ -1,4 +1,4 @@
-# Performance (0.6.0, 77 detectors)
+# Performance (0.6.0, 79 detectors)
 
 Measured through the real stdio server (`scripts/measure_perf.py`), 30 runs per case, on the
 development machine, Python 3.12, real Wirdi AI source files, waqf context. Every call
@@ -35,6 +35,6 @@ re-verifies the Quran corpus, pagination and rule checksums (fail closed).
 There is no cache of parsed data across requests. Revalidating the checksums on each call
 keeps the earlier "fail closed on any source change" guarantee; the cost is about 30 ms.
 A cache keyed on file stat signatures would cut that and is a possible later step.
-Detection itself over all 6,214 ayat takes about 10 s with all 77 detectors in both modes
+Detection itself over all 6,214 ayat takes about 10 s with all 79 detectors in both modes
 (`scripts/audit_rules.py`), against 0.7 s for the 14 first detectors: the Book A families
 tripled the per-ayah work, and every figure above stays inside the targets.

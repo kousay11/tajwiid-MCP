@@ -6,7 +6,7 @@ and no source-book or Quran text is written. Reading context is waqf unless stat
 
 Server `wirdi-mcp` 0.6.0; 12 tools: `health_check`, `get_qaloun_passage`, `resolve_source_mapping`, `get_tajwid_rule`, `list_tajwid_rules`, `analyze_qaloun_tajwid`, `summarize_tajwid`, `analyze_app_page`, `get_tajwid_explanation`, `get_source_page`, `search_source_pages`, `get_letter_properties`
 
-## `health_check` (ok: not_applicable, 34 ms)
+## `health_check` (ok: not_applicable, 31 ms)
 
 Arguments: `{}`
 
@@ -36,7 +36,7 @@ Arguments: `{}`
 }
 ```
 
-## `list_tajwid_rules` (ok: unreviewed, 52 ms)
+## `list_tajwid_rules` (ok: unreviewed, 46 ms)
 
 Arguments: `{}`
 
@@ -115,10 +115,10 @@ Arguments: `{}`
     "tariq": "abu_nashit",
     "validation_status": "unreviewed",
     "has_detector
-... (18368 more characters)
+... (18890 more characters)
 ```
 
-## `get_tajwid_rule` (ok: unreviewed, 23 ms)
+## `get_tajwid_rule` (ok: unreviewed, 24 ms)
 
 Arguments: `{"rule_id": "qalqala_kubra", "version": "1"}`
 
@@ -170,7 +170,7 @@ Arguments: `{"rule_id": "qalqala_kubra", "version": "1"}`
 ... (3102 more characters)
 ```
 
-## `get_qaloun_passage` (ok: machine_checked, 46 ms)
+## `get_qaloun_passage` (ok: machine_checked, 55 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 18, "ayah": 45}, "end_ayah": 52}}`
 
@@ -227,7 +227,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (12554 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 93 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 95 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 18, "ayah": 45}, "end_ayah": 52}, "reading_c`
 
@@ -290,10 +290,10 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
      "source_edition_id": null,
      "source_page_pdf": null,
      "source_page_pr
-... (11431 more characters)
+... (11490 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 40 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 45 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 18, "ayah": 45}, "end_ayah": 52}, "reading_c`
 
@@ -356,10 +356,10 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
      "source_edition_id": null,
      "source_page_pdf": null,
      "source_page_pr
-... (7204 more characters)
+... (7263 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 31 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 39 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 112, "ayah": 1}, "end_ayah": 4}, "reading_co`
 
@@ -423,7 +423,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (15685 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 40 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 41 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 1}, "end_ayah": 40}, "reading_con`
 
@@ -490,7 +490,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (6917 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 40 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 39 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 1}, "end_ayah": 7}, "reading_cont`
 
@@ -556,7 +556,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (10551 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 33 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 30 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 1}, "end_ayah": 7}, "reading_cont`
 
@@ -622,7 +622,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (8325 more characters)
 ```
 
-## `analyze_qaloun_tajwid` (ok: unreviewed, 69 ms)
+## `analyze_qaloun_tajwid` (ok: unreviewed, 57 ms)
 
 Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303", "numbering_system": "wirdi-ai:qalun-6214", "riwaya": "qaloun", "tariq": "unspecified", "surah": 2, "ayah": 8}, "end_ayah": 20}, "reading_con`
 
@@ -687,7 +687,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 ... (7117 more characters)
 ```
 
-## `get_tajwid_rule` (ok: unreviewed, 4 ms)
+## `get_tajwid_rule` (ok: unreviewed, 3 ms)
 
 Arguments: `{"rule_id": "madd_munfasil", "version": "1"}`
 
@@ -818,7 +818,7 @@ Arguments: `{"letters": ["ق", "ء", "ر"]}`
   {
    "origin_id": "wirdi-mcp:tajwid-rules",
    "origin_version": "wirdi-mcp-rules-v1",
-   "content_sha256": "973b1ce9d59cf148111537133a37552de7941a4abef4009a81f2df486cf0ba8c",
+   "content_sha256": "acdd383e0822b4c4976e75012ea5b5eea233f7bba7b69c4f0718e61d40c58cb2",
    "citations": [],
    "retrieved_at": null
   }
@@ -830,7 +830,7 @@ Arguments: `{"letters": ["ق", "ء", "ر"]}`
 }
 ```
 
-## `summarize_tajwid` (ok: unreviewed, 92 ms)
+## `summarize_tajwid` (ok: unreviewed, 98 ms)
 
 Arguments: `{"surah": 18, "reading_context": {"mode": "waqf"}, "limit": 3}`
 
@@ -888,7 +888,8 @@ Arguments: `{"surah": 18, "reading_context": {"mode": "waqf"}, "limit": 3}`
    "ra_tarqiq": 52,
    "sakin_before_hamzat_wasl": 9,
    "ya_idafa_fath": 8,
-   "ya_idafa_iskan_exception": 1
+   "ya_idafa_iskan_exception": 1,
+   "ya_idafa_maee": 3
   },
   "per_ayah": [
    {
@@ -913,12 +914,11 @@ Arguments: `{"surah": 18, "reading_context": {"mode": "waqf"}, "limit": 3}`
    {
     "surah": 18,
     "ayah": 2,
-    "counts": {
-     "gh
-... (4754 more characters)
+ 
+... (4836 more characters)
 ```
 
-## `analyze_app_page` (ok: unreviewed, 80 ms)
+## `analyze_app_page` (ok: unreviewed, 79 ms)
 
 Arguments: `{"page": 263, "reading_context": {"mode": "waqf"}, "limit": 3}`
 
@@ -1019,7 +1019,7 @@ Arguments: `{"page": 263, "reading_context": {"mode": "waqf"}, "limit": 3}`
       },
       "ayah_sha256": "0b7893b1d53303f2a0d74877210606674658eb7256102a61aba44676c849d407",
       "start_codepoint": 6
-... (13180 more characters)
+... (13241 more characters)
 ```
 
 ## `get_tajwid_explanation` (error: UNSUPPORTED_CAPABILITY, 2 ms)
@@ -1062,7 +1062,7 @@ Arguments: `{"edition_id": "book-a-2010", "page_start": 44, "page_end": 44}`
   {
    "origin_id": "wirdi-mcp:tajwid-rules",
    "origin_version": "wirdi-mcp-rules-v1",
-   "content_sha256": "973b1ce9d59cf148111537133a37552de7941a4abef4009a81f2df486cf0ba8c",
+   "content_sha256": "acdd383e0822b4c4976e75012ea5b5eea233f7bba7b69c4f0718e61d40c58cb2",
    "citations": [],
    "retrieved_at": null
   }
@@ -1074,7 +1074,7 @@ Arguments: `{"edition_id": "book-a-2010", "page_start": 44, "page_end": 44}`
 }
 ```
 
-## `search_source_pages` (ok: unreviewed, 37 ms)
+## `search_source_pages` (ok: unreviewed, 38 ms)
 
 Arguments: `{"query": "القلقلة", "edition_ids": ["book-a-2010"], "limit": 5}`
 
@@ -1097,7 +1097,7 @@ Arguments: `{"query": "القلقلة", "edition_ids": ["book-a-2010"], "limit":
   {
    "origin_id": "wirdi-mcp:tajwid-rules",
    "origin_version": "wirdi-mcp-rules-v1",
-   "content_sha256": "973b1ce9d59cf148111537133a37552de7941a4abef4009a81f2df486cf0ba8c",
+   "content_sha256": "acdd383e0822b4c4976e75012ea5b5eea233f7bba7b69c4f0718e61d40c58cb2",
    "citations": [],
    "retrieved_at": null
   }
@@ -1125,7 +1125,7 @@ Arguments: `{"selection": {"start": {"corpus_id": "wirdi-ai:quranpedia:qalun", "
 }
 ```
 
-## `summarize_tajwid` (error: INVALID_REFERENCE, 1 ms)
+## `summarize_tajwid` (error: INVALID_REFERENCE, 2 ms)
 
 Arguments: `{"surah": 0, "reading_context": {"mode": "waqf"}}`
 

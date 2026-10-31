@@ -6,7 +6,7 @@
       "rule_id": "alef_ana_before_hamza",
       "version": "1",
       "path": "rules/alef_ana_before_hamza/1.json",
-      "sha256": "a3e116622a2539160dbd0fc82298aa34c411fcd0c77b219f7888cd47cb707625"
+      "sha256": "6fb50891c2242f6c02e306f01ed475dab23aa9c52d495a0306d48642507d126e"
     },
     {
       "rule_id": "alef_ana_before_hamza_kasra",
@@ -465,10 +465,22 @@
       "sha256": "67e1be9cc8541f2188028ef61b22c9b36b8a1addb668f51816aa6c84663ae651"
     },
     {
+      "rule_id": "ya_idafa_iskan_before_letter",
+      "version": "1",
+      "path": "rules/ya_idafa_iskan_before_letter/1.json",
+      "sha256": "09c6930f03770ec5a78109659945089775ecce76fb9daa276d88d22be4a72c60"
+    },
+    {
       "rule_id": "ya_idafa_iskan_exception",
       "version": "1",
       "path": "rules/ya_idafa_iskan_exception/1.json",
       "sha256": "1e626c1efa45c9b8067a7eaa9138ea343da01835b42c8abffcc68b492c4a9e38"
+    },
+    {
+      "rule_id": "ya_idafa_maee",
+      "version": "1",
+      "path": "rules/ya_idafa_maee/1.json",
+      "sha256": "d26bbaa8ab99b5c48f3de0869cdb142c18c09afaeb5e4acaa8fd189629aa1255"
     },
     {
       "rule_id": "ya_idafa_rabbi_two_readings",

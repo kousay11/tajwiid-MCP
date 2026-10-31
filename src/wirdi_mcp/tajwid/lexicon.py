@@ -43,10 +43,30 @@ class Lexeme:
     verse_level: bool = False
     # What the next word must begin with: "hamza" (a hamza qat') or "wasl" (hamzat al-wasl).
     next_word: str | None = None
+    # Skeleton the next word must have, to tell two identical words of one ayah apart.
+    next_pattern: re.Pattern[str] | None = None
 
 
-def _lex(rule_id, pattern, note, places=None, variants=(), verse_level=False, next_word=None):
-    return Lexeme(rule_id, re.compile(pattern), note, places, variants, verse_level, next_word)
+def _lex(
+    rule_id,
+    pattern,
+    note,
+    places=None,
+    variants=(),
+    verse_level=False,
+    next_word=None,
+    next_pattern=None,
+):
+    return Lexeme(
+        rule_id,
+        re.compile(pattern),
+        note,
+        places,
+        variants,
+        verse_level,
+        next_word,
+        re.compile(next_pattern) if next_pattern else None,
+    )
 
 
 LEXEMES: tuple[Lexeme, ...] = (
@@ -214,6 +234,26 @@ LEXEMES: tuple[Lexeme, ...] = (
             (r"^و?لي$", ((109, 6),)),
         )
     ),
+    # Book A p.47 (last list): first-person ya read with sukun before an ordinary letter. The
+    # ayah numbers are the book's own, in the Kufian count; each word was checked in the corpus.
+    *(
+        _lex(
+            "ya_idafa_iskan_before_letter",
+            pattern,
+            "first-person ya read with sukun before an ordinary letter (Book A p.47)",
+            ((surah, ayah),),
+            next_pattern=following,
+        )
+        for pattern, surah, ayah, following in (
+            (r"^ومحياي$", 6, 162, None),
+            (r"^لي$", 14, 22, r"^عليكم$"),
+            (r"^ولي$", 20, 18, r"^فيها$"),
+            (r"^مالي$", 27, 20, None),
+            (r"^ولي$", 38, 23, r"^نعجة$"),
+            (r"^لي$", 38, 69, r"^من$"),
+            (r"^بيتي$", 71, 28, None),
+        )
+    ),
     _lex(
         "ya_idafa_rabbi_two_readings",
         r"^ربي$",
@@ -251,6 +291,11 @@ def detect_lexical(view: AyahView) -> None:
             if lexeme.verse_level and word.index != 1:
                 continue
             if lexeme.next_word and not _next_matches(view, word, lexeme.next_word):
+                continue
+            if lexeme.next_pattern is not None and not (
+                word.index < len(view.words)
+                and lexeme.next_pattern.match(skeleton(view.words[word.index])) is not None
+            ):
                 continue
             if lexeme.pattern.match(sk) is None:
                 continue
