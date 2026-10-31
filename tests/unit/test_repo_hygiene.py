@@ -25,6 +25,7 @@ def test_no_source_book_scan_page_image_or_extracted_text_is_tracked():
 
 
 def test_ignore_rules_cover_the_unknown_licence_material():
+    tracked()  # skips when this is not a git checkout
     ignored = subprocess.run(
         [
             "git",
