@@ -68,8 +68,9 @@ LEXEMES: tuple[Lexeme, ...] = (
     _lex(
         "madd_lazim_kalimi_mukhaffaf",
         r"^ءالن$",
-        "madd letter before a lam in the word spelled with the interrogative hamza",
+        "Book A p.21 gives three readings for this word; none is chosen",
         ((10, 51), (10, 91)),
+        ("madd_6_harakat", "madd_2_harakat", "tashil_without_madd"),
     ),
     # Book A p.26-27: the exceptions to the double-hamza-in-a-word rule.
     _lex(
@@ -84,11 +85,25 @@ LEXEMES: tuple[Lexeme, ...] = (
         ((43, 19),),
         ("with_alef_between", "without_alef_between"),
     ),
-    # Book A p.20: the pronoun ha is vowelled without the lengthening in these words.
+    # Book A pp.19-20: the pronoun ha is vowelled without the lengthening in these words.
     _lex(
         "madd_sila_ha_exception",
-        r"^(?:ف|و)?(?:نءته|نوله|نصله|ءرجه|يتقه|يءته|فءلقه|يءده)$",
+        r"^(?:ف|و)?(?:نءته|نوله|نصله|ءرجه|يتقه|يءده)$",
         "pronoun ha with a kasra and no lengthening, though its conditions are met",
+    ),
+    # Two words whose reading Book A states in two ways: both are listed, none is chosen.
+    _lex(
+        "madd_sila_ha_exception",
+        r"^يءته$",
+        "Book A p.19 item 6: kasra without the lengthening, and a second reading that is the sila",
+        variants=("without_sila", "with_sila"),
+    ),
+    _lex(
+        "madd_sila_ha_exception",
+        r"^فءلقه$",
+        "Book A contradicts itself: p.19 item 7 reads it with kasra and sila, p.20 with kasra and "
+        "no sila. Both readings are listed, none is chosen",
+        variants=("without_sila", "with_sila"),
     ),
     # Book A p.24: alefs that are kept when stopping and when joining.
     _lex("alef_thabita", r"^لكنا$", "alef kept when joined and when stopped", ((18, 38),)),

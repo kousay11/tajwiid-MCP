@@ -2,7 +2,7 @@
   "rule_id": "madd_sila_ha_exception",
   "version": "1",
   "name_ar": "كلمات استثنيت من صلة هاء الضمير",
-  "definition": "Words where the pronoun ha meets the conditions for the lengthening but is read with a kasra and no lengthening: نؤته، نوله، نصله، أرجه، يتقه، يأته (two readings), فألقه، يؤده.",
+  "definition": "Words where the pronoun ha meets the conditions for the lengthening but is read with a kasra and no lengthening: نؤته، نوله، نصله، أرجه، يتقه، يؤده, and two words that carry `variants` instead: يأته (kasra without the lengthening, or the sila; p.19 item 6) and فألقه (p.19 item 7 gives kasra with the sila, p.20 gives kasra without it).",
   "riwaya": "qaloun",
   "tariq": "unspecified",
   "family": "madd",
@@ -11,7 +11,9 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "Matched on the spelling; any occurrence is reported."
+    "Matched on the spelling; any occurrence is reported.",
+    "فألقه: Book A contradicts itself between p.19 item 7 (kasra with the sila) and p.20 (kasra without the sila). Both readings are listed in `variants`; none is chosen.",
+    "يأته: p.19 item 6 gives two readings, kasra without the sila and the sila; both are listed in `variants`."
   ],
   "conditions": [
     {

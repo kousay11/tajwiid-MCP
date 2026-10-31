@@ -87,6 +87,30 @@ def test_every_single_ayah_selection_runs_without_exception(engine, all_rules, m
     assert all(n < total_letters * 0.1 for n in counts.values())
 
 
+def test_the_two_double_reading_sila_words_each_occur_once(engine, all_rules):
+    rows = engine.repository.load_edition("qalun")
+    rules = {"madd_sila_ha_exception": all_rules["madd_sila_ha_exception"]}
+    two_ways, plain = 0, 0
+    for index in range(6214):
+        result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), rules)
+        for _, occurrence in result.occurrences:
+            if occurrence.variants == ("without_sila", "with_sila"):
+                two_ways += 1
+            else:
+                plain += 1
+    assert (two_ways, plain) == (2, 10)  # يأته and فألقه once each; the other words 10 times
+
+
+def test_alan_is_found_twice_with_three_readings(engine, all_rules):
+    rows = engine.repository.load_edition("qalun")
+    rules = {"madd_lazim_kalimi_mukhaffaf": all_rules["madd_lazim_kalimi_mukhaffaf"]}
+    three = []
+    for index in range(6214):
+        result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), rules)
+        three += [o for _, o in result.occurrences if len(o.variants) == 3]
+    assert len(three) == 2 and all("tashil_without_madd" in o.variants for o in three)
+
+
 def test_idhar_mutlaq_hits_only_the_four_words_the_book_names(engine, all_rules):
     """Book A p.6 names four words; detector hits must all belong to those lexemes."""
     rows = engine.repository.load_edition("qalun")

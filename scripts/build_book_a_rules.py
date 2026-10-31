@@ -96,11 +96,18 @@ RULES: dict[str, tuple] = {
         "C",
         ("p.19", "p.20"),
         "Words where the pronoun ha meets the conditions for the lengthening but is read with a "
-        "kasra and no lengthening: نؤته، نوله، نصله، أرجه، يتقه، يأته (two readings), "
-        "فألقه، يؤده.",
+        "kasra and no lengthening: نؤته، نوله، نصله، أرجه، يتقه، يؤده, and two words that carry "
+        "`variants` instead: يأته (kasra without the lengthening, or the sila; p.19 item 6) and "
+        "فألقه (p.19 item 7 gives kasra with the sila, p.20 gives kasra without it).",
         (("words", "The word is one of the listed words."),),
         (),
-        ("Matched on the spelling; any occurrence is reported.",),
+        (
+            "Matched on the spelling; any occurrence is reported.",
+            "فألقه: Book A contradicts itself between p.19 item 7 (kasra with the sila) and p.20 "
+            "(kasra without the sila). Both readings are listed in `variants`; none is chosen.",
+            "يأته: p.19 item 6 gives two readings, kasra without the sila and the sila; both are "
+            "listed in `variants`.",
+        ),
     ),
     "hamza_istifham_added": (
         "hamza",
@@ -328,11 +335,16 @@ RULES: dict[str, tuple] = {
         (
             (
                 "seven_words",
-                "Seven words are read without the lengthening (e.g. the verbs written "
-                "with a final ha like يؤده and فألقه); the corpus already omits the mark there.",
+                "Seven words are listed on p.19 as read with a kasra and no lengthening; the "
+                "last, فألقه, is stated both ways by the book (see limitations). The corpus "
+                "already omits the mark in the others.",
             ),
         ),
-        ("The corpus marks the lengthening itself, so this follows that mark; dropped at a stop.",),
+        (
+            "The corpus marks the lengthening itself, so this follows that mark; dropped at a stop.",
+            "Book A p.19 item 7 reads فألقه with kasra and sila, while p.20 reads it with kasra "
+            "and no sila. The rule `madd_sila_ha_exception` lists both readings and chooses none.",
+        ),
     ),
     "madd_sila_sughra_meem": (
         "madd",
@@ -381,10 +393,15 @@ RULES: dict[str, tuple] = {
         (
             (
                 "two_words",
-                "Two words are read with a kasra and no lengthening (يؤده إليك, فألقه إليهم).",
+                "يؤده إليك is read with a kasra and no lengthening; فألقه إليهم is stated both "
+                "ways by the book (see limitations).",
             ),
         ),
-        ("Follows the sign the corpus writes on the ha.",),
+        (
+            "Follows the sign the corpus writes on the ha.",
+            "فألقه: p.20 gives kasra without the sila, but p.19 item 7 gives kasra with the sila. "
+            "The two pages disagree; `madd_sila_ha_exception` keeps both readings in `variants`.",
+        ),
     ),
     "madd_sila_kubra_meem": (
         "madd",
@@ -458,7 +475,12 @@ RULES: dict[str, tuple] = {
         "the Qur'an has this in محياي and in آلآن.",
         (("sukun", "The madd letter is followed by an original sukun in the same word."),),
         (),
-        ("A closed list: the sukun case and the word spelled آلآن are both reported.",),
+        (
+            "A closed list: the sukun case and the word spelled آلآن are both reported.",
+            "آلآن (Yunus 51 and 91): Book A p.21 gives three readings, a madd of six harakat "
+            "taken from the origin, a madd of two harakat taken from the accidental cause, and a "
+            "softening of the wasl hamza with no madd. They are listed in `variants`; none is chosen.",
+        ),
     ),
     "madd_lazim_harfi_muthaqqal": (
         "madd",

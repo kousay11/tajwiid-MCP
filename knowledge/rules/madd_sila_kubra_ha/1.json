@@ -11,7 +11,8 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "Follows the sign the corpus writes on the ha."
+    "Follows the sign the corpus writes on the ha.",
+    "فألقه: p.20 gives kasra without the sila, but p.19 item 7 gives kasra with the sila. The two pages disagree; `madd_sila_ha_exception` keeps both readings in `variants`."
   ],
   "conditions": [
     {
@@ -39,7 +40,7 @@
     {
       "clause_id": "two_words",
       "kind": "exception",
-      "description": "Two words are read with a kasra and no lengthening (يؤده إليك, فألقه إليهم).",
+      "description": "يؤده إليك is read with a kasra and no lengthening; فألقه إليهم is stated both ways by the book (see limitations).",
       "evidence": [
         {
           "source_id": "book-a",

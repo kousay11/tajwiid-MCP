@@ -11,7 +11,8 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "A closed list: the sukun case and the word spelled آلآن are both reported."
+    "A closed list: the sukun case and the word spelled آلآن are both reported.",
+    "آلآن (Yunus 51 and 91): Book A p.21 gives three readings, a madd of six harakat taken from the origin, a madd of two harakat taken from the accidental cause, and a softening of the wasl hamza with no madd. They are listed in `variants`; none is chosen."
   ],
   "conditions": [
     {

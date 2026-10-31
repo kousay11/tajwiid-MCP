@@ -11,7 +11,8 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "The corpus marks the lengthening itself, so this follows that mark; dropped at a stop."
+    "The corpus marks the lengthening itself, so this follows that mark; dropped at a stop.",
+    "Book A p.19 item 7 reads فألقه with kasra and sila, while p.20 reads it with kasra and no sila. The rule `madd_sila_ha_exception` lists both readings and chooses none."
   ],
   "conditions": [
     {
@@ -85,7 +86,7 @@
     {
       "clause_id": "seven_words",
       "kind": "exception",
-      "description": "Seven words are read without the lengthening (e.g. the verbs written with a final ha like يؤده and فألقه); the corpus already omits the mark there.",
+      "description": "Seven words are listed on p.19 as read with a kasra and no lengthening; the last, فألقه, is stated both ways by the book (see limitations). The corpus already omits the mark in the others.",
       "evidence": [
         {
           "source_id": "book-a",

@@ -318,7 +318,7 @@
       "rule_id": "madd_lazim_kalimi_mukhaffaf",
       "version": "1",
       "path": "rules/madd_lazim_kalimi_mukhaffaf/1.json",
-      "sha256": "847ed87b061633e8174b6ea37ea8aec687d255b42ce80a5030a19f4278875e70"
+      "sha256": "421453e92a61d4cf9ed80470da989b134b013a9d5e1ffdbbf059bac65708e864"
     },
     {
       "rule_id": "madd_lazim_kalimi_muthaqqal",
@@ -360,13 +360,13 @@
       "rule_id": "madd_sila_ha_exception",
       "version": "1",
       "path": "rules/madd_sila_ha_exception/1.json",
-      "sha256": "b101c9ff5090105b0659e8a1904cdf469babf467d7740643542a69195640e25e"
+      "sha256": "94753a08f5ba86ca4a65e9e006f166e241f9926bc79d9e42892f2097e1182b70"
     },
     {
       "rule_id": "madd_sila_kubra_ha",
       "version": "1",
       "path": "rules/madd_sila_kubra_ha/1.json",
-      "sha256": "03bd5699ee9802009c151c3b5f7a99f1d2b7a62fff594a42be876a76e301bcff"
+      "sha256": "fa08b1c77ca3fab6028040d877f6537053a44147b56555b0e4a81b05303a82cc"
     },
     {
       "rule_id": "madd_sila_kubra_meem",
@@ -378,7 +378,7 @@
       "rule_id": "madd_sila_sughra_ha",
       "version": "1",
       "path": "rules/madd_sila_sughra_ha/1.json",
-      "sha256": "e2cafe2c5c97712b426e341e72b09d9a4091783462e6422d2d6a6c93ec9edf11"
+      "sha256": "fd5a7aea70941356766856ea85fcc5d32f9a71493196393750fd2c55532dd3c7"
     },
     {
       "rule_id": "madd_sila_sughra_meem",

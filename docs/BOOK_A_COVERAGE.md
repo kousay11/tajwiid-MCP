@@ -38,6 +38,16 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | 40-45 | Places of articulation and characteristics | tool `get_letter_properties` | static tables, 29 letters |
 | 45-50 | Ya'at al-idafa | `ya_idafa_fath`, `ya_idafa_iskan_exception`, `ya_idafa_fath_exception`, `ya_idafa_rabbi_two_readings` | partial (see below) |
 
+## Words Book A states in two ways
+
+- **فألقه** (an-Naml 28): p.19 item 7 reads the ha with a kasra **and** the sila; p.20 reads it with a
+  kasra and **no** sila. The book contradicts itself. `madd_sila_ha_exception` keeps the word with
+  `variants: ["without_sila", "with_sila"]` and a note citing both pages. Nothing is chosen.
+- **يأته** (Ta-Ha 75): p.19 item 6 gives two readings, a kasra without the sila and the sila.
+  The rule lists both in `variants`.
+- The other words of that list (نؤته، نوله، نصله، أرجه، يتقه، يؤده) are stated one way and carry no
+  `variants`.
+
 ## Ya'at al-idafa
 
 The corpus spells the open ya with a fatha and the closed ya with the yeh barree, but the yeh

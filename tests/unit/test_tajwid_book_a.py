@@ -369,3 +369,47 @@ def test_fixed_alefs_and_repeated_interrogatives_are_tied_to_their_places():
 def test_a_pronoun_ha_of_the_exception_list_is_named():
     word = "ن" + DAMMA + "ؤ" + SUKUN + "ت" + KASRA + "ه" + KASRA
     assert rules_in(word, "madd_sila_ha_exception") == ["madd_sila_ha_exception"]
+
+
+# --- words Book A states in two ways ------------------------------------------------------------
+TWO_WAYS = ("without_sila", "with_sila")
+
+
+def test_the_two_words_book_a_states_in_two_ways_keep_both_readings():
+    falqihi = "ف" + FATHA + "أ" + FATHA + "ل" + SUKUN + "ق" + KASRA + "ه" + KASRA
+    yatihi = "ي" + FATHA + "أ" + SUKUN + "ت" + KASRA + "ه" + KASRA
+    for word in (falqihi, yatihi):
+        hits, _ = found(word, "madd_sila_ha_exception")
+        assert hits and hits[0][2] == TWO_WAYS
+
+
+def test_falqihi_note_names_both_pages_and_the_contradiction():
+    from wirdi_mcp.tajwid.lexicon import LEXEMES
+
+    note = next(lx.note for lx in LEXEMES if lx.pattern.pattern == "^فءلقه$")
+    assert "p.19" in note and "p.20" in note and "contradicts" in note
+    assert "none is chosen" in note
+
+
+def test_words_without_a_double_reading_have_no_variants():
+    nuteihi = "ن" + DAMMA + "ؤ" + SUKUN + "ت" + KASRA + "ه" + KASRA
+    hits, _ = found(nuteihi, "madd_sila_ha_exception")
+    assert hits and hits[0][2] == ()
+
+
+def test_every_lexeme_note_fits_the_annotation_limit():
+    from wirdi_mcp.tajwid.lexicon import LEXEMES
+
+    assert all(len(lx.note) <= 300 for lx in LEXEMES)
+
+
+def test_alan_keeps_its_three_readings_and_the_sukun_case_keeps_none():
+    from wirdi_mcp.tajwid.lexicon import LEXEMES
+
+    alan = next(lx for lx in LEXEMES if lx.pattern.pattern == "^ءالن$")
+    assert alan.variants == ("madd_6_harakat", "madd_2_harakat", "tashil_without_madd")
+    assert alan.places == ((10, 51), (10, 91)) and "none is chosen" in alan.note
+    # the structural case (a maddah alef before an original sukun) lists no reading
+    text = "م" + FATHA + "ح" + SUKUN + "ي" + FATHA + "ا" + MADDAH + "ي" + SUKUN
+    hits, _ = found(text, "madd_lazim_kalimi_mukhaffaf")
+    assert hits and hits[0][2] == ()
