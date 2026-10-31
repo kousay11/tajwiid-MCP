@@ -34,7 +34,8 @@ def rules_of(text, **kw):
 
 def test_every_detector_has_a_rule_record_key():
     assert all(len(v) == 4 and v[1] == "1" and v[2] == "qaloun" for v in DETECTORS.values())
-    assert len(DETECTORS) == 14
+    assert all(isinstance(v[0], tuple) and v[0] for v in DETECTORS.values())
+    assert len(DETECTORS) == 77
 
 
 @pytest.mark.parametrize(
@@ -153,7 +154,7 @@ def test_lam_positive(text, rule):
     ],
 )
 def test_lam_negative_and_exclusions(text):
-    assert not [r for r in rules_of(text) if r.startswith("lam_")]
+    assert not [r for r in rules_of(text) if r in ("lam_shamsiya", "lam_qamariya")]
 
 
 def test_lafz_al_jalala_exclusion_is_counted_not_hidden():
@@ -169,9 +170,12 @@ def test_tanween_at_a_stop_is_dropped_and_counted():
 
 def test_wasl_at_the_end_of_the_selection_needs_the_following_ayah():
     text = "ع" + FATHA + "ل" + KASRA + "ي" + "م" + DAMMATAN
-    view, found = run(text, mode="wasl", stops=False)
+    noon_rules = frozenset(("idhar_halqi", "idgham_bighunna", "ikhfa_haqiqi", "iqlab"))
+    view, found = run(text, mode="wasl", stops=False, rules=noon_rules)
     assert found == [] and sum(view.unresolved.values()) == 1
-    view, found = run(text, mode="wasl", stops=False, next_text="ح" + FATHA + "ك" + KASRA + "يم")
+    view, found = run(
+        text, mode="wasl", stops=False, next_text="ح" + FATHA + "ك" + KASRA + "يم", rules=noon_rules
+    )
     assert [r for r, _ in found] == ["idhar_halqi"] and view.unresolved == {}
 
 

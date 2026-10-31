@@ -1,22 +1,28 @@
 # Handoff
 
-Branch `feat/tajwid-knowledge` (never pushed). Version 0.5.0. Read
+Branch `feat/tajwid-knowledge` (never pushed). Version 0.6.0. Read
 [PROGRESS](PROGRESS.md) for the commit-by-commit state and [DECISIONS](DECISIONS.md) for
 what was decided without you.
 
 ## What works (verified end to end)
 
-- Eleven tools over a real stdio MCP client: [E2E_REPORT](E2E_REPORT.md) is the
+- Twelve tools over a real stdio MCP client: [E2E_REPORT](E2E_REPORT.md) is the
   transcript (0 unexpected outcomes); `tests/integration/test_tajwid_stdio.py` runs the same
   tools plus the isolation cases (missing Quran root, missing knowledge store, a rule file
   altered by one byte, an oversized page range, invalid parameters).
-- Latency ([PERF](PERF.md)): cold start 0.56 s; one 559-layout page 84 ms p50; 50 ayat 107 ms.
+- Latency ([PERF](PERF.md)): cold start 0.57 s; one 559-layout page 106 ms p50; 50 ayat 125 ms.
 - All 6,214 single-ayah selections in both reading modes and all 559 application pages run
   without an exception; counts per rule are in [RULE_AUDIT](RULE_AUDIT.md); no rule is at
   zero or abnormally high.
 - The corpus checksum drift was resolved by a controlled manifest update after the full
   mapping conformance passed ([SOURCE_AUDIT](SOURCE_AUDIT.md)); mapping works again.
-- Offline suite: 100+ tests; with `WIRDI_TEST_SOURCE_ROOT` the full suite passes.
+- Offline suite: 140+ tests; with `WIRDI_TEST_SOURCE_ROOT` the full suite (170) passes.
+- **0.6.0 adds Book A** (every section of its 51 pages): 65 more rule records and 63 more
+  detectors for madd, hamza, heavy and light letters, taqlil, general idgham and ya'at al-idafa,
+  and the `get_letter_properties` tool. [BOOK_A_COVERAGE](BOOK_A_COVERAGE.md) says rule by rule
+  what is detected and what is not; [TESTING_GUIDE](TESTING_GUIDE.md) has a request for each family.
+  **Correction to the previous handoff:** madd, hamza, ra, imala and ya'at are in Book A, not only
+  in Book B.
 
 ## What is partial
 
@@ -42,10 +48,10 @@ what was decided without you.
 | `lam_shamsiya` | 4,042 | A pp.12-13 only |
 | `lam_qamariya` | 5,370 | A p.13 only |
 
-- **Not covered at all:** madd (all kinds), hamza rules, imala and fath, ya'at, tafkhim and
-  tarqiq, lafz al-jalala (excluded and counted), waqf and ibtida, letter-name cases (ن, يس),
-  the optional connection of the plural mim, waqf signs inside an ayah. Book B has sections for
-  these that were not drafted into rules.
+- **Not covered:** the Book A items marked "not covered" or "record only" in
+  [BOOK_A_COVERAGE](BOOK_A_COVERAGE.md) (two hamzas in two words, the vowel of other sakin letters
+  before hamzat al-wasl, the default closed ya, joining a wasl and a qat' hamza in a word), waqf and
+  ibtida rules, waqf signs inside an ayah, and the Book B sections that were not drafted.
 - **In `wasl` mode** a single ayah cannot decide its last word-final noon, tanween or mim; they are
   reported under `unresolved` (pass `following`).
 - **Book B was read only as page images** (it is a copy-protected scan; protection was not
@@ -61,8 +67,9 @@ what was decided without you.
 
 ## Pages and items to review first
 
-1. The 14 records in `knowledge/rules/` against the cited pages (A pp.4-13 and 44; B pp.52-53,
-   56-60, 62-63).
+1. The 79 records in `knowledge/rules/` against the cited pages (the 14 first records: A pp.4-13
+   and 44, B pp.52-53, 56-60, 62-63; the 65 Book A records: the pages in each citation, which
+   are where the section begins).
 2. [REVIEW_SAMPLE](REVIEW_SAMPLE.md): five candidates per rule, references only.
 3. The 49 alef-lam words skipped as not fitting the article pattern (audit, "skipped"), and the
    `lam_*` rules which cite book A alone.
@@ -88,7 +95,8 @@ not arbitrated.
    nothing until a reviewer approves?
 5. **Integration into wirdi-Ai** was not started (out of scope); the contract is in
    [INTEGRATION](INTEGRATION.md). Do you want it next, behind the "verified only" rule?
-6. Which Book B sections should be drafted next (madd, hamza, imala, ya'at)?
+6. Book A is now covered. Should the Abu Nashit differences of Book B be drafted next, or should
+   the reviewer be found first? (Book B has not been used for the 65 new records.)
 
 ## Reproduce
 

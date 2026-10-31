@@ -32,6 +32,12 @@ Done (all milestones green); see HANDOFF.md
   updates, version 0.5.0, `docs/HANDOFF.md`. Final commit `J7`.
   Last full run: 105 passed offline, 129 passed with the real source; ruff clean.
 
+- 0.6.0 Book A completion (requested after the mission): every Book A section now has rule
+  records; 63 new detectors (madd, hamza, tafkhim/tarqiq, taqlil, general idgham, ya'at), word
+  lists tied to Kufian ayah numbers, `variants` on annotations, tool `get_letter_properties`,
+  `docs/BOOK_A_COVERAGE.md`, `docs/TESTING_GUIDE.md`, regenerated audit, E2E and PERF.
+  Not committed yet: the working tree carries the change for review.
+
 ## Next action
 Nothing automatic. Needs you: name a qualified reviewer, then proofread the 14 rule
 records against the cited pages (see `HANDOFF.md` questions). wirdi-Ai integration was

@@ -5,12 +5,12 @@ deterministic detector registry and candidate annotations exist; human validatio
 reviewed explanations do not (no reviewer has been named). Nothing here infers a ruling
 about a passage beyond a rule's cited conditions, and nothing is scholarly verified.
 
-## Implemented state (0.5.0)
+## Implemented state (0.6.0)
 
 | Artifact | State |
 | --- | --- |
-| Rule records | 14 paraphrased records in `knowledge/rules`, each with book and page citations, all `unreviewed`. Families: qalqala (2), noon sakina and tanween (6), mim sakina (3), ghunna of geminated noon and mim (1), article lam (2) |
-| Detectors | One per rule in `src/wirdi_mcp/tajwid/detectors.py`, keyed `(rule_id, version, riwaya, tariq)`. Input is the unchanged ayah text tokenised into letters with reversible codepoint offsets (`tajwid/text.py`) and a `waqf`/`wasl` context |
+| Rule records | 79 paraphrased records in `knowledge/rules`, each with book and page citations, all `unreviewed`. 14 from the first release (qalqala, noon sakina and tanween, mim sakina, ghunna, article lam) and 65 from Book A (madd, hamza, heavy and light letters, taqlil, idgham, ya'at al-idafa); `scripts/build_book_a_rules.py` writes the latter |
+| Detectors | 77, registered in `src/wirdi_mcp/tajwid/detectors.py` from family modules (`madd.py`, `hamza.py`, `tafkhim.py`, `idgham.py`, `yaat.py`, and the word lists of `lexicon.py`), keyed `(rule_id, version, riwaya, tariq)`; a rule may need more than one pass. Input is the unchanged ayah text tokenised into letters with reversible codepoint offsets (`tajwid/text.py`) and a `waqf`/`wasl` context |
 | Annotations | `TajwidAnnotation` with status `candidate`, anchor, rule evidence, app page span and a short note |
 | Human validation | Model and an empty `knowledge/validation/records.json`; no reviewer, so no record |
 | Explanation | Not available; `get_tajwid_explanation` returns `UNSUPPORTED_CAPABILITY` |
@@ -26,9 +26,8 @@ the standard-mark tanween occurs only where the detector says idhar halqi, that 
 iqlab noon carries the small meem, and that idhar mutlaq hits only the four words book A
 names.
 
-Not covered: madd, hamza rules, imala and fath, ya'at, tafkhim and tarqiq, waqf and
-ibtida, lafz al-jalala, letter-name cases (ن, يس), the optional connection of the plural
-mim, and waqf signs inside an ayah. Where books A and B disagree (the completeness of the
+Not covered: the items [BOOK_A_COVERAGE](BOOK_A_COVERAGE.md) lists, waqf and ibtida rules,
+the Book B sections not drafted, and waqf signs inside an ayah. Where books A and B disagree (the completeness of the
 idgham with ghunna) the rule record states both.
 
 ## Five independent artifacts

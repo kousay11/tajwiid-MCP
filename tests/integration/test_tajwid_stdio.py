@@ -114,7 +114,7 @@ def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_root):
             Client(params(tmp_path, WIRDI_AI_ROOT=real_root), read_timeout_seconds=20) as c,
         ):
             listed = await call(c, "list_tajwid_rules", {})
-            assert not listed.is_error and len(listed.structured_content["data"]["rules"]) == 14
+            assert not listed.is_error and len(listed.structured_content["data"]["rules"]) == 79
             rule = await call(c, "get_tajwid_rule", {"rule_id": "qalqala_kubra", "version": "1"})
             data = rule.structured_content["data"]
             assert data["validation_status"] == "unreviewed" and data["evidence"]
@@ -201,5 +201,58 @@ def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_root):
                 c, "get_tajwid_explanation", {"annotation_id": "x", "annotation_version": "1"}
             )
             assert explanation.structured_content["error"]["code"] == "UNSUPPORTED_CAPABILITY"
+
+    asyncio.run(run())
+
+
+def test_book_a_families_and_letter_properties_over_stdio(tmp_path, real_root):
+    """Madd, hamza, tafkhim and taqlil rules are reachable by family, plus the letter tool."""
+    al_imran_1_2 = {**KAHF, "start": {**KAHF["start"], "surah": 3, "ayah": 1}, "end_ayah": 4}
+
+    async def run():
+        async with (
+            asyncio.timeout(60),
+            Client(params(tmp_path, WIRDI_AI_ROOT=real_root), read_timeout_seconds=20) as c,
+        ):
+            for family, expected in (
+                ("madd", {"madd_lazim_harfi_muthaqqal", "madd_munfasil", "madd_tabii"}),
+                ("hamza", {"hamzat_wasl_article"}),
+                ("tafkhim_tarqiq", {"lam_jalala_tafkhim", "alef_tarqiq"}),
+                ("imala_taqlil", {"taqlil_tawrat"}),
+            ):
+                result = await call(
+                    c,
+                    "analyze_qaloun_tajwid",
+                    {
+                        "selection": al_imran_1_2,
+                        "reading_context": {"mode": "waqf"},
+                        "families": [family],
+                        "limit": 500,
+                    },
+                )
+                assert not result.is_error, family
+                annotations = result.structured_content["data"]["annotations"]
+                assert expected <= {a["rule_id"] for a in annotations}, (family, expected)
+                assert all(a["status"] == "candidate" and a["evidence"] for a in annotations)
+            munfasil = await call(
+                c,
+                "analyze_qaloun_tajwid",
+                {
+                    "selection": al_imran_1_2,
+                    "reading_context": {"mode": "waqf"},
+                    "rule_ids": ["madd_munfasil"],
+                },
+            )
+            first = munfasil.structured_content["data"]["annotations"][0]
+            assert first["variants"] == ["2_harakat", "3_harakat", "4_harakat"]
+            assert first["rule_id"] == "madd_munfasil" and first["status"] == "candidate"
+
+            letters = await call(c, "get_letter_properties", {"letters": ["ق", "ء"]})
+            assert not letters.is_error
+            qaf, hamza = letters.structured_content["data"]["letters"]
+            assert qaf["makhraj_region"] == "tongue" and "qalqala" in qaf["other_characteristics"]
+            assert hamza["makhraj_place"] == "deepest_throat"
+            bad = await call(c, "get_letter_properties", {"letters": ["قط"]})
+            assert bad.is_error and bad.structured_content["error"]["code"] == "INVALID_REFERENCE"
 
     asyncio.run(run())

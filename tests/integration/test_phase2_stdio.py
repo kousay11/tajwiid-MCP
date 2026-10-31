@@ -30,6 +30,7 @@ def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, tmp_pat
                 "get_tajwid_explanation",
                 "get_source_page",
                 "search_source_pages",
+                "get_letter_properties",
             }
             schemas = {t.name: t.output_schema for t in tools}
             for tool in tools:

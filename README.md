@@ -4,13 +4,15 @@ Independent, local-first Quranic knowledge infrastructure for future Wirdi AI
 integration, with Qaloun through Abu Nashit as its explicit target scope.
 Structured retrieval and verifiable evidence come before generated explanations.
 
-**Current release: local Tajwid candidates (0.5.0).** The stdio server exposes
-eleven read-only local tools: diagnostics, Qaloun passage and mapping tools, and
-eight Tajwid tools. Quran text is read directly from the original checksum-pinned
+**Current release: local Tajwid candidates (0.6.0).** The stdio server exposes
+twelve read-only local tools: diagnostics, Qaloun passage and mapping tools, and
+nine Tajwid tools. Quran text is read directly from the original checksum-pinned
 Wirdi AI public source files. No external MCP client, network provider, database,
-RAG, embedding or LLM is used. Fourteen Tajwid rules are available as paraphrased,
-page-cited, **unreviewed** records, and deterministic detectors propose **candidate**
-annotations for them. Nothing is scholarly verified: there is no named reviewer, the
+RAG, embedding or LLM is used. Seventy-nine Tajwid rules are available as paraphrased,
+page-cited, **unreviewed** records (14 from the first release, 65 from every section of
+Book A: madd, hamza, heavy and light letters, taqlil, idgham, ya'at al-idafa), and
+deterministic detectors propose **candidate** annotations for 77 of them. See
+[BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) for what is and is not detected. Nothing is scholarly verified: there is no named reviewer, the
 highest status ever served is `candidate`, and `get_tajwid_explanation` stays
 unavailable.
 
@@ -126,6 +128,7 @@ above. No test connects to PostgreSQL, a network service or an external MCP serv
 | `analyze_app_page` | Candidates for the ayat that begin on a page of the verified 559-page layout |
 | `get_tajwid_explanation` | `UNSUPPORTED_CAPABILITY` until a named reviewer validates annotations |
 | `get_source_page`, `search_source_pages` | Locally placed source-book pages; fail closed when absent |
+| `get_letter_properties` | Place of articulation and characteristics of 1 to 29 letters (Book A pp.40-45) |
 
 Details, statuses and failure semantics are in [MCP_TOOLS](docs/MCP_TOOLS.md). Source
 books are never in git: build the local page store from your own copy with
@@ -158,6 +161,7 @@ No external material is queried or used as a fallback.
 | [SOURCE_AUDIT](docs/SOURCE_AUDIT.md) | Original corpus, checksums, pagination and selected read-only bridge |
 | [ARCHITECTURE](docs/ARCHITECTURE.md) | Boundaries, reference identity, storage, security, extension points |
 | [MCP_TOOLS](docs/MCP_TOOLS.md) | Local tool contracts, availability and failure semantics |
+| [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md), [TESTING_GUIDE](docs/TESTING_GUIDE.md) | What Book A rule is detected, and requests to try every family |
 | [TAJWID_ENGINE](docs/TAJWID_ENGINE.md) | Rule, candidate, annotation, scholarly review and explanation separation |
 | [INTEGRATION](docs/INTEGRATION.md) | FastAPI client, mapping authority reuse and staged migration |
 | [ROADMAP](docs/ROADMAP.md) | Phases, gates and current state |

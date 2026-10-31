@@ -1,6 +1,6 @@
 # Component architecture
 
-Status: Local Tajwid candidates, 0.5.0. Business schemas are v1.0; transport
+Status: Local Tajwid candidates, 0.6.0. Business schemas are v1.0; transport
 protocol negotiation is separate. Diagnostics, direct read-only Qaloun access,
 existing-authority source mapping, a hash-pinned rule registry, deterministic candidate
 detectors (`tajwid/`), a local page store and the Tajwid tools are operational. Every

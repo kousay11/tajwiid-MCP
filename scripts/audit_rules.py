@@ -11,6 +11,10 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+WAQF_ONLY = frozenset(
+    "madd_arid_sukun madd_iwad madd_lin madd_muttasil_arid ra_mutatarrif_jawaz "
+    "ra_mutatarrif_tafkhim ra_mutatarrif_tarqiq".split()
+)
 sys.path.insert(0, str(ROOT / "src"))
 
 from wirdi_mcp.domain.models import ReadingContext  # noqa: E402
@@ -45,6 +49,8 @@ def main() -> int:
         print(f"| `{rule_id}` | {totals['waqf'][rule_id]} | {totals['wasl'][rule_id]} |")
         for mode in totals:
             n = totals[mode][rule_id]
+            if n == 0 and mode == "wasl" and rule_id in WAQF_ONLY:
+                continue  # a single ayah in wasl never stops, so a stop-only rule cannot fire
             if n == 0:
                 flags.append(f"{rule_id} ({mode}): zero hits")
             elif n > letters * 0.1:

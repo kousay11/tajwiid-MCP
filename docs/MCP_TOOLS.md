@@ -1,6 +1,6 @@
-# MCP tools: local Tajwid candidates (0.5.0)
+# MCP tools: local Tajwid candidates (0.6.0)
 
-The stdio server exposes eleven read-only tools. There is no outbound MCP client, HTTP
+The stdio server exposes twelve read-only tools. There is no outbound MCP client, HTTP
 provider, network fallback or external scholarly search. All tools use closed-world
 contracts and return structured success or error envelopes. Contracts are in
 `src/wirdi_mcp/tools/contracts.py` (`TOOL_CONTRACTS`); registration is in
@@ -19,6 +19,7 @@ contracts and return structured success or error envelopes. Contracts are in
 | `get_tajwid_explanation` | Always `UNSUPPORTED_CAPABILITY` until validation records by a named reviewer exist |
 | `get_source_page` | 1 to 5 pages of a locally placed source book (printed page numbers) |
 | `search_source_pages` | Literal, lossy-normalized Arabic search over local pages; returns page hits |
+| `get_letter_properties` | Static place of articulation and characteristics for 1 to 29 base letters (Book A pp.40-45); an entry that is not one base letter is `INVALID_REFERENCE` |
 
 ## What an annotation is
 
@@ -26,11 +27,23 @@ Every served annotation has `status: "candidate"`: a deterministic procedure pro
 no reviewer confirmed it. Each carries the rule and version, a `TextAnchor` (ayah SHA-256,
 half-open codepoint range into the unchanged ayah text, word index), the reading context,
 the detector version, `evidence` (book and page citations of the rule), `page_refs` (the
-application's 559-page span of the ayah) and an occurrence `note`. The model also defines
+application's 559-page span of the ayah), an occurrence `note` and `variants`: the readings
+the source permits for that occurrence (for example 2, 3 or 4 harakat for a separated madd,
+or sukun versus a sila for a plural meem). The engine never picks one of them. The model also defines
 `source_annotated`, `cross_checked`, `conflict`, `not_annotated_in_source` and
 `unsupported_context`; none is produced because the coloured-mushaf extraction was a
 NO-GO ([PILOT_REPORT](PILOT_REPORT.md)). `scholarly_verified` is reserved and never
 emitted (`EMITTABLE_STATUSES`).
+
+## Rule families
+
+`families` filters `analyze_qaloun_tajwid`, `summarize_tajwid` and `analyze_app_page`:
+`madd` (23 rules), `hamza` (19), `tafkhim_tarqiq` (12), `imala_taqlil` (2), `idgham_general` (5),
+`ya_idafa` (4) and the first-release families (`qalqala`, `noon_sakina_tanween`, `mim_sakina`,
+`ghunna`, `lam_taarif`). Two hamza rules have a
+record but no detector (`has_detector: false` in `list_tajwid_rules`). Book A coverage is in
+[BOOK_A_COVERAGE](BOOK_A_COVERAGE.md); a request for each family is in
+[TESTING_GUIDE](TESTING_GUIDE.md).
 
 ## Reading context
 

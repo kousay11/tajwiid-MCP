@@ -94,6 +94,35 @@ async def run(source_root: str, out: Path) -> None:
                 "limit": 3,
             },
         ),
+        (
+            "analyze_qaloun_tajwid",
+            {
+                "selection": selection(2, 1, 7),
+                "reading_context": waqf,
+                "families": ["madd"],
+                "limit": 4,
+            },
+        ),
+        (
+            "analyze_qaloun_tajwid",
+            {
+                "selection": selection(2, 1, 7),
+                "reading_context": waqf,
+                "rule_ids": ["madd_munfasil", "hamzat_wasl_article", "lam_jalala_tafkhim"],
+                "limit": 4,
+            },
+        ),
+        (
+            "analyze_qaloun_tajwid",
+            {
+                "selection": selection(2, 8, 20),
+                "reading_context": waqf,
+                "families": ["tafkhim_tarqiq"],
+                "limit": 3,
+            },
+        ),
+        ("get_tajwid_rule", {"rule_id": "madd_munfasil", "version": "1"}),
+        ("get_letter_properties", {"letters": ["ق", "ء", "ر"]}),
         ("summarize_tajwid", {"surah": 18, "reading_context": waqf, "limit": 3}),
         ("analyze_app_page", {"page": 263, "reading_context": waqf, "limit": 3}),
         (

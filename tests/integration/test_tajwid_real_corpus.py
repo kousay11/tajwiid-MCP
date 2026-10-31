@@ -21,6 +21,43 @@ def engine(real_repo):
     real_repo.load_edition = original
 
 
+FIRST_FOURTEEN = frozenset(
+    """ghunna_mushaddad idgham_bighunna idgham_bilaghunna idgham_shafawi idhar_halqi
+    idhar_mutlaq idhar_shafawi ikhfa_haqiqi ikhfa_shafawi iqlab lam_qamariya lam_shamsiya
+    qalqala_kubra qalqala_sughra""".split()
+)
+WAQF_ONLY = frozenset(
+    """madd_arid_sukun madd_iwad madd_lin madd_muttasil_arid ra_mutatarrif_jawaz
+    ra_mutatarrif_tafkhim ra_mutatarrif_tarqiq""".split()
+)
+NOON_TANWEEN_RULES = frozenset(
+    "idhar_halqi idgham_bighunna idgham_bilaghunna iqlab ikhfa_haqiqi idhar_mutlaq".split()
+)
+CLOSED_LISTS = {
+    "hamza_ibdal_yajuj": 4,
+    "hamza_ibdal_ruya": 1,
+    "hamza_ibdal_minsaa": 1,
+    "hamza_ibdal_saala": 1,
+    "hamza_ibdal_musada": 2,
+    "hamza_nabi_exception": 2,
+    "imala_har": 1,
+    "ra_jawaz": 1,
+    "madd_harf_hay_tahar": 22,
+    "madd_lazim_harfi_muthaqqal": 10,
+    "madd_lazim_harfi_mukhaffaf": 34,
+    "madd_lazim_kalimi_mukhaffaf": 3,  # محياي and the two آلآن
+    "hamza_double_exception": 5,  # four أئمة and one أشهدوا
+    "hamza_double_in_word": 15,
+    "alef_thabita": 4,  # لكنا and the three alefs of al-Ahzab
+    "hamza_istifham_added": 4,
+    "idgham_kabir_mutamathil": 1,
+    "idgham_naqis": 4,  # بسطت، فرطتم، فرطت، أحطت
+    "ya_idafa_iskan_exception": 24,  # 9 + 10 + 2 + 3 words named by the book
+    "ya_idafa_fath_exception": 6,
+    "ya_idafa_rabbi_two_readings": 1,
+}
+
+
 @pytest.fixture(scope="module")
 def all_rules(engine):
     return engine.select_rules((), ())
@@ -37,10 +74,15 @@ def test_every_single_ayah_selection_runs_without_exception(engine, all_rules, m
         for verse, occurrence in result.occurrences:
             # every anchor resolves back to the unchanged text inside the ayah
             assert 0 <= occurrence.start < occurrence.end <= len(verse.row.text)
-    # frequency audit: a rule with zero hits is a detector defect, not an absence of rule
-    assert set(counts) == set(DETECTORS), set(DETECTORS) - set(counts)
-    assert all(n >= 100 for r, n in counts.items() if r != "iqlab")
+    # frequency audit: a rule with zero hits is a detector defect, unless it is a waqf-only
+    # rule evaluated in wasl, where a single ayah never stops
+    expected_absent = WAQF_ONLY if mode == "wasl" else frozenset()
+    assert set(counts) == set(DETECTORS) - expected_absent, set(DETECTORS) ^ set(counts)
+    assert all(n >= 100 for r, n in counts.items() if r in FIRST_FOURTEEN and r != "iqlab")
     assert 200 <= counts["iqlab"] <= 400
+    # closed lists named by Book A: the count is part of the claim
+    for rule_id, expected in CLOSED_LISTS.items():
+        assert counts[rule_id] == expected, (rule_id, counts[rule_id], expected)
     total_letters = sum(len(r.text) for r in engine.repository.load_edition("qalun"))
     assert all(n < total_letters * 0.1 for n in counts.values())
 
@@ -68,7 +110,9 @@ def test_corpus_orthography_agrees_with_tanween_classification(engine, all_rules
     for index in range(0, 6214, 7):
         result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), all_rules)
         for verse, occurrence in result.occurrences:
-            if not (occurrence.note or "").startswith("tanween"):
+            if occurrence.rule_id not in NOON_TANWEEN_RULES or not (
+                occurrence.note or ""
+            ).startswith("tanween"):
                 continue
             marked = rows[verse.index].text[occurrence.start : occurrence.end]
             assert any(c in standard for c in marked) == (occurrence.rule_id == "idhar_halqi")
