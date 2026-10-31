@@ -1,0 +1,7110 @@
+{
+  "scope": "all 6214 single-ayah Qaloun selections; full linked components checked against existing trusted source transcriptions",
+  "method": "linked_components_and_exact_orthographic_skeleton_v1",
+  "counts": {
+    "verified_difference": 2665,
+    "mapping_requires_review": 473,
+    "verified_equivalent": 3076
+  },
+  "requires_review": [
+    {
+      "surah": 2,
+      "ayah": 27,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 28,
+          "to_ayah": 28
+        }
+      ],
+      "reasons": [
+        "unverified_component:27"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 30,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 31,
+          "to_ayah": 31
+        }
+      ],
+      "reasons": [
+        "unverified_component:30"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 39,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 40,
+          "to_ayah": 40
+        }
+      ],
+      "reasons": [
+        "unverified_component:39"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 46,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 47,
+          "to_ayah": 47
+        }
+      ],
+      "reasons": [
+        "unverified_component:46"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 56,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 57,
+          "to_ayah": 57
+        }
+      ],
+      "reasons": [
+        "unverified_component:56"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 57,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 58,
+          "to_ayah": 58
+        }
+      ],
+      "reasons": [
+        "unverified_component:57"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 70,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 71,
+          "to_ayah": 71
+        }
+      ],
+      "reasons": [
+        "unverified_component:70"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 82,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 83,
+          "to_ayah": 83
+        }
+      ],
+      "reasons": [
+        "unverified_component:82"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 84,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 85,
+          "to_ayah": 85
+        }
+      ],
+      "reasons": [
+        "unverified_component:84"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 101,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 102,
+          "to_ayah": 102
+        }
+      ],
+      "reasons": [
+        "unverified_component:101"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 120,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 121,
+          "to_ayah": 121
+        }
+      ],
+      "reasons": [
+        "unverified_component:120"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 121,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 122,
+          "to_ayah": 122
+        }
+      ],
+      "reasons": [
+        "unverified_component:121"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 123,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 124,
+          "to_ayah": 124
+        }
+      ],
+      "reasons": [
+        "unverified_component:123"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 124,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 125,
+          "to_ayah": 125
+        }
+      ],
+      "reasons": [
+        "unverified_component:124"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 125,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 126,
+          "to_ayah": 126
+        }
+      ],
+      "reasons": [
+        "unverified_component:125"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 126,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 127,
+          "to_ayah": 127
+        }
+      ],
+      "reasons": [
+        "unverified_component:126"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 129,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 130,
+          "to_ayah": 130
+        }
+      ],
+      "reasons": [
+        "unverified_component:129"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 131,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 132,
+          "to_ayah": 132
+        }
+      ],
+      "reasons": [
+        "unverified_component:131"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 132,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 133,
+          "to_ayah": 133
+        }
+      ],
+      "reasons": [
+        "unverified_component:132"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 134,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 135,
+          "to_ayah": 135
+        }
+      ],
+      "reasons": [
+        "unverified_component:134"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 135,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 136,
+          "to_ayah": 136
+        }
+      ],
+      "reasons": [
+        "unverified_component:135"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 139,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 140,
+          "to_ayah": 140
+        }
+      ],
+      "reasons": [
+        "unverified_component:139"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 157,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 158,
+          "to_ayah": 158
+        }
+      ],
+      "reasons": [
+        "unverified_component:157"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 164,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 165,
+          "to_ayah": 165
+        }
+      ],
+      "reasons": [
+        "unverified_component:164"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 165,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 166,
+          "to_ayah": 166
+        }
+      ],
+      "reasons": [
+        "unverified_component:165"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 186,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 187,
+          "to_ayah": 187
+        }
+      ],
+      "reasons": [
+        "unverified_component:186"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 208,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 210,
+          "to_ayah": 210
+        }
+      ],
+      "reasons": [
+        "unverified_component:208"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 209,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 211,
+          "to_ayah": 211
+        }
+      ],
+      "reasons": [
+        "unverified_component:209"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 218,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 220,
+          "to_ayah": 220
+        }
+      ],
+      "reasons": [
+        "unverified_component:218"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 227,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 229,
+          "to_ayah": 229
+        }
+      ],
+      "reasons": [
+        "unverified_component:227"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 231,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 233,
+          "to_ayah": 233
+        }
+      ],
+      "reasons": [
+        "unverified_component:231"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 241,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 243,
+          "to_ayah": 243
+        }
+      ],
+      "reasons": [
+        "unverified_component:241"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 244,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 246,
+          "to_ayah": 246
+        }
+      ],
+      "reasons": [
+        "unverified_component:244"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 257,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 258,
+          "to_ayah": 258
+        }
+      ],
+      "reasons": [
+        "unverified_component:257"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 258,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 259,
+          "to_ayah": 259
+        }
+      ],
+      "reasons": [
+        "unverified_component:258"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 259,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 260,
+          "to_ayah": 260
+        }
+      ],
+      "reasons": [
+        "unverified_component:259"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 265,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 266,
+          "to_ayah": 266
+        }
+      ],
+      "reasons": [
+        "unverified_component:265"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 270,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 271,
+          "to_ayah": 271
+        }
+      ],
+      "reasons": [
+        "unverified_component:270"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 273,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 274,
+          "to_ayah": 274
+        }
+      ],
+      "reasons": [
+        "unverified_component:273"
+      ]
+    },
+    {
+      "surah": 2,
+      "ayah": 281,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 2,
+          "from_ayah": 282,
+          "to_ayah": 282
+        }
+      ],
+      "reasons": [
+        "unverified_component:281"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 13,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 13,
+          "to_ayah": 13
+        }
+      ],
+      "reasons": [
+        "unverified_component:13"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 37,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 37,
+          "to_ayah": 37
+        }
+      ],
+      "reasons": [
+        "unverified_component:37"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 38,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 38,
+          "to_ayah": 38
+        }
+      ],
+      "reasons": [
+        "unverified_component:38"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 48,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 48,
+          "to_ayah": 49
+        }
+      ],
+      "reasons": [
+        "unverified_component:48"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 56,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 57,
+          "to_ayah": 57
+        }
+      ],
+      "reasons": [
+        "unverified_component:56"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 67,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 68,
+          "to_ayah": 68
+        }
+      ],
+      "reasons": [
+        "unverified_component:67"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 78,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 79,
+          "to_ayah": 79
+        }
+      ],
+      "reasons": [
+        "unverified_component:78"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 80,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 81,
+          "to_ayah": 81
+        }
+      ],
+      "reasons": [
+        "unverified_component:80"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 82,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 83,
+          "to_ayah": 83
+        }
+      ],
+      "reasons": [
+        "unverified_component:82"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 93,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 93,
+          "to_ayah": 93
+        }
+      ],
+      "reasons": [
+        "unverified_component:93"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 96,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 96,
+          "to_ayah": 96
+        }
+      ],
+      "reasons": [
+        "unverified_component:96"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 111,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 111,
+          "to_ayah": 111
+        }
+      ],
+      "reasons": [
+        "unverified_component:111"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 115,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 115,
+          "to_ayah": 115
+        }
+      ],
+      "reasons": [
+        "unverified_component:115"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 122,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 122,
+          "to_ayah": 122
+        }
+      ],
+      "reasons": [
+        "unverified_component:122"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 133,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 133,
+          "to_ayah": 133
+        }
+      ],
+      "reasons": [
+        "unverified_component:133"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 146,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 146,
+          "to_ayah": 146
+        }
+      ],
+      "reasons": [
+        "unverified_component:146"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 155,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 155,
+          "to_ayah": 155
+        }
+      ],
+      "reasons": [
+        "unverified_component:155"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 157,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 157,
+          "to_ayah": 157
+        }
+      ],
+      "reasons": [
+        "unverified_component:157"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 161,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 161,
+          "to_ayah": 161
+        }
+      ],
+      "reasons": [
+        "unverified_component:161"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 166,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 166,
+          "to_ayah": 166
+        }
+      ],
+      "reasons": [
+        "unverified_component:166"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 182,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 182,
+          "to_ayah": 182
+        }
+      ],
+      "reasons": [
+        "unverified_component:182"
+      ]
+    },
+    {
+      "surah": 3,
+      "ayah": 188,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 3,
+          "from_ayah": 188,
+          "to_ayah": 188
+        }
+      ],
+      "reasons": [
+        "unverified_component:188"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 5,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 5,
+          "to_ayah": 5
+        }
+      ],
+      "reasons": [
+        "unverified_component:5"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 7,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 7,
+          "to_ayah": 7
+        }
+      ],
+      "reasons": [
+        "unverified_component:7"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 11,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 11,
+          "to_ayah": 11
+        }
+      ],
+      "reasons": [
+        "unverified_component:11"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 13,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 13,
+          "to_ayah": 13
+        }
+      ],
+      "reasons": [
+        "unverified_component:13"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 14,
+          "to_ayah": 14
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 16,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 16,
+          "to_ayah": 16
+        }
+      ],
+      "reasons": [
+        "unverified_component:16"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 18,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 18,
+          "to_ayah": 18
+        }
+      ],
+      "reasons": [
+        "unverified_component:18"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 22,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:22"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 24,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 24,
+          "to_ayah": 24
+        }
+      ],
+      "reasons": [
+        "unverified_component:24"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 33,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 33,
+          "to_ayah": 33
+        }
+      ],
+      "reasons": [
+        "unverified_component:33"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 36,
+          "to_ayah": 36
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 43,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 43,
+          "to_ayah": 43
+        }
+      ],
+      "reasons": [
+        "unverified_component:43"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 46,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 47,
+          "to_ayah": 47
+        }
+      ],
+      "reasons": [
+        "unverified_component:46"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 72,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 73,
+          "to_ayah": 73
+        }
+      ],
+      "reasons": [
+        "unverified_component:72"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 151,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 152,
+          "to_ayah": 152
+        }
+      ],
+      "reasons": [
+        "unverified_component:151"
+      ]
+    },
+    {
+      "surah": 4,
+      "ayah": 175,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 4,
+          "from_ayah": 176,
+          "to_ayah": 176
+        }
+      ],
+      "reasons": [
+        "unverified_component:175"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 7,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 6,
+          "to_ayah": 6
+        }
+      ],
+      "reasons": [
+        "unverified_component:7"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 13,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 12,
+          "to_ayah": 12
+        }
+      ],
+      "reasons": [
+        "unverified_component:13"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 14,
+          "to_ayah": 14
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 23,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 21,
+          "to_ayah": 21
+        }
+      ],
+      "reasons": [
+        "unverified_component:23"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 25,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 23,
+          "to_ayah": 23
+        }
+      ],
+      "reasons": [
+        "unverified_component:25"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 34,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 32,
+          "to_ayah": 32
+        }
+      ],
+      "reasons": [
+        "unverified_component:34"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 55,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 53,
+          "to_ayah": 53
+        }
+      ],
+      "reasons": [
+        "unverified_component:55"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 56,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 54,
+          "to_ayah": 54
+        }
+      ],
+      "reasons": [
+        "unverified_component:56"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 66,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 64,
+          "to_ayah": 64
+        }
+      ],
+      "reasons": [
+        "unverified_component:66"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 72,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 70,
+          "to_ayah": 70
+        }
+      ],
+      "reasons": [
+        "unverified_component:72"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 74,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 72,
+          "to_ayah": 72
+        }
+      ],
+      "reasons": [
+        "unverified_component:74"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 77,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 75,
+          "to_ayah": 75
+        }
+      ],
+      "reasons": [
+        "unverified_component:77"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 80,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 78,
+          "to_ayah": 78
+        }
+      ],
+      "reasons": [
+        "unverified_component:80"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 83,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 81,
+          "to_ayah": 81
+        }
+      ],
+      "reasons": [
+        "unverified_component:83"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 108,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 106,
+          "to_ayah": 106
+        }
+      ],
+      "reasons": [
+        "unverified_component:108"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 109,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 107,
+          "to_ayah": 107
+        }
+      ],
+      "reasons": [
+        "unverified_component:109"
+      ]
+    },
+    {
+      "surah": 5,
+      "ayah": 112,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 5,
+          "from_ayah": 110,
+          "to_ayah": 110
+        }
+      ],
+      "reasons": [
+        "unverified_component:112"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 41,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 40,
+          "to_ayah": 40
+        }
+      ],
+      "reasons": [
+        "unverified_component:41"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 47,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 46,
+          "to_ayah": 46
+        }
+      ],
+      "reasons": [
+        "unverified_component:47"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 48,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 47,
+          "to_ayah": 47
+        }
+      ],
+      "reasons": [
+        "unverified_component:48"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 62,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 61,
+          "to_ayah": 61
+        }
+      ],
+      "reasons": [
+        "unverified_component:62"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 64,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 63,
+          "to_ayah": 63
+        }
+      ],
+      "reasons": [
+        "unverified_component:64"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 86,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 85,
+          "to_ayah": 85
+        }
+      ],
+      "reasons": [
+        "unverified_component:86"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 90,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 89,
+          "to_ayah": 89
+        }
+      ],
+      "reasons": [
+        "unverified_component:90"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 93,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 92,
+          "to_ayah": 92
+        }
+      ],
+      "reasons": [
+        "unverified_component:93"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 96,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 95,
+          "to_ayah": 95
+        }
+      ],
+      "reasons": [
+        "unverified_component:96"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 97,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 96,
+          "to_ayah": 96
+        }
+      ],
+      "reasons": [
+        "unverified_component:97"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 100,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 99,
+          "to_ayah": 99
+        }
+      ],
+      "reasons": [
+        "unverified_component:100"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 113,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 112,
+          "to_ayah": 112
+        }
+      ],
+      "reasons": [
+        "unverified_component:113"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 125,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 124,
+          "to_ayah": 124
+        }
+      ],
+      "reasons": [
+        "unverified_component:125"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 129,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 128,
+          "to_ayah": 128
+        }
+      ],
+      "reasons": [
+        "unverified_component:129"
+      ]
+    },
+    {
+      "surah": 6,
+      "ayah": 156,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 6,
+          "from_ayah": 155,
+          "to_ayah": 155
+        }
+      ],
+      "reasons": [
+        "unverified_component:156"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 21,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:21"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 32,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 34,
+          "to_ayah": 34
+        }
+      ],
+      "reasons": [
+        "unverified_component:32"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 46,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 47,
+          "to_ayah": 47
+        }
+      ],
+      "reasons": [
+        "unverified_component:46"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 53,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 54,
+          "to_ayah": 54
+        }
+      ],
+      "reasons": [
+        "unverified_component:53"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 56,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 57,
+          "to_ayah": 57
+        }
+      ],
+      "reasons": [
+        "unverified_component:56"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 93,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 94,
+          "to_ayah": 94
+        }
+      ],
+      "reasons": [
+        "unverified_component:93"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 104,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 105,
+          "to_ayah": 105
+        }
+      ],
+      "reasons": [
+        "unverified_component:104"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 133,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 134,
+          "to_ayah": 134
+        }
+      ],
+      "reasons": [
+        "unverified_component:133"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 136,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 137,
+          "to_ayah": 137
+        }
+      ],
+      "reasons": [
+        "unverified_component:136"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 137,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 137,
+          "to_ayah": 137
+        }
+      ],
+      "reasons": [
+        "unverified_component:136"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 138,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 138,
+          "to_ayah": 138
+        }
+      ],
+      "reasons": [
+        "unverified_component:138"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 144,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 144,
+          "to_ayah": 144
+        }
+      ],
+      "reasons": [
+        "unverified_component:144"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 157,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 157,
+          "to_ayah": 157
+        }
+      ],
+      "reasons": [
+        "unverified_component:157"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 158,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 158,
+          "to_ayah": 158
+        }
+      ],
+      "reasons": [
+        "unverified_component:158"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 161,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 161,
+          "to_ayah": 161
+        }
+      ],
+      "reasons": [
+        "unverified_component:161"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 184,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 184,
+          "to_ayah": 184
+        }
+      ],
+      "reasons": [
+        "unverified_component:184"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 186,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 186,
+          "to_ayah": 186
+        }
+      ],
+      "reasons": [
+        "unverified_component:186"
+      ]
+    },
+    {
+      "surah": 7,
+      "ayah": 190,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 7,
+          "from_ayah": 190,
+          "to_ayah": 190
+        }
+      ],
+      "reasons": [
+        "unverified_component:190"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 41,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 41,
+          "to_ayah": 41
+        }
+      ],
+      "reasons": [
+        "unverified_component:41"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 49,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 48,
+          "to_ayah": 48
+        }
+      ],
+      "reasons": [
+        "unverified_component:49"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 60,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 59,
+          "to_ayah": 59
+        }
+      ],
+      "reasons": [
+        "unverified_component:60"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 65,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 64,
+          "to_ayah": 64
+        }
+      ],
+      "reasons": [
+        "unverified_component:65"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 66,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 65,
+          "to_ayah": 65
+        }
+      ],
+      "reasons": [
+        "unverified_component:66"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 67,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 66,
+          "to_ayah": 66
+        }
+      ],
+      "reasons": [
+        "unverified_component:67"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 68,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 67,
+          "to_ayah": 67
+        }
+      ],
+      "reasons": [
+        "unverified_component:68"
+      ]
+    },
+    {
+      "surah": 8,
+      "ayah": 71,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 8,
+          "from_ayah": 70,
+          "to_ayah": 70
+        }
+      ],
+      "reasons": [
+        "unverified_component:71"
+      ]
+    },
+    {
+      "surah": 9,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 9,
+          "from_ayah": 61,
+          "to_ayah": 61
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 9,
+      "ayah": 66,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 9,
+          "from_ayah": 66,
+          "to_ayah": 66
+        }
+      ],
+      "reasons": [
+        "unverified_component:66"
+      ]
+    },
+    {
+      "surah": 9,
+      "ayah": 74,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 9,
+          "from_ayah": 73,
+          "to_ayah": 73
+        }
+      ],
+      "reasons": [
+        "unverified_component:74"
+      ]
+    },
+    {
+      "surah": 9,
+      "ayah": 108,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 9,
+          "from_ayah": 107,
+          "to_ayah": 107
+        }
+      ],
+      "reasons": [
+        "unverified_component:108"
+      ]
+    },
+    {
+      "surah": 9,
+      "ayah": 114,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 9,
+          "from_ayah": 113,
+          "to_ayah": 113
+        }
+      ],
+      "reasons": [
+        "unverified_component:114"
+      ]
+    },
+    {
+      "surah": 9,
+      "ayah": 118,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 9,
+          "from_ayah": 117,
+          "to_ayah": 117
+        }
+      ],
+      "reasons": [
+        "unverified_component:118"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 5,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 5,
+          "to_ayah": 5
+        }
+      ],
+      "reasons": [
+        "unverified_component:5"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 45,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 45,
+          "to_ayah": 45
+        }
+      ],
+      "reasons": [
+        "unverified_component:45"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 49,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 49,
+          "to_ayah": 49
+        }
+      ],
+      "reasons": [
+        "unverified_component:49"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 50,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 50,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:50"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 59,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 59,
+          "to_ayah": 59
+        }
+      ],
+      "reasons": [
+        "unverified_component:59"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 89,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 89,
+          "to_ayah": 89
+        }
+      ],
+      "reasons": [
+        "unverified_component:89"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 90,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 90,
+          "to_ayah": 90
+        }
+      ],
+      "reasons": [
+        "unverified_component:90"
+      ]
+    },
+    {
+      "surah": 10,
+      "ayah": 93,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 10,
+          "from_ayah": 93,
+          "to_ayah": 93
+        }
+      ],
+      "reasons": [
+        "unverified_component:93"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 24,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 24,
+          "to_ayah": 24
+        }
+      ],
+      "reasons": [
+        "unverified_component:24"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 28,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 28,
+          "to_ayah": 28
+        }
+      ],
+      "reasons": [
+        "unverified_component:28"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 40,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 40,
+          "to_ayah": 40
+        }
+      ],
+      "reasons": [
+        "unverified_component:40"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 43,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 43,
+          "to_ayah": 43
+        }
+      ],
+      "reasons": [
+        "unverified_component:43"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 57,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 58,
+          "to_ayah": 58
+        }
+      ],
+      "reasons": [
+        "unverified_component:57"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 62,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 63,
+          "to_ayah": 63
+        }
+      ],
+      "reasons": [
+        "unverified_component:62"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 65,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 66,
+          "to_ayah": 66
+        }
+      ],
+      "reasons": [
+        "unverified_component:65"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 70,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 71,
+          "to_ayah": 71
+        }
+      ],
+      "reasons": [
+        "unverified_component:70"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 75,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 76,
+          "to_ayah": 76
+        }
+      ],
+      "reasons": [
+        "unverified_component:75"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 81,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 82,
+          "to_ayah": 83
+        }
+      ],
+      "reasons": [
+        "unverified_component:81"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 82,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 82,
+          "to_ayah": 83
+        }
+      ],
+      "reasons": [
+        "unverified_component:81"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 88,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 88,
+          "to_ayah": 88
+        }
+      ],
+      "reasons": [
+        "unverified_component:88"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 94,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 94,
+          "to_ayah": 94
+        }
+      ],
+      "reasons": [
+        "unverified_component:94"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 101,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 101,
+          "to_ayah": 101
+        }
+      ],
+      "reasons": [
+        "unverified_component:101"
+      ]
+    },
+    {
+      "surah": 11,
+      "ayah": 102,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 11,
+          "from_ayah": 102,
+          "to_ayah": 102
+        }
+      ],
+      "reasons": [
+        "unverified_component:102"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 36,
+          "to_ayah": 36
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 37,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 37,
+          "to_ayah": 37
+        }
+      ],
+      "reasons": [
+        "unverified_component:37"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 41,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 41,
+          "to_ayah": 41
+        }
+      ],
+      "reasons": [
+        "unverified_component:41"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 51,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 51,
+          "to_ayah": 51
+        }
+      ],
+      "reasons": [
+        "unverified_component:51"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 53,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 53,
+          "to_ayah": 53
+        }
+      ],
+      "reasons": [
+        "unverified_component:53"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 62,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 62,
+          "to_ayah": 62
+        }
+      ],
+      "reasons": [
+        "unverified_component:62"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 84,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 84,
+          "to_ayah": 84
+        }
+      ],
+      "reasons": [
+        "unverified_component:84"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 90,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 90,
+          "to_ayah": 90
+        }
+      ],
+      "reasons": [
+        "unverified_component:90"
+      ]
+    },
+    {
+      "surah": 12,
+      "ayah": 109,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 12,
+          "from_ayah": 109,
+          "to_ayah": 109
+        }
+      ],
+      "reasons": [
+        "unverified_component:109"
+      ]
+    },
+    {
+      "surah": 13,
+      "ayah": 4,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 13,
+          "from_ayah": 4,
+          "to_ayah": 4
+        }
+      ],
+      "reasons": [
+        "unverified_component:4"
+      ]
+    },
+    {
+      "surah": 13,
+      "ayah": 5,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 13,
+          "from_ayah": 5,
+          "to_ayah": 5
+        }
+      ],
+      "reasons": [
+        "unverified_component:5"
+      ]
+    },
+    {
+      "surah": 13,
+      "ayah": 6,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 13,
+          "from_ayah": 5,
+          "to_ayah": 5
+        }
+      ],
+      "reasons": [
+        "unverified_component:5"
+      ]
+    },
+    {
+      "surah": 13,
+      "ayah": 19,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 13,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:19"
+      ]
+    },
+    {
+      "surah": 13,
+      "ayah": 24,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 13,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:24"
+      ]
+    },
+    {
+      "surah": 14,
+      "ayah": 33,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 14,
+          "from_ayah": 31,
+          "to_ayah": 31
+        }
+      ],
+      "reasons": [
+        "unverified_component:33"
+      ]
+    },
+    {
+      "surah": 15,
+      "ayah": 8,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 15,
+          "from_ayah": 8,
+          "to_ayah": 8
+        }
+      ],
+      "reasons": [
+        "unverified_component:8"
+      ]
+    },
+    {
+      "surah": 15,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 15,
+          "from_ayah": 61,
+          "to_ayah": 61
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 15,
+      "ayah": 67,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 15,
+          "from_ayah": 67,
+          "to_ayah": 67
+        }
+      ],
+      "reasons": [
+        "unverified_component:67"
+      ]
+    },
+    {
+      "surah": 16,
+      "ayah": 20,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 16,
+          "from_ayah": 20,
+          "to_ayah": 20
+        }
+      ],
+      "reasons": [
+        "unverified_component:20"
+      ]
+    },
+    {
+      "surah": 16,
+      "ayah": 43,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 16,
+          "from_ayah": 43,
+          "to_ayah": 43
+        }
+      ],
+      "reasons": [
+        "unverified_component:43"
+      ]
+    },
+    {
+      "surah": 16,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 16,
+          "from_ayah": 61,
+          "to_ayah": 61
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 16,
+      "ayah": 90,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 16,
+          "from_ayah": 90,
+          "to_ayah": 90
+        }
+      ],
+      "reasons": [
+        "unverified_component:90"
+      ]
+    },
+    {
+      "surah": 16,
+      "ayah": 96,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 16,
+          "from_ayah": 96,
+          "to_ayah": 96
+        }
+      ],
+      "reasons": [
+        "unverified_component:96"
+      ]
+    },
+    {
+      "surah": 16,
+      "ayah": 112,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 16,
+          "from_ayah": 112,
+          "to_ayah": 112
+        }
+      ],
+      "reasons": [
+        "unverified_component:112"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 2,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 2,
+          "to_ayah": 2
+        }
+      ],
+      "reasons": [
+        "unverified_component:2"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 4,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 4,
+          "to_ayah": 4
+        }
+      ],
+      "reasons": [
+        "unverified_component:4"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 24,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 24,
+          "to_ayah": 24
+        }
+      ],
+      "reasons": [
+        "unverified_component:24"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 42,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 42,
+          "to_ayah": 42
+        }
+      ],
+      "reasons": [
+        "unverified_component:42"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 44,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 44,
+          "to_ayah": 44
+        }
+      ],
+      "reasons": [
+        "unverified_component:44"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 49,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 49,
+          "to_ayah": 49
+        }
+      ],
+      "reasons": [
+        "unverified_component:49"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 62,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 62,
+          "to_ayah": 62
+        }
+      ],
+      "reasons": [
+        "unverified_component:62"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 93,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 93,
+          "to_ayah": 93
+        }
+      ],
+      "reasons": [
+        "unverified_component:93"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 98,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 98,
+          "to_ayah": 98
+        }
+      ],
+      "reasons": [
+        "unverified_component:98"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 101,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 101,
+          "to_ayah": 101
+        }
+      ],
+      "reasons": [
+        "unverified_component:101"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 102,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 102,
+          "to_ayah": 102
+        }
+      ],
+      "reasons": [
+        "unverified_component:102"
+      ]
+    },
+    {
+      "surah": 17,
+      "ayah": 104,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 17,
+          "from_ayah": 104,
+          "to_ayah": 104
+        }
+      ],
+      "reasons": [
+        "unverified_component:104"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 28,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 28,
+          "to_ayah": 28
+        }
+      ],
+      "reasons": [
+        "unverified_component:28"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 35,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 35,
+          "to_ayah": 36
+        }
+      ],
+      "reasons": [
+        "unverified_component:35"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 37,
+          "to_ayah": 37
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 39,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 40,
+          "to_ayah": 40
+        }
+      ],
+      "reasons": [
+        "unverified_component:39"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 56,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 57,
+          "to_ayah": 57
+        }
+      ],
+      "reasons": [
+        "unverified_component:56"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 62,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 63,
+          "to_ayah": 63
+        }
+      ],
+      "reasons": [
+        "unverified_component:62"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 79,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 80,
+          "to_ayah": 80
+        }
+      ],
+      "reasons": [
+        "unverified_component:79"
+      ]
+    },
+    {
+      "surah": 18,
+      "ayah": 94,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 18,
+          "from_ayah": 98,
+          "to_ayah": 98
+        }
+      ],
+      "reasons": [
+        "unverified_component:94"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 1,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 1,
+          "to_ayah": 2
+        }
+      ],
+      "reasons": [
+        "unverified_component:1"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 6,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 7,
+          "to_ayah": 7
+        }
+      ],
+      "reasons": [
+        "unverified_component:6"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 30,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 31,
+          "to_ayah": 31
+        }
+      ],
+      "reasons": [
+        "unverified_component:30"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 58,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 58,
+          "to_ayah": 58
+        }
+      ],
+      "reasons": [
+        "unverified_component:58"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 66,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 66,
+          "to_ayah": 66
+        }
+      ],
+      "reasons": [
+        "unverified_component:66"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 74,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 74,
+          "to_ayah": 74
+        }
+      ],
+      "reasons": [
+        "unverified_component:74"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 78,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 77,
+          "to_ayah": 77
+        }
+      ],
+      "reasons": [
+        "unverified_component:78"
+      ]
+    },
+    {
+      "surah": 19,
+      "ayah": 91,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 19,
+          "from_ayah": 90,
+          "to_ayah": 90
+        }
+      ],
+      "reasons": [
+        "unverified_component:91"
+      ]
+    },
+    {
+      "surah": 20,
+      "ayah": 46,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 20,
+          "from_ayah": 47,
+          "to_ayah": 47
+        }
+      ],
+      "reasons": [
+        "unverified_component:46"
+      ]
+    },
+    {
+      "surah": 20,
+      "ayah": 62,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 20,
+          "from_ayah": 63,
+          "to_ayah": 63
+        }
+      ],
+      "reasons": [
+        "unverified_component:62"
+      ]
+    },
+    {
+      "surah": 20,
+      "ayah": 78,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 20,
+          "from_ayah": 80,
+          "to_ayah": 80
+        }
+      ],
+      "reasons": [
+        "unverified_component:78"
+      ]
+    },
+    {
+      "surah": 20,
+      "ayah": 92,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 20,
+          "from_ayah": 94,
+          "to_ayah": 94
+        }
+      ],
+      "reasons": [
+        "unverified_component:92"
+      ]
+    },
+    {
+      "surah": 20,
+      "ayah": 118,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 20,
+          "from_ayah": 121,
+          "to_ayah": 121
+        }
+      ],
+      "reasons": [
+        "unverified_component:118"
+      ]
+    },
+    {
+      "surah": 20,
+      "ayah": 128,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 20,
+          "from_ayah": 130,
+          "to_ayah": 130
+        }
+      ],
+      "reasons": [
+        "unverified_component:128"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 3,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 3,
+          "to_ayah": 3
+        }
+      ],
+      "reasons": [
+        "unverified_component:3"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 4,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 4,
+          "to_ayah": 4
+        }
+      ],
+      "reasons": [
+        "unverified_component:4"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 7,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 7,
+          "to_ayah": 7
+        }
+      ],
+      "reasons": [
+        "unverified_component:7"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 25,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 25,
+          "to_ayah": 25
+        }
+      ],
+      "reasons": [
+        "unverified_component:25"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 50,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 50,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:50"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 77,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 78,
+          "to_ayah": 78
+        }
+      ],
+      "reasons": [
+        "unverified_component:77"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 79,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 80,
+          "to_ayah": 80
+        }
+      ],
+      "reasons": [
+        "unverified_component:79"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 88,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 89,
+          "to_ayah": 89
+        }
+      ],
+      "reasons": [
+        "unverified_component:88"
+      ]
+    },
+    {
+      "surah": 21,
+      "ayah": 98,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 21,
+          "from_ayah": 99,
+          "to_ayah": 99
+        }
+      ],
+      "reasons": [
+        "unverified_component:98"
+      ]
+    },
+    {
+      "surah": 22,
+      "ayah": 10,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 22,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:10"
+      ]
+    },
+    {
+      "surah": 22,
+      "ayah": 19,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 22,
+          "from_ayah": 19,
+          "to_ayah": 21
+        }
+      ],
+      "reasons": [
+        "unverified_component:19"
+      ]
+    },
+    {
+      "surah": 22,
+      "ayah": 50,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 22,
+          "from_ayah": 52,
+          "to_ayah": 52
+        }
+      ],
+      "reasons": [
+        "unverified_component:50"
+      ]
+    },
+    {
+      "surah": 22,
+      "ayah": 60,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 22,
+          "from_ayah": 62,
+          "to_ayah": 62
+        }
+      ],
+      "reasons": [
+        "unverified_component:60"
+      ]
+    },
+    {
+      "surah": 22,
+      "ayah": 63,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 22,
+          "from_ayah": 65,
+          "to_ayah": 65
+        }
+      ],
+      "reasons": [
+        "unverified_component:63"
+      ]
+    },
+    {
+      "surah": 23,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 23,
+          "from_ayah": 14,
+          "to_ayah": 14
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 23,
+      "ayah": 27,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 23,
+          "from_ayah": 27,
+          "to_ayah": 27
+        }
+      ],
+      "reasons": [
+        "unverified_component:27"
+      ]
+    },
+    {
+      "surah": 23,
+      "ayah": 29,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 23,
+          "from_ayah": 29,
+          "to_ayah": 29
+        }
+      ],
+      "reasons": [
+        "unverified_component:29"
+      ]
+    },
+    {
+      "surah": 23,
+      "ayah": 83,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 23,
+          "from_ayah": 82,
+          "to_ayah": 82
+        }
+      ],
+      "reasons": [
+        "unverified_component:83"
+      ]
+    },
+    {
+      "surah": 23,
+      "ayah": 100,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 23,
+          "from_ayah": 99,
+          "to_ayah": 99
+        }
+      ],
+      "reasons": [
+        "unverified_component:100"
+      ]
+    },
+    {
+      "surah": 23,
+      "ayah": 113,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 23,
+          "from_ayah": 112,
+          "to_ayah": 112
+        }
+      ],
+      "reasons": [
+        "unverified_component:113"
+      ]
+    },
+    {
+      "surah": 23,
+      "ayah": 115,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 23,
+          "from_ayah": 114,
+          "to_ayah": 114
+        }
+      ],
+      "reasons": [
+        "unverified_component:115"
+      ]
+    },
+    {
+      "surah": 24,
+      "ayah": 33,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 24,
+          "from_ayah": 33,
+          "to_ayah": 33
+        }
+      ],
+      "reasons": [
+        "unverified_component:33"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 1,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 1,
+          "to_ayah": 1
+        }
+      ],
+      "reasons": [
+        "unverified_component:1"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 10,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:10"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 17,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:17"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 19,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 19,
+          "to_ayah": 19
+        }
+      ],
+      "reasons": [
+        "unverified_component:19"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 28,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 28,
+          "to_ayah": 28
+        }
+      ],
+      "reasons": [
+        "unverified_component:28"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 31,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 31,
+          "to_ayah": 31
+        }
+      ],
+      "reasons": [
+        "unverified_component:31"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 43,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 43,
+          "to_ayah": 43
+        }
+      ],
+      "reasons": [
+        "unverified_component:43"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 48,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 48,
+          "to_ayah": 48
+        }
+      ],
+      "reasons": [
+        "unverified_component:48"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 57,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 57,
+          "to_ayah": 57
+        }
+      ],
+      "reasons": [
+        "unverified_component:57"
+      ]
+    },
+    {
+      "surah": 25,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 25,
+          "from_ayah": 61,
+          "to_ayah": 61
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 3,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 4,
+          "to_ayah": 4
+        }
+      ],
+      "reasons": [
+        "unverified_component:3"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 16,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:16"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 21,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:21"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 59,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 59,
+          "to_ayah": 59
+        }
+      ],
+      "reasons": [
+        "unverified_component:59"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 61,
+          "to_ayah": 61
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 75,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 75,
+          "to_ayah": 75
+        }
+      ],
+      "reasons": [
+        "unverified_component:75"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 187,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 187,
+          "to_ayah": 187
+        }
+      ],
+      "reasons": [
+        "unverified_component:187"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 197,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 197,
+          "to_ayah": 197
+        }
+      ],
+      "reasons": [
+        "unverified_component:197"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 205,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 205,
+          "to_ayah": 205
+        }
+      ],
+      "reasons": [
+        "unverified_component:205"
+      ]
+    },
+    {
+      "surah": 26,
+      "ayah": 216,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 26,
+          "from_ayah": 217,
+          "to_ayah": 217
+        }
+      ],
+      "reasons": [
+        "unverified_component:216"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 25,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 25,
+          "to_ayah": 25
+        }
+      ],
+      "reasons": [
+        "unverified_component:25"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 35,
+          "to_ayah": 35
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 47,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 45,
+          "to_ayah": 45
+        }
+      ],
+      "reasons": [
+        "unverified_component:47"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 59,
+          "to_ayah": 59
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 62,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 60,
+          "to_ayah": 60
+        }
+      ],
+      "reasons": [
+        "unverified_component:62"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 63,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 61,
+          "to_ayah": 61
+        }
+      ],
+      "reasons": [
+        "unverified_component:63"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 64,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 62,
+          "to_ayah": 62
+        }
+      ],
+      "reasons": [
+        "unverified_component:64"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 65,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 63,
+          "to_ayah": 63
+        }
+      ],
+      "reasons": [
+        "unverified_component:65"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 66,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 64,
+          "to_ayah": 64
+        }
+      ],
+      "reasons": [
+        "unverified_component:66"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 69,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 67,
+          "to_ayah": 67
+        }
+      ],
+      "reasons": [
+        "unverified_component:69"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 78,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 76,
+          "to_ayah": 76
+        }
+      ],
+      "reasons": [
+        "unverified_component:78"
+      ]
+    },
+    {
+      "surah": 27,
+      "ayah": 89,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 27,
+          "from_ayah": 87,
+          "to_ayah": 87
+        }
+      ],
+      "reasons": [
+        "unverified_component:89"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 5,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 6,
+          "to_ayah": 6
+        }
+      ],
+      "reasons": [
+        "unverified_component:5"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 7,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 8,
+          "to_ayah": 8
+        }
+      ],
+      "reasons": [
+        "unverified_component:7"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 22,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 23,
+          "to_ayah": 23
+        }
+      ],
+      "reasons": [
+        "unverified_component:22"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 23,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 23,
+          "to_ayah": 23
+        }
+      ],
+      "reasons": [
+        "unverified_component:22"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 32,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 32,
+          "to_ayah": 32
+        }
+      ],
+      "reasons": [
+        "unverified_component:32"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 34,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 34,
+          "to_ayah": 34
+        }
+      ],
+      "reasons": [
+        "unverified_component:34"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 38,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 38,
+          "to_ayah": 38
+        }
+      ],
+      "reasons": [
+        "unverified_component:38"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 48,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 48,
+          "to_ayah": 48
+        }
+      ],
+      "reasons": [
+        "unverified_component:48"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 57,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 57,
+          "to_ayah": 57
+        }
+      ],
+      "reasons": [
+        "unverified_component:57"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 71,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 71,
+          "to_ayah": 71
+        }
+      ],
+      "reasons": [
+        "unverified_component:71"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 72,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 72,
+          "to_ayah": 72
+        }
+      ],
+      "reasons": [
+        "unverified_component:72"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 76,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 76,
+          "to_ayah": 76
+        }
+      ],
+      "reasons": [
+        "unverified_component:76"
+      ]
+    },
+    {
+      "surah": 28,
+      "ayah": 79,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 28,
+          "from_ayah": 79,
+          "to_ayah": 79
+        }
+      ],
+      "reasons": [
+        "unverified_component:79"
+      ]
+    },
+    {
+      "surah": 29,
+      "ayah": 7,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 29,
+          "from_ayah": 8,
+          "to_ayah": 8
+        }
+      ],
+      "reasons": [
+        "unverified_component:7"
+      ]
+    },
+    {
+      "surah": 29,
+      "ayah": 26,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 29,
+          "from_ayah": 27,
+          "to_ayah": 27
+        }
+      ],
+      "reasons": [
+        "unverified_component:26"
+      ]
+    },
+    {
+      "surah": 29,
+      "ayah": 39,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 29,
+          "from_ayah": 39,
+          "to_ayah": 39
+        }
+      ],
+      "reasons": [
+        "unverified_component:39"
+      ]
+    },
+    {
+      "surah": 29,
+      "ayah": 42,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 29,
+          "from_ayah": 42,
+          "to_ayah": 42
+        }
+      ],
+      "reasons": [
+        "unverified_component:42"
+      ]
+    },
+    {
+      "surah": 30,
+      "ayah": 7,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 30,
+          "from_ayah": 8,
+          "to_ayah": 8
+        }
+      ],
+      "reasons": [
+        "unverified_component:7"
+      ]
+    },
+    {
+      "surah": 30,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 30,
+          "from_ayah": 16,
+          "to_ayah": 16
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 30,
+      "ayah": 38,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 30,
+          "from_ayah": 39,
+          "to_ayah": 39
+        }
+      ],
+      "reasons": [
+        "unverified_component:38"
+      ]
+    },
+    {
+      "surah": 30,
+      "ayah": 49,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 30,
+          "from_ayah": 50,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:49"
+      ]
+    },
+    {
+      "surah": 30,
+      "ayah": 56,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 30,
+          "from_ayah": 57,
+          "to_ayah": 57
+        }
+      ],
+      "reasons": [
+        "unverified_component:56"
+      ]
+    },
+    {
+      "surah": 31,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 31,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 31,
+      "ayah": 29,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 31,
+          "from_ayah": 30,
+          "to_ayah": 30
+        }
+      ],
+      "reasons": [
+        "unverified_component:29"
+      ]
+    },
+    {
+      "surah": 32,
+      "ayah": 4,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 32,
+          "from_ayah": 5,
+          "to_ayah": 5
+        }
+      ],
+      "reasons": [
+        "unverified_component:4"
+      ]
+    },
+    {
+      "surah": 32,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 32,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 32,
+      "ayah": 10,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 32,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 32,
+      "ayah": 23,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 32,
+          "from_ayah": 23,
+          "to_ayah": 23
+        }
+      ],
+      "reasons": [
+        "unverified_component:23"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 1,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 1,
+          "to_ayah": 1
+        }
+      ],
+      "reasons": [
+        "unverified_component:1"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 4,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 4,
+          "to_ayah": 4
+        }
+      ],
+      "reasons": [
+        "unverified_component:4"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 6,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 6,
+          "to_ayah": 6
+        }
+      ],
+      "reasons": [
+        "unverified_component:6"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 13,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 13,
+          "to_ayah": 13
+        }
+      ],
+      "reasons": [
+        "unverified_component:13"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 24,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 24,
+          "to_ayah": 24
+        }
+      ],
+      "reasons": [
+        "unverified_component:24"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 28,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 28,
+          "to_ayah": 28
+        }
+      ],
+      "reasons": [
+        "unverified_component:28"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 30,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 30,
+          "to_ayah": 30
+        }
+      ],
+      "reasons": [
+        "unverified_component:30"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 32,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 32,
+          "to_ayah": 32
+        }
+      ],
+      "reasons": [
+        "unverified_component:32"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 36,
+          "to_ayah": 36
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 38,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 38,
+          "to_ayah": 38
+        }
+      ],
+      "reasons": [
+        "unverified_component:38"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 45,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 45,
+          "to_ayah": 45
+        }
+      ],
+      "reasons": [
+        "unverified_component:45"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 50,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 50,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:50"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 53,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 53,
+          "to_ayah": 53
+        }
+      ],
+      "reasons": [
+        "unverified_component:53"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 55,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 55,
+          "to_ayah": 55
+        }
+      ],
+      "reasons": [
+        "unverified_component:55"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 56,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 56,
+          "to_ayah": 56
+        }
+      ],
+      "reasons": [
+        "unverified_component:56"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 59,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 59,
+          "to_ayah": 59
+        }
+      ],
+      "reasons": [
+        "unverified_component:59"
+      ]
+    },
+    {
+      "surah": 33,
+      "ayah": 68,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 33,
+          "from_ayah": 68,
+          "to_ayah": 68
+        }
+      ],
+      "reasons": [
+        "unverified_component:68"
+      ]
+    },
+    {
+      "surah": 34,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 34,
+          "from_ayah": 9,
+          "to_ayah": 9
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 34,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 34,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 34,
+      "ayah": 17,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 34,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:17"
+      ]
+    },
+    {
+      "surah": 34,
+      "ayah": 40,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 34,
+          "from_ayah": 40,
+          "to_ayah": 40
+        }
+      ],
+      "reasons": [
+        "unverified_component:40"
+      ]
+    },
+    {
+      "surah": 34,
+      "ayah": 46,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 34,
+          "from_ayah": 46,
+          "to_ayah": 46
+        }
+      ],
+      "reasons": [
+        "unverified_component:46"
+      ]
+    },
+    {
+      "surah": 35,
+      "ayah": 12,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 35,
+          "from_ayah": 12,
+          "to_ayah": 12
+        }
+      ],
+      "reasons": [
+        "unverified_component:12"
+      ]
+    },
+    {
+      "surah": 35,
+      "ayah": 29,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 35,
+          "from_ayah": 29,
+          "to_ayah": 29
+        }
+      ],
+      "reasons": [
+        "unverified_component:29"
+      ]
+    },
+    {
+      "surah": 35,
+      "ayah": 40,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 35,
+          "from_ayah": 40,
+          "to_ayah": 40
+        }
+      ],
+      "reasons": [
+        "unverified_component:40"
+      ]
+    },
+    {
+      "surah": 35,
+      "ayah": 43,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 35,
+          "from_ayah": 43,
+          "to_ayah": 43
+        }
+      ],
+      "reasons": [
+        "unverified_component:43"
+      ]
+    },
+    {
+      "surah": 35,
+      "ayah": 44,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 35,
+          "from_ayah": 43,
+          "to_ayah": 43
+        }
+      ],
+      "reasons": [
+        "unverified_component:43"
+      ]
+    },
+    {
+      "surah": 35,
+      "ayah": 46,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 35,
+          "from_ayah": 45,
+          "to_ayah": 45
+        }
+      ],
+      "reasons": [
+        "unverified_component:46"
+      ]
+    },
+    {
+      "surah": 36,
+      "ayah": 67,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 36,
+          "from_ayah": 68,
+          "to_ayah": 68
+        }
+      ],
+      "reasons": [
+        "unverified_component:67"
+      ]
+    },
+    {
+      "surah": 36,
+      "ayah": 69,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 36,
+          "from_ayah": 70,
+          "to_ayah": 70
+        }
+      ],
+      "reasons": [
+        "unverified_component:69"
+      ]
+    },
+    {
+      "surah": 37,
+      "ayah": 11,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 37,
+          "from_ayah": 11,
+          "to_ayah": 11
+        }
+      ],
+      "reasons": [
+        "unverified_component:11"
+      ]
+    },
+    {
+      "surah": 37,
+      "ayah": 16,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 37,
+          "from_ayah": 16,
+          "to_ayah": 16
+        }
+      ],
+      "reasons": [
+        "unverified_component:16"
+      ]
+    },
+    {
+      "surah": 37,
+      "ayah": 52,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 37,
+          "from_ayah": 52,
+          "to_ayah": 52
+        }
+      ],
+      "reasons": [
+        "unverified_component:52"
+      ]
+    },
+    {
+      "surah": 37,
+      "ayah": 53,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 37,
+          "from_ayah": 53,
+          "to_ayah": 53
+        }
+      ],
+      "reasons": [
+        "unverified_component:53"
+      ]
+    },
+    {
+      "surah": 37,
+      "ayah": 130,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 37,
+          "from_ayah": 130,
+          "to_ayah": 130
+        }
+      ],
+      "reasons": [
+        "unverified_component:130"
+      ]
+    },
+    {
+      "surah": 38,
+      "ayah": 7,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 38,
+          "from_ayah": 8,
+          "to_ayah": 8
+        }
+      ],
+      "reasons": [
+        "unverified_component:7"
+      ]
+    },
+    {
+      "surah": 38,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 38,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 38,
+      "ayah": 21,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 38,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:21"
+      ]
+    },
+    {
+      "surah": 38,
+      "ayah": 49,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 38,
+          "from_ayah": 50,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:49"
+      ]
+    },
+    {
+      "surah": 39,
+      "ayah": 28,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 39,
+          "from_ayah": 29,
+          "to_ayah": 29
+        }
+      ],
+      "reasons": [
+        "unverified_component:28"
+      ]
+    },
+    {
+      "surah": 39,
+      "ayah": 33,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 39,
+          "from_ayah": 34,
+          "to_ayah": 34
+        }
+      ],
+      "reasons": [
+        "unverified_component:33"
+      ]
+    },
+    {
+      "surah": 39,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 39,
+          "from_ayah": 38,
+          "to_ayah": 38
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 39,
+      "ayah": 66,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 39,
+          "from_ayah": 69,
+          "to_ayah": 69
+        }
+      ],
+      "reasons": [
+        "unverified_component:66"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 20,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 20,
+          "to_ayah": 20
+        }
+      ],
+      "reasons": [
+        "unverified_component:20"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 24,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 24,
+          "to_ayah": 24
+        }
+      ],
+      "reasons": [
+        "unverified_component:24"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 26,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 26,
+          "to_ayah": 26
+        }
+      ],
+      "reasons": [
+        "unverified_component:26"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 33,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 33,
+          "to_ayah": 33
+        }
+      ],
+      "reasons": [
+        "unverified_component:33"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 36,
+          "to_ayah": 36
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 53,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 53,
+          "to_ayah": 54
+        }
+      ],
+      "reasons": [
+        "unverified_component:53"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 57,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 58,
+          "to_ayah": 58
+        }
+      ],
+      "reasons": [
+        "unverified_component:57"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 58,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 58,
+          "to_ayah": 58
+        }
+      ],
+      "reasons": [
+        "unverified_component:57"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 64,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 64,
+          "to_ayah": 64
+        }
+      ],
+      "reasons": [
+        "unverified_component:64"
+      ]
+    },
+    {
+      "surah": 40,
+      "ayah": 77,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 40,
+          "from_ayah": 78,
+          "to_ayah": 78
+        }
+      ],
+      "reasons": [
+        "unverified_component:77"
+      ]
+    },
+    {
+      "surah": 41,
+      "ayah": 18,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 41,
+          "from_ayah": 19,
+          "to_ayah": 19
+        }
+      ],
+      "reasons": [
+        "unverified_component:18"
+      ]
+    },
+    {
+      "surah": 41,
+      "ayah": 28,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 41,
+          "from_ayah": 29,
+          "to_ayah": 29
+        }
+      ],
+      "reasons": [
+        "unverified_component:28"
+      ]
+    },
+    {
+      "surah": 41,
+      "ayah": 51,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 41,
+          "from_ayah": 52,
+          "to_ayah": 52
+        }
+      ],
+      "reasons": [
+        "unverified_component:51"
+      ]
+    },
+    {
+      "surah": 42,
+      "ayah": 3,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 42,
+          "from_ayah": 5,
+          "to_ayah": 5
+        }
+      ],
+      "reasons": [
+        "unverified_component:3"
+      ]
+    },
+    {
+      "surah": 42,
+      "ayah": 23,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 42,
+          "from_ayah": 25,
+          "to_ayah": 25
+        }
+      ],
+      "reasons": [
+        "unverified_component:23"
+      ]
+    },
+    {
+      "surah": 42,
+      "ayah": 28,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 42,
+          "from_ayah": 30,
+          "to_ayah": 30
+        }
+      ],
+      "reasons": [
+        "unverified_component:28"
+      ]
+    },
+    {
+      "surah": 42,
+      "ayah": 48,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 42,
+          "from_ayah": 51,
+          "to_ayah": 51
+        }
+      ],
+      "reasons": [
+        "unverified_component:48"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 5,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 6,
+          "to_ayah": 6
+        }
+      ],
+      "reasons": [
+        "unverified_component:5"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 6,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 7,
+          "to_ayah": 7
+        }
+      ],
+      "reasons": [
+        "unverified_component:6"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 18,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 19,
+          "to_ayah": 19
+        }
+      ],
+      "reasons": [
+        "unverified_component:18"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 59,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 59,
+          "to_ayah": 59
+        }
+      ],
+      "reasons": [
+        "unverified_component:59"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 68,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 68,
+          "to_ayah": 68
+        }
+      ],
+      "reasons": [
+        "unverified_component:68"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 84,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 84,
+          "to_ayah": 84
+        }
+      ],
+      "reasons": [
+        "unverified_component:84"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 85,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 85,
+          "to_ayah": 85
+        }
+      ],
+      "reasons": [
+        "unverified_component:85"
+      ]
+    },
+    {
+      "surah": 43,
+      "ayah": 89,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 43,
+          "from_ayah": 89,
+          "to_ayah": 89
+        }
+      ],
+      "reasons": [
+        "unverified_component:89"
+      ]
+    },
+    {
+      "surah": 44,
+      "ayah": 29,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 44,
+          "from_ayah": 30,
+          "to_ayah": 30
+        }
+      ],
+      "reasons": [
+        "unverified_component:29"
+      ]
+    },
+    {
+      "surah": 44,
+      "ayah": 42,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 44,
+          "from_ayah": 45,
+          "to_ayah": 45
+        }
+      ],
+      "reasons": [
+        "unverified_component:42"
+      ]
+    },
+    {
+      "surah": 45,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 45,
+          "from_ayah": 16,
+          "to_ayah": 16
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 45,
+      "ayah": 22,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 45,
+          "from_ayah": 23,
+          "to_ayah": 23
+        }
+      ],
+      "reasons": [
+        "unverified_component:22"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 3,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 4,
+          "to_ayah": 4
+        }
+      ],
+      "reasons": [
+        "unverified_component:3"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 11,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 12,
+          "to_ayah": 12
+        }
+      ],
+      "reasons": [
+        "unverified_component:11"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 16,
+          "to_ayah": 16
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 16,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:16"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 18,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 19,
+          "to_ayah": 19
+        }
+      ],
+      "reasons": [
+        "unverified_component:18"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 24,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 25,
+          "to_ayah": 25
+        }
+      ],
+      "reasons": [
+        "unverified_component:24"
+      ]
+    },
+    {
+      "surah": 46,
+      "ayah": 31,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 46,
+          "from_ayah": 32,
+          "to_ayah": 32
+        }
+      ],
+      "reasons": [
+        "unverified_component:31"
+      ]
+    },
+    {
+      "surah": 47,
+      "ayah": 19,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 47,
+          "from_ayah": 18,
+          "to_ayah": 18
+        }
+      ],
+      "reasons": [
+        "unverified_component:19"
+      ]
+    },
+    {
+      "surah": 48,
+      "ayah": 10,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 48,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:10"
+      ]
+    },
+    {
+      "surah": 48,
+      "ayah": 17,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 48,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:17"
+      ]
+    },
+    {
+      "surah": 49,
+      "ayah": 2,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 49,
+          "from_ayah": 2,
+          "to_ayah": 2
+        }
+      ],
+      "reasons": [
+        "unverified_component:2"
+      ]
+    },
+    {
+      "surah": 49,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 49,
+          "from_ayah": 9,
+          "to_ayah": 9
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 50,
+      "ayah": 3,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 50,
+          "from_ayah": 3,
+          "to_ayah": 3
+        }
+      ],
+      "reasons": [
+        "unverified_component:3"
+      ]
+    },
+    {
+      "surah": 50,
+      "ayah": 17,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 50,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:17"
+      ]
+    },
+    {
+      "surah": 50,
+      "ayah": 26,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 50,
+          "from_ayah": 26,
+          "to_ayah": 26
+        }
+      ],
+      "reasons": [
+        "unverified_component:26"
+      ]
+    },
+    {
+      "surah": 50,
+      "ayah": 30,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 50,
+          "from_ayah": 30,
+          "to_ayah": 30
+        }
+      ],
+      "reasons": [
+        "unverified_component:30"
+      ]
+    },
+    {
+      "surah": 53,
+      "ayah": 2,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 53,
+          "from_ayah": 2,
+          "to_ayah": 2
+        }
+      ],
+      "reasons": [
+        "unverified_component:2"
+      ]
+    },
+    {
+      "surah": 53,
+      "ayah": 19,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 53,
+          "from_ayah": 19,
+          "to_ayah": 19
+        }
+      ],
+      "reasons": [
+        "unverified_component:19"
+      ]
+    },
+    {
+      "surah": 53,
+      "ayah": 32,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 53,
+          "from_ayah": 33,
+          "to_ayah": 33
+        }
+      ],
+      "reasons": [
+        "unverified_component:32"
+      ]
+    },
+    {
+      "surah": 54,
+      "ayah": 25,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 54,
+          "from_ayah": 25,
+          "to_ayah": 25
+        }
+      ],
+      "reasons": [
+        "unverified_component:25"
+      ]
+    },
+    {
+      "surah": 54,
+      "ayah": 29,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 54,
+          "from_ayah": 29,
+          "to_ayah": 29
+        }
+      ],
+      "reasons": [
+        "unverified_component:29"
+      ]
+    },
+    {
+      "surah": 54,
+      "ayah": 41,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 54,
+          "from_ayah": 41,
+          "to_ayah": 41
+        }
+      ],
+      "reasons": [
+        "unverified_component:41"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 4,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 6,
+          "to_ayah": 6
+        }
+      ],
+      "reasons": [
+        "unverified_component:4"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 17,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 19,
+          "to_ayah": 19
+        }
+      ],
+      "reasons": [
+        "unverified_component:17"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 18,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 20,
+          "to_ayah": 20
+        }
+      ],
+      "reasons": [
+        "unverified_component:18"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 20,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:20"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 29,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 31,
+          "to_ayah": 31
+        }
+      ],
+      "reasons": [
+        "unverified_component:29"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 33,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 35,
+          "to_ayah": 35
+        }
+      ],
+      "reasons": [
+        "unverified_component:33"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 34,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 35,
+          "to_ayah": 35
+        }
+      ],
+      "reasons": [
+        "unverified_component:33"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 45,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 46,
+          "to_ayah": 46
+        }
+      ],
+      "reasons": [
+        "unverified_component:45"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 49,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 50,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:49"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 51,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 52,
+          "to_ayah": 52
+        }
+      ],
+      "reasons": [
+        "unverified_component:51"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 53,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 54,
+          "to_ayah": 54
+        }
+      ],
+      "reasons": [
+        "unverified_component:53"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 62,
+          "to_ayah": 62
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 63,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 64,
+          "to_ayah": 64
+        }
+      ],
+      "reasons": [
+        "unverified_component:63"
+      ]
+    },
+    {
+      "surah": 55,
+      "ayah": 65,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 55,
+          "from_ayah": 66,
+          "to_ayah": 66
+        }
+      ],
+      "reasons": [
+        "unverified_component:65"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 2,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 2,
+          "to_ayah": 2
+        }
+      ],
+      "reasons": [
+        "unverified_component:2"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 50,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 47,
+          "to_ayah": 47
+        }
+      ],
+      "reasons": [
+        "unverified_component:50"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 52,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 49,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:52"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 53,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 49,
+          "to_ayah": 50
+        }
+      ],
+      "reasons": [
+        "unverified_component:52"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 61,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 58,
+          "to_ayah": 58
+        }
+      ],
+      "reasons": [
+        "unverified_component:61"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 66,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 63,
+          "to_ayah": 63
+        }
+      ],
+      "reasons": [
+        "unverified_component:66"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 71,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 68,
+          "to_ayah": 68
+        }
+      ],
+      "reasons": [
+        "unverified_component:71"
+      ]
+    },
+    {
+      "surah": 56,
+      "ayah": 74,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 56,
+          "from_ayah": 71,
+          "to_ayah": 71
+        }
+      ],
+      "reasons": [
+        "unverified_component:74"
+      ]
+    },
+    {
+      "surah": 57,
+      "ayah": 13,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 57,
+          "from_ayah": 13,
+          "to_ayah": 14
+        }
+      ],
+      "reasons": [
+        "unverified_component:13"
+      ]
+    },
+    {
+      "surah": 57,
+      "ayah": 23,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 57,
+          "from_ayah": 24,
+          "to_ayah": 24
+        }
+      ],
+      "reasons": [
+        "unverified_component:23"
+      ]
+    },
+    {
+      "surah": 57,
+      "ayah": 25,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 57,
+          "from_ayah": 26,
+          "to_ayah": 26
+        }
+      ],
+      "reasons": [
+        "unverified_component:25"
+      ]
+    },
+    {
+      "surah": 58,
+      "ayah": 2,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 58,
+          "from_ayah": 2,
+          "to_ayah": 2
+        }
+      ],
+      "reasons": [
+        "unverified_component:2"
+      ]
+    },
+    {
+      "surah": 59,
+      "ayah": 17,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 59,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:17"
+      ]
+    },
+    {
+      "surah": 60,
+      "ayah": 12,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 60,
+          "from_ayah": 12,
+          "to_ayah": 12
+        }
+      ],
+      "reasons": [
+        "unverified_component:12"
+      ]
+    },
+    {
+      "surah": 61,
+      "ayah": 6,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 61,
+          "from_ayah": 6,
+          "to_ayah": 6
+        }
+      ],
+      "reasons": [
+        "unverified_component:6"
+      ]
+    },
+    {
+      "surah": 61,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 61,
+          "from_ayah": 14,
+          "to_ayah": 14
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 63,
+      "ayah": 11,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 63,
+          "from_ayah": 11,
+          "to_ayah": 11
+        }
+      ],
+      "reasons": [
+        "unverified_component:11"
+      ]
+    },
+    {
+      "surah": 64,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 64,
+          "from_ayah": 9,
+          "to_ayah": 9
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 65,
+      "ayah": 1,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 65,
+          "from_ayah": 1,
+          "to_ayah": 1
+        }
+      ],
+      "reasons": [
+        "unverified_component:1"
+      ]
+    },
+    {
+      "surah": 65,
+      "ayah": 4,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 65,
+          "from_ayah": 4,
+          "to_ayah": 4
+        }
+      ],
+      "reasons": [
+        "unverified_component:4"
+      ]
+    },
+    {
+      "surah": 65,
+      "ayah": 11,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 65,
+          "from_ayah": 11,
+          "to_ayah": 11
+        }
+      ],
+      "reasons": [
+        "unverified_component:11"
+      ]
+    },
+    {
+      "surah": 66,
+      "ayah": 1,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 66,
+          "from_ayah": 1,
+          "to_ayah": 1
+        }
+      ],
+      "reasons": [
+        "unverified_component:1"
+      ]
+    },
+    {
+      "surah": 66,
+      "ayah": 3,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 66,
+          "from_ayah": 3,
+          "to_ayah": 3
+        }
+      ],
+      "reasons": [
+        "unverified_component:3"
+      ]
+    },
+    {
+      "surah": 66,
+      "ayah": 6,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 66,
+          "from_ayah": 6,
+          "to_ayah": 6
+        }
+      ],
+      "reasons": [
+        "unverified_component:6"
+      ]
+    },
+    {
+      "surah": 66,
+      "ayah": 8,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 66,
+          "from_ayah": 8,
+          "to_ayah": 8
+        }
+      ],
+      "reasons": [
+        "unverified_component:8"
+      ]
+    },
+    {
+      "surah": 66,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 66,
+          "from_ayah": 9,
+          "to_ayah": 9
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 66,
+      "ayah": 10,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 66,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:10"
+      ]
+    },
+    {
+      "surah": 67,
+      "ayah": 29,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 67,
+          "from_ayah": 28,
+          "to_ayah": 28
+        }
+      ],
+      "reasons": [
+        "unverified_component:29"
+      ]
+    },
+    {
+      "surah": 67,
+      "ayah": 31,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 67,
+          "from_ayah": 30,
+          "to_ayah": 30
+        }
+      ],
+      "reasons": [
+        "unverified_component:31"
+      ]
+    },
+    {
+      "surah": 68,
+      "ayah": 10,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 68,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:10"
+      ]
+    },
+    {
+      "surah": 68,
+      "ayah": 48,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 68,
+          "from_ayah": 48,
+          "to_ayah": 48
+        }
+      ],
+      "reasons": [
+        "unverified_component:48"
+      ]
+    },
+    {
+      "surah": 72,
+      "ayah": 16,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 72,
+          "from_ayah": 16,
+          "to_ayah": 16
+        }
+      ],
+      "reasons": [
+        "unverified_component:16"
+      ]
+    },
+    {
+      "surah": 72,
+      "ayah": 17,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 72,
+          "from_ayah": 17,
+          "to_ayah": 17
+        }
+      ],
+      "reasons": [
+        "unverified_component:17"
+      ]
+    },
+    {
+      "surah": 72,
+      "ayah": 20,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 72,
+          "from_ayah": 20,
+          "to_ayah": 20
+        }
+      ],
+      "reasons": [
+        "unverified_component:20"
+      ]
+    },
+    {
+      "surah": 74,
+      "ayah": 55,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 74,
+          "from_ayah": 56,
+          "to_ayah": 56
+        }
+      ],
+      "reasons": [
+        "unverified_component:55"
+      ]
+    },
+    {
+      "surah": 75,
+      "ayah": 36,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 75,
+          "from_ayah": 37,
+          "to_ayah": 37
+        }
+      ],
+      "reasons": [
+        "unverified_component:36"
+      ]
+    },
+    {
+      "surah": 78,
+      "ayah": 19,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 78,
+          "from_ayah": 19,
+          "to_ayah": 19
+        }
+      ],
+      "reasons": [
+        "unverified_component:19"
+      ]
+    },
+    {
+      "surah": 78,
+      "ayah": 35,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 78,
+          "from_ayah": 35,
+          "to_ayah": 35
+        }
+      ],
+      "reasons": [
+        "unverified_component:35"
+      ]
+    },
+    {
+      "surah": 78,
+      "ayah": 40,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 78,
+          "from_ayah": 40,
+          "to_ayah": 40
+        }
+      ],
+      "reasons": [
+        "unverified_component:40"
+      ]
+    },
+    {
+      "surah": 79,
+      "ayah": 10,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 79,
+          "from_ayah": 10,
+          "to_ayah": 10
+        }
+      ],
+      "reasons": [
+        "unverified_component:10"
+      ]
+    },
+    {
+      "surah": 79,
+      "ayah": 11,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 79,
+          "from_ayah": 11,
+          "to_ayah": 11
+        }
+      ],
+      "reasons": [
+        "unverified_component:11"
+      ]
+    },
+    {
+      "surah": 80,
+      "ayah": 22,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 80,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:22"
+      ]
+    },
+    {
+      "surah": 81,
+      "ayah": 22,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 81,
+          "from_ayah": 22,
+          "to_ayah": 22
+        }
+      ],
+      "reasons": [
+        "unverified_component:22"
+      ]
+    },
+    {
+      "surah": 89,
+      "ayah": 25,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 89,
+          "from_ayah": 23,
+          "to_ayah": 23
+        }
+      ],
+      "reasons": [
+        "unverified_component:25"
+      ]
+    },
+    {
+      "surah": 89,
+      "ayah": 26,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 89,
+          "from_ayah": 23,
+          "to_ayah": 23
+        }
+      ],
+      "reasons": [
+        "unverified_component:25"
+      ]
+    },
+    {
+      "surah": 90,
+      "ayah": 14,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 90,
+          "from_ayah": 14,
+          "to_ayah": 14
+        }
+      ],
+      "reasons": [
+        "unverified_component:14"
+      ]
+    },
+    {
+      "surah": 91,
+      "ayah": 13,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 91,
+          "from_ayah": 13,
+          "to_ayah": 13
+        }
+      ],
+      "reasons": [
+        "unverified_component:13"
+      ]
+    },
+    {
+      "surah": 91,
+      "ayah": 15,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 91,
+          "from_ayah": 15,
+          "to_ayah": 15
+        }
+      ],
+      "reasons": [
+        "unverified_component:15"
+      ]
+    },
+    {
+      "surah": 96,
+      "ayah": 9,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 96,
+          "from_ayah": 9,
+          "to_ayah": 9
+        }
+      ],
+      "reasons": [
+        "unverified_component:9"
+      ]
+    },
+    {
+      "surah": 96,
+      "ayah": 11,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 96,
+          "from_ayah": 11,
+          "to_ayah": 11
+        }
+      ],
+      "reasons": [
+        "unverified_component:11"
+      ]
+    },
+    {
+      "surah": 96,
+      "ayah": 13,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 96,
+          "from_ayah": 13,
+          "to_ayah": 13
+        }
+      ],
+      "reasons": [
+        "unverified_component:13"
+      ]
+    },
+    {
+      "surah": 106,
+      "ayah": 2,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 106,
+          "from_ayah": 2,
+          "to_ayah": 2
+        }
+      ],
+      "reasons": [
+        "unverified_component:2"
+      ]
+    },
+    {
+      "surah": 107,
+      "ayah": 1,
+      "source_reference": [
+        {
+          "edition_id": "hafs",
+          "surah": 107,
+          "from_ayah": 1,
+          "to_ayah": 1
+        }
+      ],
+      "reasons": [
+        "unverified_component:1"
+      ]
+    }
+  ],
+  "source_checksums": {
+    "qalun": "ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+    "hafs": "0136b913aeb5a6a0389681f988215791ddd848c4347f7cf5e9d2574db7f1da49"
+  }
+}
