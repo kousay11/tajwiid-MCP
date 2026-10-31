@@ -107,7 +107,7 @@
     {
       "id": "list_tajwid_rules.all",
       "tool": "list_tajwid_rules",
-      "purpose": "All 81 rules with family, detectability, tariq and `has_detector`.",
+      "purpose": "All 80 rules with family, detectability, tariq and `has_detector`.",
       "arguments": {},
       "expect": {
         "status": "ok"

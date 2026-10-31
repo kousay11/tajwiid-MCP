@@ -204,7 +204,7 @@
       "rule_id": "idhar_halqi",
       "version": "1",
       "path": "rules/idhar_halqi/1.json",
-      "sha256": "1b68938c9f9382de74628cf1a597b52b9fc88259397fadbe2b4f6c1f782f232d"
+      "sha256": "211a18af9a06fd2999fa61bb200094b92982a1cb2f2b3760b697c3c44a9a2f89"
     },
     {
       "rule_id": "idhar_mutlaq",
@@ -393,16 +393,10 @@
       "sha256": "0ea215a544cc04fca9f3ce2efb4b90cc0c1d1f5750e75503dcb9f36a1644085f"
     },
     {
-      "rule_id": "qalqala_kubra",
+      "rule_id": "qalqala",
       "version": "1",
-      "path": "rules/qalqala_kubra/1.json",
-      "sha256": "7a8ac778e1b8b35e8154425d1b263cca5cc05d54d2fcc99f118e424d11fbbd9d"
-    },
-    {
-      "rule_id": "qalqala_sughra",
-      "version": "1",
-      "path": "rules/qalqala_sughra/1.json",
-      "sha256": "4005dfabfcc33c42b83e329f0bfd0ca8cb1b359fa6c161d094e1bb6a1ffeaf6e"
+      "path": "rules/qalqala/1.json",
+      "sha256": "0f24ddf35742a2202b4c60be64e69b90b24eee3746a006fe334e6f9177c7b9bd"
     },
     {
       "rule_id": "ra_jawaz",

@@ -35,7 +35,7 @@ def rules_of(text, **kw):
 def test_every_detector_has_a_rule_record_key():
     assert all(len(v) == 4 and v[1] == "1" and v[2] == "qaloun" for v in DETECTORS.values())
     assert all(isinstance(v[0], tuple) and v[0] for v in DETECTORS.values())
-    assert len(DETECTORS) == 79
+    assert len(DETECTORS) == 78
 
 
 @pytest.mark.parametrize(
@@ -100,16 +100,16 @@ def test_tatweel_carried_hamza_is_a_throat_letter_not_the_next_waw():
 @pytest.mark.parametrize(
     ("text", "mode", "expected"),
     [
-        # book B p.53: qalqala sughra mid-word, kubra at the end of a word
-        ("ي" + FATHA + "د" + SUKUN + "خ" + DAMMA + "ل", "waqf", ["qalqala_sughra"]),
+        # book A p.44: qalqala on a sakin letter of قطب جد, mid-word or at the end of a word
+        ("ي" + FATHA + "د" + SUKUN + "خ" + DAMMA + "ل", "waqf", ["qalqala"]),
         (
             "ل" + FATHA + "م" + SUKUN + " ي" + FATHA + "ل" + KASRA + "د" + SUKUN,
             "waqf",
-            ["qalqala_kubra"],
+            ["qalqala"],
         ),
-        # final qalqala letter at a stop, with and without shadda (book B p.53)
-        ("أ" + FATHA + "ح" + FATHA + "د" + DAMMATAN, "waqf", ["qalqala_kubra"]),
-        ("ب" + KASRA + "ا" + "ل" + "ح" + FATHA + "ق" + SHADDA + KASRA, "waqf", ["qalqala_kubra"]),
+        # a final qalqala letter is sakin at a stop, with and without shadda
+        ("أ" + FATHA + "ح" + FATHA + "د" + DAMMATAN, "waqf", ["qalqala"]),
+        ("ب" + KASRA + "ا" + "ل" + "ح" + FATHA + "ق" + SHADDA + KASRA, "waqf", ["qalqala"]),
         # the same final letters keep their vowel in a continued reading: no qalqala
         ("أ" + FATHA + "ح" + FATHA + "د" + DAMMATAN, "wasl", []),
     ],
@@ -119,10 +119,10 @@ def test_qalqala(text, mode, expected):
     assert found == expected
 
 
-def test_qalqala_degree_is_reported_in_the_note():
+def test_qalqala_has_one_rule_and_says_why_a_final_letter_counts():
     view, _ = run("ب" + KASRA + "ا" + "ل" + "ح" + FATHA + "ق" + SHADDA + KASRA)
-    assert [o.note for o in view.occurrences if o.rule_id == "qalqala_kubra"] == [
-        "final letter at a stop, with shadda"
+    assert [o.note for o in view.occurrences if o.rule_id == "qalqala"] == [
+        "final letter, sakin because of the stop"
     ]
 
 

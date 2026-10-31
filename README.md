@@ -4,7 +4,7 @@ A **local MCP server for the Qaloun recitation (from Nafi')**. You give it a pas
 it gives you back the **Tajwid rules that apply to it**, letter by letter, each with the page of
 the book that states the rule.
 
-- **Version 0.6.0** · 11 tools · 81 rules · 79 detectors · 265 tests (233 on a clean clone, the rest also check the original Wirdi AI files)
+- **Version 0.6.0** · 11 tools · 80 rules · 78 detectors · 265 tests (233 on a clean clone, the rest also check the original Wirdi AI files)
 - **Read-only and deterministic**: no LLM, no RAG, no database, no network. The Quran text is read
   from the Wirdi AI files and never modified.
 - **Nothing is scholarly verified.** No qualified reviewer has been named, so every result is a
@@ -25,7 +25,7 @@ the book that states the rule.
 4. [The 11 tools](#4-the-11-tools)
 5. [Selections and reading context](#5-selections-and-reading-context)
 6. [What an annotation says](#6-what-an-annotation-says)
-7. [All 81 rules](#7-all-81-rules)
+7. [All 80 rules](#7-all-80-rules)
 8. [Data and numbering](#8-data-and-numbering)
 9. [Sources and where they disagree](#9-sources-and-where-they-disagree)
 10. [What is not covered](#10-what-is-not-covered)
@@ -133,7 +133,7 @@ warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
 | `health_check` | nothing | Readiness and configuration; reads no data |
 | `get_qaloun_passage` | `selection` | The unchanged ayat, their SHA-256 and their 559-page span |
 | `resolve_source_mapping` | `selection`, `target_corpus_id`, `target_corpus_version`, `target_numbering_system` | Where the selection falls in another numbering (e.g. Kufian/Hafs), `mapping_status`, `safe_for_source_retrieval` |
-| `list_tajwid_rules` | `family?` | The 81 rules: id, Arabic name, family, type, `has_detector` |
+| `list_tajwid_rules` | `family?` | The 80 rules: id, Arabic name, family, type, `has_detector` |
 | `get_tajwid_rule` | `rule_id`, `version` | One rule record: definition, conditions, exceptions, limits, book and page |
 | `analyze_qaloun_tajwid` | `selection` (1 to 100 ayat), `reading_context`, `rule_ids?`, `families?`, `limit` (≤500), `offset` | Candidate annotations, paged, with counts, `unresolved`, `skipped`, `coverage` |
 | `summarize_tajwid` | `surah`, `start_ayah?`, `end_ayah?`, `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Counts per rule and per ayah (≤300 ayat) |
@@ -185,7 +185,7 @@ never fire in `wasl`. Waqf signs written inside an ayah are not treated as stops
 A short or empty result is **not** a claim that the passage has no other rule: only the rules you
 ask for are evaluated, and `coverage` says whether every position could be decided.
 
-## 7. All 81 rules
+## 7. All 80 rules
 
 Each rule is a short paraphrase written for this project, page-cited, **unreviewed**. Legend:
 
@@ -272,8 +272,7 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `idhar_shafawi` | الإظهار الشفوي | `mim_sakina` | B | yes | 9, 10 |
 | `ikhfa_shafawi` | الإخفاء الشفوي | `mim_sakina` | B | yes | 9 |
 | `ghunna_mushaddad` | غنة النون والميم المشددتين | `ghunna` | A | yes | 11 |
-| `qalqala_kubra` | القلقلة الكبرى | `qalqala` | A | yes | 44 |
-| `qalqala_sughra` | القلقلة الصغرى | `qalqala` | A | yes | 44 |
+| `qalqala` | القلقلة | `qalqala` | A | yes | 44 |
 | `lam_qamariya` | اللام القمرية | `lam_taarif` | A | yes | 13 |
 | `lam_shamsiya` | اللام الشمسية | `lam_taarif` | A | yes | 12, 13 |
 | `imala_har` | الإمالة في هار | `imala_taqlil` | C | yes | 35 |
@@ -287,7 +286,7 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `ya_idafa` | 6 | open and closed first-person ya, `معي`, `ربي` of Fussilat |
 | `idgham_general` | 5 | identical, same-place and close letters, naqis, the great idgham |
 | `noon_sakina_tanween` | 6 | idhar, idgham, iqlab, ikhfa |
-| `mim_sakina`, `lam_taarif`, `imala_taqlil`, `qalqala` | 3 · 2 · 2 · 2 | shafawi rules, article lam, taqlil and imala, qalqala |
+| `mim_sakina`, `lam_taarif`, `imala_taqlil`, `qalqala` | 3 · 2 · 2 · 1 | shafawi rules, article lam, taqlil and imala, qalqala |
 | `ghunna` | 1 | geminated noon and meem |
 
 **What the detectors read.** A maddah marks the long madds; a superscript alef marks a madd alef;
@@ -327,7 +326,7 @@ never compared by number, only through the verse.
 
 | Source | Role | State |
 | --- | --- | --- |
-| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The only source of the 81 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
+| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The only source of the 80 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
 
 Book A has an unknown licence (it is never committed). Its text layer is raw (inverted lam-alef ligatures).
 
@@ -378,7 +377,7 @@ src/wirdi_mcp/
   tajwid/                     tokenizer and detectors: madd, hamza, tafkhim, idgham, yaat,
                               lexicon (word lists), letters (static tables), engine, service
   tools/                      the 11 MCP tools and their contracts
-knowledge/rules/              81 rule records + manifest.json     (committed)
+knowledge/rules/              80 rule records + manifest.json     (committed)
 knowledge/sources/            edition metadata only               (no book text)
 knowledge/validation/         empty, ready for a reviewer's records
 scripts/                      rule generation, manifest, audit, page store, local check

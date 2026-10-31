@@ -12,7 +12,7 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | Pages | Book A section | Rule ids | State |
 | --- | --- | --- | --- |
 | 1-3 | Lives of Qaloun and Nafi' | none | not a rule |
-| 4-13 | Noon, tanween, meem, qalqala, lam, ghunna | 14 first-release rules | detected (0.5.0) |
+| 4-13 | Noon, tanween, meem, qalqala, lam, ghunna | 13 first-release rules | detected (0.5.0) |
 | 14-15 | Natural madd; badal | `madd_tabii`, `madd_badal` | detected |
 | 15 | Joining hamzat al-wasl and hamzat al-qat' in one word | none | **not covered** (needs morphology) |
 | 16-17 | Madd al-'iwad, alef of حي طهر | `madd_iwad`, `madd_harf_hay_tahar` | detected |
@@ -125,5 +125,5 @@ Two content points came out of that reading:
   in the Qaloun count.
 - Rule texts are paraphrases written by an automated drafter. No reviewer has confirmed any of them
   or any detected occurrence; the highest status served is `candidate`.
-- The corpus `tariq` is `unspecified` and Book A attests Qaloun without naming Abu Nashit, so the
-  65 rules from Book A carry `tariq: "unspecified"`.
+- The corpus `tariq` is `unspecified` and Book A attests Qaloun without naming a tariq, so all
+  80 rules carry `tariq: "unspecified"`.

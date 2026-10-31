@@ -105,8 +105,8 @@ def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_env):
             Client(params(tmp_path, **real_env), read_timeout_seconds=20) as c,
         ):
             listed = await call(c, "list_tajwid_rules", {})
-            assert not listed.is_error and len(listed.structured_content["data"]["rules"]) == 81
-            rule = await call(c, "get_tajwid_rule", {"rule_id": "qalqala_kubra", "version": "1"})
+            assert not listed.is_error and len(listed.structured_content["data"]["rules"]) == 80
+            rule = await call(c, "get_tajwid_rule", {"rule_id": "qalqala", "version": "1"})
             data = rule.structured_content["data"]
             assert data["validation_status"] == "unreviewed" and data["evidence"]
 
@@ -142,11 +142,11 @@ def test_every_tajwid_tool_over_stdio_on_a_real_passage(tmp_path, real_env):
                 {
                     "selection": KAHF,
                     "reading_context": {"mode": "waqf"},
-                    "rule_ids": ["qalqala_kubra"],
+                    "rule_ids": ["qalqala"],
                 },
             )
             assert {a["rule_id"] for a in only.structured_content["data"]["annotations"]} <= {
-                "qalqala_kubra"
+                "qalqala"
             }
 
             wasl = await call(

@@ -21,10 +21,10 @@ def engine(real_repo):
     real_repo.load_edition = original
 
 
-FIRST_FOURTEEN = frozenset(
+FIRST_THIRTEEN = frozenset(
     """ghunna_mushaddad idgham_bighunna idgham_bilaghunna idgham_shafawi idhar_halqi
     idhar_mutlaq idhar_shafawi ikhfa_haqiqi ikhfa_shafawi iqlab lam_qamariya lam_shamsiya
-    qalqala_kubra qalqala_sughra""".split()
+    qalqala""".split()
 )
 WAQF_ONLY = frozenset(
     """madd_arid_sukun madd_iwad madd_lin madd_muttasil_arid ra_mutatarrif_jawaz
@@ -80,7 +80,7 @@ def test_every_single_ayah_selection_runs_without_exception(engine, all_rules, m
     # rule evaluated in wasl, where a single ayah never stops
     expected_absent = WAQF_ONLY if mode == "wasl" else frozenset()
     assert set(counts) == set(DETECTORS) - expected_absent, set(DETECTORS) ^ set(counts)
-    assert all(n >= 100 for r, n in counts.items() if r in FIRST_FOURTEEN and r != "iqlab")
+    assert all(n >= 100 for r, n in counts.items() if r in FIRST_THIRTEEN and r != "iqlab")
     assert 200 <= counts["iqlab"] <= 400
     # closed lists named by Book A: the count is part of the claim
     for rule_id, expected in CLOSED_LISTS.items():

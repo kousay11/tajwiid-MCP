@@ -1,22 +1,23 @@
 {
-  "rule_id": "qalqala_kubra",
+  "rule_id": "qalqala",
   "version": "1",
-  "name_ar": "القلقلة الكبرى",
-  "definition": "The major kind (kubra) of qalqala is on a sakin qalqala letter at the end of a word.",
+  "name_ar": "القلقلة",
+  "definition": "Qalqala is a sound that does not belong to the fatha, damma or kasra before it, given to a sakin letter among ق ط ب ج د (the mnemonic قطب جد).",
   "riwaya": "qaloun",
   "tariq": "unspecified",
   "family": "qalqala",
   "detectability": "A",
   "limitations": [
-    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
-    "The detector reads an explicit sukun only; assimilation written without a sukun is not interpreted.",
+    "Paraphrase of the cited page by an automated drafter; not scholarly reviewed.",
+    "Book A names the letters and says the sound is on the sakin letter; it does not divide qalqala into kinds, so none is detected.",
+    "The detector reads an explicit sukun, and a final letter at a stop (sakin because of the stop); assimilation written without a sukun is not interpreted.",
     "Internal waqf signs are not treated as stops; only verse ends and an explicit stop word are."
   ],
   "conditions": [
     {
       "clause_id": "letters",
       "kind": "condition",
-      "description": "The letter is one of ق ط ب ج د.",
+      "description": "The letter is one of ق ط ب ج د and is sakin.",
       "evidence": [
         {
           "source_id": "book-a",

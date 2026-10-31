@@ -37,7 +37,7 @@ NOON_SAKINA_TANWEEN_RULES = (
     "idhar_mutlaq",
 )
 MIM_SAKINA_RULES = ("ikhfa_shafawi", "idgham_shafawi", "idhar_shafawi")
-QALQALA_RULES = ("qalqala_sughra", "qalqala_kubra")
+QALQALA_RULES = ("qalqala",)
 LAM_RULES = ("lam_shamsiya", "lam_qamariya")
 GHUNNA_RULES = ("ghunna_mushaddad",)
 
@@ -170,12 +170,9 @@ def detect_qalqala(view: AyahView) -> None:
                 continue
             at_word_end = li == last
             if letter.has_sukun:
-                rule = "qalqala_kubra" if at_word_end else "qalqala_sughra"
-                note = "sakin letter at the end of the word" if at_word_end else "sakin mid-word"
-                emit(view, rule, word, letter, note)
+                emit(view, "qalqala", word, letter, "sakin letter")
             elif at_word_end and wi == len(view.words) - 1 and view.stops_at_end:
-                degree = "with shadda" if letter.has_shadda else "without shadda"
-                emit(view, "qalqala_kubra", word, letter, f"final letter at a stop, {degree}")
+                emit(view, "qalqala", word, letter, "final letter, sakin because of the stop")
 
 
 def detect_lam(view: AyahView) -> None:
