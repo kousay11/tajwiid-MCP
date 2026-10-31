@@ -16,7 +16,7 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | 14-15 | Natural madd; badal | `madd_tabii`, `madd_badal` | detected |
 | 15 | Joining hamzat al-wasl and hamzat al-qat' in one word | none | **not covered** (needs morphology) |
 | 16-17 | Madd al-'iwad, alef of حي طهر | `madd_iwad`, `madd_harf_hay_tahar` | detected |
-| 17-20 | Sila of the plural meem and of the pronoun ha, with its exceptions | `madd_sila_sughra_meem`, `madd_sila_kubra_meem`, `madd_sila_sughra_ha`, `madd_sila_kubra_ha`, `madd_sila_ha_exception` | detected; the ha follows the sign the corpus writes, the meem lists both readings |
+| 17-20 | Sila of the plural meem and of the pronoun ha, with its exceptions | `madd_sila_sughra_meem`, `madd_sila_kubra_meem`, `madd_sila_sughra_ha`, `madd_sila_kubra_ha`, `madd_sila_ha_exception` | detected; the ha follows the sign the corpus writes, the meem lists both readings (see "The plural meem before ba and meem") |
 | 17 | Waqf on a verb with a tanween-like light tawkid noon (وليكونا، لنسفعا) | none | **not covered** (two words) |
 | 19-20 | Muttasil, munfasil | `madd_muttasil`, `madd_munfasil` | detected, lengths in `variants` |
 | 20-21 | 'Arid lil-sukun, muttasil 'arid, lin | `madd_arid_sukun`, `madd_muttasil_arid`, `madd_lin` | detected, waqf only |
@@ -37,6 +37,24 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | 36-39 | Idgham kabir and saghir; naqis | `idgham_kabir_mutamathil`, `idgham_mutamathilayn`, `idgham_mutajanisayn`, `idgham_mutaqaribayn`, `idgham_naqis` | detected; second readings the book mentions are listed only for the two-reading words |
 | 40-45 | Places of articulation and characteristics | tool `get_letter_properties` | static tables, 29 letters |
 | 45-50 | Ya'at al-idafa | `ya_idafa_fath`, `ya_idafa_iskan_exception`, `ya_idafa_fath_exception`, `ya_idafa_iskan_before_letter`, `ya_idafa_maee`, `ya_idafa_rabbi_two_readings` | partial (see below) |
+
+## The plural meem before ba and meem
+
+The corpus writes the sakin meem with no sukun before ب and م. The sila detector first required a
+sukun and so missed these meems (1,314 places). It now includes them.
+
+- **Page basis.** p.17 says the plural meem before a moving letter that is not a hamza has two
+  readings, iskan or sila. p.18 gives an example before a meem (في قلوبهم مرض). No example is given
+  before a ba; that case rests on the general wording of p.17.
+- **Variants.** For these places `variants` is `["iskan", "sila"]` (the sila is 2 harakat). The older
+  places of `madd_sila_sughra_meem` still list `["iskan", "sila_2_harakat"]`: the two vocabularies
+  mean the same and have not been harmonised.
+- **Interaction with ikhfa/idgham shafawi.** The book does not say it. By the construction of the
+  rule, with the sila the meem is no longer sakin, so ikhfa/idgham shafawi on the same meem apply to
+  the iskan reading only. This is an inference, written in the notes of both annotations: the sila
+  note says the shafawi rule applies to the iskan reading only, and the `ikhfa_shafawi` and
+  `idgham_shafawi` notes of a plural meem say the sila excludes them. A test checks that the two
+  always come in pairs on the same meem.
 
 ## Words Book A states in two ways
 

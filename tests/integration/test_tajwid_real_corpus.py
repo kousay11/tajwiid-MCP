@@ -144,6 +144,37 @@ def test_disputed_words_are_in_the_retained_ayah_and_not_in_the_other_cited_numb
     assert not any(has(*k) for k in rejected), [k for k in rejected if has(*k)]
 
 
+def test_the_sila_is_found_before_ba_and_meem_in_2_7_2_9_and_2_19(engine, all_rules):
+    rows = engine.repository.load_edition("qalun")
+    rules = {r: all_rules[r] for r in ("madd_sila_sughra_meem", "ikhfa_shafawi", "idgham_shafawi")}
+    expected = {7: "ikhfa_shafawi", 9: "idgham_shafawi", 19: "idgham_shafawi"}
+    for ayah, shafawi in expected.items():
+        index = next(i for i, r in enumerate(rows) if (r.surah, r.number) == (2, ayah))
+        result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), rules)
+        sila = [o for _, o in result.occurrences if o.variants == ("iskan", "sila")]
+        shaf = [
+            o for _, o in result.occurrences if o.rule_id == shafawi and "plural" in (o.note or "")
+        ]
+        assert sila and shaf, (ayah, len(sila), len(shaf))
+        assert {(o.start, o.end) for o in sila} >= {(o.start, o.end) for o in shaf}
+
+
+def test_sila_and_shafawi_always_come_in_pairs_on_the_same_meem(engine, all_rules):
+    """The two annotations are alternatives: each plural meem before ba or meem carries both."""
+    rows = engine.repository.load_edition("qalun")
+    rules = {r: all_rules[r] for r in ("madd_sila_sughra_meem", "ikhfa_shafawi", "idgham_shafawi")}
+    sila, shafawi = set(), set()
+    for index in range(6214):
+        result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), rules)
+        for verse, o in result.occurrences:
+            key = (verse.index, o.start, o.end)
+            if o.rule_id == "madd_sila_sughra_meem" and o.variants == ("iskan", "sila"):
+                sila.add(key)
+            elif o.rule_id in ("ikhfa_shafawi", "idgham_shafawi") and "plural" in (o.note or ""):
+                shafawi.add(key)
+    assert sila == shafawi and len(sila) > 1000
+
+
 def test_idhar_mutlaq_hits_only_the_four_words_the_book_names(engine, all_rules):
     """Book A p.6 names four words; detector hits must all belong to those lexemes."""
     rows = engine.repository.load_edition("qalun")

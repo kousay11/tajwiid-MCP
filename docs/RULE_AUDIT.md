@@ -70,7 +70,7 @@ A rule at zero or abnormally high would be flagged below.
 | `madd_sila_kubra_ha` | 320 | 320 |
 | `madd_sila_kubra_meem` | 878 | 878 |
 | `madd_sila_sughra_ha` | 1803 | 1803 |
-| `madd_sila_sughra_meem` | 4023 | 4023 |
+| `madd_sila_sughra_meem` | 5337 | 5337 |
 | `madd_tabii` | 35715 | 39991 |
 | `qalqala_kubra` | 912 | 493 |
 | `qalqala_sughra` | 2933 | 2933 |
@@ -93,7 +93,7 @@ A rule at zero or abnormally high would be flagged below.
 
 **waqf: skipped** lafz al-jalala is a separate rule family: 2545; tanween at a stop is dropped; no rule applies: 1962; alef-lam whose marks do not fit the article pattern: 49; bare noon before alef is not a noon sakina here: 189; next word starts with hamzat al-wasl: the noon takes a vowel: 45; assimilated pair outside the book's three lists: 113; letter-name noon (maddah) is outside the cited rule scope: 2; sila mark on a final ha at a stop is not pronounced: 30
 
-**wasl: unresolved** {'word-final mim sakina at the end of the last ayah in wasl mode needs the following ayah': 44, 'plural meem at the end of the last ayah in wasl mode needs the following ayah': 40, 'word-final noon sakina or tanween at the end of the last ayah in wasl mode needs the following ayah': 1967, 'word-final madd letter at the end of the last ayah in wasl mode needs the following ayah': 258, 'ha al-kinaya at the end of the last ayah in wasl mode needs the following ayah': 30}
+**wasl: unresolved** {'word-final mim sakina at the end of the last ayah in wasl mode needs the following ayah': 44, 'plural meem at the end of the last ayah in wasl mode needs the following ayah': 43, 'word-final noon sakina or tanween at the end of the last ayah in wasl mode needs the following ayah': 1967, 'word-final madd letter at the end of the last ayah in wasl mode needs the following ayah': 258, 'ha al-kinaya at the end of the last ayah in wasl mode needs the following ayah': 30}
 
 **wasl: skipped** lafz al-jalala is a separate rule family: 2545; alef-lam whose marks do not fit the article pattern: 49; bare noon before alef is not a noon sakina here: 189; next word starts with hamzat al-wasl: the noon takes a vowel: 45; assimilated pair outside the book's three lists: 113; letter-name noon (maddah) is outside the cited rule scope: 2
 
@@ -114,3 +114,6 @@ A rule at zero or abnormally high would be flagged below.
   maddah: that alef is hamzat al-wasl (this removed over 1,000 false hits on the first draft).
 - `hamza_two_words_same` and `hamza_two_words_different` have a rule record but no detector: the
   Qaloun text already carries the result of the rule and not the original hamzas.
+- Every plural meem written bare before ba or meem carries two annotations on the same range, the
+  sila (`madd_sila_sughra_meem`, variants iskan and sila) and ikhfa or idgham shafawi, noted as
+  alternatives (1,314 places).

@@ -11,7 +11,9 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "Both readings are listed in `variants`; the meem carries no sign in the corpus."
+    "Both readings are listed in `variants`; the meem carries no sign in the corpus.",
+    "Before ba and meem the corpus writes the sakin meem with no sukun (as for ikhfa and idgham shafawi). Those places are included: p.17 says the sila applies to a plural meem before any moving letter that is not a hamza, and p.18 gives an example before a meem (في قلوبهم مرض); no example is given before a ba, so that case rests on the general wording. Their `variants` are [\"iskan\", \"sila\"] and the sila is 2 harakat.",
+    "The book does not say how the sila relates to ikhfa or idgham shafawi. By the construction of the rule, with the sila the meem is no longer sakin, so ikhfa/idgham shafawi on the same meem apply to the iskan reading only. This is an inference recorded in the notes of both annotations, not a statement of the book."
   ],
   "conditions": [
     {

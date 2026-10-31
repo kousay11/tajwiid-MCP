@@ -471,3 +471,38 @@ def test_the_rule_limits_name_both_pages_of_each_contradiction():
         assert needle in text, needle
     fath = json.loads((root / "ya_idafa_fath" / "1.json").read_text("utf-8"))
     assert "p.47" in " ".join(fath["limitations"]) and "2:124" in " ".join(fath["limitations"])
+
+
+# --- the plural meem written bare before ba and meem ---------------------------------------------
+def _bare_meem_pair(next_letter):
+    return "ل" + FATHA + "ه" + DAMMA + "م" + " " + next_letter + FATHA + "ا"
+
+
+def test_the_sila_covers_a_bare_plural_meem_before_ba_and_meem():
+    for next_letter in ("ب", "م"):
+        hits, view = found(_bare_meem_pair(next_letter), "madd_sila_sughra_meem")
+        assert len(hits) == 1 and hits[0][2] == ("iskan", "sila")
+        note = view.occurrences[0].note
+        assert "ikhfa/idgham shafawi" in note and "iskan reading only" in note
+        assert len(note) <= 300
+
+
+def test_the_shafawi_annotation_says_the_sila_excludes_it_on_a_plural_meem():
+    for next_letter, rule in (("ب", "ikhfa_shafawi"), ("م", "idgham_shafawi")):
+        _, view = found(_bare_meem_pair(next_letter), rule)
+        note = view.occurrences[0].note
+        assert "madd_sila_sughra_meem" in note and "iskan reading only" in note
+        assert len(note) <= 300
+
+
+def test_a_bare_meem_that_is_not_a_plural_pronoun_gets_no_sila():
+    am = "أ" + FATHA + "م" + " ب" + FATHA + "ا"  # the particle am
+    assert rules_in(am, "madd_sila_sughra_meem") == []
+    _, view = found(am, "ikhfa_shafawi")
+    assert "madd_sila" not in view.occurrences[0].note
+
+
+def test_a_bare_plural_meem_before_another_letter_is_not_taken_as_sakin():
+    # without a sukun and not before ba or meem the corpus would have written a vowel
+    other = "ل" + FATHA + "ه" + DAMMA + "م" + " ك" + FATHA + "ا"
+    assert rules_in(other, "madd_sila_sughra_meem") == []

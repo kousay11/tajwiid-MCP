@@ -295,17 +295,29 @@ def detect_fawatih(view: AyahView) -> None:
                 emit(view, rule, word, letter, note, variants)
 
 
-def _pronoun_meem(word: Word, li: int) -> bool:
-    """Plural pronoun meem: a final sakin meem after ha, kaf or ta with the matching vowel."""
+def plural_pronoun_meem(word: Word, li: int) -> bool:
+    """Shape of the plural pronoun meem: a final meem after ha, kaf or ta with the matching vowel.
+
+    The sign on the meem is not looked at: this corpus writes the sakin meem with no sukun
+    before ba and meem, so the caller decides whether the meem is sakin.
+    """
     letters = word.letters
     if li != len(letters) - 1 or li == 0:
         return False
     meem, prev = letters[li], letters[li - 1]
-    if meem.char != MEEM or not meem.has_sukun:
+    if meem.char != MEEM or meem.has_shadda or meem.has_short_vowel or meem.has_tanween:
         return False
     return (prev.char == "ه" and (DAMMA in prev.marks or KASRA in prev.marks)) or (
         prev.char in "كت" and DAMMA in prev.marks
     )
+
+
+SILA_BEFORE_BA_MEEM_NOTE = (
+    "plural meem written bare before ba or meem: iskan or sila (Book A p.17; p.18 gives the "
+    "meem case). With the sila the meem is no longer sakin, so ikhfa/idgham shafawi on this "
+    "same meem apply to the iskan reading only"
+)
+SILA_BA_MEEM_VARIANTS = ("iskan", "sila")
 
 
 def detect_sila(view: AyahView) -> None:
@@ -344,7 +356,7 @@ def detect_sila(view: AyahView) -> None:
                         letter,
                         "pronoun ha lengthened (2 harakat) before a moving letter",
                     )
-            elif _pronoun_meem(word, li):
+            elif plural_pronoun_meem(word, li):
                 relation, nxt = following(view, wi, li)
                 if relation in ("stop", "unknown") or nxt is None:
                     if relation == "unknown":
@@ -365,7 +377,7 @@ def detect_sila(view: AyahView) -> None:
                         "plural meem before a hamza at the start of the next word",
                         SILA_MEEM_KUBRA,
                     )
-                else:
+                elif letter.has_sukun:
                     emit(
                         view,
                         "madd_sila_sughra_meem",
@@ -373,6 +385,15 @@ def detect_sila(view: AyahView) -> None:
                         letter,
                         "plural meem before a moving letter",
                         SILA_MEEM_SUGHRA,
+                    )
+                elif letter.is_bare and nxt.char in "بم":
+                    emit(
+                        view,
+                        "madd_sila_sughra_meem",
+                        word,
+                        letter,
+                        SILA_BEFORE_BA_MEEM_NOTE,
+                        SILA_BA_MEEM_VARIANTS,
                     )
 
 

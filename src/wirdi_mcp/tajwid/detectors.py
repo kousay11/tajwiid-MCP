@@ -10,7 +10,7 @@ from collections.abc import Callable
 from wirdi_mcp.tajwid.hamza import HAMZA_DETECTORS
 from wirdi_mcp.tajwid.idgham import IDGHAM_DETECTORS
 from wirdi_mcp.tajwid.lexicon import LEXICAL_DETECTORS
-from wirdi_mcp.tajwid.madd import MADD_DETECTORS
+from wirdi_mcp.tajwid.madd import MADD_DETECTORS, plural_pronoun_meem
 from wirdi_mcp.tajwid.tafkhim import TAFKHIM_DETECTORS
 from wirdi_mcp.tajwid.text import HAMZA_FORMS, MADDAH, SMALL_HIGH_MEEM
 from wirdi_mcp.tajwid.view import AyahView, Occurrence, emit, following, is_wasl_alef  # noqa: F401
@@ -104,6 +104,12 @@ def detect_noon_sakina_and_tanween(view: AyahView) -> None:
             emit(view, rule_id, word, letter, f"{where}; {why}")
 
 
+_SILA_EXCLUSION = (
+    "; plural meem: with the sila (madd_sila_sughra_meem) this does not apply, "
+    "it applies to the iskan reading only"
+)
+
+
 def detect_mim_sakina(view: AyahView) -> None:
     for wi, word in enumerate(view.words):
         for li, letter in enumerate(word.letters):
@@ -127,10 +133,23 @@ def detect_mim_sakina(view: AyahView) -> None:
                 continue
             if relation == "same_word" and nxt.char == "ا":
                 continue
+            plural = plural_pronoun_meem(word, li)
             if nxt.char == "ب":
-                emit(view, "ikhfa_shafawi", word, letter, "mim sakina before ba")
+                emit(
+                    view,
+                    "ikhfa_shafawi",
+                    word,
+                    letter,
+                    "mim sakina before ba" + _SILA_EXCLUSION * plural,
+                )
             elif nxt.char == "م":
-                emit(view, "idgham_shafawi", word, letter, "mim sakina before a moving mim")
+                emit(
+                    view,
+                    "idgham_shafawi",
+                    word,
+                    letter,
+                    "mim sakina before a moving mim" + _SILA_EXCLUSION * plural,
+                )
             else:
                 emit(view, "idhar_shafawi", word, letter, "mim sakina before another letter")
 
