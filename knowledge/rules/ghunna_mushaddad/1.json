@@ -1,0 +1,81 @@
+{
+  "rule_id": "ghunna_mushaddad",
+  "version": "1",
+  "name_ar": "غنة النون والميم المشددتين",
+  "definition": "A noon or mim carrying shadda shows ghunna, whether in the middle of a word, at its end when stopping, or across two words.",
+  "riwaya": "qaloun",
+  "tariq": "abu_nashit",
+  "family": "ghunna",
+  "detectability": "A",
+  "legend_class_ids": [],
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "The detector also reports a shadda that the text uses to show an idgham between words."
+  ],
+  "conditions": [
+    {
+      "clause_id": "shadda",
+      "kind": "condition",
+      "description": "The letter is ن or م and is geminated (shadda).",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.11",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "book-b",
+          "edition_id": "book-b-2010",
+          "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
+          "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
+          "publication": "Algeria, 1st ed., 1431 H / 2010",
+          "locator": "printed p.63 (pdf p.64)",
+          "riwaya": "qaloun",
+          "tariq": "abu_nashit",
+          "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.11",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
+    {
+      "source_id": "book-b",
+      "edition_id": "book-b-2010",
+      "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
+      "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
+      "publication": "Algeria, 1st ed., 1431 H / 2010",
+      "locator": "printed p.63 (pdf p.64)",
+      "riwaya": "qaloun",
+      "tariq": "abu_nashit",
+      "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

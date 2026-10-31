@@ -1,0 +1,160 @@
+{
+  "rule_id": "idgham_bilaghunna",
+  "version": "1",
+  "name_ar": "الإدغام بغير غنة",
+  "definition": "A noon sakina or tanween followed, in the next word, by ل or ر is merged into it completely, without ghunna.",
+  "riwaya": "qaloun",
+  "tariq": "abu_nashit",
+  "family": "noon_sakina_tanween",
+  "detectability": "B",
+  "legend_class_ids": [],
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed."
+  ],
+  "conditions": [
+    {
+      "clause_id": "letters",
+      "kind": "condition",
+      "description": "The first letter of the next word is ل or ر.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.5",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "book-b",
+          "edition_id": "book-b-2010",
+          "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
+          "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
+          "publication": "Algeria, 1st ed., 1431 H / 2010",
+          "locator": "printed p.57 (pdf p.58)",
+          "riwaya": "qaloun",
+          "tariq": "abu_nashit",
+          "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    },
+    {
+      "clause_id": "two_words",
+      "kind": "condition",
+      "description": "Idgham requires two words.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.6",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "book-b",
+          "edition_id": "book-b-2010",
+          "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
+          "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
+          "publication": "Algeria, 1st ed., 1431 H / 2010",
+          "locator": "printed p.58 (pdf p.59)",
+          "riwaya": "qaloun",
+          "tariq": "abu_nashit",
+          "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "clause_id": "one_word",
+      "kind": "exception",
+      "description": "Inside one word the noon is shown (idhar mutlaq).",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.6",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "book-b",
+          "edition_id": "book-b-2010",
+          "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
+          "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
+          "publication": "Algeria, 1st ed., 1431 H / 2010",
+          "locator": "printed p.58 (pdf p.59)",
+          "riwaya": "qaloun",
+          "tariq": "abu_nashit",
+          "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.5",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
+    {
+      "source_id": "book-b",
+      "edition_id": "book-b-2010",
+      "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
+      "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
+      "publication": "Algeria, 1st ed., 1431 H / 2010",
+      "locator": "printed p.57 (pdf p.58)",
+      "riwaya": "qaloun",
+      "tariq": "abu_nashit",
+      "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
+    {
+      "source_id": "book-b",
+      "edition_id": "book-b-2010",
+      "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط",
+      "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن",
+      "publication": "Algeria, 1st ed., 1431 H / 2010",
+      "locator": "printed p.58 (pdf p.59)",
+      "riwaya": "qaloun",
+      "tariq": "abu_nashit",
+      "provenance_version": "sha256:db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

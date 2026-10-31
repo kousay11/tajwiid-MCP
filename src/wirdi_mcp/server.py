@@ -8,7 +8,10 @@ from mcp.types import ToolAnnotations
 
 from wirdi_mcp import __version__
 from wirdi_mcp.config import Settings
+from wirdi_mcp.knowledge.pages import PageStore
+from wirdi_mcp.knowledge.registry import RuleRegistry
 from wirdi_mcp.quran.source import PublicSourceRepository
+from wirdi_mcp.tajwid.service import TajwidService
 from wirdi_mcp.tools.diagnostics import HealthReport
 from wirdi_mcp.tools.quran import register_quran_tools
 from wirdi_mcp.tools.tajwid import register_tajwid_tools
@@ -22,8 +25,9 @@ def create_server(settings: Settings | None = None) -> MCPServer:
         log_level=settings.log_level,
         instructions=(
             "Read-only Qaloun access and source mapping require configured checksum-pinned files. "
-            "Review-required mappings are unsafe for retrieval. Tajwid rules and analysis are "
-            "local-only and remain unavailable until reviewed rule data is loaded. "
+            "Review-required mappings are unsafe for retrieval. Tajwid rules, candidate "
+            "annotations and source-page lookup are local-only and unreviewed: no annotation is "
+            "scholarly verified and explanations are unavailable. "
             "Corpus tariq is unspecified, not independently attested."
         ),
     )
@@ -44,8 +48,12 @@ def create_server(settings: Settings | None = None) -> MCPServer:
             mapping=state,
         )
 
-    register_quran_tools(server, PublicSourceRepository(settings.wirdi_ai_root))
-    register_tajwid_tools(server)
+    repository = PublicSourceRepository(settings.wirdi_ai_root)
+    registry = RuleRegistry(settings.knowledge_root)
+    register_quran_tools(server, repository)
+    register_tajwid_tools(
+        server, repository, TajwidService(repository, registry), PageStore(registry)
+    )
     return server
 
 

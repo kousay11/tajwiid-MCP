@@ -1,0 +1,90 @@
+{
+  "manifest_version": "wirdi-mcp-rules-v1",
+  "editions_sha256": "0ab07c565ce0918d98fde56505e475519c48f9f4bf84bece6e21976ee0ab25b1",
+  "rules": [
+    {
+      "rule_id": "ghunna_mushaddad",
+      "version": "1",
+      "path": "rules/ghunna_mushaddad/1.json",
+      "sha256": "1c1445174ef4659af18952350434299618af067e841555a4987e6f2d08d5c1f7"
+    },
+    {
+      "rule_id": "idgham_bighunna",
+      "version": "1",
+      "path": "rules/idgham_bighunna/1.json",
+      "sha256": "e68eca136f002836758515e0d2bf7f906e9c7d01b2f6db1ed31b95a293edffc3"
+    },
+    {
+      "rule_id": "idgham_bilaghunna",
+      "version": "1",
+      "path": "rules/idgham_bilaghunna/1.json",
+      "sha256": "63ad8fed40eed2ce85595c624498651662b6d0e3f4029b4c2ec7396e93c72a41"
+    },
+    {
+      "rule_id": "idgham_shafawi",
+      "version": "1",
+      "path": "rules/idgham_shafawi/1.json",
+      "sha256": "a2212d4173ddf3bf7a15f88ec1571cdf75e6bb8d40e8fe36bd951ecb73e0039e"
+    },
+    {
+      "rule_id": "idhar_halqi",
+      "version": "1",
+      "path": "rules/idhar_halqi/1.json",
+      "sha256": "ff783254fd24c0583c7fef825b161168997f5f9a726e9c651da26cd1a81b35b7"
+    },
+    {
+      "rule_id": "idhar_mutlaq",
+      "version": "1",
+      "path": "rules/idhar_mutlaq/1.json",
+      "sha256": "f37d3ae1732077119d34a33b8295c51e2d624702683ac83983b66922d5e16aa9"
+    },
+    {
+      "rule_id": "idhar_shafawi",
+      "version": "1",
+      "path": "rules/idhar_shafawi/1.json",
+      "sha256": "120d558999963a13a58992e0fff80dc9622915ff89f0a8fafbc4b715ce9c6b8f"
+    },
+    {
+      "rule_id": "ikhfa_haqiqi",
+      "version": "1",
+      "path": "rules/ikhfa_haqiqi/1.json",
+      "sha256": "d80de26d3634a8e059ffeacc37bb4dd1dfdb35f09195553dd07d1b31706ec6a4"
+    },
+    {
+      "rule_id": "ikhfa_shafawi",
+      "version": "1",
+      "path": "rules/ikhfa_shafawi/1.json",
+      "sha256": "c132012332ecfdcf74a5cf4307f298ac56e5becf2a08edfc3373ac8b755aa721"
+    },
+    {
+      "rule_id": "iqlab",
+      "version": "1",
+      "path": "rules/iqlab/1.json",
+      "sha256": "2e963aec47cb7f2d0f4e2667fe0ad40b59a24a0d1ad15fcf205360910c429c61"
+    },
+    {
+      "rule_id": "lam_qamariya",
+      "version": "1",
+      "path": "rules/lam_qamariya/1.json",
+      "sha256": "19e431c002d02132eefe79a3976a2c3ab3f90a067ede10d740eeb7ae0aec63fc"
+    },
+    {
+      "rule_id": "lam_shamsiya",
+      "version": "1",
+      "path": "rules/lam_shamsiya/1.json",
+      "sha256": "6204e7fb10ad6e7576c9c434735facbd3e9ebfe2c86263ebbd6cd064f0e39a06"
+    },
+    {
+      "rule_id": "qalqala_kubra",
+      "version": "1",
+      "path": "rules/qalqala_kubra/1.json",
+      "sha256": "8f8b4534bc1e00607dc9522d7fd82f01d19d0fea3dd667c76c9ebc116194e432"
+    },
+    {
+      "rule_id": "qalqala_sughra",
+      "version": "1",
+      "path": "rules/qalqala_sughra/1.json",
+      "sha256": "70b21bf51b921917b79ccfcf1fb896c40d6070db2738544a2f66cfd836ba243f"
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 Branch: `feat/tajwid-knowledge`. Never push. Resume by reading this file first.
 
 ## Current milestone
-J1 (inventory and data model)
+J4 (mushaf pilot, 10 pages)
 
 ## Done
 - J0 hygiene: `.gitignore` extended before any commit (PDFs, page renders, derived
@@ -11,8 +11,19 @@ J1 (inventory and data model)
   real-source suite passed (46 passed), commit `0bebd57`; no PDF tracked.
   Baseline before J0 changes: 31 passed, 15 skipped, ruff clean.
 
+- J1 inventory and models: `scripts/inventory_pdfs.py`, `docs/SOURCES_INTAKE.md`, wider
+  annotation statuses, page refs, image provenance, observed colour. Commit `J1`.
+- J2 rule registry and page store: 14 rule records (`knowledge/rules`), hash-pinned
+  manifest, `RuleRegistry`, `PageStore` (local, git-ignored Book A store built; Book B is
+  copy-protected and is not extracted), tamper/isolation tests.
+- J3 tokenizer, 14 detectors, `TajwidEngine`/`TajwidService`, 11 MCP tools, frequency
+  audit (`scripts/audit_rules.py`): all 6,214 single-ayah selections run in both modes with
+  no exception, no rule at zero, idhar mutlaq hits only the four lexemes of book A p.6.
+
 ## Next action
-J1: `scripts/inventory_pdfs.py`, `docs/SOURCES_INTAKE.md`, then model extensions.
+J4: install numpy/opencv/scikit-image/pillow in `.venv`, render 10 sample mushaf pages
+losslessly, detect coloured blobs, attach to letters, measure, write `docs/PILOT_REPORT.md`
+(GO only if >= 95% red blobs on the right letter and >= 90% agree with the detector).
 
 ## Resume commands
 ```bash

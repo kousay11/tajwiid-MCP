@@ -82,3 +82,18 @@ def real_repo():
         pytest.skip("Set WIRDI_TEST_SOURCE_ROOT for read-only real-source conformance checks")
     # An explicitly requested inaccessible source fails; it is never silently skipped.
     return PublicSourceRepository(Path(root))
+
+
+REPO_KNOWLEDGE = Path(__file__).resolve().parents[1] / "knowledge"
+
+
+@pytest.fixture
+def knowledge_copy(tmp_path):
+    """A private copy of the committed rules and edition metadata that tests may tamper with."""
+    import shutil
+
+    root = tmp_path / "knowledge"
+    shutil.copytree(REPO_KNOWLEDGE / "rules", root / "rules")
+    (root / "sources").mkdir()
+    shutil.copy(REPO_KNOWLEDGE / "sources" / "editions.json", root / "sources" / "editions.json")
+    return root

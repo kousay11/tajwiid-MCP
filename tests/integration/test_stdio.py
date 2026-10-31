@@ -26,8 +26,13 @@ def test_stdio_handshake_discovery_call_and_unavailable_tool(tmp_path):
                 "get_qaloun_passage",
                 "resolve_source_mapping",
                 "get_tajwid_rule",
+                "list_tajwid_rules",
                 "analyze_qaloun_tajwid",
+                "summarize_tajwid",
+                "analyze_app_page",
                 "get_tajwid_explanation",
+                "get_source_page",
+                "search_source_pages",
             }
             tool = listed.tools[0]
             assert tool.annotations.read_only_hint is True
@@ -36,7 +41,7 @@ def test_stdio_handshake_discovery_call_and_unavailable_tool(tmp_path):
             assert not result.is_error
             payload = result.structured_content
             assert payload["status"] == "foundation_ready"
-            assert payload["tajwid_analysis"] == "not_implemented"
+            assert payload["tajwid_analysis"] == "candidates_only_unreviewed"
             assert payload["validation_status"] == "not_applicable"
             assert payload["quran_data"] == "not_configured"
             result = await client.call_tool(
@@ -92,5 +97,5 @@ def test_tool_list_is_valid_for_legacy_protocol_versions():
         finally:
             proc.kill()
         assert "error" not in reply, reply
-        assert len(reply["result"]["tools"]) == 6
+        assert len(reply["result"]["tools"]) == 11
         assert all(t["outputSchema"]["type"] == "object" for t in reply["result"]["tools"])

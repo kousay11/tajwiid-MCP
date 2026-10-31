@@ -1,0 +1,69 @@
+{
+  "rule_id": "lam_shamsiya",
+  "version": "1",
+  "name_ar": "اللام الشمسية",
+  "definition": "The lam of the article is merged into the following letter when that letter is one of fourteen (mnemonic طب ثم صل رحما تفز ضف ذا نعم دع سوء ظن زر شريفا للكرم).",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "lam_taarif",
+  "detectability": "A",
+  "legend_class_ids": [],
+  "limitations": [
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Lafz al-jalala is excluded: it belongs to a separate rule family not modelled here.",
+    "Only Book A is cited; Book B (the Abu Nashit source) has not been read for this rule."
+  ],
+  "conditions": [
+    {
+      "clause_id": "letters",
+      "kind": "condition",
+      "description": "The article is followed by one of ط ث ص ر ت ض ذ ن د س ظ ز ش ل.",
+      "evidence": [
+        {
+          "source_id": "book-a",
+          "edition_id": "book-a-2010",
+          "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+          "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+          "publication": "Benghazi, Libya, 1431 H / 2010",
+          "locator": "p.12",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.12",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
+    {
+      "source_id": "book-a",
+      "edition_id": "book-a-2010",
+      "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
+      "responsible_party": "جنوى توفيق (PDF author field: NAJWA)",
+      "publication": "Benghazi, Libya, 1431 H / 2010",
+      "locator": "p.13",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

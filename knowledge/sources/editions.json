@@ -1,0 +1,14 @@
+{
+  "manifest_version": "wirdi-mcp-sources-v1",
+  "note": "Metadata only. The PDFs are never stored in git; licence status of every source is unknown.",
+  "sources": [
+    {"source_id": "book-a", "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة", "responsible_party": "جنوى توفيق (PDF author field: NAJWA)"},
+    {"source_id": "book-b", "title": "مذكرة في أحكام الترتيل، برواية قالون عن نافع من طريق أبي نشيط", "responsible_party": "عبد الكريم مقيدش (قراءة الغلاف، تحتاج تأكيدا)؛ دار المحسن"},
+    {"source_id": "mushaf-hannibal", "title": "مصحف قالون، الطبعة التونسية (حنبعل)", "responsible_party": "Hannibal, Tunis"}
+  ],
+  "editions": [
+    {"edition_id": "book-a-2010", "source_id": "book-a", "publication": "Benghazi, Libya, 1431 H / 2010", "license_status": "unknown", "license_reference": "none recorded", "artifact_sha256": "cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6", "provenance_version": "pdf-51-pages", "page_count": 51, "page_label_offset": 0},
+    {"edition_id": "book-b-2010", "source_id": "book-b", "publication": "Algeria, 1st ed., 1431 H / 2010", "license_status": "unknown", "license_reference": "none recorded; PDF is copy-protected (copy:no)", "artifact_sha256": "db3ef24243b6f3c87ad9e89935d29f0a8981c984d893a8f9d480fe01ca1075cd", "provenance_version": "pdf-156-pages", "page_count": 156, "page_label_offset": 1},
+    {"edition_id": "mushaf-hannibal-tn", "source_id": "mushaf-hannibal", "publication": "Tunis, undated scan", "license_status": "unknown", "license_reference": "none recorded", "artifact_sha256": "b4be5ddedc2e9098dfbe5164e73d7a3858ad7e31d37cf0fe8bb1d2d6eafb76a2", "provenance_version": "pdf-627-pages", "page_count": 627, "page_label_offset": 1}
+  ]
+}
