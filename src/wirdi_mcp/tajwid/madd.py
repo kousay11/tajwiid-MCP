@@ -317,7 +317,6 @@ SILA_BEFORE_BA_MEEM_NOTE = (
     "meem case). With the sila the meem is no longer sakin, so ikhfa/idgham shafawi on this "
     "same meem apply to the iskan reading only"
 )
-SILA_BA_MEEM_VARIANTS = ("iskan", "sila")
 
 
 def detect_sila(view: AyahView) -> None:
@@ -393,7 +392,7 @@ def detect_sila(view: AyahView) -> None:
                         word,
                         letter,
                         SILA_BEFORE_BA_MEEM_NOTE,
-                        SILA_BA_MEEM_VARIANTS,
+                        SILA_MEEM_SUGHRA,
                     )
 
 

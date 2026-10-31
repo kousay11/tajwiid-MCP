@@ -481,7 +481,7 @@ def _bare_meem_pair(next_letter):
 def test_the_sila_covers_a_bare_plural_meem_before_ba_and_meem():
     for next_letter in ("ب", "م"):
         hits, view = found(_bare_meem_pair(next_letter), "madd_sila_sughra_meem")
-        assert len(hits) == 1 and hits[0][2] == ("iskan", "sila")
+        assert len(hits) == 1 and hits[0][2] == ("iskan", "sila_2_harakat")
         note = view.occurrences[0].note
         assert "ikhfa/idgham shafawi" in note and "iskan reading only" in note
         assert len(note) <= 300
@@ -506,3 +506,19 @@ def test_a_bare_plural_meem_before_another_letter_is_not_taken_as_sakin():
     # without a sukun and not before ba or meem the corpus would have written a vowel
     other = "ل" + FATHA + "ه" + DAMMA + "م" + " ك" + FATHA + "ا"
     assert rules_in(other, "madd_sila_sughra_meem") == []
+
+
+def test_the_short_sila_variant_is_forbidden_everywhere():
+    import inspect
+
+    from wirdi_mcp.tajwid import madd
+
+    assert madd.SILA_MEEM_SUGHRA == ("iskan", "sila_2_harakat")
+    assert not hasattr(madd, "SILA_BA_MEEM_VARIANTS")
+    # no detector source spells the short form
+    assert '("iskan", "sila")' not in inspect.getsource(madd)
+    for next_letter in ("ب", "م", "ي"):
+        text = "ل" + FATHA + "ه" + DAMMA + "م" + SUKUN * (next_letter == "ي")
+        text += " " + next_letter + FATHA + "ا"
+        for _, _, variants in found(text, "madd_sila_sughra_meem")[0]:
+            assert variants == ("iskan", "sila_2_harakat")

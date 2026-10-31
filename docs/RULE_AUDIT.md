@@ -115,5 +115,5 @@ A rule at zero or abnormally high would be flagged below.
 - `hamza_two_words_same` and `hamza_two_words_different` have a rule record but no detector: the
   Qaloun text already carries the result of the rule and not the original hamzas.
 - Every plural meem written bare before ba or meem carries two annotations on the same range, the
-  sila (`madd_sila_sughra_meem`, variants iskan and sila) and ikhfa or idgham shafawi, noted as
+  sila (`madd_sila_sughra_meem`, variants iskan and sila_2_harakat) and ikhfa or idgham shafawi, noted as
   alternatives (1,314 places).

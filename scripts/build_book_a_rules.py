@@ -410,7 +410,8 @@ RULES: dict[str, tuple] = {
             "idgham shafawi). Those places are included: p.17 says the sila applies to a plural "
             "meem before any moving letter that is not a hamza, and p.18 gives an example before a "
             "meem (في قلوبهم مرض); no example is given before a ba, so that case rests on the "
-            'general wording. Their `variants` are ["iskan", "sila"] and the sila is 2 harakat.',
+            'general wording. Their `variants` are the same as the older places, ["iskan", '
+            '"sila_2_harakat"]: p.17 says the sila of the plural meem is « قدر حركتين ».',
             "The book does not say how the sila relates to ikhfa or idgham shafawi. By the "
             "construction of the rule, with the sila the meem is no longer sakin, so ikhfa/idgham "
             "shafawi on the same meem apply to the iskan reading only. This is an inference "

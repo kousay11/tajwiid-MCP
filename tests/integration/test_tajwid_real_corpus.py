@@ -144,6 +144,26 @@ def test_disputed_words_are_in_the_retained_ayah_and_not_in_the_other_cited_numb
     assert not any(has(*k) for k in rejected), [k for k in rejected if has(*k)]
 
 
+def _is_bare_sila(occurrence):
+    from wirdi_mcp.tajwid.madd import SILA_BEFORE_BA_MEEM_NOTE
+
+    return (
+        occurrence.rule_id == "madd_sila_sughra_meem"
+        and occurrence.note == SILA_BEFORE_BA_MEEM_NOTE
+    )
+
+
+def test_the_sila_of_the_meem_never_uses_the_short_variant_form(engine, all_rules):
+    """Book A p.17: the sila of the plural meem is 2 harakat, so the length stays in the name."""
+    rows = engine.repository.load_edition("qalun")
+    rules = {r: all_rules[r] for r in ("madd_sila_sughra_meem", "madd_sila_kubra_meem")}
+    seen = set()
+    for index in range(6214):
+        result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), rules)
+        seen |= {o.variants for _, o in result.occurrences if o.rule_id == "madd_sila_sughra_meem"}
+    assert seen == {("iskan", "sila_2_harakat")}
+
+
 def test_the_sila_is_found_before_ba_and_meem_in_2_7_2_9_and_2_19(engine, all_rules):
     rows = engine.repository.load_edition("qalun")
     rules = {r: all_rules[r] for r in ("madd_sila_sughra_meem", "ikhfa_shafawi", "idgham_shafawi")}
@@ -151,7 +171,7 @@ def test_the_sila_is_found_before_ba_and_meem_in_2_7_2_9_and_2_19(engine, all_ru
     for ayah, shafawi in expected.items():
         index = next(i for i, r in enumerate(rows) if (r.surah, r.number) == (2, ayah))
         result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), rules)
-        sila = [o for _, o in result.occurrences if o.variants == ("iskan", "sila")]
+        sila = [o for _, o in result.occurrences if _is_bare_sila(o)]
         shaf = [
             o for _, o in result.occurrences if o.rule_id == shafawi and "plural" in (o.note or "")
         ]
@@ -168,7 +188,7 @@ def test_sila_and_shafawi_always_come_in_pairs_on_the_same_meem(engine, all_rule
         result = engine.detect(rows, index, index, ReadingContext(mode="waqf"), rules)
         for verse, o in result.occurrences:
             key = (verse.index, o.start, o.end)
-            if o.rule_id == "madd_sila_sughra_meem" and o.variants == ("iskan", "sila"):
+            if _is_bare_sila(o):
                 sila.add(key)
             elif o.rule_id in ("ikhfa_shafawi", "idgham_shafawi") and "plural" in (o.note or ""):
                 shafawi.add(key)

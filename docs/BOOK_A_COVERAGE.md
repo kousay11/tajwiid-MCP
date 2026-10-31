@@ -46,9 +46,9 @@ sukun and so missed these meems (1,314 places). It now includes them.
 - **Page basis.** p.17 says the plural meem before a moving letter that is not a hamza has two
   readings, iskan or sila. p.18 gives an example before a meem (في قلوبهم مرض). No example is given
   before a ba; that case rests on the general wording of p.17.
-- **Variants.** For these places `variants` is `["iskan", "sila"]` (the sila is 2 harakat). The older
-  places of `madd_sila_sughra_meem` still list `["iskan", "sila_2_harakat"]`: the two vocabularies
-  mean the same and have not been harmonised.
+- **Variants.** Every place of `madd_sila_sughra_meem` lists `["iskan", "sila_2_harakat"]`, new ones
+  included. p.17 says explicitly that the sila of the plural meem is « قدر حركتين » (2 harakat), so the
+  length is kept in the name. The short form `["iskan", "sila"]` is forbidden by a test.
 - **Interaction with ikhfa/idgham shafawi.** The book does not say it. By the construction of the
   rule, with the sila the meem is no longer sakin, so ikhfa/idgham shafawi on the same meem apply to
   the iskan reading only. This is an inference, written in the notes of both annotations: the sila
