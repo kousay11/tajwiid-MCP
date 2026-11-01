@@ -118,3 +118,57 @@ last letter; each of the 19 places was found with it.
 
 **Not done.** The madd length combinations (pp.98-100) and the waqf rules (pp.82-98) need a new
 contract or a stop context the engine does not have; the farsh tables (pp.111-198) are untouched.
+
+## Second pass: readings together, the farsh tables, the rasm stops (2026-11-01)
+
+**Readings that go together (pp.98-108).** New tool `list_reading_combinations`
+(`src/wirdi_mcp/tajwid/combinations.py`). The tables are the book's own, and the unit tests reproduce
+every count the book states: 4, 7, 6, 11, 10 and 18 readings for a connected or separated madd followed by a
+madd made 'arid with a fatha, a kasra or a damma; 6 and 6 for 'arid and lin; 3 for each plural-meem pair
+and 4 for a meem next to a separated madd. With three or more madds in one ayah the answer extends the
+book's pairwise tables and says so (`pairwise_extension`); a pair the book gives no table for is left free.
+
+**Farsh tables (pp.111-198).** `scripts/extract_farsh_rows.py` rebuilds the 1,267 table rows from the position of
+each glyph (the text layer is out of order) into a local, git-ignored file. `scripts/build_farsh_places.py`
+keeps the rows that bear on our gaps and finds the word in the corpus at the row's Kufian place:
+
+| Cases | Rows kept | Places the corpus shows | Not found in the corpus |
+| --- | ---: | ---: | ---: |
+| Two hamzas in two words | 89 | 82 occurrences (35 same vowel, 47 different) | 10 rows |
+| A vowel given to a sakin letter before hamzat al-wasl | 19 | 19 | 0 |
+
+`hamza_two_words_same`, `hamza_two_words_different` and `sakin_before_hamzat_wasl` now have a detector for those
+places (`src/wirdi_mcp/tajwid/farsh.py`, generated list `farsh_places.py`: places and skeletons, no book text).
+Outside those places the cases still cannot be found, since the corpus keeps only the result. One finding:
+the table gives a damma to the noon of `فمن اضطر` (three places) where the general sentence of Book A p.31
+says a fatha after من; it is recorded in the rule.
+
+**Cross-check of the ya rows with the ya detectors** (`scripts/farsh_crosscheck.py`, 182 table places):
+
+| Table says | Places | A detector reports it | Missing |
+| --- | ---: | ---: | ---: |
+| a ya is opened | 149 | 127 | 22 |
+| a ya is closed | 17 | 15 | 2 |
+| a zaida ya is kept | 16 | 16 | 0 |
+
+Every miss was read: 19 of the 24 are not a ya of the speaker (verbs whose first ya is opened such as ليضلوا,
+plurals such as الرياح, مبينات, and فنجي, عاليهم), and the other 5 are a ya at the end of an ayah followed by a hamza at the
+start of the next (20:15, 20:39, 20:40, 20:43, 57:21), which a one-ayah analysis cannot join. No ya of the
+speaker inside an ayah is missing.
+
+**Stops that depend on the rasm (pp.82-86).** Four rules, `waqf` family: `waqf_ta_open` (39 places; al-A'raf
+137 is written with a closed ta in the corpus, so that one is not matched), `waqf_maqtu` (91 pairs, read on the
+corpus spelling), `waqf_ayyuh` (3) and `waqf_split_word` (5). The engine stops only at an ayah end, so each note
+says what stopping on the word would give. The two words written joined (`وألّو`, `لئلا`, `وإما`, `وممّا`) were
+not built: spelling shows them, and they change nothing in the reading. The chosen stops, rawm and ishmam
+(pp.87-98) are left out.
+
+**Where the corpus and the book's lists differ** (the corpus is not changed, nothing is chosen):
+
+| Pair | Corpus writes it apart, the book does not list it |
+| --- | --- |
+| أن لا | al-Anbiya 87 |
+| أن لو | al-Jinn 16 (the book writes `وألّو` joined) |
+| كل ما | an-Nisa 91, al-Mu'minun 44 |
+| بئس ما | the book says apart except three places; the corpus writes it joined everywhere |
+| عن من | the corpus links the pair to an-Nur 44 and an-Najm 28, the book says 43 and 29 (a numbering link) |

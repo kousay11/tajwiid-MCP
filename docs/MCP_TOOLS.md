@@ -1,6 +1,6 @@
 # MCP tools: local Tajwid candidates (0.6.0)
 
-The stdio server exposes eleven read-only tools. There is no outbound MCP client, HTTP
+The stdio server exposes twelve read-only tools. There is no outbound MCP client, HTTP
 provider, network fallback or external scholarly search. All tools use closed-world
 contracts and return structured success or error envelopes. Contracts are in
 `src/wirdi_mcp/tools/contracts.py` (`TOOL_CONTRACTS`); registration is in
@@ -16,6 +16,7 @@ contracts and return structured success or error envelopes. Contracts are in
 | `analyze_qaloun_tajwid` | Candidate occurrences for 1 to 100 ayat; filters `rule_ids` and `families`; paged |
 | `summarize_tajwid` | Per-rule counts for a surah or ayah range (at most 300 ayat) with paged per-ayah counts |
 | `analyze_app_page` | Candidates for the ayat that begin on a page (1 to 559) of the verified Qaloun layout |
+| `list_reading_combinations` | For each ayah with a madd or a plural meem, the readings that may be taken together (Nabhan pp.98-108); see below |
 | `get_source_page` | 1 to 5 pages of a locally placed source book (printed page numbers) |
 | `search_source_pages` | Literal, lossy-normalized Arabic search over local pages; returns page hits |
 | `get_letter_properties` | Static place of articulation and characteristics for 1 to 29 base letters (Book A pp.40-45); an entry that is not one base letter is `INVALID_REFERENCE` |
@@ -91,3 +92,23 @@ Typed error codes used by these tools: `INVALID_REFERENCE`, `NOT_FOUND`,
 `UNSUPPORTED_VERSION`, `DATA_UNAVAILABLE`, `INTEGRITY_FAILURE`, `UNSUPPORTED_CAPABILITY`.
 Real stdio tests (`tests/integration/test_tajwid_stdio.py`) exercise every tool, the
 isolation cases and the error semantics.
+
+## `list_reading_combinations`
+
+Each madd occurrence lists its own `variants`. The longer book (Nabhan pp.98-108, « ترتيب الأوجه » and
+« تسوية المدود ») says which choices may be taken together in one ayah. The tool returns, for each ayah of
+the selection that holds a madd or a plural meem, its `positions` (rule, kind, anchor and, for a madd made
+'arid by the stop, the vowel of the hamza) and the legal `combinations`, one reading per position, in the
+book's order (iskan before sila, short before long).
+
+| `basis` | Meaning |
+| --- | --- |
+| `single_position` | One madd: its own readings, nothing to combine |
+| `book_listed` | Exactly two positions and the book tabulates the pair: the list is the book's (for example 7 readings for a separated madd then a connected madd made 'arid with a fatha) |
+| `pairwise_extension` | Three or more positions: every pair obeys the book's table. This extends the book's equalising rule and is an inference |
+| `unconstrained` | The book gives no table for these kinds together, so the readings are free |
+
+`max_combinations` (1 to 500, default 200) truncates a long list and sets `truncated`; `total` is always
+the full count. A reading is `4_harakat`, `3_harakat+rawm`, `sila_2_harakat`, `iskan`… Nothing is chosen
+and every reading comes from an unreviewed source.
+

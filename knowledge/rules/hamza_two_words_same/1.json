@@ -10,7 +10,8 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "Not detected: the Qaloun text already carries the result and not the original hamza.",
+    "The Qaloun text keeps only the result, so the rule is found only at the places the farsh table of the longer book lists (Nabhan pp.111-198): 35 occurrences matched in the corpus.",
+    "A place the corpus spells differently is not listed (docs/BOOK_NABHAN_EVALUATION.md).",
     "Second citation: the longer book Nabhan, which Book A digests. It agrees with the paraphrase, so it shows where the text is found, not an independent confirmation."
   ],
   "conditions": [

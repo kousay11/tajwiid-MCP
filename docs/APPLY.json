@@ -792,6 +792,99 @@
       "needs": []
     },
     {
+      "id": "list_reading_combinations.pair_in_the_book",
+      "tool": "list_reading_combinations",
+      "purpose": "Al Imran 3:38: a connected madd, then a connected madd made 'arid by the stop with a kasra. The book lists exactly 6 readings (Nabhan p.103); `basis` is `book_listed`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 3,
+            "ayah": 38
+          },
+          "end_ayah": 38
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "max_combinations": 200
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "list_reading_combinations.meems",
+      "tool": "list_reading_combinations",
+      "purpose": "an-Nisa 4:21: a plural meem before a hamza, then one before another letter. The book lists exactly 3 readings (Nabhan p.98).",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 4,
+            "ayah": 21
+          },
+          "end_ayah": 21
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "max_combinations": 200
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "list_reading_combinations.range",
+      "tool": "list_reading_combinations",
+      "purpose": "al-Baqara 2:1-7: one entry per ayah that holds a madd or a plural meem; ayat with three or more are `pairwise_extension`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 2,
+            "ayah": 1
+          },
+          "end_ayah": 7
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "max_combinations": 200
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
       "id": "summarize_tajwid.range",
       "tool": "summarize_tajwid",
       "purpose": "Counts per rule and per ayah for 2:1-7, madd family (9 rules, 7 ayat).",

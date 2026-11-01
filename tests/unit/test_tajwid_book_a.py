@@ -653,7 +653,7 @@ def test_second_citations_point_to_pages_of_the_longer_book():
         assert rule["tariq"] == "unspecified"
         for clause in (*rule["conditions"], *rule["exceptions"]):
             assert any(c["edition_id"] == "thamar-yani-2003" for c in clause["evidence"])
-    assert seen == 92  # every rule but ya_idafa_fath_exception, whose list is not in the usul part
+    assert seen == 96  # every rule but ya_idafa_fath_exception, whose list is not in the usul part
 
 
 def test_the_ya_zaida_rules_cite_only_the_longer_book():
@@ -661,7 +661,15 @@ def test_the_ya_zaida_rules_cite_only_the_longer_book():
     from pathlib import Path
 
     root = Path(__file__).resolve().parents[2] / "knowledge" / "rules"
-    for rule_id in ("ya_zaida_joined_kept", "ya_zaida_two_ways", "ya_zaida_kept_both"):
+    for rule_id in (
+        "ya_zaida_joined_kept",
+        "ya_zaida_two_ways",
+        "ya_zaida_kept_both",
+        "waqf_ta_open",
+        "waqf_maqtu",
+        "waqf_ayyuh",
+        "waqf_split_word",
+    ):
         rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
         assert {c["edition_id"] for c in rule["evidence"]} == {"thamar-yani-2003"}
         assert "Nabhan" in " ".join(rule["limitations"])

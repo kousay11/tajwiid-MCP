@@ -4,7 +4,7 @@ A **local MCP server for the Qaloun recitation (from Nafi')**. You give it a pas
 it gives you back the **Tajwid rules that apply to it**, letter by letter, each with the page of
 the book that states the rule.
 
-- **Version 0.6.0** · 11 tools · 93 rules · 91 detectors · 293 tests (261 on a clean clone, the rest also check the original Wirdi AI files)
+- **Version 0.6.0** · 12 tools · 97 rules · 97 detectors · 322 tests (289 on a clean clone, the rest also check the original Wirdi AI files)
 - **Read-only and deterministic**: no LLM, no RAG, no database, no network. The Quran text is read
   from the Wirdi AI files and never modified.
 - **Nothing is scholarly verified.** No qualified reviewer has been named, so every result is a
@@ -22,10 +22,10 @@ the book that states the rule.
 1. [How it works](#1-how-it-works)
 2. [Quick start](#2-quick-start)
 3. [Key commands](#3-key-commands)
-4. [The 11 tools](#4-the-11-tools)
+4. [The 12 tools](#4-the-12-tools)
 5. [Selections and reading context](#5-selections-and-reading-context)
 6. [What an annotation says](#6-what-an-annotation-says)
-7. [All 93 rules](#7-all-93-rules)
+7. [All 97 rules](#7-all-97-rules)
 8. [Data and numbering](#8-data-and-numbering)
 9. [Sources and where they disagree](#9-sources-and-where-they-disagree)
 10. [What is not covered](#10-what-is-not-covered)
@@ -123,7 +123,7 @@ every tool are in [docs/APPLY.json](docs/APPLY.json).**
 **After changing a rule or a detector**, in this order: regenerate the records and the manifest →
 run both test suites → regenerate the audit (`RULE_AUDIT.md`).
 
-## 4. The 11 tools
+## 4. The 12 tools
 
 Every tool is read-only. A success is `{status: "ok", data, provenance, validation_status,
 warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
@@ -133,11 +133,12 @@ warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
 | `health_check` | nothing | Readiness and configuration; reads no data |
 | `get_qaloun_passage` | `selection` | The unchanged ayat, their SHA-256 and their 559-page span |
 | `resolve_source_mapping` | `selection`, `target_corpus_id`, `target_corpus_version`, `target_numbering_system` | Where the selection falls in another numbering (e.g. Kufian/Hafs), `mapping_status`, `safe_for_source_retrieval` |
-| `list_tajwid_rules` | `family?` | The 93 rules: id, Arabic name, family, type, `has_detector` |
+| `list_tajwid_rules` | `family?` | The 97 rules: id, Arabic name, family, type, `has_detector` |
 | `get_tajwid_rule` | `rule_id`, `version` | One rule record: definition, conditions, exceptions, limits, book and page |
 | `analyze_qaloun_tajwid` | `selection` (1 to 100 ayat), `reading_context`, `rule_ids?`, `families?`, `limit` (≤500), `offset` | Candidate annotations, paged, with counts, `unresolved`, `skipped`, `coverage` |
 | `summarize_tajwid` | `surah`, `start_ayah?`, `end_ayah?`, `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Counts per rule and per ayah (≤300 ayat) |
 | `analyze_app_page` | `page` (1 to 559), `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Candidates for the ayat that begin on that page of the application layout |
+| `list_reading_combinations` | `selection`, `reading_context`, `max_combinations` (≤500) | For each ayah with a madd or a plural meem, the readings that may be taken together, from the book's own tables (Nabhan pp.98-108); `basis` says whether the book lists the pair, extends it, or gives no table |
 | `get_letter_properties` | `letters` (1 to 29 base letters) | Place of articulation and characteristics (Book A pp.40-45) |
 | `get_source_page` | `edition_id`, `page_start`, `page_end` (≤5) | Raw text of pages from the local page store |
 | `search_source_pages` | `query` (2 to 80 characters), `edition_ids`, `limit` | The pages that contain the word, with a normalised snippet |
@@ -185,14 +186,15 @@ never fire in `wasl`. Waqf signs written inside an ayah are not treated as stops
 A short or empty result is **not** a claim that the passage has no other rule: only the rules you
 ask for are evaluated, and `coverage` says whether every position could be decided.
 
-## 7. All 93 rules
+## 7. All 97 rules
 
 Each rule is a short paraphrase written for this project, page-cited, **unreviewed**. Legend:
 
 - **Type**: `A` mechanical · `B` depends on the stop or on the neighbouring word · `C` a closed
   word list named by the book (matched on the book's own Kufian ayah numbers).
-- **Detector**: **no** means the rule is readable (`get_tajwid_rule`) but nothing is detected: the
-  Qaloun text already carries the result of the rule, not the original hamzas.
+- **Detector**: every rule has one. The two-hamza rules and part of the vowel-on-a-sakin-letter rule
+  are found only at the places the farsh table of the longer book lists, because the Qaloun text keeps
+  only the result.
 - **Tariq**: no rule names one. Book A attests Qaloun without naming a tariq, so every rule is `unspecified`.
 
 | Rule | Arabic name | Family | Type | Detector | Pages (Book A; 92 rules also cite the longer book, see the rule) |
@@ -234,8 +236,8 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `hamza_istifham_before_article` | همزة الاستفهام قبل همزة أل التعريف | `hamza` | C | yes | 31 |
 | `hamza_nabi` | همز النبي ونحوها | `hamza` | C | yes | 25, 26 |
 | `hamza_nabi_exception` | استثناء النبي في موضعي الأحزاب | `hamza` | C | yes | 26 |
-| `hamza_two_words_different` | الهمزتان المختلفتان في كلمتين | `hamza` | C | **no** | 28, 29 |
-| `hamza_two_words_same` | الهمزتان المتفقتان في كلمتين | `hamza` | C | **no** | 27, 28 |
+| `hamza_two_words_different` | الهمزتان المختلفتان في كلمتين | `hamza` | C | yes | 28, 29 |
+| `hamza_two_words_same` | الهمزتان المتفقتان في كلمتين | `hamza` | C | yes | 27, 28 |
 | `hamza_wasl_then_qat_in_word` | اجتماع همزة الوصل وهمزة القطع في الكلمة | `hamza` | A | yes | 16 |
 | `hamza_waw_huzu_kufu` | همز الواو في هزوا وكفوا | `hamza` | C | yes | 25 |
 | `hamzat_wasl_article` | همزة الوصل في أل التعريف | `hamza` | A | yes | 29, 31 |
@@ -290,6 +292,10 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `ya_zaida_joined_kept` | الياء الزائدة المثبتة وصلا المحذوفة وقفا | `ya_zaida` | C | yes | — (Nabhan 80, 81) |
 | `ya_zaida_kept_both` | الياء الزائدة المثبتة وصلا ووقفا | `ya_zaida` | C | yes | — (Nabhan 80, 81) |
 | `ya_zaida_two_ways` | الياء الزائدة بالوجهين وصلا | `ya_zaida` | C | yes | — (Nabhan 80, 81) |
+| `waqf_ayyuh` | الوقف على أيه بالهاء | `waqf` | C | yes | — (Nabhan 82-86) |
+| `waqf_maqtu` | الكلمتان المقطوعتان رسما | `waqf` | C | yes | — (Nabhan 82-86) |
+| `waqf_split_word` | الكلمة المجزأة رسما | `waqf` | C | yes | — (Nabhan 82-86) |
+| `waqf_ta_open` | الوقف على تاء التأنيث المبسوطة | `waqf` | C | yes | — (Nabhan 82-86) |
 
 | Family | Rules | What it covers |
 | --- | ---: | --- |
@@ -297,6 +303,7 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `hamza` | 22 | replaced hamzas, prophet words, two hamzas, repeated interrogatives, hamzat al-wasl, wasl then qat' in one word, أرأيت, hamza before the article |
 | `tafkhim_tarqiq` | 17 | ra, lam of Allah, alef (also after ra), ghunna, the four ranks of the isti'la letters |
 | `ya_idafa` | 6 | open and closed first-person ya, `معي`, `ربي` of Fussilat |
+| `waqf` | 4 | stops that depend on the rasm: open ta, words written apart, `أيه`, a split word (from the longer book only) |
 | `ya_zaida` | 3 | the zaida ya: kept when joined, kept or dropped, kept always (from the longer book only) |
 | `idgham_general` | 5 | identical, same-place and close letters, naqis, the great idgham |
 | `noon_sakina_tanween` | 6 | idhar, idgham, iqlab, ikhfa |
@@ -340,7 +347,7 @@ never compared by number, only through the verse.
 
 | Source | Role | State |
 | --- | --- | --- |
-| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The base of 90 of the 93 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
+| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The base of 90 of the 97 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
 | **Nabhan**, *الثمر اليانع في أصول رواية قالون عن نافع* (214 pp.) | The longer book Book A digests; names Abu Nashit (p.111 only). Second citation of 92 rules, sole source of the 3 `ya_zaida` rules | Pages read on their images; local, never committed; see [BOOK_NABHAN_EVALUATION](docs/BOOK_NABHAN_EVALUATION.md) |
 
 Book A has an unknown licence (it is never committed). Its text layer is raw (inverted lam-alef ligatures).
@@ -359,9 +366,11 @@ Book A has an unknown licence (it is never committed). Its text layer is raw (in
 
 ## 10. What is not covered
 
-- Waqf and ibtida rules; waqf signs inside an ayah.
-- The vowel of sakin letters before hamzat al-wasl beyond `من`, the plural meem and tanween, and
-  two hamzas in two words.
+- Most waqf and ibtida rules (the chosen stops, rawm, ishmam, pp.87-98 of the longer book) and waqf
+  signs inside an ayah: the engine stops only at an ayah end. Only the closed lists that depend on
+  the rasm are built (`waqf_*`).
+- The vowel of sakin letters before hamzat al-wasl, and two hamzas in two words, **outside** the
+  places the farsh table lists (19 and 82 places the corpus shows).
 - The default closed ya before an ordinary letter, beyond the seven named examples.
 - Everything Book A does not say (it is a 51-page summary).
 
@@ -371,7 +380,7 @@ Book A has an unknown licence (it is never committed). Its text layer is raw (in
 
 ```bash
 .venv/bin/python -m pytest                                          # everything, on the bundled snapshot
-WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 293 tests
+WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 322 tests
 ```
 
 - **Synthetic and stdio**: synthetic fixtures modelled on the books' examples, real stdio subprocess tests, the
@@ -390,8 +399,8 @@ src/wirdi_mcp/
   knowledge/                  rule registry (hash-pinned) and local page store (fail-closed)
   tajwid/                     tokenizer and detectors: madd, hamza, tafkhim, idgham, yaat,
                               lexicon (word lists), letters (static tables), engine, service
-  tools/                      the 11 MCP tools and their contracts
-knowledge/rules/              93 rule records + manifest.json     (committed)
+  tools/                      the 12 MCP tools and their contracts
+knowledge/rules/              97 rule records + manifest.json     (committed)
 knowledge/sources/            edition metadata only               (no book text)
 knowledge/validation/         empty, ready for a reviewer's records
 scripts/                      rule generation, manifest, audit, page store, local check

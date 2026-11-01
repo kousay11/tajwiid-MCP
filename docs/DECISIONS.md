@@ -46,3 +46,8 @@ Applied from the mission defaults; revisit each with the project owner.
     images, 92 rules carry a second citation to Nabhan (« same text as Book A »), the tariq stays
     `unspecified`, and the topics Book A lacks that the corpus can show were added (`ya_zaida_*`,
     `hamza_istifham_before_article`). Waqf, madd combinations and the farsh tables remain open.
+18. **The three open topics of the longer book (2026-11-01):** the combinations of readings are a read-only
+    tool built on the book's own tables (extension to three madds marked as an inference); the farsh tables
+    are used only for the cases the corpus cannot show (two hamzas in two words, a vowel on a sakin letter),
+    each row checked against the corpus; the waqf rules built are the closed lists that depend on the rasm.
+    The chosen stops, rawm and ishmam stay out of scope because the engine stops only at an ayah end.

@@ -29,14 +29,16 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | 25-26 | The prophet and its derivatives; two exceptions | `hamza_nabi`, `hamza_nabi_exception` | detected |
 | 26-27 | Two hamzas in one word; exceptions; added interrogative hamza | `hamza_double_in_word`, `hamza_double_exception`, `hamza_istifham_added` | detected; the softening of أرأيت is `hamza_arayta_tashil` (p.27, 22 places) |
 | 27 | The 11 repeated interrogatives | `istifham_repeated_first`, `istifham_repeated_second` | detected at ayah level (anchored on the ayah's first word) |
-| 27-29 | Two hamzas in two words (same, different) | `hamza_two_words_same`, `hamza_two_words_different` | **record only**: the Qaloun text already carries the result, not the original hamzas |
+| 27-29 | Two hamzas in two words (same, different) | `hamza_two_words_same`, `hamza_two_words_different` | detected only at the 82 occurrences the farsh table of the longer book lists and the corpus shows; elsewhere the Qaloun text keeps only the result |
 | 29-31 | Hamzat al-wasl: article, 7 nouns, verbs | `hamzat_wasl_article`, `hamzat_wasl_noun`, `hamzat_wasl_verb` | detected; verbs are recognised from the spelling, with no morphology |
-| 31 | Vowel given to a sakin letter before hamzat al-wasl | `sakin_before_hamzat_wasl` | partial: من, the plural meem and tanween only |
+| 31 | Vowel given to a sakin letter before hamzat al-wasl | `sakin_before_hamzat_wasl` | partial: من, the plural meem, tanween, and the 19 places of the farsh table |
 | 32-35 | Isti'la, ra, lam of Allah, alef, ghunna | `ra_*` (6), `lam_jalala_*` (2), `alef_tafkhim`, `alef_tafkhim_after_ra`, `alef_tarqiq`, `ghunna_tafkhim`, `ghunna_tarqiq`, `istiala_rank_1` to `istiala_rank_4` | detected; the four ranks of the isti'la letters follow the vowel |
 | 35 | Taqlil and imala | `taqlil_tawrat`, `imala_har` | detected |
 | 31 | Interrogative hamza before the article's hamza (آلذكرين، آلله) | `hamza_istifham_before_article` | detected, four places, two readings in `variants` |
 | 36-39 | Idgham kabir and saghir; naqis | `idgham_kabir_mutamathil`, `idgham_mutamathilayn`, `idgham_mutajanisayn`, `idgham_mutaqaribayn`, `idgham_naqis` | detected; second readings the book mentions are listed only for the two-reading words |
 | 40-45 | Places of articulation and characteristics | tool `get_letter_properties` | static tables, 29 letters |
+| (not in Book A) | Stops that depend on the rasm (Nabhan pp.82-86) | `waqf_ta_open`, `waqf_maqtu`, `waqf_ayyuh`, `waqf_split_word` | detected from lists, 138 occurrences; the chosen stops and rawm/ishmam are not built |
+| (not in Book A) | Readings that go together (Nabhan pp.98-108) | tool `list_reading_combinations` | the book's tables for the madds and the plural meems |
 | (not in Book A) | Ya'at zawa'id (Nabhan pp.80-81) | `ya_zaida_joined_kept`, `ya_zaida_two_ways`, `ya_zaida_kept_both` | detected from the book's table, 24 places; the corpus writes the kept ya as a small yeh |
 | 45-50 | Ya'at al-idafa | `ya_idafa_fath`, `ya_idafa_iskan_exception`, `ya_idafa_fath_exception`, `ya_idafa_iskan_before_letter`, `ya_idafa_maee`, `ya_idafa_rabbi_two_readings` | partial (see below) |
 
@@ -136,5 +138,5 @@ Two content points came out of that reading:
 - Rule texts are paraphrases written by an automated drafter. No reviewer has confirmed any of them
   or any detected occurrence; the highest status served is `candidate`.
 - The corpus `tariq` is `unspecified` and Book A attests Qaloun without naming a tariq, so all
-  93 rules carry `tariq: "unspecified"`. The longer book it digests names Abu Nashit (Nabhan p.111,
+  97 rules carry `tariq: "unspecified"`. The longer book it digests names Abu Nashit (Nabhan p.111,
   « طريق الشاطبية عن أبي نشيط »); that is noted here and applied to no rule.

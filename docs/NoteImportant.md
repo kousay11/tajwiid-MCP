@@ -59,7 +59,7 @@ plus `page` et `reading_context.mode`. La requête qui marche :
 | Texte du Quran (Qaloun) | Fichiers inclus dans le dépôt (`src/wirdi_mcp/quran/snapshot/`), ou ceux du dépôt Wirdi AI si `WIRDI_AI_ROOT` est donnée. Le jeu est « KFGQPC Qaloun via Qur'anpedia » (distribution `risan/quran-json`, commit `6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123`), soit 6 214 ayat | Empreinte SHA-256 du corpus vérifiée à chaque appel (`ece0a2b0…d1303`) ; le texte n'est jamais modifié ni recopié |
 | Pagination 559 pages | Fichier de pagination du même dépôt | Empreinte vérifiée (`ca7aa4e4…ccfc0`) ; page 263 = « verified_against_edition » |
 | Numérotation | Compte Qaloun du corpus. Le lien vers la numérotation kufienne (celle que cite le livre A) est `number_in_hafs` | Les listes du livre A sont comparées aux numéros kufiens |
-| Règles de tajwid | Paraphrases rédigées pour ce projet, dans `knowledge/rules/` ; source : livre A (51 p.) pour les 93 règles | Empreinte de chaque fiche vérifiée ; chaque citation donne livre et page |
+| Règles de tajwid | Paraphrases rédigées pour ce projet, dans `knowledge/rules/` ; source : livre A (51 p.) pour les 97 règles | Empreinte de chaque fiche vérifiée ; chaque citation donne livre et page |
 | Détection | Code déterministe local (aucun LLM, aucun RAG, aucun réseau) | Chaque résultat est `candidate`, jamais vérifié |
 
 Le texte vient du Wirdi AI, jamais d'un PDF. Le PDF du livre A sert seulement à
@@ -79,7 +79,7 @@ Nashit : `tariq` reste `unspecified`.
 - `coverage: complete_for_requested_rules`, `unresolved: {}` : aucune position n'a manqué de contexte.
 - `skipped` : 10 tanwins à l'arrêt (aucune règle de noon ne s'y applique), 2 lafz al-jalala
   (famille traitée par `lam_jalala_*`), 1 noon nu devant alef.
-- 77 règles évaluées (à la date de ce test ; il y en a 91 aujourd'hui). Tous les statuts sont `candidate`, `validation_status: unreviewed`.
+- 77 règles évaluées (à la date de ce test ; il y en a 97 aujourd'hui). Tous les statuts sont `candidate`, `validation_status: unreviewed`.
 
 **Comptes par règle sur les 280 candidats** (`rule_counts`) :
 
@@ -134,7 +134,7 @@ Nashit : `tariq` reste `unspecified`.
 | 2026-10-31 | `summarize_tajwid` 2:1-7, madd | 9 règles, somme par ayah exacte | a révélé la mim du pluriel devant ب et م (1 314 places), corrigée |
 | 2026-10-31 | `get_source_page` livre A p.19 | page 19, empreinte `7a2c7a31…` | a révélé la contradiction de « فألقه » |
 | 2026-10-31 | `search_source_pages` « الصلة » | 5 pages (15, 17, 18, 19, 20) | pages relues sur les images |
-| 2026-10-31 | `list_tajwid_rules` | 93 règles, 2 sans détecteur | conforme |
+| 2026-10-31 | `list_tajwid_rules` | 97 règles, 0 sans détecteur | conforme |
 | 2026-10-31 | `get_tajwid_rule` `madd_sila_ha_exception` | fiche complète | a révélé la p.18 oubliée, ajoutée |
 | 2026-10-31 | `get_tajwid_rule` inexistante, version 9, `../etc` | `NOT_FOUND`, `UNSUPPORTED_VERSION`, `NOT_FOUND` | erreurs typées |
 | 2026-10-31 | `get_letter_properties` | `ok` | conforme |

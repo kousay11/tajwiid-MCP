@@ -57,6 +57,7 @@ FAMILY_ID = {
     "idgham": "idgham_general",
     "yaat": "ya_idafa",
     "zaida": "ya_zaida",
+    "waqf": "waqf",
 }
 
 # rule_id: (family, name_ar, detectability, pages, definition, conditions, exceptions, limits)
@@ -250,6 +251,60 @@ RULES: dict[str, tuple] = {
         (("word", "The word is يا عباد in az-Zukhruf 68."),),
         (),
         ("A one-word list in the Kufian numbering used by the book.",),
+    ),
+    "waqf_ta_open": (
+        "waqf",
+        "الوقف على تاء التأنيث المبسوطة",
+        "C",
+        ("N:p.82", "N:p.83", "N:p.84"),
+        "When the ta of a feminine noun is written open, a stop on the word is with the ta, not a ha. "
+        "The book names 14 words at their places (13 are matched): رحمت، نعمت، بنعمت، امرأت (before زوج), سنت، لعنت، "
+        "معصيت، بقيت، قرت، فطرت، شجرت، جنت، ابنت (and كلمت in al-A'raf 137).",
+        (("words", "The word is one of the named words at its named place."),),
+        (),
+        (
+            "A closed list in the Kufian numbering used by the book.",
+            "The corpus writes كلمة with a closed ta in al-A'raf 137, where the book names an open ta, so that place is not matched.",
+            "The engine stops only at the end of an ayah, so the note says what stopping on the word gives.",
+        ),
+    ),
+    "waqf_maqtu": (
+        "waqf",
+        "الكلمتان المقطوعتان رسما",
+        "C",
+        ("N:p.84", "N:p.85", "N:p.86"),
+        "Two words written apart in the rasm (أن لا، أن لم، أن لن، أن لو، إن ما، أم من، عن ما، من ما، "
+        "عن من، يوم هم، حيث ما، كل ما، بئس ما، في ما، أين ما، كي لا): a stop may fall on the first or "
+        "on the second, as the need requires.",
+        (("pair", "A word of the list is followed by the second word of its pair."),),
+        (),
+        (
+            "Matched on the spelling of the corpus, not on the book's place lists, which differ from "
+            "the corpus in a few places (listed in docs/BOOK_NABHAN_EVALUATION.md).",
+            "The engine stops only at the end of an ayah, so the note says what stopping on the word gives.",
+        ),
+    ),
+    "waqf_ayyuh": (
+        "waqf",
+        "الوقف على أيه بالهاء",
+        "C",
+        ("N:p.86",),
+        "In three places أيه is written with no alef and a stop on it is with a ha and no alef: "
+        "an-Nur 31, az-Zukhruf 49, ar-Rahman 31.",
+        (("words", "The word is أيه at one of the three places."),),
+        (),
+        ("A closed list in the Kufian numbering used by the book.",),
+    ),
+    "waqf_split_word": (
+        "waqf",
+        "الكلمة المجزأة رسما",
+        "C",
+        ("N:p.86",),
+        "A word written in two parts is stopped on at its last part: مال in an-Nisa 78, al-Kahf 49, "
+        "al-Furqan 7 and al-Ma'arij 36, and إل ياسين in as-Saffat 130.",
+        (("words", "The word is one of the named, at its named place."),),
+        (),
+        ("A closed list in the Kufian numbering used by the book.",),
     ),
     "alef_thabita": (
         "madd",
@@ -911,7 +966,10 @@ RULES: dict[str, tuple] = {
         "dropped (short or medium length); for two dammas or two kasras the first is softened.",
         (("two_words", "A final hamza and the next word's initial hamza share one vowel."),),
         (),
-        ("Not detected: the Qaloun text already carries the result and not the original hamza.",),
+        (
+            "The Qaloun text keeps only the result, so the rule is found only at the places the farsh table of the longer book lists (Nabhan pp.111-198): 35 occurrences matched in the corpus.",
+            "A place the corpus spells differently is not listed (docs/BOOK_NABHAN_EVALUATION.md).",
+        ),
     ),
     "hamza_two_words_different": (
         "hamza",
@@ -922,7 +980,10 @@ RULES: dict[str, tuple] = {
         "replaced by a letter according to the five cases the book lists.",
         (("two_words", "A final hamza and the next word's initial hamza have different vowels."),),
         (),
-        ("Not detected: the Qaloun text already carries the result and not the original hamza.",),
+        (
+            "The Qaloun text keeps only the result, so the rule is found only at the places the farsh table of the longer book lists (Nabhan pp.111-198): 47 occurrences matched in the corpus.",
+            "A place the corpus spells differently is not listed (docs/BOOK_NABHAN_EVALUATION.md).",
+        ),
     ),
     "hamzat_wasl_article": (
         "hamza",
@@ -973,7 +1034,10 @@ RULES: dict[str, tuple] = {
         "with.",
         (("before_wasl", "The next word begins with hamzat al-wasl."),),
         (),
-        ("Only min, the plural meem and tanween are recognised; other sakin letters are not.",),
+        (
+            "From the spelling: min, the plural meem and tanween. Other sakin letters only at the 19 places of the farsh table of the longer book (Nabhan pp.111-198) that the corpus shows.",
+            "The farsh table gives a damma to the noon of min before a verb that begins with a damma (فمن اضطر, three places), where the general sentence of p.31 says a fatha.",
+        ),
     ),
     "ra_tafkhim": (
         "tafkhim",

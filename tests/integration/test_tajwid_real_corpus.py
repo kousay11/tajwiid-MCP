@@ -62,6 +62,12 @@ CLOSED_LISTS = {
     "ya_zaida_two_ways": 4,
     "ya_zaida_kept_both": 1,
     "hamza_istifham_before_article": 4,  # آلذكرين twice, آلله twice
+    "hamza_two_words_same": 35,  # the places of the farsh table that the corpus shows
+    "hamza_two_words_different": 47,
+    "waqf_ta_open": 39,  # 40 places of Nabhan pp.82-84; al-A'raf 137 is spelled with a closed ta
+    "waqf_ayyuh": 3,
+    "waqf_split_word": 5,
+    "waqf_maqtu": 91,  # the rasm of the corpus; the book's lists differ in a few places
     "noon_tawkid_khafifa_stop": 2,  # وليكونا and لنسفعا
     "hamza_wasl_then_qat_in_word": 16,  # اؤتمن and fifteen words of the type ائتنا
     "hamza_arayta_tashil": 22,  # the three forms the book names; أرأيتك and أفرأيتم are not named
@@ -314,3 +320,33 @@ def test_paging_covers_every_occurrence_exactly_once(real_repo, engine):
         seen += [a.annotation_id for a in page.annotations]
         offset = page.next_offset
     assert len(seen) == len(set(seen)) == page.total
+
+
+def test_reading_combinations_on_the_real_corpus(real_repo, engine):
+    from wirdi_mcp.domain.models import PassageSelection
+    from wirdi_mcp.tajwid.service import TajwidService
+
+    service = TajwidService(real_repo, RuleRegistry(REPO_KNOWLEDGE))
+    context = ReadingContext(mode="waqf")
+
+    def one(surah, ayah):
+        selection = PassageSelection(start=real_repo.reference("qalun", surah, ayah), end_ayah=ayah)
+        return service.reading_combinations(selection, context, 500).ayat[0]
+
+    # two ayat whose madds are exactly a pair the book tabulates
+    kasra = one(3, 38)  # a connected madd, then a connected madd made 'arid with a kasra
+    assert [p.kind for p in kasra.positions] == ["muttasil", "muttasil_arid"]
+    assert kasra.positions[1].hamza_vowel == "kasra"
+    assert kasra.basis == "book_listed" and kasra.total == 6  # p.103: « ستة أوجه »
+    meems = one(4, 21)  # a plural meem before a hamza, then one before another letter
+    assert [p.kind for p in meems.positions] == ["sila_kubra_meem", "sila_sughra_meem"]
+    assert meems.basis == "book_listed" and meems.total == 3  # p.98: « ثلاثة أوجه »
+    # every combination has one reading per position, whatever the ayah
+    for surah, ayah in ((2, 3), (2, 6), (18, 1), (112, 1)):
+        for item in service.reading_combinations(
+            PassageSelection(start=real_repo.reference("qalun", surah, ayah), end_ayah=ayah),
+            context,
+            50,
+        ).ayat:
+            assert all(len(row) == len(item.positions) for row in item.combinations)
+            assert item.total >= len(item.combinations)

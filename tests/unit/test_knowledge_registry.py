@@ -16,13 +16,9 @@ def code(exc_info):
 def test_every_committed_rule_loads_and_every_citation_resolves():
     registry = RuleRegistry(REPO_KNOWLEDGE)
     listed = registry.list_rules()
-    # every detector has a record; the only records without one are the two Book A rules whose
-    # inputs the Qaloun text no longer carries (the original hamzas of two adjacent words)
-    assert {r for r, _ in listed} - set(DETECTORS) == {
-        "hamza_two_words_same",
-        "hamza_two_words_different",
-    }
-    assert set(DETECTORS) <= {r for r, _ in listed} and len(listed) == 93
+    # every rule has a detector (the two-hamza rules are found by the farsh table's places)
+    assert {r for r, _ in listed} - set(DETECTORS) == set()
+    assert set(DETECTORS) <= {r for r, _ in listed} and len(listed) == 97
     for rule_id, version in listed:
         rule = registry.get_rule(rule_id, version)
         assert rule.validation_status == "unreviewed" and rule.validation_record_ids == ()

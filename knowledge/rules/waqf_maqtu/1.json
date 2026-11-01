@@ -1,0 +1,108 @@
+{
+  "rule_id": "waqf_maqtu",
+  "version": "1",
+  "name_ar": "الكلمتان المقطوعتان رسما",
+  "definition": "Two words written apart in the rasm (أن لا، أن لم، أن لن، أن لو، إن ما، أم من، عن ما، من ما، عن من، يوم هم، حيث ما، كل ما، بئس ما، في ما، أين ما، كي لا): a stop may fall on the first or on the second, as the need requires.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "waqf",
+  "detectability": "C",
+  "limitations": [
+    "Only the longer book Nabhan is cited; Book A does not have this topic.",
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "Matched on the spelling of the corpus, not on the book's place lists, which differ from the corpus in a few places (listed in docs/BOOK_NABHAN_EVALUATION.md).",
+    "The engine stops only at the end of an ayah, so the note says what stopping on the word gives."
+  ],
+  "conditions": [
+    {
+      "clause_id": "pair",
+      "kind": "condition",
+      "description": "A word of the list is followed by the second word of its pair.",
+      "evidence": [
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "locator": "p.84",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "locator": "p.85",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "locator": "p.86",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "locator": "p.84",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "locator": "p.85",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "locator": "p.86",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}
