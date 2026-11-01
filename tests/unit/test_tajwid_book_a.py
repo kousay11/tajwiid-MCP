@@ -16,6 +16,11 @@ FATHATAN = chr(0x64B)
 SMALL_WAW, DAGGER, WASL, LOW_STOP = chr(0x6E5), chr(0x670), chr(0x6EC), chr(0x6EA)
 
 
+def book_a_pages(evidence):
+    """Locators of the Book A citations only; the second citation to Nabhan is tested apart."""
+    return [c["locator"] for c in evidence if c["edition_id"] == "book-a-2010"]
+
+
 def found(text, rule, *, mode="waqf", stops=None, surah=None, ayah=None, kufi=()):
     stops_at_end = (mode == "waqf") if stops is None else stops
     view = AyahView(
@@ -439,6 +444,7 @@ def test_maee_reports_what_the_corpus_spells_and_does_not_choose():
     note = view.occurrences[0].note
     assert hits and "open (fatha)" in note and ", before a fatha hamza" in note
     assert len(note) <= 300 and hits[0][2] == ()
+    assert "Nabhan p.79" in note and "Reported, not arbitrated" in note
 
 
 def test_ana_before_a_fatha_or_damma_hamza_takes_the_munfasil_lengths():
@@ -469,6 +475,9 @@ def test_the_rule_limits_name_both_pages_of_each_contradiction():
     text = " ".join(iskan["limitations"])
     for needle in ("p.46", "p.49", "Ghafir", "al-A'raf", "Sad 147", "al-Ahqaf 14", "46:15"):
         assert needle in text, needle
+    assert "Nabhan, pp.77-78" in text and "Book A's own slips" in text
+    maee = json.loads((root / "ya_idafa_maee" / "1.json").read_text("utf-8"))
+    assert "Nabhan p.79" in " ".join(maee["limitations"]) + maee["definition"]
     fath = json.loads((root / "ya_idafa_fath" / "1.json").read_text("utf-8"))
     assert "p.47" in " ".join(fath["limitations"]) and "2:124" in " ".join(fath["limitations"])
 
@@ -531,9 +540,9 @@ def test_sila_ha_exception_cites_the_page_that_introduces_its_list():
 
     path = Path(__file__).resolve().parents[2] / "knowledge/rules/madd_sila_ha_exception/1.json"
     rule = json.loads(path.read_text("utf-8"))
-    assert [c["locator"] for c in rule["evidence"]] == ["p.18", "p.19", "p.20"]
+    assert book_a_pages(rule["evidence"]) == ["p.18", "p.19", "p.20"]
     words = next(c for c in rule["conditions"] if c["clause_id"] == "words")
-    assert [c["locator"] for c in words["evidence"]] == ["p.18", "p.19", "p.20"]
+    assert book_a_pages(words["evidence"]) == ["p.18", "p.19", "p.20"]
 
 
 def test_the_sila_rules_cite_the_pages_that_define_them():
@@ -551,9 +560,9 @@ def test_the_sila_rules_cite_the_pages_that_define_them():
     }
     for rule_id, pages in expected.items():
         rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
-        assert [c["locator"] for c in rule["evidence"]] == pages, rule_id
+        assert book_a_pages(rule["evidence"]) == pages, rule_id
         for clause in rule["conditions"]:
-            assert [c["locator"] for c in clause["evidence"]] == pages, (
+            assert book_a_pages(clause["evidence"]) == pages, (
                 rule_id,
                 clause["clause_id"],
             )
@@ -571,9 +580,9 @@ def test_madd_iwad_and_ana_dropped_cite_the_pages_found_missing_on_the_images():
         ("alef_ana_dropped", ["p.23", "p.24"]),
     ):
         rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
-        assert [c["locator"] for c in rule["evidence"]] == pages, rule_id
+        assert book_a_pages(rule["evidence"]) == pages, rule_id
         for clause in rule["conditions"]:
-            assert [c["locator"] for c in clause["evidence"]] == pages, (
+            assert book_a_pages(clause["evidence"]) == pages, (
                 rule_id,
                 clause["clause_id"],
             )
@@ -618,9 +627,41 @@ def test_pages_found_missing_on_the_images_of_pp_25_to_50_are_cited():
     }
     for rule_id, pages in expected.items():
         rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
-        assert [c["locator"] for c in rule["evidence"]] == pages, rule_id
+        assert book_a_pages(rule["evidence"]) == pages, rule_id
         for clause in rule["conditions"]:
-            assert [c["locator"] for c in clause["evidence"]] == pages, (
+            assert book_a_pages(clause["evidence"]) == pages, (
                 rule_id,
                 clause["clause_id"],
             )
+
+
+def test_second_citations_point_to_pages_of_the_longer_book():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "knowledge" / "rules"
+    seen = 0
+    for path in root.glob("*/1.json"):
+        rule = json.loads(path.read_text("utf-8"))
+        second = [c for c in rule["evidence"] if c["edition_id"] == "thamar-yani-2003"]
+        if not second:
+            continue
+        seen += 1
+        pages = [int(c["locator"][2:]) for c in second]
+        assert all(1 <= p <= 214 for p in pages), rule["rule_id"]
+        assert all(c["tariq"] == "unspecified" for c in second)
+        assert rule["tariq"] == "unspecified"
+        for clause in (*rule["conditions"], *rule["exceptions"]):
+            assert any(c["edition_id"] == "thamar-yani-2003" for c in clause["evidence"])
+    assert seen == 92  # every rule but ya_idafa_fath_exception, whose list is not in the usul part
+
+
+def test_the_ya_zaida_rules_cite_only_the_longer_book():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "knowledge" / "rules"
+    for rule_id in ("ya_zaida_joined_kept", "ya_zaida_two_ways", "ya_zaida_kept_both"):
+        rule = json.loads((root / rule_id / "1.json").read_text("utf-8"))
+        assert {c["edition_id"] for c in rule["evidence"]} == {"thamar-yani-2003"}
+        assert "Nabhan" in " ".join(rule["limitations"])

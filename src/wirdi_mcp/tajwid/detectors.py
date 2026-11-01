@@ -141,6 +141,7 @@ def detect_mim_sakina(view: AyahView) -> None:
                     word,
                     letter,
                     "mim sakina before ba" + _SILA_EXCLUSION * plural,
+                    ("ikhfa", "idhar"),
                 )
             elif nxt.char == "م":
                 emit(

@@ -41,8 +41,9 @@ def detect_ya_idafa_fath(view: AyahView) -> None:
 
 
 MAEE_NOTE = (
-    "Book A p.47: the ya of معي is open unless a fatha hamza follows. The corpus spells it "
-    "{spelling}{before}. This differs from the sentence; the divergence is not arbitrated"
+    "Book A p.47 says the ya of معي is open unless a fatha hamza follows; the book it digests "
+    "(Nabhan p.79) says sukun when no hamza qat' follows. The corpus spells it {spelling}{before}. "
+    "Reported, not arbitrated"
 )
 
 

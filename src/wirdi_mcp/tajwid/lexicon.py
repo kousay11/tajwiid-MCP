@@ -183,6 +183,7 @@ LEXEMES: tuple[Lexeme, ...] = (
         r"^تءمنا$",
         "the noon of the verb merges into the next noon with a hint of the damma",
         ((12, 11),),
+        ("ishmam", "ikhtilas"),
     ),
     # Book A p.38-39: complete-letter assimilation that keeps the first letter's quality.
     _lex(
@@ -260,6 +261,72 @@ LEXEMES: tuple[Lexeme, ...] = (
         "ya of ربي read with fatha or sukun; fatha is the reading put first",
         ((41, 50),),
         ("fath", "iskan"),
+    ),
+    # Book A p.31 (Nabhan p.36, p.50): the interrogative hamza before the article's hamzat al-wasl.
+    _lex(
+        "hamza_istifham_before_article",
+        r"^ءالذكرين$",
+        "interrogative hamza before the article: two readings, never dropped",
+        ((6, 143), (6, 144)),
+        ("ibdal_with_long_madd", "tashil_without_madd"),
+    ),
+    _lex(
+        "hamza_istifham_before_article",
+        r"^ءالله$",
+        "interrogative hamza before the article: two readings, never dropped",
+        ((10, 59), (27, 59)),
+        ("ibdal_with_long_madd", "tashil_without_madd"),
+    ),
+    # Nabhan pp.80-81 (ya'at zawa'id), not in Book A. The corpus writes the kept ya as a small yeh
+    # on the last letter; the places are the book's, in the Kufian count.
+    *(
+        _lex(
+            "ya_zaida_joined_kept",
+            pattern,
+            "zaida ya kept when joined (small yeh in the corpus) and dropped when stopped",
+            places,
+        )
+        for pattern, places in (
+            (r"^(?:و)?اتبعن$", ((3, 20),)),
+            (r"^يءت$", ((11, 105),)),
+            (r"^ءخرتن$", ((17, 62),)),
+            (r"^المهتد$", ((17, 97), (18, 17))),
+            (r"^يهدين$", ((18, 24),)),
+            (r"^ترن$", ((18, 39),)),
+            (r"^يءتين$", ((18, 40),)),
+            (r"^تعلمن$", ((18, 66),)),
+            (r"^نبغ$", ((18, 64),)),
+            (r"^تتبعن$", ((20, 93),)),
+            (r"^ءتمدونن$", ((27, 36),)),
+            (r"^الجوار$", ((42, 32),)),
+            (r"^المناد$", ((50, 41),)),
+            (r"^اتبعون$", ((40, 38),)),
+            (r"^الداع$", ((54, 8),)),
+            (r"^يسر$", ((89, 4),)),
+            (r"^ءكرمن$", ((89, 15),)),
+            (r"^ءهنن$", ((89, 16),)),
+        )
+    ),
+    *(
+        _lex(
+            "ya_zaida_two_ways",
+            pattern,
+            "zaida ya kept or dropped when joined, dropped when stopped; the corpus drops it",
+            places,
+            ("joined_with_ya", "joined_without_ya"),
+        )
+        for pattern, places in (
+            (r"^الداع$", ((2, 186),)),
+            (r"^دعان$", ((2, 186),)),
+            (r"^التلق$", ((40, 15),)),
+            (r"^التناد$", ((40, 32),)),
+        )
+    ),
+    _lex(
+        "ya_zaida_kept_both",
+        r"^يعبادي$",
+        "ya kept when joined and when stopped",
+        ((43, 68),),
     ),
     # Book A p.35: taqlil and imala.
     _lex(

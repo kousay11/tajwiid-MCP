@@ -22,7 +22,7 @@ def test_every_committed_rule_loads_and_every_citation_resolves():
         "hamza_two_words_same",
         "hamza_two_words_different",
     }
-    assert set(DETECTORS) <= {r for r, _ in listed} and len(listed) == 89
+    assert set(DETECTORS) <= {r for r, _ in listed} and len(listed) == 93
     for rule_id, version in listed:
         rule = registry.get_rule(rule_id, version)
         assert rule.validation_status == "unreviewed" and rule.validation_record_ids == ()
