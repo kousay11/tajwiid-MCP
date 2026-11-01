@@ -1,0 +1,55 @@
+{
+  "rule_id": "ya_zaida_kept_both",
+  "version": "1",
+  "name_ar": "الياء الزائدة المثبتة وصلا ووقفا",
+  "definition": "The ya of يا عباد (az-Zukhruf 68) is pronounced both when joined and when stopped.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "ya_zaida",
+  "detectability": "C",
+  "limitations": [
+    "Only the longer book Nabhan is cited; Book A does not have this topic.",
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "A one-word list in the Kufian numbering used by the book."
+  ],
+  "conditions": [
+    {
+      "clause_id": "word",
+      "kind": "condition",
+      "description": "The word is يا عباد in az-Zukhruf 68.",
+      "evidence": [
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "locator": "p.81",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "locator": "p.81",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

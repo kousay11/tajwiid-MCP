@@ -1,0 +1,56 @@
+{
+  "rule_id": "ya_zaida_two_ways",
+  "version": "1",
+  "name_ar": "الياء الزائدة بالوجهين وصلا",
+  "definition": "In four words the zaida ya may be kept or dropped when joined, and is dropped when stopped: الداع (al-Baqara 186), دعان (al-Baqara 186), التلاق (Ghafir 15), التناد (Ghafir 32).",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "ya_zaida",
+  "detectability": "C",
+  "limitations": [
+    "Only the longer book Nabhan is cited; Book A does not have this topic.",
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "A closed list in the Kufian numbering used by the book.",
+    "Both joined readings are listed in `variants`; the corpus writes the dropped one and none is chosen."
+  ],
+  "conditions": [
+    {
+      "clause_id": "words",
+      "kind": "condition",
+      "description": "The word is one of the four named, at the named place.",
+      "evidence": [
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "locator": "p.81",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "locator": "p.81",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

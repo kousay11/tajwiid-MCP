@@ -11,7 +11,8 @@
     "Paraphrase of the cited page by an automated drafter; not scholarly reviewed.",
     "Book A names the letters and says the sound is on the sakin letter; it does not divide qalqala into kinds, so none is detected.",
     "The detector reads an explicit sukun, and a final letter at a stop (sakin because of the stop); assimilation written without a sukun is not interpreted.",
-    "Internal waqf signs are not treated as stops; only verse ends and an explicit stop word are."
+    "Internal waqf signs are not treated as stops; only verse ends and an explicit stop word are.",
+    "Second citation: the longer book Nabhan, which Book A digests. It agrees with the paraphrase, so it shows where the text is found, not an independent confirmation."
   ],
   "conditions": [
     {
@@ -31,6 +32,19 @@
           "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
           "validation_status": "unreviewed",
           "uri": null
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null,
+          "locator": "p.60"
         }
       ]
     }
@@ -49,6 +63,19 @@
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "validation_status": "unreviewed",
       "uri": null
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null,
+      "locator": "p.60"
     }
   ],
   "validation_status": "unreviewed",

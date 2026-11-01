@@ -1,0 +1,82 @@
+{
+  "rule_id": "ya_zaida_joined_kept",
+  "version": "1",
+  "name_ar": "الياء الزائدة المثبتة وصلا المحذوفة وقفا",
+  "definition": "A zaida ya is pronounced when joined and dropped when stopped, in 18 words (19 places): ومن اتبعن، يوم يأتِ، لئن أخرتن، المهتد (twice), يهدين، ترن، يؤتين، تعلمن، نبغ، تتبعن، أتمدونن، الجوار، المناد، اتبعون، الداع (al-Qamar 8), يسر، أكرمن، أهانن. The corpus writes the kept ya as a small yeh on the last letter.",
+  "riwaya": "qaloun",
+  "tariq": "unspecified",
+  "family": "ya_zaida",
+  "detectability": "C",
+  "limitations": [
+    "Only the longer book Nabhan is cited; Book A does not have this topic.",
+    "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
+    "A closed list in the Kufian numbering used by the book; each word was checked in the corpus.",
+    "The note is the same for every reading context: the ya is pronounced when joined and dropped when stopped."
+  ],
+  "conditions": [
+    {
+      "clause_id": "words",
+      "kind": "condition",
+      "description": "The word is one of the listed words at its named place.",
+      "evidence": [
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "locator": "p.80",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "locator": "p.81",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null
+        }
+      ]
+    }
+  ],
+  "exceptions": [],
+  "evidence": [
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "locator": "p.80",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "locator": "p.81",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null
+    }
+  ],
+  "validation_status": "unreviewed",
+  "validation_record_ids": []
+}

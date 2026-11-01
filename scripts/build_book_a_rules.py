@@ -31,6 +31,20 @@ BOOK_A = {
     "validation_status": "unreviewed",
     "uri": None,
 }
+NABHAN = {
+    "source_id": "thamar-yani",
+    "edition_id": "thamar-yani-2003",
+    "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+    "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+    "publication": "Undated PDF (file created 2003), 214 pages",
+    "riwaya": "qaloun",
+    "tariq": "unspecified",
+    "provenance_version": (
+        "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560"
+    ),
+    "validation_status": "unreviewed",
+    "uri": None,
+}
 COMMON_LIMITATIONS = (
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
@@ -42,6 +56,7 @@ FAMILY_ID = {
     "imala": "imala_taqlil",
     "idgham": "idgham_general",
     "yaat": "ya_idafa",
+    "zaida": "ya_zaida",
 }
 
 # rule_id: (family, name_ar, detectability, pages, definition, conditions, exceptions, limits)
@@ -180,6 +195,62 @@ RULES: dict[str, tuple] = {
             "The ra is called 'not inclined' because the book lists no other word with taqlil after a ra. The imala of هار puts the inclined alef before the ra, so it does not touch this rule.",
         ),
     ),
+    "hamza_istifham_before_article": (
+        "hamza",
+        "همزة الاستفهام قبل همزة أل التعريف",
+        "C",
+        ("p.31", "N:p.36", "N:p.50"),
+        "When an interrogative hamza comes before the hamza of the article, the hamzat al-wasl "
+        "is replaced by an alef (with a long madd) or softened (with no madd): two readings, and "
+        "it is never dropped. Three words in four places: آلذكرين (al-An'am 143, 144) and آلله "
+        "(Yunus 59, an-Naml 59).",
+        (("words", "The word is one of the named words at its named place."),),
+        (),
+        (
+            "A closed list in the Kufian numbering used by the book.",
+            "Both readings are listed in `variants`; none is chosen. Nabhan p.36 names the three words, Book A p.31 gives the rule with two examples.",
+        ),
+    ),
+    "ya_zaida_joined_kept": (
+        "zaida",
+        "الياء الزائدة المثبتة وصلا المحذوفة وقفا",
+        "C",
+        ("N:p.80", "N:p.81"),
+        "A zaida ya is pronounced when joined and dropped when stopped, in 18 words (19 places): ومن "
+        "اتبعن، يوم يأتِ، لئن أخرتن، المهتد (twice), يهدين، ترن، يؤتين، تعلمن، نبغ، تتبعن، "
+        "أتمدونن، الجوار، المناد، اتبعون، الداع (al-Qamar 8), يسر، أكرمن، أهانن. The corpus writes the "
+        "kept ya as a small yeh on the last letter.",
+        (("words", "The word is one of the listed words at its named place."),),
+        (),
+        (
+            "A closed list in the Kufian numbering used by the book; each word was checked in the corpus.",
+            "The note is the same for every reading context: the ya is pronounced when joined and dropped when stopped.",
+        ),
+    ),
+    "ya_zaida_two_ways": (
+        "zaida",
+        "الياء الزائدة بالوجهين وصلا",
+        "C",
+        ("N:p.81",),
+        "In four words the zaida ya may be kept or dropped when joined, and is dropped when "
+        "stopped: الداع (al-Baqara 186), دعان (al-Baqara 186), التلاق (Ghafir 15), التناد (Ghafir 32).",
+        (("words", "The word is one of the four named, at the named place."),),
+        (),
+        (
+            "A closed list in the Kufian numbering used by the book.",
+            "Both joined readings are listed in `variants`; the corpus writes the dropped one and none is chosen.",
+        ),
+    ),
+    "ya_zaida_kept_both": (
+        "zaida",
+        "الياء الزائدة المثبتة وصلا ووقفا",
+        "C",
+        ("N:p.81",),
+        "The ya of يا عباد (az-Zukhruf 68) is pronounced both when joined and when stopped.",
+        (("word", "The word is يا عباد in az-Zukhruf 68."),),
+        (),
+        ("A one-word list in the Kufian numbering used by the book.",),
+    ),
     "alef_thabita": (
         "madd",
         "الألفات الثابتة وقفا ووصلا",
@@ -240,7 +311,9 @@ RULES: dict[str, tuple] = {
         (
             "Matched on the spelling; any occurrence is reported.",
             "فألقه: Book A contradicts itself between p.19 item 7 (kasra with the sila) and p.20 "
-            "(kasra without the sila). Both readings are listed in `variants`; none is chosen.",
+            "(kasra without the sila). The longer book it digests (Nabhan) says the same twice: p.31 item "
+            "7 reads it with the sila, while p.33 and the farsh table on p.164 read it without. Both "
+            "readings are listed in `variants`; none is chosen.",
             "يأته: p.19 item 6 gives two readings, kasra without the sila and the sila; both are "
             "listed in `variants`.",
         ),
@@ -394,7 +467,10 @@ RULES: dict[str, tuple] = {
             "p.49 item 4 gives Sad 147, which does not exist; the word is in 38:79, kept. "
             "(4) أوزعني: p.49 item 6 gives al-Ahqaf 14; the word is in 46:15, with ذريتي (p.46 item "
             "15), and not in 46:14, so 46:15 is kept. The count of 21 on p.46 lists only 20 places "
-            "because of (1).",
+            "because of (1). Cross-check with the longer book Book A digests (Nabhan, pp.77-78, read "
+            "on the page images): it gives Sad 79 and al-Ahqaf 15, so Sad 147 and al-Ahqaf 14 are "
+            "Book A's own slips; it also prints al-A'raf 40, Ghafir 43 twice and al-Baqara 144 for "
+            "عهدي الظالمين, so those three slips are inherited from it.",
         ),
     ),
     "ya_idafa_fath_exception": (
@@ -431,13 +507,16 @@ RULES: dict[str, tuple] = {
         ("p.47",),
         "Book A's last sentence on this page says the ya of معي is open wherever it occurs, "
         "provided no hamza qat' with a fatha follows. The corpus spells the opposite: closed "
-        "everywhere except before a fatha hamza (9:83 and 67:28 in the Kufian count).",
+        "everywhere except before a fatha hamza (9:83 and 67:28 in the Kufian count). The longer book "
+        "Book A digests (Nabhan p.79, read on the page image) lists معي among the words whose ya "
+        "is sukun when no hamza qat' follows, in nine places, which agrees with the corpus.",
         (("word", "The word is معي, with or without a one-letter prefix."),),
         (),
         (
             "Not arbitrated: the sentence contradicts both the corpus spelling and the book's own "
-            "classes 1 and 6 on pp.48-50, which give the reverse. Each occurrence reports what the "
-            "corpus spells and nothing is chosen.",
+            "classes 1 and 6 on pp.48-50, which give the reverse. It also differs from the book it "
+            "digests (Nabhan p.79), so it is probably a transcription slip. Each occurrence reports "
+            "what the corpus spells and nothing is chosen.",
         ),
     ),
     "ya_idafa_rabbi_two_readings": (
@@ -1055,7 +1134,12 @@ RULES: dict[str, tuple] = {
 
 def build_rule(rule_id: str, spec: tuple) -> TajwidRule:
     family, name_ar, detectability, pages, definition, conditions, exceptions, limits = spec
-    evidence = tuple(Citation(**BOOK_A, locator=page) for page in pages)
+    # "N:p.80" cites the longer book (Nabhan); a plain "p.31" cites Book A.
+    evidence = tuple(
+        Citation(**(NABHAN if page.startswith("N:") else BOOK_A), locator=page.removeprefix("N:"))
+        for page in pages
+    )
+    only_nabhan = all(page.startswith("N:") for page in pages)
 
     def clause(kind: str, item: tuple[str, str]) -> RuleClause:
         return RuleClause(clause_id=item[0], kind=kind, description=item[1], evidence=evidence)
@@ -1069,7 +1153,15 @@ def build_rule(rule_id: str, spec: tuple) -> TajwidRule:
         tariq="unspecified",
         family=FAMILY_ID[family],
         detectability=detectability,
-        limitations=COMMON_LIMITATIONS + tuple(limits),
+        limitations=(
+            (
+                ("Only the longer book Nabhan is cited; Book A does not have this topic.",)
+                + (COMMON_LIMITATIONS[0],)
+            )
+            if only_nabhan
+            else COMMON_LIMITATIONS
+        )
+        + tuple(limits),
         conditions=tuple(clause("condition", c) for c in conditions),
         exceptions=tuple(clause("exception", e) for e in exceptions),
         evidence=evidence,

@@ -11,7 +11,8 @@
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
     "A closed list: the sukun case and the word spelled آلآن are both reported.",
-    "آلآن (Yunus 51 and 91): Book A p.21 gives three readings, a madd of six harakat taken from the origin, a madd of two harakat taken from the accidental cause, and a softening of the wasl hamza with no madd. They are listed in `variants`; none is chosen."
+    "آلآن (Yunus 51 and 91): Book A p.21 gives three readings, a madd of six harakat taken from the origin, a madd of two harakat taken from the accidental cause, and a softening of the wasl hamza with no madd. They are listed in `variants`; none is chosen.",
+    "Second citation: the longer book Nabhan, which Book A digests. It agrees with the paraphrase, so it shows where the text is found, not an independent confirmation."
   ],
   "conditions": [
     {
@@ -44,6 +45,32 @@
           "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
           "validation_status": "unreviewed",
           "uri": null
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null,
+          "locator": "p.35"
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null,
+          "locator": "p.36"
         }
       ]
     }
@@ -75,6 +102,32 @@
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "validation_status": "unreviewed",
       "uri": null
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null,
+      "locator": "p.35"
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null,
+      "locator": "p.36"
     }
   ],
   "validation_status": "unreviewed",

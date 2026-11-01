@@ -1,510 +1,516 @@
 {
   "manifest_version": "wirdi-mcp-rules-v1",
-  "editions_sha256": "ef3daa185225da531e0fedaef132f09c52d8b7a9cdf1c0184443d9e6a007d32f",
+  "editions_sha256": "7bf54e7298630e6bd020f616d1a5d6fafebf0033a8bc169c334c4de3072e0ea0",
   "rules": [
     {
       "rule_id": "alef_ana_before_hamza",
       "version": "1",
       "path": "rules/alef_ana_before_hamza/1.json",
-      "sha256": "59963e071e3dfccea325307e6d607d7e4e3ccb16cc94ed880d257329bb37dd05"
+      "sha256": "da3cc981e8a0d97d560dff0f683d494c37cf299ce413d9c102cfba527c2a5cc5"
     },
     {
       "rule_id": "alef_ana_before_hamza_kasra",
       "version": "1",
       "path": "rules/alef_ana_before_hamza_kasra/1.json",
-      "sha256": "ce4d89785e5fb814a264adc9a0a872dc21586f6d6a64ab830c7ee7d576c443fc"
+      "sha256": "02f3391ab31df43bfce4b7b16f7eda6fda8b655acf55c77aa0321fcda56150d1"
     },
     {
       "rule_id": "alef_ana_dropped",
       "version": "1",
       "path": "rules/alef_ana_dropped/1.json",
-      "sha256": "75b79585e7d50d626ee62f7f65f9e807f2ec73fa71be9d12595ddf56ab88955d"
+      "sha256": "2b89f7659d9fc133f1dc90ac77122206e872cdbdf444d769d6fa30d0d75d1b77"
     },
     {
       "rule_id": "alef_tafkhim",
       "version": "1",
       "path": "rules/alef_tafkhim/1.json",
-      "sha256": "c0002b9c800ab47487fc5c354db12dee2b8db212938d9d28cf0653768742b458"
+      "sha256": "dff9219a9c30cb819199466693df8b0e8274c521c1751314f28b37984875828e"
     },
     {
       "rule_id": "alef_tafkhim_after_ra",
       "version": "1",
       "path": "rules/alef_tafkhim_after_ra/1.json",
-      "sha256": "b0d6c0212c8bbf6d78f7d72811dddc9427cd895f58331aa6f33aea489dbd749c"
+      "sha256": "de346c271eeb1e0c6fcf8f377a989f266fd853eb78f461556fdf2d470505fe54"
     },
     {
       "rule_id": "alef_tarqiq",
       "version": "1",
       "path": "rules/alef_tarqiq/1.json",
-      "sha256": "6a9c7ddc1d253c0e5df3af8a867d1b0f9c3c63f5fbf9813262d3b68f79e59ed8"
+      "sha256": "8414cd7d1ab58fc4ea94aac9b631aa4e2051cb2a9800c2cf71192d1da5e20d3f"
     },
     {
       "rule_id": "alef_thabita",
       "version": "1",
       "path": "rules/alef_thabita/1.json",
-      "sha256": "95142c27400a7398293d6f8cb814658eb1f1b0650d71940bc4501c77de3ea3b7"
+      "sha256": "00c8eac34d346cfa616444d0f718550064e386fc8a7622a9becc8ba2f8ffd610"
     },
     {
       "rule_id": "ghunna_mushaddad",
       "version": "1",
       "path": "rules/ghunna_mushaddad/1.json",
-      "sha256": "1650e56ba053a025e1c054cb19ac306f0195f0cf796c807c5174b2c31a6742f3"
+      "sha256": "40f5dd82a2e943b2cdaf4383069058d38d3cea1e32cb5325e42d60389481b568"
     },
     {
       "rule_id": "ghunna_tafkhim",
       "version": "1",
       "path": "rules/ghunna_tafkhim/1.json",
-      "sha256": "e3f1584d72a7a6774f7c4a1f4589273c43d85c25bf162398c4743db6f3f55bcf"
+      "sha256": "8775c3f359a03d624cff816d09ef0e5be47095da111b52d3781dbf3e42455571"
     },
     {
       "rule_id": "ghunna_tarqiq",
       "version": "1",
       "path": "rules/ghunna_tarqiq/1.json",
-      "sha256": "1e6f5119351378ded9681b0989b7b19c861e46a8f574dd99fc182b36f951bc4f"
+      "sha256": "3e6143e176a5a82a03cba2f96ea50f112df4d4a6574dbf1083f7b4d4533f5cc0"
     },
     {
       "rule_id": "hamza_arayta_tashil",
       "version": "1",
       "path": "rules/hamza_arayta_tashil/1.json",
-      "sha256": "5e07a933c0f462b3fd37f63a1e65c4f531d1652bd0fae3858ad77347813de1d1"
+      "sha256": "76e3ee87c05c1e4cd8275a171a22d9c8ae4e211b93c2a59c3a499c85ffd7e6cd"
     },
     {
       "rule_id": "hamza_double_exception",
       "version": "1",
       "path": "rules/hamza_double_exception/1.json",
-      "sha256": "1b05f3a06293cbc965f528489c1741691e3549a88d1dabe6595c6903838d1c99"
+      "sha256": "b15e0e8dcac5b6c192c6bd1522be5b0fd693020a672ff4086b480029baf52043"
     },
     {
       "rule_id": "hamza_double_in_word",
       "version": "1",
       "path": "rules/hamza_double_in_word/1.json",
-      "sha256": "87450fe896dbe64b6f9ec3ec72ec133111c0ceb7faca50f8e5d9a63a8228da58"
+      "sha256": "54192a00be892727f1dc511522ec6759567dee64bbc9911090b08741696991f3"
     },
     {
       "rule_id": "hamza_ibdal_minsaa",
       "version": "1",
       "path": "rules/hamza_ibdal_minsaa/1.json",
-      "sha256": "53f1dc90879a30bda4c17386f1e0ad7e72706f74e1e57cc19b50b1951fcdadde"
+      "sha256": "33fcf9c4622d11f2c7f5d592ae8c62304794ec2531de744b4cfa61e1e400079a"
     },
     {
       "rule_id": "hamza_ibdal_musada",
       "version": "1",
       "path": "rules/hamza_ibdal_musada/1.json",
-      "sha256": "785bb9e606b0f980a8426e9abf323d910e08c0d9230d07729d8f297a4a9e046b"
+      "sha256": "983f614cd002ceacbe59dc25f7a651bd22074ca1fa4c1d6be49abbcb6060b616"
     },
     {
       "rule_id": "hamza_ibdal_ruya",
       "version": "1",
       "path": "rules/hamza_ibdal_ruya/1.json",
-      "sha256": "410aa2a5002cf1ba861f87b61910d55a8598c9241a369a8fe5a8e68d3894e10c"
+      "sha256": "8c1cdbbbae02dd81548ffa7bc752a3df6259fbf4c17c5999c01e1077ce3bf508"
     },
     {
       "rule_id": "hamza_ibdal_saala",
       "version": "1",
       "path": "rules/hamza_ibdal_saala/1.json",
-      "sha256": "035fdd88f0a0d107efd191c0a13cd091385bc1157c4c92b225a0855759ceb700"
+      "sha256": "baa3c6e0d22228a1524475002f6603286263c1fbe7860c4685e1035114e4d8ee"
     },
     {
       "rule_id": "hamza_ibdal_yajuj",
       "version": "1",
       "path": "rules/hamza_ibdal_yajuj/1.json",
-      "sha256": "9c5b751fa8a45b42306757d6408f1d6ee2e90e8e811f15397a2e46e7456870d4"
+      "sha256": "249a1e4faba49851e1c8a7c39547be9421c8881c24d566fa296057bfa7293a0e"
     },
     {
       "rule_id": "hamza_istifham_added",
       "version": "1",
       "path": "rules/hamza_istifham_added/1.json",
-      "sha256": "7a66880a120b37bf05082de5ce78a73f4f34cc7d890384ed5422174377da6ada"
+      "sha256": "adfc442cebe64e9e6310321be17f9d0dd66762e541b1200d61d5e23cfb7dd47b"
+    },
+    {
+      "rule_id": "hamza_istifham_before_article",
+      "version": "1",
+      "path": "rules/hamza_istifham_before_article/1.json",
+      "sha256": "de60325161187e803b25a29a0aefe5bcc5e424ecb611ad2f92d4e854ee8186a3"
     },
     {
       "rule_id": "hamza_nabi",
       "version": "1",
       "path": "rules/hamza_nabi/1.json",
-      "sha256": "22f960253b84cbee01c90f402513d2154cef559467e5c8b4f4c68026c5a997b7"
+      "sha256": "3871ecf165e4c7a6471b0c2fbc45e05f4fae9d4cc1df68ab5ac7220bbcac94b2"
     },
     {
       "rule_id": "hamza_nabi_exception",
       "version": "1",
       "path": "rules/hamza_nabi_exception/1.json",
-      "sha256": "ce2922ae0e65bcaadbad9df3a693ba8fef1230965f6dd70cead788d51dc6a096"
+      "sha256": "259f76ab3018db8b99418ffdfc0045af473af1c7b9262c963b35c67046cd941a"
     },
     {
       "rule_id": "hamza_two_words_different",
       "version": "1",
       "path": "rules/hamza_two_words_different/1.json",
-      "sha256": "853b4e2ced64f0ee5cad599262212594ca4037aa133d5e4423cc5591472a2581"
+      "sha256": "ddea29169dd134721445f5429c6ff0aa7d96bf628c974dad8578fc06776349b6"
     },
     {
       "rule_id": "hamza_two_words_same",
       "version": "1",
       "path": "rules/hamza_two_words_same/1.json",
-      "sha256": "473d005def62c72eebb6dee1bd59ea464102722ea91c4634bd4812a61bfe2569"
+      "sha256": "f8bacd86c86ed907aa31b30ed9d7c0ea1b7af1a72f9b052cecf0a18bc5c05f9f"
     },
     {
       "rule_id": "hamza_wasl_then_qat_in_word",
       "version": "1",
       "path": "rules/hamza_wasl_then_qat_in_word/1.json",
-      "sha256": "d4587ffd90513911176fdd8ec1341ed8dd611e4870f26e999373e7849f807614"
+      "sha256": "fe10630731308f04aa9821b02d0ab571d76c0aee308b7e1051dd8e56fa24d060"
     },
     {
       "rule_id": "hamza_waw_huzu_kufu",
       "version": "1",
       "path": "rules/hamza_waw_huzu_kufu/1.json",
-      "sha256": "e47d6a1a2f26e7212c5ecbc408a360dcc4c5a3549124e085520fda1c27ebac4a"
+      "sha256": "ecbf6fafc7e6f573b4f6cbba9c10412de72bdb31af7897ee9ff9b525844cbe3a"
     },
     {
       "rule_id": "hamzat_wasl_article",
       "version": "1",
       "path": "rules/hamzat_wasl_article/1.json",
-      "sha256": "8bd333a445af81a2957423c025afce1894d0badaeea85a7596975ce5e8006951"
+      "sha256": "9c1627d769011e33f2bd969763122963e4442cc4e911357d48b8b629db523c94"
     },
     {
       "rule_id": "hamzat_wasl_noun",
       "version": "1",
       "path": "rules/hamzat_wasl_noun/1.json",
-      "sha256": "1b682d7ce845404dec04880462cd6f9b6c70215eff8ebf5a3df1c2034b46828a"
+      "sha256": "081c8a2bfd27c26fafa3c1d2a34d6003df5d5d01f31ebaa005d5ca8b30c8f65b"
     },
     {
       "rule_id": "hamzat_wasl_verb",
       "version": "1",
       "path": "rules/hamzat_wasl_verb/1.json",
-      "sha256": "fae413216adeda316934dca61a8878b41b38dbb48aad96bc17d384e6443d489e"
+      "sha256": "da46de7ff424d5ce89bc6d7f8f5e100e402a77b272641e32defecd8eb28b5977"
     },
     {
       "rule_id": "idgham_bighunna",
       "version": "1",
       "path": "rules/idgham_bighunna/1.json",
-      "sha256": "eeb6568ff3ef01ed926ad0b94dd711cf0a0c6cf2846bf6aa8e5ae02221bbf46f"
+      "sha256": "ca450dab451762f5f38a42c76e65e821d3f298d37cc710448d9b27f819f5931c"
     },
     {
       "rule_id": "idgham_bilaghunna",
       "version": "1",
       "path": "rules/idgham_bilaghunna/1.json",
-      "sha256": "32447aebf380a62620a746583af2091be2d46fa0110f1e587e229af6e2de7c1f"
+      "sha256": "4c02c1c9c27f096259f358e6eaa359af7bf9cbe00c96b31058e37c775e0cdab7"
     },
     {
       "rule_id": "idgham_kabir_mutamathil",
       "version": "1",
       "path": "rules/idgham_kabir_mutamathil/1.json",
-      "sha256": "93bf9203ebbf5ea670982fc6525076ab8f7859eb90fc8ae8def51171d59ccfba"
+      "sha256": "9568511d305f28805cf331025e2df6477188211f22f4ba4cccb7fb7d4f5ed784"
     },
     {
       "rule_id": "idgham_mutajanisayn",
       "version": "1",
       "path": "rules/idgham_mutajanisayn/1.json",
-      "sha256": "f1c9f58e70c94385730b9e69e6c26cd6834d3ac1144c1269f4ca84f423952501"
+      "sha256": "92e6178342023726b26e7b8ed3236cdbf173d56e576235494e8b61612c48de6b"
     },
     {
       "rule_id": "idgham_mutamathilayn",
       "version": "1",
       "path": "rules/idgham_mutamathilayn/1.json",
-      "sha256": "5c1aecb096ef15d7d4587327450ef6b45f9fae128d889c81b7a71ecd53f26ddc"
+      "sha256": "ef767619965f052bbc4806ee2a25462c645fd58082114e3ac598464658027d71"
     },
     {
       "rule_id": "idgham_mutaqaribayn",
       "version": "1",
       "path": "rules/idgham_mutaqaribayn/1.json",
-      "sha256": "9e4d2d5d1b3e70cc0466d62583dd55ec93343a59ca6a09cd7583b50eefcbbb52"
+      "sha256": "4f109276b3b7adbfc9ce2b4bf5d73aa5be3504c86e49a1d56a88f278a894079d"
     },
     {
       "rule_id": "idgham_naqis",
       "version": "1",
       "path": "rules/idgham_naqis/1.json",
-      "sha256": "e7c4101b0e8df81b1cc58ec5c87cffc169c9add0d0f9e815f12e6f2b2e67a104"
+      "sha256": "57bfa1d6a64d94b614e0f7b29fcd37cb14e9e0b1a5f6e6dfa97d1106023d9d09"
     },
     {
       "rule_id": "idgham_shafawi",
       "version": "1",
       "path": "rules/idgham_shafawi/1.json",
-      "sha256": "8d25669fa43de7eb9115c1fc6bcaa94a834d1489cb80ffa13c87696eb864b916"
+      "sha256": "a37b3fe38c2565156bc71d939e10a57314f1d340202ac71f7b2f60a44b0b071e"
     },
     {
       "rule_id": "idhar_halqi",
       "version": "1",
       "path": "rules/idhar_halqi/1.json",
-      "sha256": "211a18af9a06fd2999fa61bb200094b92982a1cb2f2b3760b697c3c44a9a2f89"
+      "sha256": "4cccfa4642fad338df2dc827e61d0c33060c99877f83eb7f287db34ca48acc67"
     },
     {
       "rule_id": "idhar_mutlaq",
       "version": "1",
       "path": "rules/idhar_mutlaq/1.json",
-      "sha256": "4999f3f830547a3fd1328d0c72567e4ff85ced6de736214219580541501b761e"
+      "sha256": "fc52c14d8079f50d659e20cdd7c6c251704d6e8ac2d8fa677837eb41752c52f5"
     },
     {
       "rule_id": "idhar_shafawi",
       "version": "1",
       "path": "rules/idhar_shafawi/1.json",
-      "sha256": "9a4a371ffcffbbb7dd5be09129eacf19a9d7f2109a0b2d66eed074335d5490bd"
+      "sha256": "a9549eeb482031f2d79a70dc848eb8951efaf041b6eb4ae0ec10f2543d538e5f"
     },
     {
       "rule_id": "ikhfa_haqiqi",
       "version": "1",
       "path": "rules/ikhfa_haqiqi/1.json",
-      "sha256": "e86124cbca1726621bde52ef2818cb2f8da0035f4ef53b7d8c27ac0d421159e1"
+      "sha256": "6694764163a502f2ba53de8f39f19507ee1bed22580463184a2c96d535dc8f27"
     },
     {
       "rule_id": "ikhfa_shafawi",
       "version": "1",
       "path": "rules/ikhfa_shafawi/1.json",
-      "sha256": "8fe75614b2977444381a0fab34ae4cf1f041a60eedc9e254feb92b1cdb9b71f4"
+      "sha256": "03f7edd0225acf83b56435c9bdb200a4a48edbe992809a3f0ecd1e0420a47934"
     },
     {
       "rule_id": "imala_har",
       "version": "1",
       "path": "rules/imala_har/1.json",
-      "sha256": "2cc12c2c8931dc2acde15744d95ce5cffd32e1f5548e07ff2c8c8f8898c4f970"
+      "sha256": "f0a02f8b91b488a47d23ec5e540b7a0aa07459f04308a1fe3f6116e951b495f0"
     },
     {
       "rule_id": "iqlab",
       "version": "1",
       "path": "rules/iqlab/1.json",
-      "sha256": "34384d08fae774a47a1625656d7717bd6ba6badfe1bba814cdccf88e6df17964"
+      "sha256": "032028b17b232ea3dfe6deac08ae40a33d6a31ef84a9b1f6e15e03fdb3876e21"
     },
     {
       "rule_id": "istiala_rank_1",
       "version": "1",
       "path": "rules/istiala_rank_1/1.json",
-      "sha256": "20b5447bd1866420e555c28cd11f204fdf84a4a3baeea73c93eb46c935ca1796"
+      "sha256": "82d549a17fe8ff6954e90dc17ef5c8f7290f5e169fc5e1f404f50f18567914ec"
     },
     {
       "rule_id": "istiala_rank_2",
       "version": "1",
       "path": "rules/istiala_rank_2/1.json",
-      "sha256": "973aa1bfe59df87b3085a6178e345d1d6067bf9db71756f2d014e8acea82a9db"
+      "sha256": "b671a9676189e174839481d22912753d28db890a9236c912b98f19ed5de5fbbf"
     },
     {
       "rule_id": "istiala_rank_3",
       "version": "1",
       "path": "rules/istiala_rank_3/1.json",
-      "sha256": "3b3af1541dd36c0e1dcfcb7584c5ba85578a6b9b274151271a800cddb856454d"
+      "sha256": "3e5c8ded280a82daefdcb534d759317a39570f9bd9a57f3deb38fb50af8be0ae"
     },
     {
       "rule_id": "istiala_rank_4",
       "version": "1",
       "path": "rules/istiala_rank_4/1.json",
-      "sha256": "b50d0d17130f2fda162073bca1640d6437ff491680a88e96a3695c5174121eab"
+      "sha256": "52bb0486370d3ad1045cd0cf1e3b728cc509ef8d41c63260bbdb95a041a3518e"
     },
     {
       "rule_id": "istifham_repeated_first",
       "version": "1",
       "path": "rules/istifham_repeated_first/1.json",
-      "sha256": "635170122a93190bf6a478bae8f9f4054dc9e488ee17579395c6e7b2f89fca71"
+      "sha256": "68983eb09302f5f3b6cd80520bfde47fb42b0b0da32ef3719395fda3a6290f97"
     },
     {
       "rule_id": "istifham_repeated_second",
       "version": "1",
       "path": "rules/istifham_repeated_second/1.json",
-      "sha256": "e3c8e13d44688b56d1f51a2ae7b1b8697b35d884bb0e8e333a0ad2bcc1d387d2"
+      "sha256": "3fa0e59de3a36590c85d1c443c0c7e532a905533338777d56e3bc8d70bb83fbd"
     },
     {
       "rule_id": "lam_jalala_tafkhim",
       "version": "1",
       "path": "rules/lam_jalala_tafkhim/1.json",
-      "sha256": "8fb70905a769fd515797c96d9fe755935a10097215d1b8f209d6ba841ef190c6"
+      "sha256": "42281a20543005ec684ff6a16847748ea7bf3fa8324f7d079e322968bdfd99f3"
     },
     {
       "rule_id": "lam_jalala_tarqiq",
       "version": "1",
       "path": "rules/lam_jalala_tarqiq/1.json",
-      "sha256": "2aa0f81e61bd7d197f794ee0b7868473b8246074c89eaf531002f7b98f7cebf7"
+      "sha256": "ee63372294fa49d100df400ddb3ef46376f0bf365a1e690746eca39bc30959ea"
     },
     {
       "rule_id": "lam_qamariya",
       "version": "1",
       "path": "rules/lam_qamariya/1.json",
-      "sha256": "41920e5ad05635539a92419c1a05d4cb8dfa9ded63187b33f117357140918841"
+      "sha256": "a3909039c242fd2735cc682354de95c635d97743f571942fc9b1465dd2e72b3e"
     },
     {
       "rule_id": "lam_shamsiya",
       "version": "1",
       "path": "rules/lam_shamsiya/1.json",
-      "sha256": "2ad214590b1ec80511841b24564e0235b6a588df4f72c410417b63679cda3972"
+      "sha256": "e4144a574eae250fc8667acd3d4ed80db190650dc4951877ae88d280bb2a9ec3"
     },
     {
       "rule_id": "madd_alif_lam_mim_imran",
       "version": "1",
       "path": "rules/madd_alif_lam_mim_imran/1.json",
-      "sha256": "646678bcac1daaa480d55f2cf04be024e4ec195ab66bf08588d5ebeefbfecb81"
+      "sha256": "83f5dd9f7b8516c9f7fffcd131a59b804182a5314b26273c594a63ceb641a396"
     },
     {
       "rule_id": "madd_arid_sukun",
       "version": "1",
       "path": "rules/madd_arid_sukun/1.json",
-      "sha256": "590a90f24997bcbf3c335bb6473cef8b0d1245dc1743631192f5aec8e2025fe7"
+      "sha256": "fe66aca6947b29962f6b921579e72af0381951b2fdce55d4201f91f930d01e58"
     },
     {
       "rule_id": "madd_badal",
       "version": "1",
       "path": "rules/madd_badal/1.json",
-      "sha256": "34e0686ac2048b6c42f8dbbb965f0d1199b97cc6a5f4e633c546b1af50455544"
+      "sha256": "6ed058da764b054f8ab83bdd4acd4ccab4c2867db0912a0d1506350308c28afa"
     },
     {
       "rule_id": "madd_harf_hay_tahar",
       "version": "1",
       "path": "rules/madd_harf_hay_tahar/1.json",
-      "sha256": "a8606b2302c1ffbc24bcbaf195b994fa90bc133281aa8306dadf957366c6e088"
+      "sha256": "8f00eca769c8fed06158ccfe321a9bec6ee4c9bcb7e7c822749a9e032efe6ba1"
     },
     {
       "rule_id": "madd_iwad",
       "version": "1",
       "path": "rules/madd_iwad/1.json",
-      "sha256": "4f737a47d5a83e7387611420f3e2c61457530e8db18e1786f1da4664f25e888e"
+      "sha256": "247fcb42964dc90fd2e81202f830ac5bc6f825cbb0ca820a9c55da23c828471c"
     },
     {
       "rule_id": "madd_lazim_harfi_mukhaffaf",
       "version": "1",
       "path": "rules/madd_lazim_harfi_mukhaffaf/1.json",
-      "sha256": "fcbfd9fc18975a67cf663a3f270aeae5fa13d312d0af53470f0ccc9eb146a560"
+      "sha256": "0261c84a99c37ae90f13f6565b293040c308e7219cc8d030219f2374b25d3df6"
     },
     {
       "rule_id": "madd_lazim_harfi_muthaqqal",
       "version": "1",
       "path": "rules/madd_lazim_harfi_muthaqqal/1.json",
-      "sha256": "b5b52ca5e1ea0775e7dc9394009f152c0bcb56e0ceccc6b02a34677a311eb631"
+      "sha256": "619f4f399916c8ca4737ca886eb8bc9263550ede76588f33f20156b94bb7793f"
     },
     {
       "rule_id": "madd_lazim_kalimi_mukhaffaf",
       "version": "1",
       "path": "rules/madd_lazim_kalimi_mukhaffaf/1.json",
-      "sha256": "baaca02ef75542fa798a0d888b4fd32490615d33a994606f4456a8f9c6e36906"
+      "sha256": "5af6bfb60ccc36c985fed5c83ed16256264dc1ca36e5a0ad6e3d4d1126926bb7"
     },
     {
       "rule_id": "madd_lazim_kalimi_muthaqqal",
       "version": "1",
       "path": "rules/madd_lazim_kalimi_muthaqqal/1.json",
-      "sha256": "919f659a266f23a3f694a9560c3be27b3eecc00d380f9472c7337c53cc1b8cb8"
+      "sha256": "964ddd7fe013512e53b27345876d183a1ab6dcac83cfe7b19c916c065a38a1e0"
     },
     {
       "rule_id": "madd_letter_dropped",
       "version": "1",
       "path": "rules/madd_letter_dropped/1.json",
-      "sha256": "d10678aec5b89b9c5b53f0f2353ae8eb8e5ce85b2c0961546acb90b5631f695d"
+      "sha256": "78303552a3f1530989bbd8b1df745007b73b735e3c427026be8f25731ef9bbce"
     },
     {
       "rule_id": "madd_lin",
       "version": "1",
       "path": "rules/madd_lin/1.json",
-      "sha256": "2f90b95fb648c5b53e0bb4bff1e225508fbd1eae071922364659252c0c854573"
+      "sha256": "3e5fe9928eae2d0d369f14bcf357f66b8558a55b9d0abf43a4585860ebf457fa"
     },
     {
       "rule_id": "madd_munfasil",
       "version": "1",
       "path": "rules/madd_munfasil/1.json",
-      "sha256": "6c0b81e1662366fff870f82301f94884144362f4a9eb9527b0acb20f8a61fd90"
+      "sha256": "ad35716955746dd50f1158b4ef87b9847b9a37266d84ec7aff5f6ecda2204e37"
     },
     {
       "rule_id": "madd_muttasil",
       "version": "1",
       "path": "rules/madd_muttasil/1.json",
-      "sha256": "47b8d50ec19e235b82d723ecbf6634f59a1125d20cf55ee067c4343b97d7c73e"
+      "sha256": "c3e0fd793b99a453f7d62b9a95f46e7fac835bb208ecb61459fc90f5c6b89bfb"
     },
     {
       "rule_id": "madd_muttasil_arid",
       "version": "1",
       "path": "rules/madd_muttasil_arid/1.json",
-      "sha256": "c2b32c09d121b5d0db75dbc0cb110f72d600c7e02b4dc34729d7bd65adc62f67"
+      "sha256": "b2b1f9ffd1a2d3e438bb6d6a099b7d58ad5d9f1cc4de19f12e826d2487984a01"
     },
     {
       "rule_id": "madd_sila_ha_exception",
       "version": "1",
       "path": "rules/madd_sila_ha_exception/1.json",
-      "sha256": "5d9e0de21dbff410355c1300a3bf3a4fb60d05a9d7596621ef2df65efcccbc88"
+      "sha256": "c50cc4bfd763b0f4dac3e0520b2970d1e6732347994e577fe1a2da91f47b7c71"
     },
     {
       "rule_id": "madd_sila_kubra_ha",
       "version": "1",
       "path": "rules/madd_sila_kubra_ha/1.json",
-      "sha256": "b3679754fba62409d720e522f316800acb12b0dc3fd012358a68e1de93cd6cfc"
+      "sha256": "a50dc19c6a7b4d32f8824acade73c6e3c6363e7bc1bbd702fe9d8b48a532adbf"
     },
     {
       "rule_id": "madd_sila_kubra_meem",
       "version": "1",
       "path": "rules/madd_sila_kubra_meem/1.json",
-      "sha256": "95bc2135175a53d9e540598e5cdb2b90b5e0b7210867e4edb4e128a284e08917"
+      "sha256": "6be81a94604080b0605b16b71b64bb7ff01993fb588807cbc9e4b0c9f1a8fe29"
     },
     {
       "rule_id": "madd_sila_sughra_ha",
       "version": "1",
       "path": "rules/madd_sila_sughra_ha/1.json",
-      "sha256": "a4409fec6b04916aad6cbadbd522fbdbc51828bc1f69a7bb6bca0f6fff8e6abb"
+      "sha256": "750374b2293d8b80c078224c1f4bc4821aa17a1a5d50239480f714aa478c13ad"
     },
     {
       "rule_id": "madd_sila_sughra_meem",
       "version": "1",
       "path": "rules/madd_sila_sughra_meem/1.json",
-      "sha256": "ac0fd20150e9caff63427a3d62e975bd73997a0fda0f3d31c023a318e548fd2c"
+      "sha256": "9b5d91bf3a3b21beaf70b3155e1f8b9cc9eb62edadbeab8ecb63d4fa35a18ddb"
     },
     {
       "rule_id": "madd_tabii",
       "version": "1",
       "path": "rules/madd_tabii/1.json",
-      "sha256": "0ea215a544cc04fca9f3ce2efb4b90cc0c1d1f5750e75503dcb9f36a1644085f"
+      "sha256": "5ac985b29728ba1b14e4384e3e2e644c795a8f536ac70c7ea1d02ab8ee5b05fb"
     },
     {
       "rule_id": "noon_tawkid_khafifa_stop",
       "version": "1",
       "path": "rules/noon_tawkid_khafifa_stop/1.json",
-      "sha256": "321bb14006d7396c605d1836ec1b98b7f2ddfd760c330f6f8837f2a070a5ede8"
+      "sha256": "ecb8cd58227664cef4a952b5e7203abea9c8ee2c71391568d65ffb6b5346e003"
     },
     {
       "rule_id": "qalqala",
       "version": "1",
       "path": "rules/qalqala/1.json",
-      "sha256": "0f24ddf35742a2202b4c60be64e69b90b24eee3746a006fe334e6f9177c7b9bd"
+      "sha256": "b428905732e62be6f9e7ac025edc1019892158b6aeb685c76593ab2286507cc5"
     },
     {
       "rule_id": "ra_jawaz",
       "version": "1",
       "path": "rules/ra_jawaz/1.json",
-      "sha256": "54f20abafc38cc82645cbaa78220f7e9084558e62e96ec7dc6ccfeec8cea4775"
+      "sha256": "b9f55f53ffebe2fd65323b7f3f137772123362ca0a018ff6a09dc552d5030816"
     },
     {
       "rule_id": "ra_mutatarrif_jawaz",
       "version": "1",
       "path": "rules/ra_mutatarrif_jawaz/1.json",
-      "sha256": "67e1714529dfeef41e05e35082737afd9333dacf093a58507c34cbee73f744e1"
+      "sha256": "10f61ea91bf6e1161d5d03aef9eee5bc5c29b0f21cafb9e4e928ed1d0b1c34fd"
     },
     {
       "rule_id": "ra_mutatarrif_tafkhim",
       "version": "1",
       "path": "rules/ra_mutatarrif_tafkhim/1.json",
-      "sha256": "4abd15eae422db031fb6188d67c58be6055528dd12b39f206c2216707efd265d"
+      "sha256": "132676dbff7e94b59d9249a33340c602b5aeb28931fc1b1e0dbfb4a571d94eb5"
     },
     {
       "rule_id": "ra_mutatarrif_tarqiq",
       "version": "1",
       "path": "rules/ra_mutatarrif_tarqiq/1.json",
-      "sha256": "def9c1a04b42b858a542279768e41c03fd8aa26f4bfc749ed06f48cd997fb2d7"
+      "sha256": "49562d7804e5f9f681d9c89fc1e9ac5a0a911c2e72a5962377787a165cb5f78e"
     },
     {
       "rule_id": "ra_tafkhim",
       "version": "1",
       "path": "rules/ra_tafkhim/1.json",
-      "sha256": "15aa448e95b18f028501b3f038b31ba75a977ea7a22c014664fdfcc60d16962d"
+      "sha256": "84b9b9d34339ac0fb1739b120caae60ad0cc582401a09dd4b1e920089a88a6d3"
     },
     {
       "rule_id": "ra_tarqiq",
       "version": "1",
       "path": "rules/ra_tarqiq/1.json",
-      "sha256": "72bef4f76832572f0576b836d80e16ffa83caec5ea2d2a47353c79eecfbb3f29"
+      "sha256": "086a72045686164fda4a2fb81cf8e7b9b9f4896521d5c88b61cc692ffba3a89f"
     },
     {
       "rule_id": "sakin_before_hamzat_wasl",
       "version": "1",
       "path": "rules/sakin_before_hamzat_wasl/1.json",
-      "sha256": "4716c3455fc9c5bc695826992535a503070b0ab18b3bcc5f875e1919c78c7725"
+      "sha256": "06443b297ff4015eeb64fb31023f91d6f30c376bd9106db9bba4b265277cc9b0"
     },
     {
       "rule_id": "taqlil_tawrat",
       "version": "1",
       "path": "rules/taqlil_tawrat/1.json",
-      "sha256": "844ca5360cf7c79ccfc30d040b2220b743b515c499be321ef0b92ec568512773"
+      "sha256": "ea68ccfc5a8cef8e6f8cc42322a7bb5f207110a880177ce091318f77bdbdb212"
     },
     {
       "rule_id": "ya_idafa_fath",
       "version": "1",
       "path": "rules/ya_idafa_fath/1.json",
-      "sha256": "a9ed5915c84a5e6ae6f59baf33617af89b82c1abc7263be4ba9b47f9cfa3c481"
+      "sha256": "67b7cd45df98f22ceb4cb2e84debc2e68c355d6f3e6bd5a7e6f1224e0a103119"
     },
     {
       "rule_id": "ya_idafa_fath_exception",
@@ -516,25 +522,43 @@
       "rule_id": "ya_idafa_iskan_before_letter",
       "version": "1",
       "path": "rules/ya_idafa_iskan_before_letter/1.json",
-      "sha256": "ff3ef055fa14d3405c6cac5e9e092cf98f2e8fb4289c97eae3e8e434cac18982"
+      "sha256": "1ff5881203333bb60afe13835479aea09523b8604f97e846d120fd7e2d816bf9"
     },
     {
       "rule_id": "ya_idafa_iskan_exception",
       "version": "1",
       "path": "rules/ya_idafa_iskan_exception/1.json",
-      "sha256": "2525fce3a07ab43f309e0cc6432c8e26fba1b462af1c2b5331be3861fc9350a9"
+      "sha256": "616a03003278a86fa88e21c7887796e4319892edcd6f9b451f9a68f31574c71f"
     },
     {
       "rule_id": "ya_idafa_maee",
       "version": "1",
       "path": "rules/ya_idafa_maee/1.json",
-      "sha256": "c8c7bc8c40b291eb0eaceeff3bb12c113d92f21ac97e58c92477bfb22d639e68"
+      "sha256": "c0485715353cae0a8ee11c75a174d179bcaa96d09c9b622d2b680f47ada231a8"
     },
     {
       "rule_id": "ya_idafa_rabbi_two_readings",
       "version": "1",
       "path": "rules/ya_idafa_rabbi_two_readings/1.json",
-      "sha256": "e618b7cc554526155240239454d67363070dfd1405993f81e0719fce5723434e"
+      "sha256": "62bff9c6420c0bdcdb6a1db6b77414e06f8fc1a8e57af32b20c01599d07b55ba"
+    },
+    {
+      "rule_id": "ya_zaida_joined_kept",
+      "version": "1",
+      "path": "rules/ya_zaida_joined_kept/1.json",
+      "sha256": "a452ca96ec8e6c821b3fa241247bee7a884702a5797c4f462e612be6223478fe"
+    },
+    {
+      "rule_id": "ya_zaida_kept_both",
+      "version": "1",
+      "path": "rules/ya_zaida_kept_both/1.json",
+      "sha256": "b2bbffeeecc804f1621e275d18bb6a979c83109e4bddeaef1f7a2ebd1406427c"
+    },
+    {
+      "rule_id": "ya_zaida_two_ways",
+      "version": "1",
+      "path": "rules/ya_zaida_two_ways/1.json",
+      "sha256": "ea7880d98b6eb63888547d4dd6e21bad648fc2ba58116bc3c8afe84275b355ca"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "rule_id": "ya_idafa_maee",
   "version": "1",
   "name_ar": "ياء الإضافة في كلمة معي",
-  "definition": "Book A's last sentence on this page says the ya of معي is open wherever it occurs, provided no hamza qat' with a fatha follows. The corpus spells the opposite: closed everywhere except before a fatha hamza (9:83 and 67:28 in the Kufian count).",
+  "definition": "Book A's last sentence on this page says the ya of معي is open wherever it occurs, provided no hamza qat' with a fatha follows. The corpus spells the opposite: closed everywhere except before a fatha hamza (9:83 and 67:28 in the Kufian count). The longer book Book A digests (Nabhan p.79, read on the page image) lists معي among the words whose ya is sukun when no hamza qat' follows, in nine places, which agrees with the corpus.",
   "riwaya": "qaloun",
   "tariq": "unspecified",
   "family": "ya_idafa",
@@ -10,7 +10,8 @@
   "limitations": [
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
-    "Not arbitrated: the sentence contradicts both the corpus spelling and the book's own classes 1 and 6 on pp.48-50, which give the reverse. Each occurrence reports what the corpus spells and nothing is chosen."
+    "Not arbitrated: the sentence contradicts both the corpus spelling and the book's own classes 1 and 6 on pp.48-50, which give the reverse. It also differs from the book it digests (Nabhan p.79), so it is probably a transcription slip. Each occurrence reports what the corpus spells and nothing is chosen.",
+    "Second citation: the longer book Nabhan, which Book A digests. It agrees with the paraphrase, so it shows where the text is found, not an independent confirmation."
   ],
   "conditions": [
     {
@@ -30,6 +31,19 @@
           "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
           "validation_status": "unreviewed",
           "uri": null
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null,
+          "locator": "p.79"
         }
       ]
     }
@@ -48,6 +62,19 @@
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "validation_status": "unreviewed",
       "uri": null
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null,
+      "locator": "p.79"
     }
   ],
   "validation_status": "unreviewed",

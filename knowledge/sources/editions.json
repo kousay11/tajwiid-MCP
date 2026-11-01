@@ -6,6 +6,11 @@
       "source_id": "book-a",
       "title": "أحكام رواية قالون عن نافع المدني، شرح مبسط مع الأمثلة",
       "responsible_party": "جنوى توفيق (PDF author field: NAJWA)"
+    },
+    {
+      "source_id": "thamar-yani",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)"
     }
   ],
   "editions": [
@@ -18,6 +23,17 @@
       "artifact_sha256": "cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "provenance_version": "pdf-51-pages",
       "page_count": 51,
+      "page_label_offset": 0
+    },
+    {
+      "edition_id": "thamar-yani-2003",
+      "source_id": "thamar-yani",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "license_status": "unknown",
+      "license_reference": "none recorded",
+      "artifact_sha256": "373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "provenance_version": "pdf-214-pages",
+      "page_count": 214,
       "page_label_offset": 0
     }
   ]

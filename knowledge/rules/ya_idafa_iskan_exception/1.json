@@ -11,7 +11,8 @@
     "Paraphrase of the cited pages by an automated drafter; not scholarly reviewed.",
     "Only Book A is cited; the printed page is where the section begins and needs proofreading.",
     "A closed list in the Kufian numbering used by the book.",
-    "The book disagrees with itself on four places. Each word was looked up in the corpus: (1) تدعونني: p.46 item 13 gives Ghafir 43 only, p.49 item 6 gives 41 and 43; the word is in both, both are kept. (2) أنظرني: p.46 item 6 gives al-A'raf 40, p.49 item 1 gives 14; the word is in 7:14 only, 7:14 is kept. (3) فأنظرني: p.46 item 6 gives Sad 79, p.49 item 4 gives Sad 147, which does not exist; the word is in 38:79, kept. (4) أوزعني: p.49 item 6 gives al-Ahqaf 14; the word is in 46:15, with ذريتي (p.46 item 15), and not in 46:14, so 46:15 is kept. The count of 21 on p.46 lists only 20 places because of (1)."
+    "The book disagrees with itself on four places. Each word was looked up in the corpus: (1) تدعونني: p.46 item 13 gives Ghafir 43 only, p.49 item 6 gives 41 and 43; the word is in both, both are kept. (2) أنظرني: p.46 item 6 gives al-A'raf 40, p.49 item 1 gives 14; the word is in 7:14 only, 7:14 is kept. (3) فأنظرني: p.46 item 6 gives Sad 79, p.49 item 4 gives Sad 147, which does not exist; the word is in 38:79, kept. (4) أوزعني: p.49 item 6 gives al-Ahqaf 14; the word is in 46:15, with ذريتي (p.46 item 15), and not in 46:14, so 46:15 is kept. The count of 21 on p.46 lists only 20 places because of (1). Cross-check with the longer book Book A digests (Nabhan, pp.77-78, read on the page images): it gives Sad 79 and al-Ahqaf 15, so Sad 147 and al-Ahqaf 14 are Book A's own slips; it also prints al-A'raf 40, Ghafir 43 twice and al-Baqara 144 for عهدي الظالمين, so those three slips are inherited from it.",
+    "Second citation: the longer book Nabhan, which Book A digests. It agrees with the paraphrase, so it shows where the text is found, not an independent confirmation."
   ],
   "conditions": [
     {
@@ -70,6 +71,32 @@
           "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
           "validation_status": "unreviewed",
           "uri": null
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null,
+          "locator": "p.77"
+        },
+        {
+          "source_id": "thamar-yani",
+          "edition_id": "thamar-yani-2003",
+          "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+          "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+          "publication": "Undated PDF (file created 2003), 214 pages",
+          "riwaya": "qaloun",
+          "tariq": "unspecified",
+          "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+          "validation_status": "unreviewed",
+          "uri": null,
+          "locator": "p.78"
         }
       ]
     }
@@ -127,6 +154,32 @@
       "provenance_version": "sha256:cc504928a9e07f255e9cfb0dd552866f6fe63094d79f5311b96b68dd39c64ad6",
       "validation_status": "unreviewed",
       "uri": null
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null,
+      "locator": "p.77"
+    },
+    {
+      "source_id": "thamar-yani",
+      "edition_id": "thamar-yani-2003",
+      "title": "الثمر اليانع في أصول رواية قالون عن نافع",
+      "responsible_party": "محمد نبهان بن حسين مصري (قراءة صفحة الغلاف والتعريف بالمؤلف)",
+      "publication": "Undated PDF (file created 2003), 214 pages",
+      "riwaya": "qaloun",
+      "tariq": "unspecified",
+      "provenance_version": "sha256:373d7271cfe6abe697f41ee6e4255b500f767f42be8b41e118764e48552d6560",
+      "validation_status": "unreviewed",
+      "uri": null,
+      "locator": "p.78"
     }
   ],
   "validation_status": "unreviewed",
