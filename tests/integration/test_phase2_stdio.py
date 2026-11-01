@@ -27,6 +27,7 @@ def test_real_stdio_quran_tools_errors_and_read_only_metadata(real_repo, real_en
                 "analyze_qaloun_tajwid",
                 "summarize_tajwid",
                 "analyze_app_page",
+                "list_reading_combinations",
                 "get_source_page",
                 "search_source_pages",
                 "get_letter_properties",

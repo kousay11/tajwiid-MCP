@@ -108,6 +108,38 @@ class TajwidSummary(ContractModel):
     limitations: tuple[str, ...]
 
 
+class ReadingCombinationsInput(GetPassageInput):
+    reading_context: ReadingContext
+    max_combinations: Annotated[int, Field(strict=True, ge=1, le=500)] = 200
+
+
+class ReadingPosition(ContractModel):
+    rule_id: NonEmpty
+    kind: NonEmpty
+    word_index: int
+    start_codepoint: int
+    end_codepoint: int
+    hamza_vowel: Literal["fatha", "damma", "kasra"] | None = None
+
+
+class AyahCombinations(ContractModel):
+    surah: int
+    ayah: int
+    positions: tuple[ReadingPosition, ...]
+    # One row per legal combination, one reading per position, in the book's order.
+    combinations: tuple[tuple[NonEmpty, ...], ...]
+    total: int
+    truncated: bool
+    basis: Literal["single_position", "book_listed", "pairwise_extension", "unconstrained"]
+    notes: tuple[str, ...] = ()
+
+
+class ReadingCombinations(ContractModel):
+    ayat: tuple[AyahCombinations, ...]
+    evaluated_rules: tuple[NonEmpty, ...]
+    limitations: tuple[str, ...]
+
+
 class AppPageInput(ContractModel):
     page: Annotated[int, Field(strict=True, ge=1, le=559)]
     reading_context: ReadingContext
@@ -189,6 +221,10 @@ class SourcePageHits(ContractModel):
     hits: tuple[SourcePageHit, ...]
 
 
+class ReadingCombinationsResponse(RootModel[Success[ReadingCombinations] | Failure]):
+    model_config = ConfigDict(json_schema_extra={"type": "object"})
+
+
 class RuleListResponse(RootModel[Success[RuleList] | Failure]):
     model_config = ConfigDict(json_schema_extra={"type": "object"})
 
@@ -249,6 +285,11 @@ TOOL_CONTRACTS = {
     "analyze_qaloun_tajwid": (AnalyzeInput, Success[Analysis] | Failure, 5),
     "summarize_tajwid": (SummaryInput, Success[TajwidSummary] | Failure, 5),
     "analyze_app_page": (AppPageInput, Success[AppPageAnalysis] | Failure, 5),
+    "list_reading_combinations": (
+        ReadingCombinationsInput,
+        Success[ReadingCombinations] | Failure,
+        5,
+    ),
     "get_source_page": (GetSourcePageInput, Success[SourcePages] | Failure, 4),
     "search_source_pages": (SearchSourcePagesInput, Success[SourcePageHits] | Failure, 4),
     "get_letter_properties": (GetLetterPropertiesInput, Success[LetterPropertiesData] | Failure, 4),

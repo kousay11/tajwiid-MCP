@@ -33,6 +33,7 @@ def test_the_file_lists_every_tool_and_every_id_is_unique():
         "analyze_qaloun_tajwid",
         "summarize_tajwid",
         "analyze_app_page",
+        "list_reading_combinations",
         "get_letter_properties",
         "get_source_page",
         "search_source_pages",

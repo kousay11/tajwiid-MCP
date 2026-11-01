@@ -38,6 +38,7 @@ async def verify(source_root: Path | None) -> dict:
             "analyze_qaloun_tajwid",
             "summarize_tajwid",
             "analyze_app_page",
+            "list_reading_combinations",
             "get_letter_properties",
             "get_source_page",
             "search_source_pages",

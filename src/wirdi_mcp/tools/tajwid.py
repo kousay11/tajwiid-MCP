@@ -35,6 +35,8 @@ from wirdi_mcp.tools.contracts import (
     LetterPropertiesData,
     LetterPropertiesResponse,
     ListRulesInput,
+    ReadingCombinationsInput,
+    ReadingCombinationsResponse,
     RuleListResponse,
     RuleToolResponse,
     SearchSourcePagesInput,
@@ -158,6 +160,32 @@ def register_tajwid_tools(
             )
             return Success(
                 data=analysis,
+                provenance=(corpus_provenance(), service.rules_provenance()),
+                validation_status="unreviewed",
+                warnings=CANDIDATE_WARNINGS,
+            )
+
+        return await asyncio.to_thread(_guard, run)
+
+    @server.tool(annotations=annotations)
+    async def list_reading_combinations(
+        selection: PassageSelection,
+        reading_context: ReadingContext,
+        max_combinations: int = 200,
+    ) -> Annotated[CallToolResult, ReadingCombinationsResponse]:
+        """Which readings of the madds may be taken together in each ayah (the book's tables)."""
+
+        def run():
+            request = ReadingCombinationsInput(
+                selection=selection,
+                reading_context=reading_context,
+                max_combinations=max_combinations,
+            )
+            data = service.reading_combinations(
+                request.selection, request.reading_context, request.max_combinations
+            )
+            return Success(
+                data=data,
                 provenance=(corpus_provenance(), service.rules_provenance()),
                 validation_status="unreviewed",
                 warnings=CANDIDATE_WARNINGS,

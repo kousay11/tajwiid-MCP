@@ -7,19 +7,34 @@ from wirdi_mcp.domain.models import PassageSelection, Provenance, ReadingContext
 from wirdi_mcp.knowledge.models import TajwidRule
 from wirdi_mcp.knowledge.registry import RuleRegistry, digest
 from wirdi_mcp.quran.source import PublicSourceRepository
+from wirdi_mcp.tajwid.combinations import RELEVANT_RULES, RULE_KIND, Position, combine
 from wirdi_mcp.tajwid.detectors import DETECTORS
 from wirdi_mcp.tajwid.engine import GENERAL_LIMITATIONS, EngineResult, TajwidEngine
+from wirdi_mcp.tajwid.text import tokenize
 from wirdi_mcp.tools.contracts import (
     Analysis,
     AppPageAnalysis,
+    AyahCombinations,
     AyahCounts,
     PageVerse,
+    ReadingCombinations,
+    ReadingPosition,
     RuleList,
     RuleSummary,
     TajwidSummary,
 )
 
 MAX_SUMMARY_AYAT = 300
+_VOWELS = {chr(0x064E): "fatha", chr(0x064F): "damma", chr(0x0650): "kasra"}
+
+
+def _hamza_vowel(words, occurrence) -> str | None:
+    """The short vowel the book looks at: the one on the last letter of the stopped word."""
+    word = next((w for w in words if w.index == occurrence.word_index), None)
+    if word is None:
+        return None
+    marks = word.letters[-1].marks
+    return next((name for mark, name in _VOWELS.items() if mark in marks), None)
 
 
 class TajwidService:
@@ -119,6 +134,63 @@ class TajwidService:
             rule_counts=dict(sorted(Counter(o.rule_id for _, o in result.occurrences).items())),
             unresolved=dict(sorted(result.unresolved.items())),
             skipped=dict(sorted(result.skipped.items())),
+        )
+
+    # -- reading combinations -----------------------------------------------------------
+    def reading_combinations(
+        self, selection: PassageSelection, context: ReadingContext, cap: int
+    ) -> ReadingCombinations:
+        self.repository.validate_selection(selection)
+        rows = self.repository.load_edition("qalun")
+        first = self.engine.locate(rows, selection.start.surah, selection.start.ayah)
+        last = self.engine.locate(rows, selection.start.surah, selection.end_ayah)
+        rules = self.engine.select_rules(RELEVANT_RULES, ())
+        result = self.engine.detect(rows, first, last, context, rules)
+        by_verse: dict[int, list] = {}
+        for verse, occurrence in result.occurrences:
+            by_verse.setdefault(verse.index, []).append((verse, occurrence))
+        ayat = []
+        for index in sorted(by_verse):
+            group = sorted(by_verse[index], key=lambda vo: vo[1].start)
+            verse = group[0][0]
+            words = tokenize(verse.row.text)
+            positions, described = [], []
+            for _, occ in group:
+                vowel = _hamza_vowel(words, occ) if occ.rule_id == "madd_muttasil_arid" else None
+                positions.append(Position(occ.rule_id, RULE_KIND[occ.rule_id], vowel))
+                described.append(
+                    ReadingPosition(
+                        rule_id=occ.rule_id,
+                        kind=RULE_KIND[occ.rule_id],
+                        word_index=occ.word_index,
+                        start_codepoint=occ.start,
+                        end_codepoint=occ.end,
+                        hamza_vowel=vowel,
+                    )
+                )
+            combos = combine(positions, cap)
+            ayat.append(
+                AyahCombinations(
+                    surah=verse.row.surah,
+                    ayah=verse.row.number,
+                    positions=tuple(described),
+                    combinations=combos.combinations,
+                    total=combos.total,
+                    truncated=combos.truncated,
+                    basis=combos.basis,
+                    notes=combos.notes,
+                )
+            )
+        return ReadingCombinations(
+            ayat=tuple(ayat),
+            evaluated_rules=tuple(sorted(RELEVANT_RULES)),
+            limitations=(
+                "Only ayat with at least one madd or plural meem are listed.",
+                "Combinations follow Nabhan pp.98-108; with three or more madds in one ayah they "
+                "extend the book's pairwise tables and are marked `pairwise_extension`.",
+                "A madd the book gives no table for is left free (`unconstrained`).",
+                "Every reading is a candidate from an unreviewed source; none is chosen.",
+            ),
         )
 
     # -- summaries --------------------------------------------------------------------
