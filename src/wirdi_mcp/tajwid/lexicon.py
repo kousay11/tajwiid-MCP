@@ -328,6 +328,86 @@ LEXEMES: tuple[Lexeme, ...] = (
         "ya kept when joined and when stopped",
         ((43, 68),),
     ),
+    # Nabhan pp.82-86 (stops that depend on how the rasm is written), not in Book A. Places are the
+    # book's, in the Kufian count. The engine stops only at an ayah end, so each note says what
+    # stopping on the word would give.
+    *(
+        _lex(
+            "waqf_ta_open",
+            pattern,
+            "written with an open ta: stopping on the word is with the ta, not a ha",
+            places,
+        )
+        for pattern, places in (
+            (r"^و?رحمت$", ((2, 218), (7, 56), (11, 73), (30, 50), (43, 32), (19, 2))),
+            (
+                r"^نعمت$",
+                ((2, 231), (3, 103), (5, 11), (14, 28), (14, 34), (16, 83), (16, 114), (35, 3)),
+            ),
+            (r"^و?بنعمت$", ((16, 72), (31, 31), (52, 29))),
+            (r"^امرءت$", ((3, 35), (12, 30), (12, 51), (28, 9), (66, 10), (66, 11))),
+            (r"^(?:ل)?سنت$", ((40, 85), (8, 38), (35, 43))),
+            (r"^لعنت$", ((3, 61), (24, 7))),
+            (r"^و?معصيت$", ((58, 8), (58, 9))),
+            (r"^بقيت$", ((11, 86),)),
+            (r"^قرت$", ((28, 9),)),
+            (r"^فطرت$", ((30, 30),)),
+            (r"^شجرت$", ((44, 43),)),
+            (r"^و?جنت$", ((56, 89),)),
+            (r"^ابنت$", ((66, 12),)),
+        )
+    ),
+    *(
+        _lex(
+            "waqf_maqtu",
+            first,
+            "written as two words: a stop may fall on the first or on the second",
+            None,
+            next_pattern=second,
+        )
+        for first, second in (
+            (r"^[وف]?ءن$", r"^لا$"),
+            (r"^[وف]?ءن$", r"^لم$"),
+            (r"^[وف]?ءن$", r"^لن$"),
+            (r"^[وف]?ءن$", r"^لو$"),
+            (r"^[وف]?ءن$", r"^ما$"),
+            (r"^[وف]?ءم$", r"^من$"),
+            (r"^[وف]?عن$", r"^ما$"),
+            (r"^[وف]?من$", r"^ما$"),
+            (r"^[وف]?عن$", r"^من$"),
+            (r"^[وف]?يوم$", r"^هم$"),
+            (r"^[وف]?حيث$", r"^ما$"),
+            (r"^[وف]?كل$", r"^ما$"),
+            (r"^[وف]?بءس$", r"^ما$"),
+            (r"^[وف]?في$", r"^ما$"),
+            (r"^[وف]?ءين$", r"^ما$"),
+            (r"^[وف]?كي$", r"^لا$"),
+        )
+    ),
+    *(
+        _lex(
+            "waqf_ayyuh",
+            r"^(?:ي)?ءيه$",
+            "written أيه with no alef: stopping on it is with a ha and no alef",
+            places,
+        )
+        for places in (((24, 31),), ((43, 49),), ((55, 31),))
+    ),
+    *(
+        _lex(
+            "waqf_split_word",
+            first,
+            "a word written in two parts: a stop falls on the last part, not the first",
+            places,
+            next_pattern=second,
+        )
+        for first, second, places in (
+            (r"^ف?مال$", r"^هءلاء$", ((4, 78),)),
+            (r"^مال$", r"^هذا$", ((18, 49), (25, 7))),
+            (r"^ف?مال$", r"^الذين$", ((70, 36),)),
+            (r"^ءال$", r"^ياسين$", ((37, 130),)),
+        )
+    ),
     # Book A p.35: taqlil and imala.
     _lex(
         "taqlil_tawrat", r"^(?:و|ب)?التورية$", "the alef of al-tawrat is read between alef and yeh"

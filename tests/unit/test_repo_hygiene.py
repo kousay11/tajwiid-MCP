@@ -31,9 +31,10 @@ def test_ignore_rules_cover_the_unknown_licence_material():
             "docs/x.pdf",
             "knowledge/sources/book-a-2010/pages.jsonl",
             "knowledge/sources/book-a-2010/pages_manifest.json",
+            "knowledge/sources/thamar-yani-2003/farsh_rows.json",
         ],
         cwd=ROOT,
         capture_output=True,
         text=True,
     ).stdout.split()
-    assert len(ignored) == 3
+    assert len(ignored) == 4

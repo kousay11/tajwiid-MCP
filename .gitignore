@@ -27,6 +27,7 @@ data/
 docs/**/*.pdf
 # extracted book text and page renders
 knowledge/sources/*/pages*
+knowledge/sources/*/farsh_rows.json
 knowledge/sources/**/pages/
 knowledge/derived/
 *.png

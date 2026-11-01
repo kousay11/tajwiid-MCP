@@ -7,6 +7,7 @@ a scholarly claim. Missing context is reported as unresolved, never guessed.
 
 from collections.abc import Callable
 
+from wirdi_mcp.tajwid.farsh import FARSH_DETECTORS
 from wirdi_mcp.tajwid.hamza import HAMZA_DETECTORS
 from wirdi_mcp.tajwid.idgham import IDGHAM_DETECTORS
 from wirdi_mcp.tajwid.lexicon import LEXICAL_DETECTORS
@@ -235,6 +236,7 @@ _BOOK_A_FAMILIES = (
     TAFKHIM_DETECTORS,
     IDGHAM_DETECTORS,
     YAAT_DETECTORS,
+    FARSH_DETECTORS,
 )
 _book_a: dict[str, list[Group]] = {}
 for _family in _BOOK_A_FAMILIES:
