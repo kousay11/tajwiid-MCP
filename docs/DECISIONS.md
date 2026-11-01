@@ -37,3 +37,12 @@ Applied from the mission defaults; revisit each with the project owner.
     `MappingOut` and `PassageReference`; a test shows identical mapping output to the original on
     all 6,214 selections. `WIRDI_AI_ROOT` stays an optional override that verifies the original
     files. Code is MIT; the data folder is CC BY-SA 4.0 with Qur'anpedia credit.
+16. **Second book, cross-check only (2026-11-01):** the longer Qaloun book Book A digests
+    (Nabhan, `docs/BOOK_NABHAN_EVALUATION.md`) is used to check Book A, not as a cited source. Its
+    findings are written into notes and limits (the معي sentence, the Sad and al-Ahqaf slips), and it
+    names Abu Nashit, which is recorded and applied to no rule. Citing it per rule and reading its farsh
+    tables are left to a later decision.
+17. **Second book as a verification source (2026-11-01):** after reading the usul pages on their
+    images, 92 rules carry a second citation to Nabhan (« same text as Book A »), the tariq stays
+    `unspecified`, and the topics Book A lacks that the corpus can show were added (`ya_zaida_*`,
+    `hamza_istifham_before_article`). Waqf, madd combinations and the farsh tables remain open.

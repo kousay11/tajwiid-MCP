@@ -645,6 +645,80 @@
       "needs": []
     },
     {
+      "id": "analyze_qaloun_tajwid.ya_zaida",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "Al Imran 3:20 holds ومن اتبعن: `ya_zaida_joined_kept` (the ya is pronounced when joined, dropped when stopped).",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 3,
+            "ayah": 20
+          },
+          "end_ayah": 20
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "ya_zaida_joined_kept"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
+      "id": "analyze_qaloun_tajwid.istifham_before_article",
+      "tool": "analyze_qaloun_tajwid",
+      "purpose": "al-An'am 6:144 (Qaloun 6:144) holds آلذكرين: `hamza_istifham_before_article`, two readings in `variants`.",
+      "arguments": {
+        "selection": {
+          "start": {
+            "corpus_id": "wirdi-ai:quranpedia:qalun",
+            "corpus_version": "sha256:ece0a2b0efe44d496211c595d0a34f495413bc93f78fba8095a666e2048d1303",
+            "numbering_system": "wirdi-ai:qalun-6214",
+            "riwaya": "qaloun",
+            "tariq": "unspecified",
+            "surah": 6,
+            "ayah": 144
+          },
+          "end_ayah": 144
+        },
+        "reading_context": {
+          "mode": "waqf",
+          "basis": "requested",
+          "preceding": null,
+          "following": null,
+          "stop_after_word": null
+        },
+        "rule_ids": [
+          "hamza_istifham_before_article"
+        ],
+        "families": [],
+        "include_candidates": true,
+        "limit": 50,
+        "offset": 0
+      },
+      "expect": {
+        "status": "ok"
+      },
+      "needs": []
+    },
+    {
       "id": "analyze_qaloun_tajwid.paging",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Second page of results: `offset` follows `next_offset` of the previous answer.",

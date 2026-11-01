@@ -4,7 +4,7 @@ A **local MCP server for the Qaloun recitation (from Nafi')**. You give it a pas
 it gives you back the **Tajwid rules that apply to it**, letter by letter, each with the page of
 the book that states the rule.
 
-- **Version 0.6.0** · 11 tools · 89 rules · 87 detectors · 289 tests (257 on a clean clone, the rest also check the original Wirdi AI files)
+- **Version 0.6.0** · 11 tools · 93 rules · 91 detectors · 293 tests (261 on a clean clone, the rest also check the original Wirdi AI files)
 - **Read-only and deterministic**: no LLM, no RAG, no database, no network. The Quran text is read
   from the Wirdi AI files and never modified.
 - **Nothing is scholarly verified.** No qualified reviewer has been named, so every result is a
@@ -25,7 +25,7 @@ the book that states the rule.
 4. [The 11 tools](#4-the-11-tools)
 5. [Selections and reading context](#5-selections-and-reading-context)
 6. [What an annotation says](#6-what-an-annotation-says)
-7. [All 89 rules](#7-all-89-rules)
+7. [All 93 rules](#7-all-93-rules)
 8. [Data and numbering](#8-data-and-numbering)
 9. [Sources and where they disagree](#9-sources-and-where-they-disagree)
 10. [What is not covered](#10-what-is-not-covered)
@@ -133,7 +133,7 @@ warnings}`; a failure is `{status: "error", error: {code, message, retryable}}`.
 | `health_check` | nothing | Readiness and configuration; reads no data |
 | `get_qaloun_passage` | `selection` | The unchanged ayat, their SHA-256 and their 559-page span |
 | `resolve_source_mapping` | `selection`, `target_corpus_id`, `target_corpus_version`, `target_numbering_system` | Where the selection falls in another numbering (e.g. Kufian/Hafs), `mapping_status`, `safe_for_source_retrieval` |
-| `list_tajwid_rules` | `family?` | The 89 rules: id, Arabic name, family, type, `has_detector` |
+| `list_tajwid_rules` | `family?` | The 93 rules: id, Arabic name, family, type, `has_detector` |
 | `get_tajwid_rule` | `rule_id`, `version` | One rule record: definition, conditions, exceptions, limits, book and page |
 | `analyze_qaloun_tajwid` | `selection` (1 to 100 ayat), `reading_context`, `rule_ids?`, `families?`, `limit` (≤500), `offset` | Candidate annotations, paged, with counts, `unresolved`, `skipped`, `coverage` |
 | `summarize_tajwid` | `surah`, `start_ayah?`, `end_ayah?`, `reading_context`, `rule_ids?`, `families?`, `limit`, `offset` | Counts per rule and per ayah (≤300 ayat) |
@@ -185,7 +185,7 @@ never fire in `wasl`. Waqf signs written inside an ayah are not treated as stops
 A short or empty result is **not** a claim that the passage has no other rule: only the rules you
 ask for are evaluated, and `coverage` says whether every position could be decided.
 
-## 7. All 89 rules
+## 7. All 93 rules
 
 Each rule is a short paraphrase written for this project, page-cited, **unreviewed**. Legend:
 
@@ -195,7 +195,7 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
   Qaloun text already carries the result of the rule, not the original hamzas.
 - **Tariq**: no rule names one. Book A attests Qaloun without naming a tariq, so every rule is `unspecified`.
 
-| Rule | Arabic name | Family | Type | Detector | Pages (Book A) |
+| Rule | Arabic name | Family | Type | Detector | Pages (Book A; 92 rules also cite the longer book, see the rule) |
 | --- | --- | --- | :-: | :-: | --- |
 | `alef_ana_before_hamza` | ألف أنا قبل همزة مفتوحة أو مضمومة | `madd` | B | yes | 23, 24 |
 | `alef_ana_before_hamza_kasra` | ألف أنا قبل همزة مكسورة | `madd` | B | yes | 24 |
@@ -231,6 +231,7 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `hamza_ibdal_saala` | إبدال الهمزة في سأل | `hamza` | C | yes | 25 |
 | `hamza_ibdal_yajuj` | إبدال الهمزة ألفا في يأجوج ومأجوج | `hamza` | C | yes | 25 |
 | `hamza_istifham_added` | همزة الاستفهام المزيدة في ءامنتم وءأله | `hamza` | C | yes | 27 |
+| `hamza_istifham_before_article` | همزة الاستفهام قبل همزة أل التعريف | `hamza` | C | yes | 31 |
 | `hamza_nabi` | همز النبي ونحوها | `hamza` | C | yes | 25, 26 |
 | `hamza_nabi_exception` | استثناء النبي في موضعي الأحزاب | `hamza` | C | yes | 26 |
 | `hamza_two_words_different` | الهمزتان المختلفتان في كلمتين | `hamza` | C | **no** | 28, 29 |
@@ -286,13 +287,17 @@ Each rule is a short paraphrase written for this project, page-cited, **unreview
 | `lam_shamsiya` | اللام الشمسية | `lam_taarif` | A | yes | 12, 13 |
 | `imala_har` | الإمالة في هار | `imala_taqlil` | C | yes | 35 |
 | `taqlil_tawrat` | التقليل في التوراة | `imala_taqlil` | C | yes | 35 |
+| `ya_zaida_joined_kept` | الياء الزائدة المثبتة وصلا المحذوفة وقفا | `ya_zaida` | C | yes | — (Nabhan 80, 81) |
+| `ya_zaida_kept_both` | الياء الزائدة المثبتة وصلا ووقفا | `ya_zaida` | C | yes | — (Nabhan 80, 81) |
+| `ya_zaida_two_ways` | الياء الزائدة بالوجهين وصلا | `ya_zaida` | C | yes | — (Nabhan 80, 81) |
 
 | Family | Rules | What it covers |
 | --- | ---: | --- |
 | `madd` | 25 | natural, badal, 'iwad, muttasil, munfasil, 'arid, lin, lazim, sila of the ha and meem, fixed alefs, alef of ana, light tawkid noon, الم الله |
-| `hamza` | 21 | replaced hamzas, prophet words, two hamzas, repeated interrogatives, hamzat al-wasl, wasl then qat' in one word, أرأيت |
+| `hamza` | 22 | replaced hamzas, prophet words, two hamzas, repeated interrogatives, hamzat al-wasl, wasl then qat' in one word, أرأيت, hamza before the article |
 | `tafkhim_tarqiq` | 17 | ra, lam of Allah, alef (also after ra), ghunna, the four ranks of the isti'la letters |
 | `ya_idafa` | 6 | open and closed first-person ya, `معي`, `ربي` of Fussilat |
+| `ya_zaida` | 3 | the zaida ya: kept when joined, kept or dropped, kept always (from the longer book only) |
 | `idgham_general` | 5 | identical, same-place and close letters, naqis, the great idgham |
 | `noon_sakina_tanween` | 6 | idhar, idgham, iqlab, ikhfa |
 | `mim_sakina`, `lam_taarif`, `imala_taqlil`, `qalqala` | 3 · 2 · 2 · 1 | shafawi rules, article lam, taqlil and imala, qalqala |
@@ -335,7 +340,8 @@ never compared by number, only through the verse.
 
 | Source | Role | State |
 | --- | --- | --- |
-| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The only source of the 89 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
+| **Book A**, *أحكام رواية قالون عن نافع المدني* (51 pp.) | The base of 90 of the 93 rules; Qaloun, names no tariq | Citations checked on the page images; inconsistent in places (below) |
+| **Nabhan**, *الثمر اليانع في أصول رواية قالون عن نافع* (214 pp.) | The longer book Book A digests; names Abu Nashit (p.111 only). Second citation of 92 rules, sole source of the 3 `ya_zaida` rules | Pages read on their images; local, never committed; see [BOOK_NABHAN_EVALUATION](docs/BOOK_NABHAN_EVALUATION.md) |
 
 Book A has an unknown licence (it is never committed). Its text layer is raw (inverted lam-alef ligatures).
 
@@ -346,8 +352,8 @@ Book A has an unknown licence (it is never committed). Its text layer is raw (in
 | --- | --- |
 | `فألقه` (p.19 against p.20), `يأته` | Both readings are in `variants` |
 | `آلآن` (p.21) | Three readings in `variants` |
-| Ya'at lists (p.46 against p.49) | Four place numbers differ; each word was looked up in the corpus and the retained place is documented |
-| `معي` (p.47) | The book's sentence is the reverse of the corpus spelling and of its own classes; each occurrence reports what the corpus spells |
+| Ya'at lists (p.46 against p.49) | Four place numbers differ; each word was looked up in the corpus and the retained place is documented. The longer source book shows two are Book A's own slips and the others inherited |
+| `معي` (p.47) | The book's sentence is the reverse of the corpus spelling and of its own classes, and differs from the longer book it digests (Nabhan p.79); each occurrence reports what the corpus spells |
 | Plural meem before ba and meem (1,314 places) | Sila by the general wording of p.17; its exclusion of ikhfa/idgham shafawi is an **inference**, written in both annotations |
 | Madd lengths | A reviewer proposes 2 or 4 (munfasil) and 4 (muttasil); Book A says 2, 3 or 4 and 3 or 4. Open |
 
@@ -365,7 +371,7 @@ Book A has an unknown licence (it is never committed). Its text layer is raw (in
 
 ```bash
 .venv/bin/python -m pytest                                          # everything, on the bundled snapshot
-WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 289 tests
+WIRDI_TEST_SOURCE_ROOT=/abs/wirdi-Ai .venv/bin/python -m pytest    # + checks against the original files: 293 tests
 ```
 
 - **Synthetic and stdio**: synthetic fixtures modelled on the books' examples, real stdio subprocess tests, the
@@ -385,7 +391,7 @@ src/wirdi_mcp/
   tajwid/                     tokenizer and detectors: madd, hamza, tafkhim, idgham, yaat,
                               lexicon (word lists), letters (static tables), engine, service
   tools/                      the 11 MCP tools and their contracts
-knowledge/rules/              89 rule records + manifest.json     (committed)
+knowledge/rules/              93 rule records + manifest.json     (committed)
 knowledge/sources/            edition metadata only               (no book text)
 knowledge/validation/         empty, ready for a reviewer's records
 scripts/                      rule generation, manifest, audit, page store, local check
@@ -419,6 +425,7 @@ The commands that use the scripts are in [section 3](#3-key-commands).
 | [RULE_AUDIT](docs/RULE_AUDIT.md) | Per-rule counts over the whole corpus |
 | [ARCHITECTURE](docs/ARCHITECTURE.md), [SOURCE_AUDIT](docs/SOURCE_AUDIT.md) | Boundaries, reference identity, the corpus and its checksums |
 | [DECISIONS](docs/DECISIONS.md) | Design decisions |
+| [BOOK_NABHAN_EVALUATION](docs/BOOK_NABHAN_EVALUATION.md) | Assessment of a second, longer Qaloun book: what it settles in Book A and what it could add |
 | [INTEGRATION](docs/INTEGRATION.md) | The planned client contract for Wirdi AI |
 
 The official [`mcp` Python SDK](https://github.com/modelcontextprotocol/python-sdk) is pinned to

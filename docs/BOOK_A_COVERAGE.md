@@ -34,8 +34,10 @@ numbers in `number_in_hafs`, so lists are matched against that and not against t
 | 31 | Vowel given to a sakin letter before hamzat al-wasl | `sakin_before_hamzat_wasl` | partial: من, the plural meem and tanween only |
 | 32-35 | Isti'la, ra, lam of Allah, alef, ghunna | `ra_*` (6), `lam_jalala_*` (2), `alef_tafkhim`, `alef_tafkhim_after_ra`, `alef_tarqiq`, `ghunna_tafkhim`, `ghunna_tarqiq`, `istiala_rank_1` to `istiala_rank_4` | detected; the four ranks of the isti'la letters follow the vowel |
 | 35 | Taqlil and imala | `taqlil_tawrat`, `imala_har` | detected |
+| 31 | Interrogative hamza before the article's hamza (آلذكرين، آلله) | `hamza_istifham_before_article` | detected, four places, two readings in `variants` |
 | 36-39 | Idgham kabir and saghir; naqis | `idgham_kabir_mutamathil`, `idgham_mutamathilayn`, `idgham_mutajanisayn`, `idgham_mutaqaribayn`, `idgham_naqis` | detected; second readings the book mentions are listed only for the two-reading words |
 | 40-45 | Places of articulation and characteristics | tool `get_letter_properties` | static tables, 29 letters |
+| (not in Book A) | Ya'at zawa'id (Nabhan pp.80-81) | `ya_zaida_joined_kept`, `ya_zaida_two_ways`, `ya_zaida_kept_both` | detected from the book's table, 24 places; the corpus writes the kept ya as a small yeh |
 | 45-50 | Ya'at al-idafa | `ya_idafa_fath`, `ya_idafa_iskan_exception`, `ya_idafa_fath_exception`, `ya_idafa_iskan_before_letter`, `ya_idafa_maee`, `ya_idafa_rabbi_two_readings` | partial (see below) |
 
 ## The plural meem before ba and meem
@@ -79,6 +81,12 @@ numbers; "kept" means the word is in that ayah of the corpus.
 | أوزعني | p.49 item 6: al-Ahqaf 14 | p.46 item 15 puts ذريتي in 15, the same ayah | in 46:15, not in 46:14 | 46:15 |
 | عهدي الظالمين | p.47 item 1: al-Baqara 144 | (no other page) | in 2:124, not in 2:144 | no place used |
 
+**Checked against the longer book Book A digests** (Nabhan, pp.77-79, read on the page images; see
+[BOOK_NABHAN_EVALUATION](BOOK_NABHAN_EVALUATION.md)): فأنظرني gives Sad 79 and أوزعني gives
+al-Ahqaf 15 there, so « Sad 147 » and « al-Ahqaf 14 » are Book A's own slips. أنظرني (al-A'raf 40),
+تدعونني (Ghafir 43 twice) and عهدي الظالمين (al-Baqara 144) are printed the same way there: those
+slips are inherited, and the corpus places stay as retained above.
+
 The heading of p.46 announces 21 closed words but its list gives 20 places (it omits Ghafir 41);
 p.48-49 list 21. Nothing in the code depends on the p.46 count.
 
@@ -95,8 +103,10 @@ barree also ends ordinary words (في، الذي). So:
   from an ordinary final yeh.
 - **معي** (p.47, last sentence): the book says the ya is open unless a fatha hamza follows, but the
   corpus spells it the other way round (open only before a fatha hamza, 2 of 11 places), which is
-  also what the book's own classes 1 and 6 give. `ya_idafa_maee` reports each occurrence with what
-  the corpus spells and chooses nothing.
+  also what the book's own classes 1 and 6 give. The longer book it digests (Nabhan p.79) lists
+  معي among the sukun words when no hamza qat' follows (nine places), so the sentence looks like a
+  transcription slip. `ya_idafa_maee` still reports each occurrence with what the corpus spells and
+  chooses nothing.
 
 ## Citations checked on the page images
 
@@ -126,4 +136,5 @@ Two content points came out of that reading:
 - Rule texts are paraphrases written by an automated drafter. No reviewer has confirmed any of them
   or any detected occurrence; the highest status served is `candidate`.
 - The corpus `tariq` is `unspecified` and Book A attests Qaloun without naming a tariq, so all
-  89 rules carry `tariq: "unspecified"`.
+  93 rules carry `tariq: "unspecified"`. The longer book it digests names Abu Nashit (Nabhan p.111,
+  « طريق الشاطبية عن أبي نشيط »); that is noted here and applied to no rule.
