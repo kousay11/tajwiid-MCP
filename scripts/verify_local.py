@@ -41,7 +41,6 @@ async def verify(source_root: Path | None) -> dict:
             "get_letter_properties",
             "get_source_page",
             "search_source_pages",
-            "get_tajwid_explanation",
         }
         passage_result = await client.call_tool(
             "get_qaloun_passage",
