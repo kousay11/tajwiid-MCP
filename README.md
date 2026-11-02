@@ -326,6 +326,19 @@ three different marks.
 | Rules | `knowledge/rules/*/1.json` | `manifest.json` pins every file; one altered byte gives `INTEGRITY_FAILURE` |
 | Books | PDFs placed locally in `docs/` | Never committed; only paraphrased rules with a page citation are |
 
+**The mushaf behind the page map.** The 559-page layout is that of the *Madinah Mushaf in the riwaya of
+Qaloun from Nafi'*, printed by the King Fahd Complex for the Printing of the Holy Qur'an (1427 H / 2006,
+559 printed pages; the PDF used is listed at `https://islamhouse.com/ar/books/5268`, SHA-256
+`17bb037d84f3e344c35122eb9fcad72d9b751d6011ab10dd896176f8974e8309`). It is **not** the 604-page layout and
+not the Tunisian Hannibal print. This repository holds **only page numbers** derived from that mushaf: for
+each ayah, the page where it begins and the page where it ends. The method is in
+`src/wirdi_mcp/quran/snapshot/docs/qaloun-pagination-validation.md` (verse-end markers and surah banners
+detected on the page images, without OCR, checked against the verse counts and the printed index). **No
+scan, image, page text, font or glyph of the mushaf is included or distributed.** The mushaf is a
+copyrighted publication; the page numbers are facts about its layout, but whether to publish them is the
+repository owner's decision, and they can be replaced by another verified map without touching the code
+(`qaloun_pagination_verified.json`, pinned by SHA-256).
+
 **Licences.** The code, tests, scripts and docs are MIT ([LICENSE](LICENSE)). The folder
 `src/wirdi_mcp/quran/snapshot/` keeps its own terms ([LICENSE-DATA](src/wirdi_mcp/quran/snapshot/LICENSE-DATA.md)):
 the Quran text is CC BY-SA 4.0 with credit to Qur'anpedia.net and the dump version; ShareAlike

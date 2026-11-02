@@ -9,7 +9,7 @@ pinned by SHA-256 in `../source_manifest.json`:
   `6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123`, CC BY-SA 4.0: the compilation of the dump. Its licence
   text is in `data/raw/quran-json/repo/LICENSE.txt`.
 - **Page map** (`data/generated/qaloun_pagination_verified.json`): 559 printed pages of the King
-  Fahd Complex mushaf, Qaloun from Nafi' (1427 H). The file's own metadata says the verse-end markers
+  Fahd Complex mushaf, Qaloun from Nafi' (1427 H; reference `https://islamhouse.com/ar/books/5268`). Only page numbers are kept: no scan, image, page text or font of the mushaf is included. The file's own metadata says the verse-end markers
   and surah banners were detected on the page images by the Wirdi AI project and checked against the
   verse counts, the printed index and a visual audit. See `docs/qaloun-pagination-validation.md`.
 - **Mapping resolver** (`backend/app/tadabbur/`): code of the Wirdi AI project that maps Qaloun
