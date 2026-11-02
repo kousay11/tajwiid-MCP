@@ -113,7 +113,7 @@
       "comment": "=== Outil : list_tajwid_rules ===",
       "id": "list_tajwid_rules.all",
       "tool": "list_tajwid_rules",
-      "purpose": "All 89 rules with family, detectability, tariq and `has_detector`.",
+      "purpose": "Every rule with family, detectability, tariq and `has_detector`.",
       "arguments": {},
       "expect": {
         "status": "ok"

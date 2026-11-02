@@ -73,7 +73,7 @@ Chaque requête a été exécutée contre le serveur au moment de la génératio
 
 **Rôle.** Liste des règles (filtre facultatif `family`).
 
-**Exemple.** All 89 rules with family, detectability, tariq and `has_detector`.
+**Exemple.** Every rule with family, detectability, tariq and `has_detector`.
 
 ```json
 {}

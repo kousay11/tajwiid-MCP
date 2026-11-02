@@ -77,7 +77,7 @@ copied it. What it gives is the original, which is longer and sometimes more exa
 | Role | What changes | Cost | Risk |
 | --- | --- | --- | --- |
 | **a. Cross-check only** | Report differences; fix Book A's slips in notes and tests (معي, أوزعني, فأنظرني); everything stays `unspecified` | Small | None |
-| **b. Second cited source** | Each rule it covers gets a second citation; `abu_nashit` only where the book states it (p.4, p.111) | Medium: 89 rules to match page by page on images | Citing a copy as independent proof; keep the wording « same text as Book A » |
+| **b. Second cited source** | Each rule it covers gets a second citation; `abu_nashit` only where the book states it (p.4, p.111) | Medium: every rule to match page by page on images (done for 92 rules, see the end of this file) | Citing a copy as independent proof; keep the wording « same text as Book A » |
 | **c. Closed place lists from the farsh tables** | Detect two hamzas in two words and some sakin-before-wasl places; possibly farsh differences | Large: about 88 table pages (4 columns: ayah, Hafs word, change, Qaloun word) to read on images, because the text layer of the tables is out of order | A wrong parse silently mislabels an ayah; each row needs a check against the corpus |
 
 **Recommendation.** Do **a** now: it removes the `معي` contradiction and three wrong place numbers
