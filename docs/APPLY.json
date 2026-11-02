@@ -8,7 +8,8 @@
     "`expect.status` is `ok` or `error`; for an error, `expect.code` is the error code. Counts quoted in `purpose` were measured on the real corpus.",
     "Numbers of ayat are in the Qaloun count (6,214 ayat). Use resolve_source_mapping to convert to the Kufian count of the Tunisian mushaf.",
     "To check against a Wirdi AI checkout instead of the bundled snapshot, set WIRDI_AI_ROOT (in the Inspector: -e WIRDI_AI_ROOT=/path).",
-    "tests/integration/test_apply_json.py runs every request in this file against the real server, so the examples cannot drift from the tools."
+    "tests/integration/test_apply_json.py runs every request in this file against the real server, so the examples cannot drift from the tools.",
+    "Le champ `comment` de chaque requête (« === Outil : … === ») dit à quel outil elle est liée ; JSON n'a pas de vrais commentaires. Seuls `arguments` se collent dans l'Inspector."
   ],
   "reading_context_note": "mode `waqf` stops at the end of each selected ayah only; `wasl` reads on, so the last position needs `following` (a complete reference to the next ayah of the same surah) or `null`; `stop_after_word` stops the last ayah after that many words.",
   "reference_template": {
@@ -22,6 +23,7 @@
   },
   "requests": [
     {
+      "comment": "=== Outil : health_check ===",
       "id": "health_check.basic",
       "tool": "health_check",
       "purpose": "Readiness. `quran_data` is `configured_unchecked` and `quran_source` is `bundled` by default.",
@@ -32,6 +34,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_qaloun_passage ===",
       "id": "get_qaloun_passage.basic",
       "tool": "get_qaloun_passage",
       "purpose": "The unchanged text of Al-Baqara 2:5-7 (Qaloun count) with SHA-256 and the 559-page span.",
@@ -55,6 +58,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_qaloun_passage ===",
       "id": "get_qaloun_passage.ayah_outside_surah",
       "tool": "get_qaloun_passage",
       "purpose": "Error case: an ayah that does not exist in that surah.",
@@ -79,6 +83,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : resolve_source_mapping ===",
       "id": "resolve_source_mapping.qaloun_to_hafs",
       "tool": "resolve_source_mapping",
       "purpose": "Where Qaloun 2:5-7 falls in the Kufian/Hafs count (expected 2:6-8, `verified_difference`).",
@@ -105,6 +110,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : list_tajwid_rules ===",
       "id": "list_tajwid_rules.all",
       "tool": "list_tajwid_rules",
       "purpose": "All 89 rules with family, detectability, tariq and `has_detector`.",
@@ -115,6 +121,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : list_tajwid_rules ===",
       "id": "list_tajwid_rules.family",
       "tool": "list_tajwid_rules",
       "purpose": "Only the 23 madd rules.",
@@ -127,6 +134,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_tajwid_rule ===",
       "id": "get_tajwid_rule.basic",
       "tool": "get_tajwid_rule",
       "purpose": "One rule record: definition, conditions, exceptions, limitations, citations.",
@@ -140,6 +148,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_tajwid_rule ===",
       "id": "get_tajwid_rule.two_readings",
       "tool": "get_tajwid_rule",
       "purpose": "A rule whose words carry two readings (`variants`) and a contradiction of the book.",
@@ -153,6 +162,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_tajwid_rule ===",
       "id": "get_tajwid_rule.not_found",
       "tool": "get_tajwid_rule",
       "purpose": "Error case: unknown rule.",
@@ -167,6 +177,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_tajwid_rule ===",
       "id": "get_tajwid_rule.unsupported_version",
       "tool": "get_tajwid_rule",
       "purpose": "Error case: the rule exists, this version does not.",
@@ -181,6 +192,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.family",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Every madd candidate of 2:1-7 in waqf (family filter).",
@@ -218,6 +230,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.rule_ids",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Only the connected and separated madd: 6 candidates, with their `variants`.",
@@ -256,6 +269,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.mim_and_ghunna",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "The mim sakina rules and the ghunna of the geminated noon/mim: 20 candidates.",
@@ -296,6 +310,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.plural_meem_sila",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "The sila of the plural meem, including the bare meems before ba and meem (variants `iskan`, `sila_2_harakat`).",
@@ -334,6 +349,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.wasl_without_following",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Continuous reading with nothing after the last ayah: the last position comes back under `unresolved`.",
@@ -372,6 +388,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.wasl_with_following",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Same, with the next ayah (2:8) given as `following`: nothing is left unresolved.",
@@ -418,6 +435,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.stop_after_word",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Simulate a stop inside an ayah: 2:7 is read up to its 10th word only.",
@@ -456,6 +474,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.alif_lam_mim_imran",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Al Imran 3:1 (one ayah in the Qaloun count): `madd_alif_lam_mim_imran` with the two readings in `variants`.",
@@ -493,6 +512,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.tawkid_khafifa",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Yusuf 12:32 holds وليكونا: `noon_tawkid_khafifa_stop` (the note says what a stop would give).",
@@ -530,6 +550,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.arayta",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "al-An'am 6:41 holds أرأيتكم: `hamza_arayta_tashil`.",
@@ -567,6 +588,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.wasl_then_qat",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "al-An'am 6:71 holds ائتنا: `hamza_wasl_then_qat_in_word`.",
@@ -604,6 +626,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.istiala_ranks",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "The four ranks of the isti'la letters and the heavy alef after ra, over al-Baqara 2:1-7.",
@@ -645,6 +668,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.ya_zaida",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Al Imran 3:20 holds ومن اتبعن: `ya_zaida_joined_kept` (the ya is pronounced when joined, dropped when stopped).",
@@ -682,6 +706,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.istifham_before_article",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "al-An'am 6:144 (Qaloun 6:144) holds آلذكرين: `hamza_istifham_before_article`, two readings in `variants`.",
@@ -719,6 +744,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.paging",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Second page of results: `offset` follows `next_offset` of the previous answer.",
@@ -754,6 +780,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_qaloun_tajwid ===",
       "id": "analyze_qaloun_tajwid.unknown_rule",
       "tool": "analyze_qaloun_tajwid",
       "purpose": "Error case: a rule id that has no detector.",
@@ -792,6 +819,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : list_reading_combinations ===",
       "id": "list_reading_combinations.pair_in_the_book",
       "tool": "list_reading_combinations",
       "purpose": "Al Imran 3:38: a connected madd, then a connected madd made 'arid by the stop with a kasra. The book lists exactly 6 readings (Nabhan p.103); `basis` is `book_listed`.",
@@ -823,6 +851,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : list_reading_combinations ===",
       "id": "list_reading_combinations.meems",
       "tool": "list_reading_combinations",
       "purpose": "an-Nisa 4:21: a plural meem before a hamza, then one before another letter. The book lists exactly 3 readings (Nabhan p.98).",
@@ -854,6 +883,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : list_reading_combinations ===",
       "id": "list_reading_combinations.range",
       "tool": "list_reading_combinations",
       "purpose": "al-Baqara 2:1-7: one entry per ayah that holds a madd or a plural meem; ayat with three or more are `pairwise_extension`.",
@@ -885,6 +915,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : summarize_tajwid ===",
       "id": "summarize_tajwid.range",
       "tool": "summarize_tajwid",
       "purpose": "Counts per rule and per ayah for 2:1-7, madd family (9 rules, 7 ayat).",
@@ -912,6 +943,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : summarize_tajwid ===",
       "id": "summarize_tajwid.whole_surah",
       "tool": "summarize_tajwid",
       "purpose": "A whole surah: leave out `start_ayah` and `end_ayah`; `next_offset` pages the per-ayah list.",
@@ -935,6 +967,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : summarize_tajwid ===",
       "id": "summarize_tajwid.invalid_surah",
       "tool": "summarize_tajwid",
       "purpose": "Error case: surah 0.",
@@ -955,6 +988,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_app_page ===",
       "id": "analyze_app_page.madd",
       "tool": "analyze_app_page",
       "purpose": "Candidates for the ayat that begin on page 263 of the 559-page layout (Kahf 18:39-48).",
@@ -980,6 +1014,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : analyze_app_page ===",
       "id": "analyze_app_page.invalid_page",
       "tool": "analyze_app_page",
       "purpose": "Error case: the layout has pages 1 to 559.",
@@ -1000,6 +1035,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_letter_properties ===",
       "id": "get_letter_properties.basic",
       "tool": "get_letter_properties",
       "purpose": "Place of articulation and characteristics (Book A pp.40-45). One base letter per entry.",
@@ -1019,6 +1055,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_letter_properties ===",
       "id": "get_letter_properties.not_a_letter",
       "tool": "get_letter_properties",
       "purpose": "Error case: an entry must be a single letter.",
@@ -1034,6 +1071,7 @@
       "needs": []
     },
     {
+      "comment": "=== Outil : get_source_page ===",
       "id": "get_source_page.book_a",
       "tool": "get_source_page",
       "purpose": "Raw text of printed page 19 of Book A (madd muttasil, munfasil, sila kubra). Needs the local page store.",
@@ -1050,6 +1088,7 @@
       ]
     },
     {
+      "comment": "=== Outil : search_source_pages ===",
       "id": "search_source_pages.basic",
       "tool": "search_source_pages",
       "purpose": "Which pages of Book A contain « الصلة »: 15, 17, 18, 19, 20. Needs the local page store.",
@@ -1068,6 +1107,7 @@
       ]
     },
     {
+      "comment": "=== Outil : search_source_pages ===",
       "id": "search_source_pages.too_short",
       "tool": "search_source_pages",
       "purpose": "Error case: a query has at least 2 characters.",

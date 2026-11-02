@@ -118,6 +118,7 @@ every tool are in [docs/APPLY.json](docs/APPLY.json).**
 | Change a rule record | edit the table in `scripts/build_book_a_rules.py`, then `python scripts/build_book_a_rules.py && python scripts/build_rule_manifest.py` |
 | Check the rule files against the manifest | `.venv/bin/python scripts/build_rule_manifest.py --check` |
 | Count every rule over the 6,214 ayat | `.venv/bin/python scripts/audit_rules.py --source-root /abs/wirdi-Ai` |
+| One correct JSON request per tool, run against the server | `docs/EXEMPLES_REQUETES.md` (rebuild: `.venv/bin/python scripts/build_examples_md.py`) |
 | Build the local page store of a book | `.venv/bin/python scripts/build_page_store.py <pdf> <edition-id>` |
 
 **After changing a rule or a detector**, in this order: regenerate the records and the manifest →
