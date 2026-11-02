@@ -14,7 +14,7 @@ the book that states the rule.
 > renvoie les règles de tajwid applicables (madd, hamza, tafkhim/tarqiq, idgham, ياءات الإضافة,
 > noon/mim sakina, qalqala…), avec la lettre exacte, le contexte (waqf/wasl) et la page du livre
 > cité. Aucune annotation n'est validée par un savant : le statut maximal est `candidate`.
-> Requêtes prêtes à coller : [docs/APPLY.json](docs/APPLY.json). Pièges déjà rencontrés :
+> Requêtes prêtes à coller : [docs/EXEMPLES_REQUETES.md](docs/EXEMPLES_REQUETES.md) (une par outil) et [docs/APPLY.json](docs/APPLY.json) (toutes). Pièges déjà rencontrés :
 > [docs/NoteImportant.md](docs/NoteImportant.md).
 
 ## Contents
@@ -104,7 +104,7 @@ npx @modelcontextprotocol/inspector .venv/bin/wirdi-mcp
 Then call `health_check`: `quran_data` must be `configured_unchecked` and `quran_source` `bundled`.
 (The Inspector starts the server with a *filtered* environment: to set `WIRDI_AI_ROOT`, pass it with
 `-e WIRDI_AI_ROOT=/path`, not as a variable written before `npx`.) **Ready-to-paste requests for
-every tool are in [docs/APPLY.json](docs/APPLY.json).**
+every tool are in [docs/EXEMPLES_REQUETES.md](docs/EXEMPLES_REQUETES.md) (one per tool) and [docs/APPLY.json](docs/APPLY.json) (all of them).**
 
 ## 3. Key commands
 
@@ -439,7 +439,8 @@ The commands that use the scripts are in [section 3](#3-key-commands).
 
 | Document | Contents |
 | --- | --- |
-| [APPLY.json](docs/APPLY.json) | One ready-to-paste JSON request per tool, with the expected result; checked by a test |
+| [EXEMPLES_REQUETES](docs/EXEMPLES_REQUETES.md) | **Start here to test in the Inspector**: one verified JSON request per tool (12), to paste into « Edit as JSON » |
+| [APPLY.json](docs/APPLY.json) | The full set of 40 requests, errors and edge cases included, with the expected result; checked by a test |
 | [NoteImportant](docs/NoteImportant.md) | Inspector setup, data origin, every test done and its analysis |
 | [TESTING_GUIDE](docs/TESTING_GUIDE.md) | A request per rule family and what to check |
 | [BOOK_A_COVERAGE](docs/BOOK_A_COVERAGE.md) | Each Book A section, its rules, its state and the page contradictions |
