@@ -139,7 +139,7 @@
         6
       ],
       "text_sha256": "0dcc85e8f92a7dd0ee22b7ec868418cf33a2686af176b7a995980626b02881b2",
-      "source": "risan/quran-json (data/quranpedia/qalun.json) from Quranpedia.net; page boundaries from quran-center/quran-meta"
+      "source": "risan/quran-json (data/quranpedia/qalun.json) from Quranpedia.net; the dump's own page lists (quran-meta) are not used, see pagination_path"
     },
     "hafs": {
       "path": "data/raw/quran-json/repo/data/quranpedia/qpc-hafs.json",
@@ -266,14 +266,14 @@
         6
       ],
       "text_sha256": "b1cac65c40189bf28d607f83096e03b990c65147fbe4b67ccbb410d67552eb2e",
-      "source": "risan/quran-json (data/quranpedia/qpc-hafs.json) from Quranpedia.net; page boundaries from quran-center/quran-meta"
+      "source": "risan/quran-json (data/quranpedia/qpc-hafs.json) from Quranpedia.net; the dump's own page lists (quran-meta) are not used, see pagination_path"
     }
   },
   "pagination_path": "data/generated/qaloun_pagination_verified.json",
   "pagination_sha256": "ca7aa4e4749c74bd08e07bb814b34b8cf876189a3c184df10bf23884264ccfc0",
   "pagination_reference": "مصحف المدينة النبوية برواية قالون عن نافع — مجمع الملك فهد لطباعة المصحف الشريف، 1427 هـ (559 صفحة مطبوعة)",
   "source": "Qur'anpedia.net mushaf 7 / risan/quran-json",
-  "license": "Qur'anpedia.net Data License (checked 2026-09-20): free inside apps; credit Qur'anpedia.net and state the dump version when republishing. Compilation: risan/quran-json CC BY-SA 4.0. Page lists: quran-meta MIT.",
+  "license": "Qur'anpedia.net Data License (checked 2026-09-20): free inside apps; credit Qur'anpedia.net and state the dump version when republishing. Compilation: risan/quran-json CC BY-SA 4.0. Served pagination: a 559-page map derived from the images of the King Fahd Complex Qaloun mushaf, not the quran-meta lists.",
   "tariq_attestation": "not_established_by_inspected_metadata",
   "bundled": {
     "note": "Hashes of the four snapshot files whose bytes differ from the Wirdi AI originals (trimmed schemas and three public notes). The other pinned files are byte-identical in both modes.",

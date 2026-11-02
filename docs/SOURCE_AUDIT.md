@@ -22,7 +22,8 @@ in these files; the MCP contract uses the exact file SHA-256 as its version.
 The current checkout's README mentions `meta/sources.json`, but that file is
 absent. Do not invent a dump date/version. Preserve Qur'anpedia attribution and
 the checkout revision/checksum. The existing importer records Qur'anpedia's
-credit/dump-version terms, compilation CC BY-SA 4.0 and quran-meta MIT; this
+credit/dump-version terms, compilation CC BY-SA 4.0 (the quran-meta page lists of the dump are not used: the served pagination
+is derived from the mushaf images); this
 audit does not newly clear redistribution of scans/fonts/books.
 
 | Artifact | Observed identity |
